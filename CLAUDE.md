@@ -9,10 +9,31 @@ hadist-qa.udienz.web.id): Arabic text with a translation, read book by book and
 chapter by chapter, plus a topic section with explanations. The interface is in
 English and Indonesian.
 
-No code yet. The plan, the decisions and the research live in the workspace
-repository `udienz/claude-project`, folder `project/hadistweb/`:
-`ROADMAP.md` (decisions, source register, data findings, phases) and `TODO.md`
-(open work). Read both before starting.
+The plan, the decisions and the research live in the workspace repository
+`udienz/claude-project`, folder `project/hadistweb/`: `ROADMAP.md` (decisions,
+source register, data findings, phases) and `TODO.md` (open work). Read both
+before starting.
+
+## Code map
+
+- `src/lib/hadith/`: `books.ts` (the ten books, their names, the translation
+  order), `service.ts` (reads fawazahmed0's chapter files and `info.min.json`
+  through `transport.ts`, which takes an HTTP URL or a folder), `types.ts`.
+- `src/proxy.ts`: answers 404 for addresses that are not a book, chapter or
+  hadith, before rendering (a streamed page cannot change its status).
+- `src/app/`: `/`, `/[book]`, `/[book]/chapter/[chapter]` (10 per page),
+  `/[book]/[hadith]`, `/about`.
+- `src/lib/i18n/`: interface languages `en` and `id` (default `id`), copied
+  from quranweb; `messages/en.ts` is the source catalog.
+
+Every hadith is read from its chapter file: decimal numbers such as `402.2`
+have no single-hadith file in the source. Chapter 0 holds the hadiths the source
+puts in no chapter (Bukhari 311, Muslim 344, ...); it is shown as its own
+chapter, first when it starts the book (an introduction), otherwise last.
+
+Commands: `npm test`, `npm run lint`, `npm run build`, `bash
+scripts/docker-smoke.sh` (needs Docker). Run the Docker smoke test before
+merging a change to the Dockerfile or to `public/`.
 
 ## Design and stack
 

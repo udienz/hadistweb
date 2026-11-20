@@ -1,0 +1,72 @@
+import type { Metadata, Viewport } from "next";
+import Link from "next/link";
+import "@fontsource/amiri/arabic-400.css";
+import "@fontsource/amiri/arabic-700.css";
+import "@fontsource/amiri/latin-400.css";
+import "@fontsource-variable/plus-jakarta-sans";
+import "@fontsource-variable/space-grotesk";
+import "./globals.css";
+import LanguageMenu from "@/components/LanguageMenu";
+import Logo from "@/components/Logo";
+import ThemeToggle from "@/components/ThemeToggle";
+import { I18nProvider } from "@/lib/i18n/client";
+import { MESSAGES } from "@/lib/i18n/messages";
+import { themeScript } from "@/lib/display";
+import { getI18n } from "@/lib/i18n/server";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getI18n();
+  return { title: t("meta.title"), description: t("meta.description") };
+}
+
+// The colour of the browser's bar: the page background of each theme (as in quranweb).
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f5f2eb" },
+    { media: "(prefers-color-scheme: dark)", color: "#071b20" },
+  ],
+};
+
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const { locale, t } = await getI18n();
+
+  return (
+    <html lang={locale} className="h-full antialiased" suppressHydrationWarning>
+      <head>
+        {/* Apply the theme before the first paint so the page does not flash. */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="flex min-h-full flex-col">
+        <I18nProvider locale={locale} messages={MESSAGES[locale]}>
+          <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
+            <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between gap-2 px-4">
+              <Link href="/" className="flex items-center gap-2.5">
+                <Logo />
+                <span className="font-display text-xl font-bold tracking-tight text-primary">HadistWeb</span>
+              </Link>
+              <nav className="hidden rounded-full border border-border bg-card p-1 text-sm sm:flex">
+                <Link href="/" className="whitespace-nowrap rounded-full px-4 py-1.5 font-medium hover:bg-background">
+                  {t("nav.books")}
+                </Link>
+                <Link href="/about" className="whitespace-nowrap rounded-full px-4 py-1.5 font-medium hover:bg-background">
+                  {t("nav.about")}
+                </Link>
+              </nav>
+              <div className="flex items-center gap-2">
+                <LanguageMenu />
+                <ThemeToggle />
+              </div>
+            </div>
+          </header>
+          <main className="flex-1">{children}</main>
+          <footer className="border-t border-border py-6 text-center text-sm text-muted-foreground">
+            {/* The sources and credits of all content are on the About page. */}
+            <Link href="/about" className="text-primary hover:underline">
+              {t("footer.about")}
+            </Link>
+          </footer>
+        </I18nProvider>
+      </body>
+    </html>
+  );
+}
