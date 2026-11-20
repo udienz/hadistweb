@@ -1,0 +1,21 @@
+# Next.js
+/node_modules
+/.next/
+/out/
+
+# Env
+.env*.local
+.env
+
+# Misc
+.DS_Store
+*.log
+npm-debug.log*
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Playwright (browser tests)
+/test-results/
+/playwright-report/
