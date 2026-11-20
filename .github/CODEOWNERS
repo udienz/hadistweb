@@ -1,0 +1,3 @@
+# Language maintainers: GitHub asks them to review every change to their interface catalog.
+# Add a line per language as maintainers join. The path follows quranweb's layout.
+/src/lib/i18n/messages/id.ts @udienz

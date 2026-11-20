@@ -1,0 +1,32 @@
+name: Translation mistake
+description: A mistake in the interface text, or in a hadith text or translation
+labels: ["translation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The interface text (menus, buttons, messages, the About page) is fixed here. The hadith texts, their translations and explanations come from published sources and are not edited here: if you find a mistake in one of those, give the book and hadith number below and we will look at the source.
+  - type: input
+    id: language
+    attributes:
+      label: Language
+      description: The language code, for example id, en or ar.
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Where
+      description: The page address, and where on the page (for a hadith, the book and number).
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What is wrong
+    validations:
+      required: true
+  - type: textarea
+    id: right
+    attributes:
+      label: What it should say
