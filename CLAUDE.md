@@ -9,10 +9,44 @@ hadist-qa.udienz.web.id): Arabic text with a translation, read book by book and
 chapter by chapter, plus a topic section with explanations. The interface is in
 English and Indonesian.
 
-No code yet. The plan, the decisions and the research live in the workspace
-repository `udienz/claude-project`, folder `project/hadistweb/`:
-`ROADMAP.md` (decisions, source register, data findings, phases) and `TODO.md`
-(open work). Read both before starting.
+The plan, the decisions and the research live in the workspace repository
+`udienz/claude-project`, folder `project/hadistweb/`: `ROADMAP.md` (decisions,
+source register, data findings, phases) and `TODO.md` (open work). Read both
+before starting.
+
+## Code map
+
+- `src/lib/hadith/`: `books.ts` (the ten books, their names, the translation
+  order), `service.ts` (reads fawazahmed0's chapter files and `info.min.json`
+  through `transport.ts`, which takes an HTTP URL or a folder), `types.ts`.
+- `src/lib/hadith/chapter-names.ts` and `chapter-names-id.json`: Indonesian
+  chapter names from compressed_hadith_sqlite (Unlicense, confirmed by the
+  owner 2026-11-20), built by `scripts/build-chapter-names.py`. Not reviewed
+  yet, so the source's English name is always shown under them.
+- `src/lib/page-size.ts`: 5 or 10 hadiths per chapter page, the reader's
+  choice, in the cookie `hw-page-size` (default 10).
+- `src/lib/hadeethenc/client.ts`: the HadeethEnc API (categories, a page of a
+  category, one hadith), read live with an in-process cache (`src/lib/memo.ts`).
+  Texts are shown exactly as the API gives them: HadeethEnc's terms forbid
+  changes, so no reformatting of its explanation or titles. Every page that
+  shows its content carries the credit line.
+- `src/proxy.ts`: answers 404 for addresses that are not a book, chapter,
+  hadith or HadeethEnc topic or hadith, before rendering (a streamed page
+  cannot change its status).
+- `src/app/`: `/`, `/[book]`, `/[book]/chapter/[chapter]`,
+  `/[book]/[hadith]`, `/topics`, `/topics/[category]`, `/topics/hadith/[id]`,
+  `/about`.
+- `src/lib/i18n/`: interface languages `en` and `id` (default `id`), copied
+  from quranweb; `messages/en.ts` is the source catalog.
+
+Every hadith is read from its chapter file: decimal numbers such as `402.2`
+have no single-hadith file in the source. Chapter 0 holds the hadiths the source
+puts in no chapter (Bukhari 311, Muslim 344, ...); it is shown as its own
+chapter, first when it starts the book (an introduction), otherwise last.
+
+Commands: `npm test`, `npm run lint`, `npm run build`, `bash
+scripts/docker-smoke.sh` (needs Docker). Run the Docker smoke test before
+merging a change to the Dockerfile or to `public/`.
 
 ## Design and stack
 

@@ -4,7 +4,20 @@ A website for reading hadith: Arabic text with an Indonesian or English
 translation, book by book and chapter by chapter. It will live at
 [hadist.udienz.web.id](https://hadist.udienz.web.id).
 
-Work has not started yet; this repository holds only its rules (`CLAUDE.md`).
+## Running it
+
+Node.js 24 or later.
+
+```bash
+npm install
+npm run dev        # http://localhost:3000
+npm test           # unit tests
+npm run lint
+npm run build && npm start
+```
+
+By default the hadith data is read from the source on GitHub. To use a copy of it (a mirror over HTTP, or a folder on
+disk with the same layout as fawazahmed0/hadith-api), set `HADITH_FAWAZ_URL`; see `.env.example`.
 
 ## Sources
 

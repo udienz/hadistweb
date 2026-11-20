@@ -49,5 +49,18 @@ jobs:
         if: hashFiles('package.json') != ''
         run: npm run build
 
-  # Added with the app, following quranweb: "Docker image starts" (scripts/docker-smoke.sh)
-  # and "Browser tests" (Playwright against the production build).
+  docker:
+    # The image the servers build: it must start and serve its files as the runtime user (uid 1001), with the checkout's
+    # permissions as strict as on the server (quranweb PR #71).
+    name: Docker image starts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Build and smoke test
+        run: bash scripts/docker-smoke.sh
+        env:
+          STRICT_PERMISSIONS: "1"
+
+  # Still to come, following quranweb: "Browser tests" (Playwright against the production build).
