@@ -2,7 +2,7 @@ import Link from "next/link";
 import { BOOKS } from "@/lib/hadith/books";
 import { getI18n } from "@/lib/i18n/server";
 import { localized } from "@/lib/i18n/translate";
-import { bookHref } from "@/lib/links";
+import { bookHref, topicsHref } from "@/lib/links";
 
 // Rendered per request: the layout reads the language from the request.
 export const instant = false;
@@ -55,6 +55,19 @@ export default async function Home() {
           </li>
         ))}
       </ul>
+
+      <Link
+        href={topicsHref}
+        className="mt-8 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-card px-5 py-4 transition hover:border-primary/50 hover:shadow-sm"
+      >
+        <span>
+          <span className="block font-display text-lg font-semibold text-primary">{t("topics.homeLink")}</span>
+          <span className="block text-sm text-muted-foreground">{t("topics.homeText")}</span>
+        </span>
+        <span aria-hidden className="text-primary">
+          &rarr;
+        </span>
+      </Link>
     </div>
   );
 }

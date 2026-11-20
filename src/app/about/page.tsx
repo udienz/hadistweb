@@ -27,6 +27,13 @@ export default async function AboutPage() {
             {": "}
             {t("about.fawaz")}
           </p>
+          <p>
+            <a href="https://hadeethenc.com" className="font-medium text-primary hover:underline" rel="noopener">
+              HadeethEnc.com
+            </a>
+            {": "}
+            {t("about.hadeethenc")}
+          </p>
           <p className="text-muted-foreground">{t("about.fallback")}</p>
           <p className="text-muted-foreground">{t("about.chapterNames")}</p>
         </div>

@@ -48,6 +48,9 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
                 <Link href="/" className="whitespace-nowrap rounded-full px-4 py-1.5 font-medium hover:bg-background">
                   {t("nav.books")}
                 </Link>
+                <Link href="/topics" className="whitespace-nowrap rounded-full px-4 py-1.5 font-medium hover:bg-background">
+                  {t("nav.topics")}
+                </Link>
                 <Link href="/about" className="whitespace-nowrap rounded-full px-4 py-1.5 font-medium hover:bg-background">
                   {t("nav.about")}
                 </Link>

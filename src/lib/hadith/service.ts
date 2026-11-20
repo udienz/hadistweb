@@ -6,6 +6,7 @@
 // and reduced to the chapter list and a number -> chapter map per book.
 
 import { bookById, EDITION_PREFIX, pickTranslation, translationOrder } from "./books";
+import { Memo } from "../memo";
 import { loadJson } from "./transport";
 import type { BookId, Chapter, Grade, Hadith, TranslationLanguage } from "./types";
 
@@ -31,31 +32,6 @@ interface RawInfo {
 interface BookIndex {
   chapters: Chapter[];
   chapterOf: Map<string, number>;
-}
-
-/**
- * A small cache of loaded files, so a reader paging through a chapter does not reload it each time. Least recently used
- * entries go first. No expiry by time: the data changes rarely and every deploy starts a new process (and Date.now()
- * is not allowed while Next.js prerenders a page).
- */
-class Memo<T> {
-  private entries = new Map<string, Promise<T>>();
-  constructor(private readonly max: number) {}
-
-  get(key: string, load: () => Promise<T>): Promise<T> {
-    const hit = this.entries.get(key);
-    if (hit) {
-      this.entries.delete(key);
-      this.entries.set(key, hit);
-      return hit;
-    }
-    const value = load();
-    // A failed load is not kept: the next request tries again.
-    value.catch(() => this.entries.delete(key));
-    this.entries.set(key, value);
-    if (this.entries.size > this.max) this.entries.delete(this.entries.keys().next().value!);
-    return value;
-  }
 }
 
 const numberKey = (n: number | string): string => String(n);

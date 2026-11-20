@@ -25,10 +25,17 @@ before starting.
   yet, so the source's English name is always shown under them.
 - `src/lib/page-size.ts`: 5 or 10 hadiths per chapter page, the reader's
   choice, in the cookie `hw-page-size` (default 10).
-- `src/proxy.ts`: answers 404 for addresses that are not a book, chapter or
-  hadith, before rendering (a streamed page cannot change its status).
+- `src/lib/hadeethenc/client.ts`: the HadeethEnc API (categories, a page of a
+  category, one hadith), read live with an in-process cache (`src/lib/memo.ts`).
+  Texts are shown exactly as the API gives them: HadeethEnc's terms forbid
+  changes, so no reformatting of its explanation or titles. Every page that
+  shows its content carries the credit line.
+- `src/proxy.ts`: answers 404 for addresses that are not a book, chapter,
+  hadith or HadeethEnc topic or hadith, before rendering (a streamed page
+  cannot change its status).
 - `src/app/`: `/`, `/[book]`, `/[book]/chapter/[chapter]`,
-  `/[book]/[hadith]`, `/about`.
+  `/[book]/[hadith]`, `/topics`, `/topics/[category]`, `/topics/hadith/[id]`,
+  `/about`.
 - `src/lib/i18n/`: interface languages `en` and `id` (default `id`), copied
   from quranweb; `messages/en.ts` is the source catalog.
 

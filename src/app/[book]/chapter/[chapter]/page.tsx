@@ -46,7 +46,7 @@ export default async function ChapterPage({ params, searchParams }: PageProps<"/
   const prev = chapters[position - 1];
   const next = chapters[position + 1];
   const title = chapterTitle(id, chapter, locale, t("book.unnamedChapter"));
-  const pager = <Pagination book={id} chapter={chapter.number} page={page} count={count} from={from} to={to} total={total} />;
+  const pager = <Pagination basePath={chapterHref(id, chapter.number)} page={page} count={count} from={from} to={to} total={total} />;
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">

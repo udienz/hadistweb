@@ -10,6 +10,7 @@ export const id: Messages = {
   },
   nav: {
     books: "Kitab",
+    topics: "Tema",
     about: "Tentang",
     language: "Bahasa",
     switchToLight: "Ganti ke mode terang",
@@ -55,8 +56,29 @@ export const id: Messages = {
     open: "Buka hadis {number}",
     inBook: "{book}, hadis {number}",
   },
+  topics: {
+    title: "Hadis per tema",
+    intro: "Hadis-hadis pilihan yang disusun per tema, masing-masing dengan derajat, sumber, penjelasan, dan faedahnya.",
+    homeLink: "Baca per tema",
+    homeText: "Hadis pilihan dengan penjelasan, dari HadeethEnc.com",
+    subtopics: "Tema",
+    hadiths: "Hadis",
+    all: "Semua tema",
+    showSubtopics: "Lihat temanya",
+    grade: "Derajat",
+    attribution: "Takhrij",
+    explanation: "Penjelasan",
+    lessons: "Faedah",
+    inTopics: "Termasuk dalam tema",
+    otherLanguage: {
+      en: "Dalam bahasa Inggris (hadis ini tidak punya terjemahan Indonesia di HadeethEnc)",
+      id: "Dalam bahasa Indonesia (hadis ini tidak punya terjemahan Inggris di HadeethEnc)",
+    },
+    credit: "Dari HadeethEnc.com, terbitan Rowwad Translation Center, ditampilkan tanpa perubahan.",
+    original: "Lihat di HadeethEnc.com",
+  },
   pagination: {
-    label: "Halaman bab",
+    label: "Halaman",
     range: "{from} sampai {to} dari {total} hadis",
     previous: "Halaman sebelumnya",
     next: "Halaman berikutnya",
@@ -82,6 +104,8 @@ export const id: Messages = {
       "Kitab, bab, terjemahan, dan derajat hadis berasal dari fawazahmed0/hadith-api, yang diterbitkan dengan lisensi Unlicense. Kami menyajikannya dari salinan kami sendiri.",
     fallback:
       "Kalau sebuah hadis tidak punya terjemahan dalam bahasa Anda, terjemahan bahasa lainnya yang ditampilkan, dengan label. Terjemahan Indonesia kosong untuk banyak hadis, karena sumbernya menggabungkan beberapa riwayat dalam satu entri; teks Arab tidak pernah dipasangkan dengan terjemahan hadis lain untuk menutup kekosongan itu.",
+    hadeethenc:
+      "Bagian tema berasal dari HadeethEnc.com (Ensiklopedia Hadis Nabi Terjemahan), terbitan Rowwad Translation Center. Isinya boleh dipakai ulang tanpa diubah, dengan menyebut HadeethEnc.com sebagai penerbit dan sumber; teksnya dibaca dari situs itu dan ditampilkan persis seperti terbitannya.",
     chapterNames:
       "Sumbernya memberi nama bab dalam bahasa Inggris. Nama bab bahasa Indonesia berasal dari compressed_hadith_sqlite karya IsmailHosenIsmailJames; nama-nama itu belum ditinjau, jadi nama Inggrisnya tetap ditampilkan.",
     code: "Kode situs ini terbuka dengan lisensi MIT.",

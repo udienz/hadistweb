@@ -11,6 +11,16 @@ export const chapterHref = (book: string, chapter: number, page = 1): string =>
 
 export const hadithHref = (book: string, number: string): string => `/${book}/${number}`;
 
+export const topicsHref = "/topics";
+export const topicHref = (category: number): string => `/topics/${category}`;
+export const topicHadithHref = (id: number): string => `/topics/hadith/${id}`;
+
+/** A HadeethEnc id (category or hadith) from the URL. */
+export function encIdFromSegment(value: string): number | null {
+  if (!/^\d{1,7}$/.test(value)) return null;
+  return Number(value);
+}
+
 /** The id of a hadith's card on a chapter page ("402.2" becomes "h-402-2", a valid fragment). */
 export const hadithAnchor = (number: string): string => `h-${number.replace(/\./g, "-")}`;
 

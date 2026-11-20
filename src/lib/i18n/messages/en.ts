@@ -10,6 +10,7 @@ export const en = {
   },
   nav: {
     books: "Books",
+    topics: "Topics",
     about: "About",
     language: "Language",
     switchToLight: "Switch to light mode",
@@ -55,8 +56,29 @@ export const en = {
     open: "Open hadith {number}",
     inBook: "{book}, hadith {number}",
   },
+  topics: {
+    title: "Hadiths by topic",
+    intro: "Selected hadiths arranged by topic, each with its grade, its source, an explanation and the lessons drawn from it.",
+    homeLink: "Read by topic",
+    homeText: "Selected hadiths with an explanation, from HadeethEnc.com",
+    subtopics: "Topics",
+    hadiths: "Hadiths",
+    all: "All topics",
+    showSubtopics: "Show the topics",
+    grade: "Grade",
+    attribution: "Source",
+    explanation: "Explanation",
+    lessons: "Lessons",
+    inTopics: "In the topics",
+    otherLanguage: {
+      en: "In English (this hadith has no Indonesian translation on HadeethEnc)",
+      id: "In Indonesian (this hadith has no English translation on HadeethEnc)",
+    },
+    credit: "From HadeethEnc.com, published by the Rowwad Translation Center, shown without changes.",
+    original: "View on HadeethEnc.com",
+  },
   pagination: {
-    label: "Pages of the chapter",
+    label: "Pages",
     range: "{from} to {to} of {total} hadiths",
     previous: "Previous page",
     next: "Next page",
@@ -82,6 +104,8 @@ export const en = {
       "The books, their chapters, translations and grades come from fawazahmed0/hadith-api, published under the Unlicense. We serve them from our own copy.",
     fallback:
       "When a hadith has no translation in your language, the other translation is shown and labelled. The Indonesian translation has no text for many hadiths, because its source joins several narrations into one entry; the Arabic text is never paired with the translation of another hadith to fill a gap.",
+    hadeethenc:
+      "The topic section comes from HadeethEnc.com (the Encyclopedia of Translated Prophetic Hadiths), published by the Rowwad Translation Center. Its texts may be reused without changes, with HadeethEnc.com named as publisher and source; they are read from its site and shown exactly as published.",
     chapterNames:
       "The source names its chapters in English. The Indonesian chapter names come from compressed_hadith_sqlite by IsmailHosenIsmailJames; they have not been reviewed yet, so the English name is shown with them.",
     code: "The code of this site is open source under the MIT licence.",
