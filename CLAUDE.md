@@ -19,9 +19,15 @@ before starting.
 - `src/lib/hadith/`: `books.ts` (the ten books, their names, the translation
   order), `service.ts` (reads fawazahmed0's chapter files and `info.min.json`
   through `transport.ts`, which takes an HTTP URL or a folder), `types.ts`.
+- `src/lib/hadith/chapter-names.ts` and `chapter-names-id.json`: Indonesian
+  chapter names from compressed_hadith_sqlite (Unlicense, confirmed by the
+  owner 2026-11-20), built by `scripts/build-chapter-names.py`. Not reviewed
+  yet, so the source's English name is always shown under them.
+- `src/lib/page-size.ts`: 5 or 10 hadiths per chapter page, the reader's
+  choice, in the cookie `hw-page-size` (default 10).
 - `src/proxy.ts`: answers 404 for addresses that are not a book, chapter or
   hadith, before rendering (a streamed page cannot change its status).
-- `src/app/`: `/`, `/[book]`, `/[book]/chapter/[chapter]` (10 per page),
+- `src/app/`: `/`, `/[book]`, `/[book]/chapter/[chapter]`,
   `/[book]/[hadith]`, `/about`.
 - `src/lib/i18n/`: interface languages `en` and `id` (default `id`), copied
   from quranweb; `messages/en.ts` is the source catalog.

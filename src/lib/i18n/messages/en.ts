@@ -33,7 +33,7 @@ export const en = {
     chapters: "Chapters",
     unnamedChapter: "Hadiths without a chapter in the source",
     chapterLabel: "Chapter {number}",
-    chapterNamesNote: "Chapter names are in English, as in the source.",
+    chapterNamesNote: "The Indonesian chapter names are not reviewed yet; the English name from the source is shown under each.",
   },
   chapter: {
     previous: "Previous chapter",
@@ -61,6 +61,7 @@ export const en = {
     previous: "Previous page",
     next: "Next page",
     page: "Page {number}",
+    perPage: "Hadiths per page",
   },
   notFound: {
     title: "Page not found",
@@ -81,7 +82,8 @@ export const en = {
       "The books, their chapters, translations and grades come from fawazahmed0/hadith-api, published under the Unlicense. We serve them from our own copy.",
     fallback:
       "When a hadith has no translation in your language, the other translation is shown and labelled. The Indonesian translation has no text for many hadiths, because its source joins several narrations into one entry; the Arabic text is never paired with the translation of another hadith to fill a gap.",
-    chapterNames: "Chapter names are in English, as in the source. Indonesian chapter names will follow.",
+    chapterNames:
+      "The source names its chapters in English. The Indonesian chapter names come from compressed_hadith_sqlite by IsmailHosenIsmailJames; they have not been reviewed yet, so the English name is shown with them.",
     code: "The code of this site is open source under the MIT licence.",
     codeLink: "View the code on GitHub",
   },

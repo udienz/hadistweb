@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { bookById } from "@/lib/hadith/books";
+import { chapterTitle } from "@/lib/hadith/chapter-names";
 import { getHadithService } from "@/lib/hadith/service";
 import { isBookId } from "@/lib/hadith/types";
 import { getI18n } from "@/lib/i18n/server";
@@ -44,22 +45,32 @@ export default async function BookPage({ params }: PageProps<"/[book]">) {
 
       <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
         <h2 className="font-display text-xl font-semibold">{t("book.chapters")}</h2>
-        {locale !== "en" && <p className="text-xs text-muted-foreground">{t("book.chapterNamesNote")}</p>}
+        {locale === "id" && book.translations.includes("id") && <p className="text-xs text-muted-foreground">{t("book.chapterNamesNote")}</p>}
       </div>
       <ol className="overflow-hidden rounded-2xl border border-border bg-card">
-        {chapters.map((c) => (
-          <li key={c.number} className="border-b border-border last:border-b-0">
-            <Link href={chapterHref(id, c.number)} className="flex items-center gap-4 px-4 py-3 transition hover:bg-muted">
-              <span className="w-10 shrink-0 text-right font-display text-sm font-semibold tabular-nums text-primary">
-                {c.number === 0 ? "–" : c.number}
-              </span>
-              <span className="min-w-0 flex-1 font-medium" lang={c.number === 0 ? undefined : "en"}>
-                {c.number === 0 ? t("book.unnamedChapter") : c.name}
-              </span>
-              <span className="shrink-0 text-xs text-muted-foreground">{tn("common.hadiths", c.count)}</span>
-            </Link>
-          </li>
-        ))}
+        {chapters.map((c) => {
+          const title = chapterTitle(id, c, locale, t("book.unnamedChapter"));
+          return (
+            <li key={c.number} className="border-b border-border last:border-b-0">
+              <Link href={chapterHref(id, c.number)} className="flex items-center gap-4 px-4 py-3 transition hover:bg-muted">
+                <span className="w-10 shrink-0 text-right font-display text-sm font-semibold tabular-nums text-primary">
+                  {c.number === 0 ? "–" : c.number}
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block font-medium" lang={title.lang}>
+                    {title.title}
+                  </span>
+                  {title.original && (
+                    <span className="block text-xs text-muted-foreground" lang="en">
+                      {title.original}
+                    </span>
+                  )}
+                </span>
+                <span className="shrink-0 text-xs text-muted-foreground">{tn("common.hadiths", c.count)}</span>
+              </Link>
+            </li>
+          );
+        })}
       </ol>
     </div>
   );

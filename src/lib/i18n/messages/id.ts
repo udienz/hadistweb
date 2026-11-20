@@ -33,7 +33,7 @@ export const id: Messages = {
     chapters: "Bab",
     unnamedChapter: "Hadis yang tidak masuk bab di sumbernya",
     chapterLabel: "Bab {number}",
-    chapterNamesNote: "Nama bab masih dalam bahasa Inggris, sesuai sumbernya.",
+    chapterNamesNote: "Nama bab bahasa Indonesia belum ditinjau; nama Inggris dari sumbernya ada di bawah setiap nama.",
   },
   chapter: {
     previous: "Bab sebelumnya",
@@ -61,6 +61,7 @@ export const id: Messages = {
     previous: "Halaman sebelumnya",
     next: "Halaman berikutnya",
     page: "Halaman {number}",
+    perPage: "Hadis per halaman",
   },
   notFound: {
     title: "Halaman tidak ditemukan",
@@ -81,7 +82,8 @@ export const id: Messages = {
       "Kitab, bab, terjemahan, dan derajat hadis berasal dari fawazahmed0/hadith-api, yang diterbitkan dengan lisensi Unlicense. Kami menyajikannya dari salinan kami sendiri.",
     fallback:
       "Kalau sebuah hadis tidak punya terjemahan dalam bahasa Anda, terjemahan bahasa lainnya yang ditampilkan, dengan label. Terjemahan Indonesia kosong untuk banyak hadis, karena sumbernya menggabungkan beberapa riwayat dalam satu entri; teks Arab tidak pernah dipasangkan dengan terjemahan hadis lain untuk menutup kekosongan itu.",
-    chapterNames: "Nama bab masih dalam bahasa Inggris, sesuai sumbernya. Nama bab bahasa Indonesia menyusul.",
+    chapterNames:
+      "Sumbernya memberi nama bab dalam bahasa Inggris. Nama bab bahasa Indonesia berasal dari compressed_hadith_sqlite karya IsmailHosenIsmailJames; nama-nama itu belum ditinjau, jadi nama Inggrisnya tetap ditampilkan.",
     code: "Kode situs ini terbuka dengan lisensi MIT.",
     codeLink: "Lihat kodenya di GitHub",
   },
