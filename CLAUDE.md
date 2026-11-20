@@ -23,6 +23,11 @@ before starting.
   chapter names from compressed_hadith_sqlite (Unlicense, confirmed by the
   owner 2026-11-20), built by `scripts/build-chapter-names.py`. Not reviewed
   yet, so the source's English name is always shown under them.
+- `src/lib/hadith/hadeethenc-translation.ts` and `hadeethenc-pairs.json`: the
+  Indonesian an-Nawawi from HadeethEnc (42 pairs checked against the Arabic and
+  the English texts). Qudsi is not paired yet: its automatic matches include a
+  wrong pair. Shown with HadeethEnc's attribution line, its credit and a note
+  that remarks after the hadith in the Arabic may not be translated.
 - `src/lib/page-size.ts`: 5 or 10 hadiths per chapter page, the reader's
   choice, in the cookie `hw-page-size` (default 10).
 - `src/lib/hadeethenc/client.ts`: the HadeethEnc API (categories, a page of a

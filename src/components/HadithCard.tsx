@@ -65,6 +65,21 @@ export default function HadithCard({
             <p className="whitespace-pre-line leading-relaxed" lang={translation.language}>
               {translation.text}
             </p>
+            {translation.source && (
+              <>
+                {translation.source.attribution && (
+                  <p className="mt-3 text-sm" lang={translation.language}>
+                    <span className="text-muted-foreground">{t("hadith.attribution")}:</span> {translation.source.attribution}
+                  </p>
+                )}
+                <p className="mt-2 text-xs text-muted-foreground">{t("hadith.translationScope")}</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  <a href={translation.source.url} className="font-medium text-primary hover:underline" rel="noopener">
+                    {t("hadith.translationFrom", { source: translation.source.name })}
+                  </a>
+                </p>
+              </>
+            )}
           </>
         ) : (
           <p className="text-sm italic text-muted-foreground">{t("hadith.noTranslation")}</p>

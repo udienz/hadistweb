@@ -29,6 +29,8 @@ export interface Book {
   arabicName?: string;
   /** The translations the source has for this book. */
   translations: TranslationLanguage[];
+  /** Where the Indonesian translation comes from when the book's source has none. */
+  indonesianFrom?: string;
 }
 
 export interface Chapter {
@@ -45,6 +47,21 @@ export interface Grade {
   grade: string;
 }
 
+/** Where a translation comes from when it is not the book's own source (fawazahmed0). */
+export interface TranslationSource {
+  name: "HadeethEnc.com";
+  /** The hadith's page at the source. */
+  url: string;
+  /** The source's attribution line (takhrij), which our Arabic text carries at its end. */
+  attribution: string;
+}
+
+export interface Translation {
+  language: TranslationLanguage;
+  text: string;
+  source?: TranslationSource;
+}
+
 export interface Hadith {
   /** The number in the book, as a string: some numbers have a decimal part ("402.2"). */
   number: string;
@@ -54,6 +71,6 @@ export interface Hadith {
   /** Empty when the source has no Arabic text for this number. */
   arabic: string;
   /** The first translation available in the reader's order, or null when there is none. */
-  translation: { language: TranslationLanguage; text: string } | null;
+  translation: Translation | null;
   grades: Grade[];
 }
