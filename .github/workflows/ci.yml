@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+# Least privilege for the GITHUB_TOKEN: the jobs only read the code.
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Lint & build (includes typecheck)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      # The Next.js app does not exist yet. Until package.json is added, the job
+      # passes with a notice instead of failing, so the workflow can be in place
+      # (and required by the ruleset later) from the first commit.
+      - name: No app yet
+        if: hashFiles('package.json') == ''
+        run: echo "::notice::No package.json yet, nothing to lint, test or build."
+
+      - name: Setup Node.js
+        if: hashFiles('package.json') != ''
+        uses: actions/setup-node@v7
+        with:
+          node-version: "26"
+          cache: "npm"
+
+      - name: Install dependencies
+        if: hashFiles('package.json') != ''
+        run: npm ci
+
+      - name: Lint
+        if: hashFiles('package.json') != ''
+        run: npm run lint
+
+      - name: Test
+        if: hashFiles('package.json') != ''
+        run: npm test
+
+      # No separate `tsc --noEmit`: Next.js generates some types during the build,
+      # and `next build` runs the full type check itself (same as quranweb).
+      - name: Build
+        if: hashFiles('package.json') != ''
+        run: npm run build
+
+  # Added with the app, following quranweb: "Docker image starts" (scripts/docker-smoke.sh)
+  # and "Browser tests" (Playwright against the production build).
