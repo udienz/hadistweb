@@ -15,6 +15,7 @@ export const vi: Messages = {
     topics: "Chủ đề",
     about: "Giới thiệu",
     search: "Tìm kiếm",
+    bookmarks: "Dấu trang",
     language: "Ngôn ngữ",
     communityBadge: "Cộng đồng",
     communityTranslation: "Bản dịch cộng đồng: chưa được người nói ngôn ngữ này duyệt",
@@ -116,6 +117,16 @@ export const vi: Messages = {
     unavailable: "Tính năng tìm kiếm không có trên bản sao này của trang.",
     numberIn: "Hadith số {number} trong:",
   },
+  reading: {
+    continue: "Đọc tiếp",
+    bookmark: "Đánh dấu",
+    bookmarked: "Đã đánh dấu",
+    title: "Dấu trang",
+    intro: "Các hadith bạn đã đánh dấu. Chỉ được lưu trong trình duyệt này, không trên máy chủ của chúng tôi.",
+    empty: "Chưa có dấu trang. Nhấn “Đánh dấu” trên một hadith để lưu nó ở đây.",
+    remove: "Xóa",
+    count: plural("{count} dấu trang"),
+  },
   notFound: {
     title: "Không tìm thấy trang",
     description: "Trang bạn tìm không tồn tại hoặc đã được chuyển đi.",
@@ -132,7 +143,7 @@ export const vi: Messages = {
     sections: {
       reading: {
         title: "Những gì ở lại trong trình duyệt của bạn",
-        body: "Lựa chọn giao diện sáng hay tối của bạn được lưu trong bộ nhớ cục bộ của trình duyệt và không rời khỏi đó. Lựa chọn cỡ chữ cũng được lưu ở đó. Hai cookie nhỏ lưu ngôn ngữ giao diện (hw-lang) và số hadith hiển thị trên một trang chương (hw-page-size), để trang hiện ra đúng như bạn đã chọn. Trang web không lưu gì khác về bạn: không có lịch sử đọc, không có dấu trang, không có tài khoản.",
+        body: "Lựa chọn giao diện sáng hay tối của bạn được lưu trong bộ nhớ cục bộ của trình duyệt và không rời khỏi đó. Lựa chọn cỡ chữ cũng được lưu ở đó. Hai cookie nhỏ lưu ngôn ngữ giao diện (hw-lang) và số hadith hiển thị trên một trang chương (hw-page-size), để trang hiện ra đúng như bạn đã chọn. Dấu trang của bạn và hadith bạn đọc gần nhất cũng được lưu ở đó, chỉ trong trình duyệt này. Trang web không lưu gì về bạn trên máy chủ, và không có tài khoản.",
       },
       sources: {
         title: "Văn bản đến từ đâu",

@@ -15,6 +15,7 @@ export const fr: Messages = {
     topics: "Thèmes",
     about: "À propos",
     search: "Rechercher",
+    bookmarks: "Signets",
     language: "Langue",
     communityBadge: "Communauté",
     communityTranslation: "Traduction communautaire : pas encore relue par un locuteur de la langue",
@@ -116,6 +117,16 @@ export const fr: Messages = {
     unavailable: "La recherche n'est pas disponible sur cette copie du site.",
     numberIn: "Hadith {number} dans :",
   },
+  reading: {
+    continue: "Reprendre la lecture",
+    bookmark: "Ajouter un signet",
+    bookmarked: "Dans les signets",
+    title: "Signets",
+    intro: "Les hadiths que vous avez mis en signet. Ils sont conservés dans ce navigateur seulement, pas sur notre serveur.",
+    empty: "Aucun signet pour l'instant. Appuyez sur « Ajouter un signet » sur un hadith pour le garder ici.",
+    remove: "Retirer",
+    count: plural("{count} signets", "{count} signet"),
+  },
   notFound: {
     title: "Page introuvable",
     description: "La page que vous cherchez n'existe pas ou a été déplacée.",
@@ -132,7 +143,7 @@ export const fr: Messages = {
     sections: {
       reading: {
         title: "Ce qui reste dans votre navigateur",
-        body: "Votre choix de thème clair ou sombre et de taille du texte est conservé dans le stockage local de votre navigateur et n'en sort pas. Deux petits cookies retiennent la langue de l'interface (hw-lang) et le nombre de hadiths par page de chapitre (hw-page-size), pour que la page s'affiche comme vous l'avez choisi. Le site ne conserve rien d'autre sur vous : ni historique de lecture, ni signets, ni compte.",
+        body: "Votre choix de thème clair ou sombre et de taille du texte est conservé dans le stockage local de votre navigateur et n'en sort pas. Deux petits cookies retiennent la langue de l'interface (hw-lang) et le nombre de hadiths par page de chapitre (hw-page-size), pour que la page s'affiche comme vous l'avez choisi. Vos signets et le dernier hadith lu y sont aussi conservés, dans ce navigateur seulement. Le site ne conserve rien sur vous sur son serveur, et il n'y a pas de compte.",
       },
       sources: {
         title: "D'où viennent les textes",

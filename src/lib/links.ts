@@ -21,6 +21,7 @@ export function searchHref(query?: string, book?: string, page = 1): string {
   return search ? `/search?${search}` : "/search";
 }
 
+export const bookmarksHref = "/bookmarks";
 export const topicsHref = "/topics";
 export const topicHref = (category: number): string => `/topics/${category}`;
 export const topicHadithHref = (id: number): string => `/topics/hadith/${id}`;

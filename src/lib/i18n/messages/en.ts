@@ -13,6 +13,7 @@ export const en = {
     topics: "Topics",
     about: "About",
     search: "Search",
+    bookmarks: "Bookmarks",
     language: "Language",
     communityBadge: "Community",
     communityTranslation: "Community translation: not yet reviewed by a speaker of the language",
@@ -114,6 +115,16 @@ export const en = {
     unavailable: "Search is not available on this copy of the site.",
     numberIn: "Hadith {number} in:",
   },
+  reading: {
+    continue: "Continue reading",
+    bookmark: "Bookmark",
+    bookmarked: "Bookmarked",
+    title: "Bookmarks",
+    intro: "The hadiths you bookmarked. They are kept in this browser only, not on our server.",
+    empty: "No bookmarks yet. Press “Bookmark” on a hadith to keep it here.",
+    remove: "Remove",
+    count: plural("{count} bookmarks", "{count} bookmark"),
+  },
   notFound: {
     title: "Page not found",
     description: "The page you are looking for does not exist or has moved.",
@@ -130,7 +141,7 @@ export const en = {
     sections: {
       reading: {
         title: "What stays in your browser",
-        body: "Your choice of light or dark theme is kept in your browser's local storage and does not leave it. Your choice of text size is kept there too. Two small cookies keep the interface language (hw-lang) and how many hadiths a chapter page shows (hw-page-size), so the page appears the way you chose. The site stores nothing else about you: no reading history, no bookmarks, no account.",
+        body: "Your choice of light or dark theme is kept in your browser's local storage and does not leave it. Your choice of text size is kept there too. Two small cookies keep the interface language (hw-lang) and how many hadiths a chapter page shows (hw-page-size), so the page appears the way you chose. Your bookmarks and the last hadith you read are kept there too, in this browser only. The site keeps nothing about you on its server, and there is no account.",
       },
       sources: {
         title: "Where the texts come from",

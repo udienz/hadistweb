@@ -15,6 +15,7 @@ export const it: Messages = {
     topics: "Temi",
     about: "Informazioni",
     search: "Cerca",
+    bookmarks: "Segnalibri",
     language: "Lingua",
     communityBadge: "Comunità",
     communityTranslation: "Traduzione della comunità: non ancora rivista da un parlante della lingua",
@@ -116,6 +117,16 @@ export const it: Messages = {
     unavailable: "La ricerca non è disponibile in questa copia del sito.",
     numberIn: "Hadith {number} in:",
   },
+  reading: {
+    continue: "Continua a leggere",
+    bookmark: "Segnalibro",
+    bookmarked: "Nei segnalibri",
+    title: "Segnalibri",
+    intro: "Gli hadith che hai salvato. Sono conservati solo in questo browser, non sul nostro server.",
+    empty: "Ancora nessun segnalibro. Premi “Segnalibro” su un hadith per tenerlo qui.",
+    remove: "Rimuovi",
+    count: plural("{count} segnalibri", "{count} segnalibro"),
+  },
   notFound: {
     title: "Pagina non trovata",
     description: "La pagina che cerchi non esiste o è stata spostata.",
@@ -132,7 +143,7 @@ export const it: Messages = {
     sections: {
       reading: {
         title: "Cosa resta nel tuo browser",
-        body: "La tua scelta di tema chiaro o scuro è conservata nella memoria locale del browser e non ne esce. Anche la scelta della dimensione del testo è conservata lì. Due piccoli cookie conservano la lingua dell'interfaccia (hw-lang) e quanti hadith mostra una pagina di capitolo (hw-page-size), così la pagina appare come l'hai scelta. Il sito non conserva nient'altro su di te: nessuna cronologia di lettura, nessun segnalibro, nessun account.",
+        body: "La tua scelta di tema chiaro o scuro è conservata nella memoria locale del browser e non ne esce. Anche la scelta della dimensione del testo è conservata lì. Due piccoli cookie conservano la lingua dell'interfaccia (hw-lang) e quanti hadith mostra una pagina di capitolo (hw-page-size), così la pagina appare come l'hai scelta. Anche i tuoi segnalibri e l'ultimo hadith letto sono conservati lì, solo in questo browser. Il sito non conserva nulla su di te sul suo server e non ci sono account.",
       },
       sources: {
         title: "Da dove vengono i testi",

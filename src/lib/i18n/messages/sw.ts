@@ -15,6 +15,7 @@ export const sw: Messages = {
     topics: "Mada",
     about: "Kuhusu",
     search: "Tafuta",
+    bookmarks: "Alamisho",
     language: "Lugha",
     communityBadge: "Jumuiya",
     communityTranslation: "Tafsiri ya jamii: bado haijakaguliwa na mzungumzaji wa lugha hii",
@@ -116,6 +117,16 @@ export const sw: Messages = {
     unavailable: "Utafutaji haupatikani kwenye nakala hii ya tovuti.",
     numberIn: "Hadithi namba {number} katika:",
   },
+  reading: {
+    continue: "Endelea kusoma",
+    bookmark: "Weka alamisho",
+    bookmarked: "Imewekwa alamisho",
+    title: "Alamisho",
+    intro: "Hadithi ulizowekea alamisho. Zinahifadhiwa katika kivinjari hiki tu, si kwenye seva yetu.",
+    empty: "Bado hakuna alamisho. Bonyeza “Weka alamisho” kwenye hadithi ili kuihifadhi hapa.",
+    remove: "Ondoa",
+    count: plural("Alamisho {count}"),
+  },
   notFound: {
     title: "Ukurasa haukupatikana",
     description: "Ukurasa unaoutafuta haupo au umehamishwa.",
@@ -132,7 +143,7 @@ export const sw: Messages = {
     sections: {
       reading: {
         title: "Kinachobaki kwenye kivinjari chako",
-        body: "Chaguo lako la mandhari angavu au giza linahifadhiwa kwenye hifadhi ya ndani ya kivinjari chako na halitoki humo. Chaguo lako la ukubwa wa maandishi linahifadhiwa humo pia. Vidakuzi viwili vidogo vinahifadhi lugha ya kiolesura (hw-lang) na idadi ya hadithi zinazoonyeshwa kwenye ukurasa wa mlango (hw-page-size), ili ukurasa uonekane jinsi ulivyochagua. Tovuti haihifadhi kitu kingine chochote kukuhusu: hakuna historia ya usomaji, alamisho wala akaunti.",
+        body: "Chaguo lako la mandhari angavu au giza linahifadhiwa kwenye hifadhi ya ndani ya kivinjari chako na halitoki humo. Chaguo lako la ukubwa wa maandishi linahifadhiwa humo pia. Vidakuzi viwili vidogo vinahifadhi lugha ya kiolesura (hw-lang) na idadi ya hadithi zinazoonyeshwa kwenye ukurasa wa mlango (hw-page-size), ili ukurasa uonekane jinsi ulivyochagua. Alamisho zako na hadithi ya mwisho uliyosoma pia zinahifadhiwa humo, katika kivinjari hiki tu. Tovuti haihifadhi chochote kukuhusu kwenye seva yake, na hakuna akaunti.",
       },
       sources: {
         title: "Maandishi yanatoka wapi",

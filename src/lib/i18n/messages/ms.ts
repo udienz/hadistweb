@@ -15,6 +15,7 @@ export const ms: Messages = {
     topics: "Tema",
     about: "Perihal",
     search: "Cari",
+    bookmarks: "Penanda buku",
     language: "Bahasa",
     communityBadge: "Komuniti",
     communityTranslation: "Terjemahan komuniti: belum disemak oleh penutur bahasa ini",
@@ -116,6 +117,16 @@ export const ms: Messages = {
     unavailable: "Carian tidak tersedia pada salinan laman ini.",
     numberIn: "Hadis nombor {number} dalam:",
   },
+  reading: {
+    continue: "Teruskan membaca",
+    bookmark: "Tanda",
+    bookmarked: "Ditanda",
+    title: "Penanda buku",
+    intro: "Hadis yang anda tanda. Disimpan dalam pelayar ini sahaja, bukan pada pelayan kami.",
+    empty: "Belum ada penanda buku. Tekan “Tanda” pada sesuatu hadis untuk menyimpannya di sini.",
+    remove: "Buang",
+    count: plural("{count} penanda buku"),
+  },
   notFound: {
     title: "Halaman tidak dijumpai",
     description: "Halaman yang anda cari tidak wujud atau telah dipindahkan.",
@@ -132,7 +143,7 @@ export const ms: Messages = {
     sections: {
       reading: {
         title: "Apa yang kekal dalam pelayar anda",
-        body: "Pilihan tema cerah atau gelap dan saiz teks disimpan dalam storan setempat pelayar anda dan tidak keluar daripadanya. Dua kuki kecil menyimpan bahasa antara muka (hw-lang) dan bilangan hadis bagi setiap halaman bab (hw-page-size), supaya halaman dipaparkan seperti yang anda pilih. Laman ini tidak menyimpan apa-apa lagi tentang anda: tiada sejarah bacaan, penanda buku atau akaun.",
+        body: "Pilihan tema cerah atau gelap dan saiz teks disimpan dalam storan setempat pelayar anda dan tidak keluar daripadanya. Dua kuki kecil menyimpan bahasa antara muka (hw-lang) dan bilangan hadis bagi setiap halaman bab (hw-page-size), supaya halaman dipaparkan seperti yang anda pilih. Penanda buku anda dan hadis terakhir yang anda baca juga disimpan di situ, dalam pelayar ini sahaja. Laman ini tidak menyimpan apa-apa tentang anda pada pelayannya, dan tiada akaun.",
       },
       sources: {
         title: "Dari mana datangnya teks",

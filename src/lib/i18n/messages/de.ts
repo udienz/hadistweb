@@ -15,6 +15,7 @@ export const de: Messages = {
     topics: "Themen",
     about: "Über",
     search: "Suchen",
+    bookmarks: "Lesezeichen",
     language: "Sprache",
     communityBadge: "Community",
     communityTranslation: "Community-Übersetzung: noch nicht von einer Person geprüft, die die Sprache spricht",
@@ -116,6 +117,16 @@ export const de: Messages = {
     unavailable: "Die Suche ist in dieser Kopie der Seite nicht verfügbar.",
     numberIn: "Hadith {number} in:",
   },
+  reading: {
+    continue: "Weiterlesen",
+    bookmark: "Lesezeichen",
+    bookmarked: "Gemerkt",
+    title: "Lesezeichen",
+    intro: "Die Hadithe, die du dir gemerkt hast. Sie werden nur in diesem Browser gespeichert, nicht auf unserem Server.",
+    empty: "Noch keine Lesezeichen. Tippe bei einem Hadith auf „Lesezeichen“, um ihn hier zu behalten.",
+    remove: "Entfernen",
+    count: plural("{count} Lesezeichen", "{count} Lesezeichen"),
+  },
   notFound: {
     title: "Seite nicht gefunden",
     description: "Die gesuchte Seite existiert nicht oder wurde verschoben.",
@@ -132,7 +143,7 @@ export const de: Messages = {
     sections: {
       reading: {
         title: "Was in deinem Browser bleibt",
-        body: "Deine Wahl zwischen hellem und dunklem Design wird im lokalen Speicher deines Browsers gespeichert und verlässt ihn nicht. Deine Wahl der Textgröße ebenfalls. Zwei kleine Cookies speichern die Sprache der Oberfläche (hw-lang) und wie viele Hadithe eine Kapitelseite zeigt (hw-page-size), damit die Seite so erscheint, wie du sie gewählt hast. Sonst speichert die Seite nichts über dich: keinen Leseverlauf, keine Lesezeichen, kein Konto.",
+        body: "Deine Wahl zwischen hellem und dunklem Design wird im lokalen Speicher deines Browsers gespeichert und verlässt ihn nicht. Deine Wahl der Textgröße ebenfalls. Zwei kleine Cookies speichern die Sprache der Oberfläche (hw-lang) und wie viele Hadithe eine Kapitelseite zeigt (hw-page-size), damit die Seite so erscheint, wie du sie gewählt hast. Deine Lesezeichen und der zuletzt gelesene Hadith werden dort ebenfalls gespeichert, nur in diesem Browser. Auf ihrem Server speichert die Seite nichts über dich, und es gibt keine Konten.",
       },
       sources: {
         title: "Woher die Texte kommen",

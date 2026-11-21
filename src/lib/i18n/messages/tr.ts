@@ -15,6 +15,7 @@ export const tr: Messages = {
     topics: "Konular",
     about: "Hakkında",
     search: "Ara",
+    bookmarks: "Yer imleri",
     language: "Dil",
     communityBadge: "Topluluk",
     communityTranslation: "Topluluk çevirisi: henüz bu dili konuşan biri tarafından gözden geçirilmedi",
@@ -116,6 +117,16 @@ export const tr: Messages = {
     unavailable: "Sitenin bu kopyasında arama kullanılamıyor.",
     numberIn: "{number} numaralı hadis:",
   },
+  reading: {
+    continue: "Okumaya devam et",
+    bookmark: "Yer imi ekle",
+    bookmarked: "Yer imlerinde",
+    title: "Yer imleri",
+    intro: "Yer imi eklediğiniz hadisler. Yalnızca bu tarayıcıda tutulur, sunucumuzda değil.",
+    empty: "Henüz yer imi yok. Bir hadisi burada tutmak için “Yer imi ekle”ye basın.",
+    remove: "Kaldır",
+    count: plural("{count} yer imi"),
+  },
   notFound: {
     title: "Sayfa bulunamadı",
     description: "Aradığınız sayfa yok ya da taşınmış.",
@@ -132,7 +143,7 @@ export const tr: Messages = {
     sections: {
       reading: {
         title: "Tarayıcınızda kalanlar",
-        body: "Açık ya da koyu tema ve yazı boyutu seçiminiz tarayıcınızın yerel depolamasında tutulur ve oradan çıkmaz. İki küçük çerez arayüz dilini (hw-lang) ve bir bölüm sayfasında kaç hadis gösterileceğini (hw-page-size) saklar, böylece sayfa seçtiğiniz gibi görünür. Site sizinle ilgili başka hiçbir şey saklamaz: okuma geçmişi, yer imi ya da hesap yoktur.",
+        body: "Açık ya da koyu tema ve yazı boyutu seçiminiz tarayıcınızın yerel depolamasında tutulur ve oradan çıkmaz. İki küçük çerez arayüz dilini (hw-lang) ve bir bölüm sayfasında kaç hadis gösterileceğini (hw-page-size) saklar, böylece sayfa seçtiğiniz gibi görünür. Yer imleriniz ve en son okuduğunuz hadis de orada, yalnızca bu tarayıcıda tutulur. Site sunucusunda sizinle ilgili hiçbir şey saklamaz ve hesap yoktur.",
       },
       sources: {
         title: "Metinlerin kaynağı",

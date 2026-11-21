@@ -13,6 +13,7 @@ export const id: Messages = {
     topics: "Tema",
     about: "Tentang",
     search: "Cari",
+    bookmarks: "Penanda",
     language: "Bahasa",
     communityBadge: "Komunitas",
     communityTranslation: "Terjemahan komunitas: belum ditinjau oleh penutur bahasanya",
@@ -114,6 +115,16 @@ export const id: Messages = {
     unavailable: "Pencarian tidak tersedia di salinan situs ini.",
     numberIn: "Hadis nomor {number} di:",
   },
+  reading: {
+    continue: "Lanjutkan membaca",
+    bookmark: "Tandai",
+    bookmarked: "Ditandai",
+    title: "Penanda",
+    intro: "Hadis-hadis yang Anda tandai. Disimpan di browser ini saja, tidak di server kami.",
+    empty: "Belum ada penanda. Tekan “Tandai” pada sebuah hadis untuk menyimpannya di sini.",
+    remove: "Hapus",
+    count: plural("{count} penanda"),
+  },
   notFound: {
     title: "Halaman tidak ditemukan",
     description: "Halaman yang Anda cari tidak ada atau sudah dipindah.",
@@ -130,7 +141,7 @@ export const id: Messages = {
     sections: {
       reading: {
         title: "Yang tersimpan di browser Anda",
-        body: "Pilihan tema terang atau gelap dan ukuran huruf disimpan di penyimpanan lokal (local storage) browser Anda dan tidak keluar dari sana. Dua cookie kecil menyimpan bahasa antarmuka (hw-lang) dan jumlah hadis per halaman bab (hw-page-size), supaya halaman tampil sesuai pilihan Anda. Situs ini tidak menyimpan hal lain tentang Anda: tidak ada riwayat bacaan, penanda, atau akun.",
+        body: "Pilihan tema terang atau gelap dan ukuran huruf disimpan di penyimpanan lokal (local storage) browser Anda dan tidak keluar dari sana. Dua cookie kecil menyimpan bahasa antarmuka (hw-lang) dan jumlah hadis per halaman bab (hw-page-size), supaya halaman tampil sesuai pilihan Anda. Penanda Anda dan hadis terakhir yang Anda baca juga disimpan di sana, hanya di browser ini. Situs ini tidak menyimpan apa pun tentang Anda di servernya, dan tidak ada akun.",
       },
       sources: {
         title: "Asal teks",

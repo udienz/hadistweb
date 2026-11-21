@@ -22,6 +22,7 @@ no ads.
   translation separately.
 - **Search** the Arabic text and the Indonesian and English translations, or type a book and number such as
   "Bukhari 1" to open that hadith.
+- **Bookmark hadiths** and **continue reading** where you stopped, from the home page.
 - **Share a hadith**: copy its text with the reference and link, or send it straight to WhatsApp. A shared link shows
   the hadith's title and opening words in the preview.
 
@@ -78,6 +79,14 @@ Until you pick one, the site follows the language of your browser.
 Your choice is kept in this browser.
 
 ![The text size menu open on a phone](docs/screenshots/en/text-size.png)
+
+### Bookmarks and continue reading
+
+1. Press **Bookmark** beside a hadith's number. Press it again to remove the bookmark.
+2. The home page shows **Continue reading** with the last hadith you read, and a link to your bookmarks.
+3. On the **Bookmarks** page, open a hadith or remove it from the list.
+
+Bookmarks and the last hadith read are kept in this browser only. Another browser or phone has its own.
 
 ### Light or dark
 
@@ -152,7 +161,8 @@ letter. The site's code is under the MIT licence ([LICENSE](LICENSE)); the texts
 
 ## Privacy
 
-No accounts, no reading history, no ads. Two small cookies remember your language and how many hadiths a page shows.
+No accounts and no ads. Your bookmarks and the last hadith you read stay in your browser, never on our server. Two
+small cookies remember your language and how many hadiths a page shows.
 Visits are counted with Cloudflare Web Analytics, which, according to Cloudflare, sets no cookies and does not identify
 you. The details are on the site's [privacy page](https://hadist.udienz.web.id/privacy).
 

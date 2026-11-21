@@ -15,6 +15,7 @@ export const ha: Messages = {
     topics: "Jigogi",
     about: "Game da mu",
     search: "Nema",
+    bookmarks: "Alamomi",
     language: "Harshe",
     communityBadge: "Al'umma",
     communityTranslation: "Fassarar al'umma: wani mai jin harshen bai duba ta ba tukuna",
@@ -116,6 +117,16 @@ export const ha: Messages = {
     unavailable: "Babu nema a wannan kwafin shafin.",
     numberIn: "Hadisi lamba {number} a:",
   },
+  reading: {
+    continue: "Ci gaba da karatu",
+    bookmark: "Sa alama",
+    bookmarked: "An sa alama",
+    title: "Alamomi",
+    intro: "Hadisan da ka sa wa alama. Ana ajiye su a wannan burauzar kawai, ba a sabarmu ba.",
+    empty: "Babu alama tukuna. Danna “Sa alama” a kan hadisi don ajiye shi a nan.",
+    remove: "Cire",
+    count: plural("Alamomi {count}"),
+  },
   notFound: {
     title: "Ba a sami shafin ba",
     description: "Shafin da kake nema babu shi ko an mayar da shi wani wuri.",
@@ -132,7 +143,7 @@ export const ha: Messages = {
     sections: {
       reading: {
         title: "Abin da ke zama a burauzarka",
-        body: "Zaɓinka na jigon haske ko duhu ana ajiye shi a ma'ajiyar burauzarka kuma ba ya fita daga can. Zaɓinka na girman rubutu ma ana ajiye shi a can. Ƙananan kukis biyu suna ajiye harshen shafin (hw-lang) da yawan hadisan da shafin babi ke nunawa (hw-page-size), domin shafin ya bayyana yadda ka zaɓa. Shafin ba ya ajiye wani abu game da kai: babu tarihin karatu, babu alamomi, babu asusu.",
+        body: "Zaɓinka na jigon haske ko duhu ana ajiye shi a ma'ajiyar burauzarka kuma ba ya fita daga can. Zaɓinka na girman rubutu ma ana ajiye shi a can. Ƙananan kukis biyu suna ajiye harshen shafin (hw-lang) da yawan hadisan da shafin babi ke nunawa (hw-page-size), domin shafin ya bayyana yadda ka zaɓa. Ana kuma ajiye alamominka da hadisin da ka karanta na ƙarshe a can, a wannan burauzar kawai. Shafin ba ya ajiye komai game da kai a sabarsa, kuma babu asusu.",
       },
       sources: {
         title: "Inda rubutun suka fito",
