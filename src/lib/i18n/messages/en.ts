@@ -142,7 +142,7 @@ export const en = {
       "HadistWeb shows the hadith collections with their Arabic text and a translation in your language. The texts are shown as the sources publish them; nothing is edited here.",
     sourcesTitle: "Sources",
     fawaz:
-      "The books, their chapters, translations and grades come from fawazahmed0/hadith-api, published under the Unlicense: translations in Indonesian, English, Turkish, Bengali, French, Russian and Urdu, though not every book in every language. The Arabic, Indonesian and English texts are served from our own copy; the other translations are read from the source.",
+      "The books, their chapters, translations and grades come from fawazahmed0/hadith-api, published under the Unlicense: translations in Indonesian, English, Turkish, Bengali, French, Russian, Urdu and Tamil, though not every book in every language. The Arabic, Indonesian and English texts are served from our own copy; the other translations are read from the source.",
     fallback:
       "When a hadith has no translation in your language, the English one is shown (or the Indonesian one), with a label. The Indonesian translation has no text for many hadiths, because its source joins several narrations into one entry; the Arabic text is never paired with the translation of another hadith to fill a gap. In Arabic, no translation is shown.",
     hadeethenc:
@@ -150,7 +150,7 @@ export const en = {
     chapterNames:
       "The source names its chapters in English. The Indonesian chapter names were written for this site, with the Arabic name of each book in brackets, and reviewed; the English name from the source is shown with them. In the other languages the chapter names are in English.",
     languages:
-      "The interface is in English and Indonesian, and as community translations in Turkish, Malay, Bengali, French, Russian, Urdu, Arabic and Persian. These are first drafts by Claude, an AI, not yet checked by a speaker of the language; the language menu has a link to report a mistake.",
+      "The interface is in English and Indonesian, and in 23 more languages as community translations: first drafts by Claude, an AI, not yet checked by a speaker of the language. The language menu marks them and has a link to report a mistake.",
     code: "The code of this site is open source under the MIT licence.",
     codeLink: "View the code on GitHub",
   },

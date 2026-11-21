@@ -60,7 +60,7 @@ export default function LanguageMenu() {
       </button>
 
       {open && (
-        <div role="menu" aria-label={t("nav.language")} className="absolute end-0 top-full z-50 mt-2 w-60 rounded-2xl border border-border bg-card p-2 shadow-lg">
+        <div role="menu" aria-label={t("nav.language")} className="absolute end-0 top-full z-50 mt-2 max-h-[calc(100dvh-5rem)] w-60 overflow-y-auto overscroll-contain rounded-2xl border border-border bg-card p-2 shadow-lg">
           {MENU_LOCALES.map((code) => (
             <button
               key={code}
@@ -75,7 +75,7 @@ export default function LanguageMenu() {
             >
               <span className="flex items-center gap-2.5">
                 {/* eslint-disable-next-line @next/next/no-img-element -- a 4:3 SVG from public/, nothing to optimise */}
-                <img src={`/flags/${LOCALE_FLAGS[code]}.svg`} alt="" width={20} height={15} className="h-[15px] w-5 shrink-0 rounded-[2px] border border-border object-cover" />
+                <img src={`/flags/${LOCALE_FLAGS[code]}.svg`} alt="" loading="lazy" width={20} height={15} className="h-[15px] w-5 shrink-0 rounded-[2px] border border-border object-cover" />
                 <span lang={code} dir={directionOf(code)} translate="no">
                   {LOCALE_NAMES[code]}
                 </span>

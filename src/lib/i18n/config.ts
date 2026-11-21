@@ -1,7 +1,7 @@
 // Supported UI languages, the same as quranweb's. The hadith translations have their own languages (lib/hadith/books.ts);
 // the interface language decides which one is preferred, and HadeethEnc is read in it.
 
-export const LOCALES = ["en", "id", "tr", "ms", "bn", "fr", "ru", "ur", "ar", "fa"] as const;
+export const LOCALES = ["en", "id", "tr", "ms", "bn", "fr", "ru", "ur", "ar", "fa", "es", "bs", "zh", "th", "uz", "ta", "ml", "de", "pt", "it", "hi", "sw", "ha", "ja", "vi"] as const;
 export type Locale = (typeof LOCALES)[number];
 
 /** Used when neither the cookie nor the browser says anything usable. */
@@ -20,6 +20,21 @@ export const LOCALE_NAMES: Record<Locale, string> = {
   ur: "اردو",
   ar: "العربية",
   fa: "فارسی",
+  es: "Español",
+  bs: "Bosanski",
+  zh: "中文",
+  th: "ไทย",
+  uz: "Ўзбекча",
+  ta: "தமிழ்",
+  ml: "മലയാളം",
+  de: "Deutsch",
+  pt: "Português",
+  it: "Italiano",
+  hi: "हिन्दी",
+  sw: "Kiswahili",
+  ha: "Hausa",
+  ja: "日本語",
+  vi: "Tiếng Việt",
 };
 
 /**
@@ -27,7 +42,7 @@ export const LOCALE_NAMES: Record<Locale, string> = {
  * 2026-11-21), names in Latin script first, then Cyrillic, Arabic and Bengali. Written out rather than sorted at run
  * time, so the server and the browser cannot disagree; a test checks it against the collation order.
  */
-export const MENU_LOCALES: readonly Locale[] = ["id", "ms", "en", "fr", "tr", "ru", "ur", "ar", "fa", "bn"];
+export const MENU_LOCALES: readonly Locale[] = ["id", "ms", "bs", "de", "en", "es", "fr", "ha", "it", "sw", "pt", "vi", "tr", "ru", "uz", "ur", "ar", "fa", "hi", "bn", "ta", "ml", "th", "zh", "ja"];
 
 /**
  * The flag shown beside each language in the language menu (the owner's request, 2026-11-21). A language is not a
@@ -44,14 +59,30 @@ export const LOCALE_FLAGS: Record<Locale, string> = {
   ur: "pk",
   ar: "sa",
   fa: "ir",
+  es: "es",
+  bs: "ba",
+  zh: "cn",
+  th: "th",
+  uz: "uz",
+  ta: "in",
+  ml: "in",
+  de: "de",
+  pt: "br",
+  it: "it",
+  hi: "in",
+  sw: "tz",
+  ha: "ng",
+  ja: "jp",
+  vi: "vn",
 };
 
 /**
- * Languages published as a **community translation**: drafts by Claude (the owner's choice, 2026-11-21), not yet reviewed
+ * Languages published as a **community translation**: drafts by Claude (the owner's choice, 2026-11-21; the 15 added with
+ * quranweb's set the same day), not yet reviewed
  * by a speaker of the language, as in quranweb. The language menu marks them and offers a link to report a mistake.
  * Remove a language from this list once a speaker has reviewed it.
  */
-export const COMMUNITY_LOCALES: readonly string[] = ["tr", "ms", "bn", "fr", "ru", "ur", "ar", "fa"];
+export const COMMUNITY_LOCALES: readonly string[] = ["tr", "ms", "bn", "fr", "ru", "ur", "ar", "fa", "es", "bs", "zh", "th", "uz", "ta", "ml", "de", "pt", "it", "hi", "sw", "ha", "ja", "vi"];
 
 /** Languages written right to left: the root layout sets `<html dir>` from this, and the layout uses logical CSS. */
 export const RTL_LOCALES: readonly string[] = ["ar", "ur", "fa"];

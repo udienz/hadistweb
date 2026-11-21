@@ -3,14 +3,14 @@
 
 import type { Book, BookId, Translation, TranslationLanguage } from "./types";
 
-// The translations fawazahmed0 has for each book (editions.json, checked 2026-11-21). Arabic, Indonesian and English are
+// The translations fawazahmed0 has for each book (editions.json, checked 2026-11-21; Tamil has only Bukhari and Muslim). Arabic, Indonesian and English are
 // served from our mirror; the others are read from the source when a reader asks for them.
 const ALL: TranslationLanguage[] = ["id", "en", "tr", "bn", "fr", "ru", "ur"];
 const NO_RU: TranslationLanguage[] = ["id", "en", "tr", "bn", "fr", "ur"];
 
 export const BOOKS: Book[] = [
-  { id: "bukhari", name: { en: "Sahih al-Bukhari", id: "Shahih al-Bukhari", ar: "صحيح البخاري" }, arabicName: "صحيح البخاري", translations: ALL },
-  { id: "muslim", name: { en: "Sahih Muslim", id: "Shahih Muslim", ar: "صحيح مسلم" }, arabicName: "صحيح مسلم", translations: ALL },
+  { id: "bukhari", name: { en: "Sahih al-Bukhari", id: "Shahih al-Bukhari", ar: "صحيح البخاري" }, arabicName: "صحيح البخاري", translations: [...ALL, "ta"] },
+  { id: "muslim", name: { en: "Sahih Muslim", id: "Shahih Muslim", ar: "صحيح مسلم" }, arabicName: "صحيح مسلم", translations: [...ALL, "ta"] },
   { id: "abudawud", name: { en: "Sunan Abu Dawud", id: "Sunan Abu Dawud", ar: "سنن أبي داود" }, arabicName: "سنن أبي داود", translations: ALL },
   {
     id: "tirmidhi",
@@ -49,6 +49,7 @@ export const EDITION_PREFIX: Record<TranslationLanguage | "ar", string> = {
   fr: "fra",
   ru: "rus",
   ur: "urd",
+  ta: "tam",
 };
 
 /** The editions in our mirror; the others are read from the source (the owner's decision, 2026-11-21). */

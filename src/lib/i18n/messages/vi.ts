@@ -1,0 +1,153 @@
+// Community translation: a first draft by Claude, not yet reviewed by a speaker (see COMMUNITY_LOCALES). Strings
+// shared with quranweb are taken from its catalog, so the two sites say the same things the same way.
+import type { Plural } from "../translate";
+import type { Messages } from "./types";
+
+const plural = (other: string, one?: string): Plural => ({ one, other });
+
+export const vi: Messages = {
+  meta: {
+    title: "HadistWeb",
+    description: "Đọc các bộ sưu tập hadith: văn bản tiếng Ả Rập kèm bản dịch bằng ngôn ngữ của bạn.",
+  },
+  nav: {
+    books: "Sách",
+    topics: "Chủ đề",
+    about: "Giới thiệu",
+    language: "Ngôn ngữ",
+    communityBadge: "Cộng đồng",
+    communityTranslation: "Bản dịch cộng đồng: chưa được người nói ngôn ngữ này duyệt",
+    reportTranslation: "Báo lỗi bản dịch",
+    switchToLight: "Chuyển sang chế độ sáng",
+    switchToDark: "Chuyển sang chế độ tối",
+  },
+  footer: {
+    about: "Giới thiệu và nguồn",
+    privacy: "Quyền riêng tư",
+  },
+  common: {
+    hadiths: plural("{count} hadith"),
+    chapters: plural("{count} chương"),
+  },
+  home: {
+    title: "Các bộ sưu tập hadith",
+    subtitle: "Văn bản tiếng Ả Rập kèm bản dịch, từng sách và từng chương.",
+    start: "Bắt đầu với Sahih al-Bukhari",
+    listTitle: "Sách",
+    translationIn: "Bản dịch: {language}",
+    translationFrom: "Bản dịch: {language}, từ {source}",
+    translationPartly: "Một số hadith có bản dịch ({language}), từ {source}",
+  },
+  book: {
+    chapters: "Các chương",
+    unnamedChapter: "Các hadith không thuộc chương nào trong nguồn",
+    chapterLabel: "Chương {number}",
+    chapterNamesNote: "Tên tiếng Anh từ nguồn được hiển thị dưới tên mỗi chương.",
+  },
+  chapter: {
+    previous: "Chương trước",
+    next: "Chương sau",
+    backToBook: "Tất cả các chương",
+  },
+  hadith: {
+    number: "Hadith {number}",
+    arabicNumber: "Số thứ tự Ả Rập: {number}",
+    fallback: "Bản dịch: {language}. Hadith này chưa có bản dịch bằng ngôn ngữ của bạn",
+    noTranslation: "Nguồn không có bản dịch của hadith này.",
+    noArabic: "Nguồn không có văn bản tiếng Ả Rập cho số này.",
+    grades: "Mức độ xác thực",
+    sanad: "Chuỗi người truyền thuật",
+    attribution: "Nguồn",
+    translationFrom: "Bản dịch từ {source}, hiển thị không thay đổi",
+    translationScope: "Bản dịch gồm hadith và nguồn của nó; các ghi chú theo sau trong văn bản Ả Rập ở trên (chẳng hạn về các chuỗi truyền thuật) có thể không được dịch.",
+    copyLink: "Sao chép liên kết",
+    copied: "Đã sao chép liên kết",
+    open: "Mở hadith {number}",
+    inBook: "{book}, hadith {number}",
+  },
+  topics: {
+    title: "Hadith theo chủ đề",
+    intro: "Các hadith chọn lọc được sắp xếp theo chủ đề, mỗi hadith kèm mức độ xác thực, nguồn, lời giải thích và các bài học rút ra.",
+    homeLink: "Đọc theo chủ đề",
+    homeText: "Hadith chọn lọc kèm lời giải thích, từ HadeethEnc.com",
+    subtopics: "Chủ đề",
+    hadiths: "Hadith",
+    all: "Tất cả chủ đề",
+    showSubtopics: "Xem các chủ đề",
+    grade: "Mức độ",
+    attribution: "Nguồn",
+    explanation: "Giải thích",
+    lessons: "Bài học",
+    inTopics: "Trong các chủ đề",
+    otherLanguage: "{language}: HadeethEnc chưa có bản dịch hadith này bằng ngôn ngữ của bạn",
+    credit: "Từ HadeethEnc.com, do Trung tâm Dịch thuật Rowwad xuất bản, hiển thị không thay đổi.",
+    original: "Xem trên HadeethEnc.com",
+  },
+  display: {
+    textSize: "Cỡ chữ",
+    arabicSize: "Văn bản Ả Rập",
+    latinSize: "Bản dịch",
+    smaller: "Nhỏ hơn: {name}",
+    larger: "Lớn hơn: {name}",
+  },
+  pagination: {
+    label: "Trang",
+    range: "{from} đến {to} trong {total} hadith",
+    previous: "Trang trước",
+    next: "Trang sau",
+    page: "Trang {number}",
+    perPage: "Số hadith mỗi trang",
+  },
+  notFound: {
+    title: "Không tìm thấy trang",
+    description: "Trang bạn tìm không tồn tại hoặc đã được chuyển đi.",
+    home: "Quay lại danh sách sách",
+  },
+  error: {
+    title: "Không tải được dữ liệu hadith",
+    description: "Nguồn không phản hồi. Hãy thử lại sau giây lát.",
+    retry: "Thử lại",
+  },
+  privacy: {
+    title: "Chính sách quyền riêng tư",
+    intro: "HadistWeb là trang web miễn phí để đọc hadith. Không có tài khoản và không cần đăng ký. Trang này cho biết trang web lưu gì và còn ai khác thấy gì.",
+    sections: {
+      reading: {
+        title: "Những gì ở lại trong trình duyệt của bạn",
+        body: "Lựa chọn giao diện sáng hay tối của bạn được lưu trong bộ nhớ cục bộ của trình duyệt và không rời khỏi đó. Lựa chọn cỡ chữ cũng được lưu ở đó. Hai cookie nhỏ lưu ngôn ngữ giao diện (hw-lang) và số hadith hiển thị trên một trang chương (hw-page-size), để trang hiện ra đúng như bạn đã chọn. Trang web không lưu gì khác về bạn: không có lịch sử đọc, không có dấu trang, không có tài khoản.",
+      },
+      sources: {
+        title: "Văn bản đến từ đâu",
+        body: "Các sách đến từ fawazahmed0/hadith-api: văn bản tiếng Ả Rập, Indonesia và Anh từ bản sao của chúng tôi trên máy chủ này, các bản dịch khác từ nguồn trên GitHub. Phần chủ đề và một số bản dịch đến từ HadeethEnc.com. Máy chủ của chúng tôi yêu cầu tất cả, không phải trình duyệt của bạn, nên cả GitHub lẫn HadeethEnc đều không thấy địa chỉ IP hay bất cứ thông tin nào khác về bạn.",
+      },
+      analytics: {
+        title: "Số liệu lượt truy cập",
+        body: "Để biết trang được dùng bao nhiêu, chúng tôi dùng Cloudflare Web Analytics. Khi một trang được mở, một đoạn mã nhỏ của Cloudflare báo trang nào được xem, bạn đến từ trang nào, loại trình duyệt, hệ điều hành và thiết bị, quốc gia, và trang tải nhanh đến đâu. Cloudflare cho biết công cụ này không đặt cookie, không lưu gì trong trình duyệt của bạn, và không dùng địa chỉ IP hay dữ liệu trình duyệt để nhận diện hoặc theo dõi bạn. Chúng tôi chỉ thấy số tổng (ví dụ lượt truy cập theo trang hoặc quốc gia), không bao giờ thấy từng khách truy cập, và chỉ dùng chúng để hiểu lưu lượng của trang này, không bao giờ cho quảng cáo. Nếu trình duyệt hoặc một tiện ích chặn đoạn mã, trang vẫn hoạt động như bình thường.",
+      },
+      recipients: {
+        title: "Ai xử lý dữ liệu",
+        body: "Cloudflare (DNS và proxy của trang, cùng thống kê lượt truy cập) và nhà cung cấp lưu trữ máy chủ. Máy chủ web của chúng tôi và Cloudflare xử lý địa chỉ IP để gửi trang, như mọi trang web. Chúng tôi không bán dữ liệu và không chia sẻ cho bất kỳ mục đích nào khác.",
+      },
+      law: {
+        title: "Luật áp dụng",
+        body: "Chính sách này tuân theo luật bảo vệ dữ liệu của Indonesia (Luật số 27 năm 2022 về Bảo vệ Dữ liệu Cá nhân, UU PDP).",
+      },
+    },
+    contactTitle: "Liên hệ",
+    contactBy: "Trang này do {name} vận hành.",
+    contactEmail: "Câu hỏi về chính sách này: {email}",
+    contactMissing: "Thông tin liên hệ cho câu hỏi về chính sách này chưa được thiết lập.",
+  },
+  about: {
+    title: "Giới thiệu",
+    intro: "HadistWeb hiển thị các bộ sưu tập hadith với văn bản tiếng Ả Rập và bản dịch bằng ngôn ngữ của bạn. Văn bản được hiển thị đúng như nguồn xuất bản; ở đây không chỉnh sửa gì.",
+    sourcesTitle: "Nguồn",
+    fawaz: "Các sách, chương, bản dịch và mức độ xác thực đến từ fawazahmed0/hadith-api, phát hành theo giấy phép Unlicense: bản dịch tiếng Indonesia, Anh, Thổ Nhĩ Kỳ, Bengal, Pháp, Nga, Urdu và Tamil, dù không phải sách nào cũng có ở mọi ngôn ngữ. Văn bản tiếng Ả Rập, Indonesia và Anh được phục vụ từ bản sao của chúng tôi; các bản dịch khác được đọc từ nguồn.",
+    fallback: "Khi một hadith không có bản dịch bằng ngôn ngữ của bạn, bản tiếng Anh (hoặc tiếng Indonesia) sẽ được hiển thị, kèm nhãn ghi chú. Bản dịch tiếng Indonesia không có văn bản cho nhiều hadith, vì nguồn của nó gộp nhiều lời tường thuật vào một mục; văn bản Ả Rập không bao giờ được ghép với bản dịch của hadith khác để lấp chỗ trống. Ở giao diện tiếng Ả Rập, không hiển thị bản dịch.",
+    hadeethenc: "Phần chủ đề đến từ HadeethEnc.com (Bách khoa toàn thư Hadith của Nhà Tiên tri đã dịch), do Trung tâm Dịch thuật Rowwad xuất bản. Văn bản của họ có thể được dùng lại mà không thay đổi, ghi HadeethEnc.com là nhà xuất bản và nguồn; chúng được đọc từ trang của họ và hiển thị đúng như đã xuất bản. Họ cũng cung cấp Bốn mươi Hadith của an-Nawawi, và 20 trong Bốn mươi Hadith Qudsi, ở những ngôn ngữ mà fawazahmed0/hadith-api không có.",
+    chapterNames: "Nguồn đặt tên chương bằng tiếng Anh. Tên chương tiếng Indonesia được viết cho trang này, kèm tên tiếng Ả Rập của mỗi sách trong ngoặc, và đã được duyệt; tên tiếng Anh từ nguồn được hiển thị cùng. Ở các ngôn ngữ khác, tên chương bằng tiếng Anh.",
+    languages: "Giao diện có tiếng Anh và tiếng Indonesia, và thêm 23 ngôn ngữ khác dưới dạng bản dịch cộng đồng: bản nháp đầu tiên do Claude, một AI, thực hiện, chưa được người nói ngôn ngữ đó kiểm tra. Menu ngôn ngữ đánh dấu chúng và có liên kết để báo lỗi.",
+    code: "Mã nguồn của trang này là mã nguồn mở theo giấy phép MIT.",
+    codeLink: "Xem mã nguồn trên GitHub",
+  },
+};

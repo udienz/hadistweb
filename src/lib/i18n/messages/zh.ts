@@ -1,0 +1,153 @@
+// Community translation: a first draft by Claude, not yet reviewed by a speaker (see COMMUNITY_LOCALES). Strings
+// shared with quranweb are taken from its catalog, so the two sites say the same things the same way.
+import type { Plural } from "../translate";
+import type { Messages } from "./types";
+
+const plural = (other: string, one?: string): Plural => ({ one, other });
+
+export const zh: Messages = {
+  meta: {
+    title: "HadistWeb",
+    description: "阅读圣训集：阿拉伯语原文，附您所用语言的译文。",
+  },
+  nav: {
+    books: "圣训集",
+    topics: "主题",
+    about: "关于",
+    language: "语言",
+    communityBadge: "社区",
+    communityTranslation: "社区翻译：尚未经该语言的使用者审校",
+    reportTranslation: "报告翻译错误",
+    switchToLight: "切换到浅色模式",
+    switchToDark: "切换到深色模式",
+  },
+  footer: {
+    about: "关于与来源",
+    privacy: "隐私",
+  },
+  common: {
+    hadiths: plural("{count} 段圣训"),
+    chapters: plural("{count} 章"),
+  },
+  home: {
+    title: "圣训集",
+    subtitle: "阿拉伯语原文附译文，逐部逐章阅读。",
+    start: "从《布哈里圣训实录》开始",
+    listTitle: "圣训集",
+    translationIn: "{language}译文",
+    translationFrom: "{language}译文，来自 {source}",
+    translationPartly: "部分圣训有{language}译文，来自 {source}",
+  },
+  book: {
+    chapters: "章节",
+    unnamedChapter: "来源中未归入任何章节的圣训",
+    chapterLabel: "第 {number} 章",
+    chapterNamesNote: "每个章名下方显示来源中的英文名称。",
+  },
+  chapter: {
+    previous: "上一章",
+    next: "下一章",
+    backToBook: "全部章节",
+  },
+  hadith: {
+    number: "圣训 {number}",
+    arabicNumber: "阿拉伯语编号：{number}",
+    fallback: "{language}译文：此圣训没有您所用语言的译文",
+    noTranslation: "来源中没有此圣训的译文。",
+    noArabic: "来源中没有此编号的阿拉伯语原文。",
+    grades: "等级",
+    sanad: "传述系统",
+    attribution: "出处",
+    translationFrom: "译文来自 {source}，未作改动",
+    translationScope: "译文包括圣训及其出处；上方阿拉伯语原文中其后的说明（例如关于传述系统的说明）可能未被翻译。",
+    copyLink: "复制链接",
+    copied: "链接已复制",
+    open: "打开圣训 {number}",
+    inBook: "{book}，圣训 {number}",
+  },
+  topics: {
+    title: "按主题阅读圣训",
+    intro: "按主题编排的精选圣训，每段都附有等级、出处、解释以及从中得出的教益。",
+    homeLink: "按主题阅读",
+    homeText: "附解释的精选圣训，来自 HadeethEnc.com",
+    subtopics: "主题",
+    hadiths: "圣训",
+    all: "全部主题",
+    showSubtopics: "查看主题",
+    grade: "等级",
+    attribution: "出处",
+    explanation: "解释",
+    lessons: "教益",
+    inTopics: "所属主题",
+    otherLanguage: "{language}：HadeethEnc 没有此圣训的您所用语言的译文",
+    credit: "来自 HadeethEnc.com，由 Rowwad 翻译中心出版，未作改动。",
+    original: "在 HadeethEnc.com 上查看",
+  },
+  display: {
+    textSize: "文字大小",
+    arabicSize: "阿拉伯语原文",
+    latinSize: "译文",
+    smaller: "缩小：{name}",
+    larger: "放大：{name}",
+  },
+  pagination: {
+    label: "页",
+    range: "第 {from}–{to} 段，共 {total} 段圣训",
+    previous: "上一页",
+    next: "下一页",
+    page: "第 {number} 页",
+    perPage: "每页圣训数",
+  },
+  notFound: {
+    title: "未找到页面",
+    description: "您要找的页面不存在或已移动。",
+    home: "返回圣训集",
+  },
+  error: {
+    title: "无法加载圣训数据",
+    description: "来源没有响应。请稍后再试。",
+    retry: "重试",
+  },
+  privacy: {
+    title: "隐私政策",
+    intro: "HadistWeb 是一个免费的圣训阅读网站。没有账户，也无需注册。本页说明本站保存了什么，以及还有谁能看到什么。",
+    sections: {
+      reading: {
+        title: "保留在您浏览器中的内容",
+        body: "您选择的浅色或深色主题保存在浏览器的本地存储中，不会离开浏览器。您选择的文字大小也保存在那里。两个小 Cookie 保存界面语言（hw-lang）和章节页面显示的圣训数量（hw-page-size），使页面按您的选择显示。本站不保存关于您的任何其他信息：没有阅读记录，没有书签，没有账户。",
+      },
+      sources: {
+        title: "文本的来源",
+        body: "圣训集来自 fawazahmed0/hadith-api：阿拉伯语、印度尼西亚语和英语文本来自我们在本服务器上的副本，其他译文来自 GitHub 上的来源。主题部分和部分译文来自 HadeethEnc.com。这些内容都由我们的服务器请求，而不是您的浏览器，因此 GitHub 和 HadeethEnc 都看不到您的 IP 地址或任何其他关于您的信息。",
+      },
+      analytics: {
+        title: "访问统计",
+        body: "为了解网站的使用情况，我们使用 Cloudflare Web Analytics。页面打开时，Cloudflare 的一个小脚本会报告浏览的页面、您来自哪个页面、浏览器、操作系统和设备类型、国家，以及页面加载速度。Cloudflare 表示，此工具不设置 Cookie，不在您的浏览器中保存任何内容，也不使用您的 IP 地址或浏览器信息来识别或跟踪您。我们只看到汇总数据（例如每个页面或每个国家的访问量），从不看到单个访问者，并且仅用于了解本网站的流量，绝不用于广告。如果您的浏览器或扩展程序拦截了该脚本，网站照常运行。",
+      },
+      recipients: {
+        title: "谁处理数据",
+        body: "Cloudflare（本站的 DNS 和代理，以及访问统计）和服务器的托管服务商。与所有网站一样，我们的网络服务器和 Cloudflare 会处理 IP 地址以传送页面。我们不出售数据，也不出于任何其他目的分享数据。",
+      },
+      law: {
+        title: "适用法律",
+        body: "本政策遵循印度尼西亚个人数据保护法（2022 年第 27 号《个人数据保护法》，UU PDP）。",
+      },
+    },
+    contactTitle: "联系方式",
+    contactBy: "本网站由 {name} 运营。",
+    contactEmail: "关于本政策的问题：{email}",
+    contactMissing: "尚未设置关于本政策问题的联系方式。",
+  },
+  about: {
+    title: "关于",
+    intro: "HadistWeb 展示各部圣训集的阿拉伯语原文及您所用语言的译文。文本按来源发布的样子显示，本站不作任何编辑。",
+    sourcesTitle: "来源",
+    fawaz: "圣训集及其章节、译文和等级来自以 Unlicense 发布的 fawazahmed0/hadith-api：有印度尼西亚语、英语、土耳其语、孟加拉语、法语、俄语、乌尔都语和泰米尔语译文，但并非每部圣训集都有每种语言。阿拉伯语、印度尼西亚语和英语文本由我们自己的副本提供；其他译文从来源读取。",
+    fallback: "当某段圣训没有您所用语言的译文时，会显示英语译文（或印度尼西亚语译文），并附说明。印度尼西亚语译文中许多圣训没有文本，因为其来源把几条传述合并为一条；我们从不把阿拉伯语原文与另一段圣训的译文配对来填补空缺。阿拉伯语界面不显示译文。",
+    hadeethenc: "主题部分来自 HadeethEnc.com（先知圣训译文百科），由 Rowwad 翻译中心出版。其文本可以在不作改动、注明 HadeethEnc.com 为出版者和来源的前提下再次使用；文本从其网站读取，并完全按发布的样子显示。在 fawazahmed0/hadith-api 没有相应语言的情况下，它还提供脑威四十段圣训，以及四十段神圣圣训中的 20 段。",
+    chapterNames: "来源以英语命名章节。印度尼西亚语章名是为本站编写的，并在括号中附有每部圣训集的阿拉伯语名称，已经审校；来源的英文名称与之一同显示。其他语言中章名为英语。",
+    languages: "界面提供英语和印度尼西亚语，另有 23 种语言作为社区翻译：由人工智能 Claude 完成的初稿，尚未经该语言的使用者检查。语言菜单会标出这些语言，并提供报告错误的链接。",
+    code: "本站代码以 MIT 许可证开源。",
+    codeLink: "在 GitHub 上查看代码",
+  },
+};

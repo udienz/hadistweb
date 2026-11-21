@@ -142,7 +142,7 @@ export const id: Messages = {
       "HadistWeb menampilkan kitab-kitab hadis dengan teks Arab dan terjemahan dalam bahasa Anda. Teksnya ditampilkan sesuai terbitan sumbernya; tidak ada yang disunting di sini.",
     sourcesTitle: "Sumber",
     fawaz:
-      "Kitab, bab, terjemahan, dan derajat hadis berasal dari fawazahmed0/hadith-api, yang diterbitkan dengan lisensi Unlicense: terjemahan bahasa Indonesia, Inggris, Turki, Bengali, Prancis, Rusia, dan Urdu, walaupun tidak semua kitab ada dalam semua bahasa. Teks Arab, Indonesia, dan Inggris disajikan dari salinan kami sendiri; terjemahan lainnya dibaca dari sumbernya.",
+      "Kitab, bab, terjemahan, dan derajat hadis berasal dari fawazahmed0/hadith-api, yang diterbitkan dengan lisensi Unlicense: terjemahan bahasa Indonesia, Inggris, Turki, Bengali, Prancis, Rusia, Urdu, dan Tamil, walaupun tidak semua kitab ada dalam semua bahasa. Teks Arab, Indonesia, dan Inggris disajikan dari salinan kami sendiri; terjemahan lainnya dibaca dari sumbernya.",
     fallback:
       "Kalau sebuah hadis tidak punya terjemahan dalam bahasa Anda, terjemahan Inggris yang ditampilkan (atau Indonesia), dengan label. Terjemahan Indonesia kosong untuk banyak hadis, karena sumbernya menggabungkan beberapa riwayat dalam satu entri; teks Arab tidak pernah dipasangkan dengan terjemahan hadis lain untuk menutup kekosongan itu. Dalam bahasa Arab, terjemahan tidak ditampilkan.",
     hadeethenc:
@@ -150,7 +150,7 @@ export const id: Messages = {
     chapterNames:
       "Sumbernya memberi nama bab dalam bahasa Inggris. Nama bab bahasa Indonesia disusun untuk situs ini, dengan nama Arab setiap kitab dalam kurung, lalu ditinjau; nama Inggris dari sumbernya tetap ditampilkan. Dalam bahasa lain, nama babnya berbahasa Inggris.",
     languages:
-      "Antarmukanya tersedia dalam bahasa Inggris dan Indonesia, serta terjemahan komunitas dalam bahasa Turki, Melayu, Bengali, Prancis, Rusia, Urdu, Arab, dan Persia. Terjemahan komunitas ini adalah draf pertama dari Claude, sebuah AI, dan belum dicek oleh penutur bahasanya; menu bahasa punya tautan untuk melaporkan kesalahan.",
+      "Antarmukanya tersedia dalam bahasa Inggris dan Indonesia, serta dalam 23 bahasa lain sebagai terjemahan komunitas: draf pertama dari Claude, sebuah AI, yang belum dicek oleh penutur bahasanya. Menu bahasa menandainya dan punya tautan untuk melaporkan kesalahan.",
     code: "Kode situs ini terbuka dengan lisensi MIT.",
     codeLink: "Lihat kodenya di GitHub",
   },

@@ -1,0 +1,153 @@
+// Community translation: a first draft by Claude, not yet reviewed by a speaker (see COMMUNITY_LOCALES). Strings
+// shared with quranweb are taken from its catalog, so the two sites say the same things the same way.
+import type { Plural } from "../translate";
+import type { Messages } from "./types";
+
+const plural = (other: string, one?: string): Plural => ({ one, other });
+
+export const sw: Messages = {
+  meta: {
+    title: "HadistWeb",
+    description: "Soma mikusanyiko ya hadithi: maandishi ya Kiarabu pamoja na tafsiri katika lugha yako.",
+  },
+  nav: {
+    books: "Vitabu",
+    topics: "Mada",
+    about: "Kuhusu",
+    language: "Lugha",
+    communityBadge: "Jumuiya",
+    communityTranslation: "Tafsiri ya jamii: bado haijakaguliwa na mzungumzaji wa lugha hii",
+    reportTranslation: "Ripoti kosa la tafsiri",
+    switchToLight: "Badilisha kwenda hali ya mwanga",
+    switchToDark: "Badilisha kwenda hali ya giza",
+  },
+  footer: {
+    about: "Kuhusu na vyanzo",
+    privacy: "Faragha",
+  },
+  common: {
+    hadiths: plural("hadithi {count}"),
+    chapters: plural("milango {count}", "mlango {count}"),
+  },
+  home: {
+    title: "Mikusanyiko ya hadithi",
+    subtitle: "Maandishi ya Kiarabu pamoja na tafsiri, kitabu kwa kitabu na mlango kwa mlango.",
+    start: "Anza na Sahih al-Bukhari",
+    listTitle: "Vitabu",
+    translationIn: "Tafsiri ya {language}",
+    translationFrom: "Tafsiri ya {language} kutoka {source}",
+    translationPartly: "Baadhi ya hadithi zimetafsiriwa kwa {language}, kutoka {source}",
+  },
+  book: {
+    chapters: "Milango",
+    unnamedChapter: "Hadithi zisizo katika mlango wowote kwenye chanzo",
+    chapterLabel: "Mlango {number}",
+    chapterNamesNote: "Jina la Kiingereza kutoka chanzo linaonyeshwa chini ya jina la kila mlango.",
+  },
+  chapter: {
+    previous: "Mlango uliotangulia",
+    next: "Mlango unaofuata",
+    backToBook: "Milango yote",
+  },
+  hadith: {
+    number: "Hadithi {number}",
+    arabicNumber: "Namba ya Kiarabu: {number}",
+    fallback: "Tafsiri ya {language}: hadithi hii haina tafsiri katika lugha yako",
+    noTranslation: "Chanzo hakina tafsiri ya hadithi hii.",
+    noArabic: "Chanzo hakina maandishi ya Kiarabu kwa namba hii.",
+    grades: "Daraja",
+    sanad: "Mnyororo wa wapokezi",
+    attribution: "Chanzo",
+    translationFrom: "Tafsiri kutoka {source}, inaonyeshwa bila mabadiliko",
+    translationScope: "Inatafsiri hadithi na chanzo chake; maelezo yanayofuata katika maandishi ya Kiarabu hapo juu (kama vile kuhusu minyororo yake) huenda hayajatafsiriwa.",
+    copyLink: "Nakili kiungo",
+    copied: "Kiungo kimenakiliwa",
+    open: "Fungua hadithi {number}",
+    inBook: "{book}, hadithi {number}",
+  },
+  topics: {
+    title: "Hadithi kwa mada",
+    intro: "Hadithi teule zilizopangwa kwa mada, kila moja pamoja na daraja lake, chanzo chake, maelezo na mafunzo yake.",
+    homeLink: "Soma kwa mada",
+    homeText: "Hadithi teule pamoja na maelezo, kutoka HadeethEnc.com",
+    subtopics: "Mada",
+    hadiths: "Hadithi",
+    all: "Mada zote",
+    showSubtopics: "Onyesha mada",
+    grade: "Daraja",
+    attribution: "Chanzo",
+    explanation: "Maelezo",
+    lessons: "Mafunzo",
+    inTopics: "Katika mada",
+    otherLanguage: "Kwa {language}: HadeethEnc haina tafsiri ya hadithi hii katika lugha yako",
+    credit: "Kutoka HadeethEnc.com, imechapishwa na Kituo cha Tafsiri cha Rowwad, inaonyeshwa bila mabadiliko.",
+    original: "Tazama kwenye HadeethEnc.com",
+  },
+  display: {
+    textSize: "Ukubwa wa maandishi",
+    arabicSize: "Maandishi ya Kiarabu",
+    latinSize: "Tafsiri",
+    smaller: "Ndogo zaidi: {name}",
+    larger: "Kubwa zaidi: {name}",
+  },
+  pagination: {
+    label: "Kurasa",
+    range: "{from} hadi {to} kati ya hadithi {total}",
+    previous: "Ukurasa uliotangulia",
+    next: "Ukurasa unaofuata",
+    page: "Ukurasa {number}",
+    perPage: "Hadithi kwa kila ukurasa",
+  },
+  notFound: {
+    title: "Ukurasa haukupatikana",
+    description: "Ukurasa unaoutafuta haupo au umehamishwa.",
+    home: "Rudi kwenye vitabu",
+  },
+  error: {
+    title: "Data ya hadithi haikuweza kupakiwa",
+    description: "Chanzo hakikujibu. Jaribu tena baada ya muda mfupi.",
+    retry: "Jaribu tena",
+  },
+  privacy: {
+    title: "Sera ya faragha",
+    intro: "HadistWeb ni tovuti ya bure ya kusoma hadithi. Hakuna akaunti wala usajili. Ukurasa huu unaeleza tovuti inahifadhi nini na nani mwingine anaona chochote.",
+    sections: {
+      reading: {
+        title: "Kinachobaki kwenye kivinjari chako",
+        body: "Chaguo lako la mandhari angavu au giza linahifadhiwa kwenye hifadhi ya ndani ya kivinjari chako na halitoki humo. Chaguo lako la ukubwa wa maandishi linahifadhiwa humo pia. Vidakuzi viwili vidogo vinahifadhi lugha ya kiolesura (hw-lang) na idadi ya hadithi zinazoonyeshwa kwenye ukurasa wa mlango (hw-page-size), ili ukurasa uonekane jinsi ulivyochagua. Tovuti haihifadhi kitu kingine chochote kukuhusu: hakuna historia ya usomaji, alamisho wala akaunti.",
+      },
+      sources: {
+        title: "Maandishi yanatoka wapi",
+        body: "Vitabu vinatoka fawazahmed0/hadith-api: maandishi ya Kiarabu, Kiindonesia na Kiingereza kutoka nakala yetu kwenye seva hii, tafsiri nyingine kutoka chanzo kwenye GitHub. Sehemu ya mada na baadhi ya tafsiri zinatoka HadeethEnc.com. Seva yetu ndiyo inayoviomba vyote, si kivinjari chako, kwa hiyo GitHub wala HadeethEnc hawaoni anwani yako ya IP wala kitu kingine chochote kukuhusu.",
+      },
+      analytics: {
+        title: "Takwimu za ziara",
+        body: "Ili kujua tovuti inatumika kiasi gani, tunatumia Cloudflare Web Analytics. Ukurasa unapofunguliwa, hati ndogo ya Cloudflare inaripoti ukurasa uliotazamwa, ukurasa uliotoka, aina ya kivinjari, mfumo wa uendeshaji na kifaa, nchi, na kasi ya kupakia ukurasa. Cloudflare inasema chombo hiki hakiweki vidakuzi, hakihifadhi chochote kwenye kivinjari chako, na hakitumii anwani yako ya IP wala data ya kivinjari kukutambua au kukufuatilia. Tunaona jumla tu (kwa mfano ziara kwa kila ukurasa au nchi), kamwe si wageni mmoja mmoja, na tunazitumia kuelewa trafiki ya tovuti hii tu, kamwe si kwa matangazo. Kivinjari chako au kiendelezi kikizuia hati hiyo, tovuti inafanya kazi vilevile.",
+      },
+      recipients: {
+        title: "Nani anashughulikia data",
+        body: "Cloudflare (DNS na proksi ya tovuti, pamoja na takwimu za wageni) na mtoa huduma wa kuhifadhi seva. Seva yetu ya wavuti na Cloudflare hushughulikia anwani za IP ili kuwasilisha kurasa, kama tovuti yoyote. Hatuuzi data wala kuishiriki kwa madhumuni mengine yoyote.",
+      },
+      law: {
+        title: "Sheria inayotumika",
+        body: "Sera hii inafuata sheria ya ulinzi wa data ya Indonesia (Sheria Na. 27 ya 2022 kuhusu Ulinzi wa Data Binafsi, UU PDP).",
+      },
+    },
+    contactTitle: "Mawasiliano",
+    contactBy: "Tovuti hii inaendeshwa na {name}.",
+    contactEmail: "Maswali kuhusu sera hii: {email}",
+    contactMissing: "Mawasiliano kwa maswali kuhusu sera hii bado hayajawekwa.",
+  },
+  about: {
+    title: "Kuhusu",
+    intro: "HadistWeb inaonyesha mikusanyiko ya hadithi pamoja na maandishi yake ya Kiarabu na tafsiri katika lugha yako. Maandishi yanaonyeshwa kama vyanzo vinavyoyachapisha; hakuna kinachohaririwa hapa.",
+    sourcesTitle: "Vyanzo",
+    fawaz: "Vitabu, milango yake, tafsiri na daraja vinatoka fawazahmed0/hadith-api, iliyochapishwa chini ya Unlicense: tafsiri za Kiindonesia, Kiingereza, Kituruki, Kibengali, Kifaransa, Kirusi, Kiurdu na Kitamil, ingawa si kila kitabu kipo katika kila lugha. Maandishi ya Kiarabu, Kiindonesia na Kiingereza yanatolewa kutoka nakala yetu; tafsiri nyingine zinasomwa kutoka chanzo.",
+    fallback: "Hadithi isipokuwa na tafsiri katika lugha yako, tafsiri ya Kiingereza (au ya Kiindonesia) inaonyeshwa, pamoja na lebo. Tafsiri ya Kiindonesia haina maandishi kwa hadithi nyingi, kwa sababu chanzo chake kinaunganisha riwaya kadhaa katika ingizo moja; maandishi ya Kiarabu hayaunganishwi kamwe na tafsiri ya hadithi nyingine ili kujaza pengo. Kwa Kiarabu, hakuna tafsiri inayoonyeshwa.",
+    hadeethenc: "Sehemu ya mada inatoka HadeethEnc.com (Ensaiklopidia ya Hadithi za Mtume Zilizotafsiriwa), iliyochapishwa na Kituo cha Tafsiri cha Rowwad. Maandishi yake yanaweza kutumiwa tena bila mabadiliko, kwa kutaja HadeethEnc.com kama mchapishaji na chanzo; yanasomwa kutoka tovuti yake na kuonyeshwa kama yalivyochapishwa. Pia inatoa Hadithi Arobaini za an-Nawawi, na 20 kati ya Hadithi Arobaini za Qudsi, katika lugha ambazo fawazahmed0/hadith-api haina.",
+    chapterNames: "Chanzo kinaipa milango yake majina ya Kiingereza. Majina ya milango ya Kiindonesia yaliandikwa kwa ajili ya tovuti hii, pamoja na jina la Kiarabu la kila kitabu kwenye mabano, na yakakaguliwa; jina la Kiingereza kutoka chanzo linaonyeshwa pamoja nayo. Katika lugha nyingine majina ya milango ni ya Kiingereza.",
+    languages: "Kiolesura kipo kwa Kiingereza na Kiindonesia, na kwa lugha nyingine 23 kama tafsiri za jamii: rasimu za kwanza za Claude, akili bandia, ambazo bado hazijakaguliwa na mzungumzaji wa lugha hiyo. Menyu ya lugha inazitambulisha na ina kiungo cha kuripoti kosa.",
+    code: "Msimbo wa tovuti hii ni huria chini ya leseni ya MIT.",
+    codeLink: "Tazama msimbo kwenye GitHub",
+  },
+};
