@@ -18,6 +18,7 @@ export const id: Messages = {
   },
   footer: {
     about: "Tentang dan sumber",
+    privacy: "Privasi",
   },
   common: {
     hadiths: plural("{count} hadis"),
@@ -99,6 +100,36 @@ export const id: Messages = {
     title: "Data hadis tidak bisa dimuat",
     description: "Sumber data tidak menjawab. Coba lagi sebentar lagi.",
     retry: "Coba lagi",
+  },
+  privacy: {
+    title: "Kebijakan privasi",
+    intro: "HadistWeb adalah situs baca hadis yang gratis. Tidak ada akun dan tidak perlu mendaftar. Halaman ini menjelaskan apa yang disimpan situs ini dan siapa saja yang ikut melihat datanya.",
+    sections: {
+      reading: {
+        title: "Yang tersimpan di browser Anda",
+        body: "Pilihan tema terang atau gelap disimpan di penyimpanan lokal (local storage) browser Anda dan tidak keluar dari sana. Dua cookie kecil menyimpan bahasa antarmuka (hw-lang) dan jumlah hadis per halaman bab (hw-page-size), supaya halaman tampil sesuai pilihan Anda. Situs ini tidak menyimpan hal lain tentang Anda: tidak ada riwayat bacaan, penanda, atau akun.",
+      },
+      sources: {
+        title: "Asal teks",
+        body: "Kitab-kitab hadis berasal dari salinan fawazahmed0/hadith-api milik kami di server ini. Bagian tema dan sebagian terjemahan Indonesia berasal dari HadeethEnc.com: yang meminta datanya ke HadeethEnc adalah server kami, bukan browser Anda, jadi HadeethEnc tidak melihat alamat IP Anda atau data lain tentang Anda.",
+      },
+      analytics: {
+        title: "Statistik pengunjung",
+        body: "Untuk mengetahui seberapa banyak situs ini dipakai, kami memakai Cloudflare Web Analytics. Saat halaman dibuka, skrip kecil dari Cloudflare melaporkan halaman yang dilihat, halaman asal Anda, jenis browser, sistem operasi dan perangkat, negara, serta kecepatan halaman dimuat. Menurut Cloudflare, alat ini tidak memasang cookie, tidak menyimpan apa pun di browser Anda, dan tidak memakai alamat IP atau ciri browser Anda untuk mengenali atau mengikuti Anda. Kami hanya melihat angka total (misalnya kunjungan per halaman atau per negara), tidak pernah per pengunjung, dan hanya untuk memahami lalu lintas situs ini, tidak untuk iklan. Kalau browser atau ekstensi Anda memblokir skrip itu, situs tetap berjalan seperti biasa.",
+      },
+      recipients: {
+        title: "Siapa yang menangani data",
+        body: "Cloudflare (DNS dan proxy situs, serta statistik pengunjung) dan penyedia hosting server. Server web kami dan Cloudflare memproses alamat IP untuk mengirimkan halaman, seperti semua situs web. Kami tidak menjual data dan tidak membagikannya untuk keperluan lain.",
+      },
+      law: {
+        title: "Hukum yang berlaku",
+        body: "Kebijakan ini mengikuti hukum pelindungan data pribadi Indonesia (Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi, UU PDP).",
+      },
+    },
+    contactTitle: "Kontak",
+    contactBy: "Situs ini dikelola oleh {name}.",
+    contactEmail: "Pertanyaan tentang kebijakan ini: {email}",
+    contactMissing: "Kontak untuk pertanyaan tentang kebijakan ini belum disiapkan.",
   },
   about: {
     title: "Tentang",
