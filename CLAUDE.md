@@ -94,3 +94,23 @@ exists) and data that is Indonesian by nature are in Indonesian.
 Default branch `master`. Work on a branch per piece of work and open a PR; do not
 push to `master` directly. Commits use the owner's identity:
 `Mahyuddin Susanto <udienz@gmail.com>`, with no `Co-Authored-By` lines.
+
+## Deploy
+
+Same server and pattern as quranweb. `scripts/deploy.sh <qa|prod> <ref>` runs on
+the server (the "Deploy QA" workflow sends it over SSH): it builds the image in
+`~/deploy/hadistweb-<env>`, runs it on 127.0.0.1:3010 (QA) or 3012 (prod),
+checks `/` and `/bukhari/chapter/1`, and rolls back to the previous image if
+they do not answer. nginx (`/etc/nginx/sites-available/hadist-qa`, certbot)
+forwards hadist-qa.udienz.web.id to it. quranweb uses 3000 and 3002.
+
+The books come from our mirror in `/srv/hadith-mirror/hadith-api`, built by
+`node scripts/sync-mirror.mjs /srv/hadith-mirror/hadith-api` (run it with
+`umask 022`: the server's umask is 007 and the container user, uid 1001, must
+read the files). The container mounts `/srv/hadith-mirror`, the parent, because
+the sync swaps the mirror directory. Restart or redeploy after a sync.
+
+The workflow needs the repository variable `QA_DEPLOY=true` and the `QA_SSH_*`
+secrets listed in `.github/workflows/deploy-qa.yml`. Its SSH key is its own
+(`github-actions-deploy@hadistweb`), not quranweb's, so either can be revoked
+alone.
