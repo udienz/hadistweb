@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import CopyLinkButton from "@/components/CopyLinkButton";
+import ShareMenu from "@/components/ShareMenu";
 import { encLanguage, getCategories, getHadith, hadeethencUrl } from "@/lib/hadeethenc/client";
 import { directionOf } from "@/lib/i18n/config";
 import { languageName } from "@/lib/i18n/languages";
@@ -42,11 +42,11 @@ export default async function TopicHadithPage({ params }: PageProps<"/topics/had
           <h1 className="font-display text-xl font-semibold sm:text-2xl" lang={hadith.language} dir={directionOf(hadith.language)}>
             {hadith.title}
           </h1>
-          <CopyLinkButton href={topicHadithHref(id)} />
+          <ShareMenu href={topicHadithHref(id)} reference={hadith.attribution ? `${hadith.attribution}; HadeethEnc.com` : "HadeethEnc.com"} />
         </header>
 
         {hadith.arabic && (
-          <p className="font-arabic text-right text-[length:calc(1.5rem*var(--arabic-scale,1))] leading-[2.1] sm:text-[length:calc(1.7rem*var(--arabic-scale,1))]" dir="rtl" lang="ar" translate="no">
+          <p className="font-arabic text-right text-[length:calc(1.5rem*var(--arabic-scale,1))] leading-[2.1] sm:text-[length:calc(1.7rem*var(--arabic-scale,1))]" dir="rtl" lang="ar" translate="no" data-share>
             {hadith.arabic}
           </p>
         )}
@@ -55,14 +55,14 @@ export default async function TopicHadithPage({ params }: PageProps<"/topics/had
           {hadith.language !== locale && (
             <p className="mb-2 text-xs font-semibold text-muted-foreground">{t("topics.otherLanguage", { language: languageName(hadith.language, locale) })}</p>
           )}
-          <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={hadith.language} dir={directionOf(hadith.language)}>
+          <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={hadith.language} dir={directionOf(hadith.language)} data-share>
             {hadith.text}
           </p>
         </div>
 
         <dl className="mt-4 flex flex-wrap gap-2 text-xs">
           {hadith.grade && (
-            <div className="rounded-lg border border-border bg-background px-2.5 py-1">
+            <div className="rounded-lg border border-border bg-background px-2.5 py-1" data-share>
               <dt className="inline text-muted-foreground">{t("topics.grade")}:</dt> <dd className="inline font-semibold">{hadith.grade}</dd>
             </div>
           )}

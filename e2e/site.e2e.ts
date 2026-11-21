@@ -119,3 +119,21 @@ test("search finds words, opens a typed reference, and offers a bare number in e
   await page.goto("/search?q=zzzzqqq");
   await expect(page.getByText("Tidak ada hadis yang memuat “zzzzqqq”.")).toBeVisible();
 });
+
+test("a hadith can be copied with its reference and link", async ({ page, context }) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  await page.goto("/bukhari/1");
+  await page.getByRole("button", { name: "Bagikan" }).click();
+  await page.getByRole("menuitem", { name: "Salin teks" }).click();
+  await expect(page.getByText("Teks disalin")).toBeVisible();
+  const text = await page.evaluate(() => navigator.clipboard.readText());
+  expect(text).toMatch(/[؀-ۿ]/);
+  expect(text).toContain("Telah menceritakan kepada kami");
+  expect(text).not.toContain("[");
+  expect(text).toContain("(Shahih al-Bukhari, hadis 1)");
+  expect(text.trim().endsWith("/bukhari/1")).toBe(true);
+
+  await page.getByRole("button", { name: "Teks disalin" }).or(page.getByRole("button", { name: "Bagikan" })).click();
+  await page.getByRole("menuitem", { name: "Salin tautan" }).click();
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toMatch(/^http:\/\/127\.0\.0\.1:\d+\/bukhari\/1$/);
+});
