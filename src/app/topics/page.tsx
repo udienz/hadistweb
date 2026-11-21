@@ -34,7 +34,7 @@ export default async function TopicsPage() {
           return (
             <li key={root.id} className="rounded-2xl border border-border bg-card">
               <div className="flex flex-wrap items-center justify-between gap-2 px-5 pt-4">
-                <Link href={topicHref(root.id)} className="font-display text-lg font-semibold hover:text-primary hover:underline">
+                <Link prefetch={false} href={topicHref(root.id)} className="font-display text-lg font-semibold hover:text-primary hover:underline">
                   {root.title}
                 </Link>
                 <span className="text-xs text-muted-foreground">{tn("common.hadiths", root.count)}</span>
@@ -47,7 +47,7 @@ export default async function TopicsPage() {
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {subs.map((c) => (
                       <li key={c.id}>
-                        <Link href={topicHref(c.id)} className="inline-block rounded-full border border-border bg-background px-3 py-1.5 text-sm hover:border-primary/50 hover:text-primary">
+                        <Link prefetch={false} href={topicHref(c.id)} className="inline-block rounded-full border border-border bg-background px-3 py-1.5 text-sm hover:border-primary/50 hover:text-primary">
                           {c.title} <span className="text-xs text-muted-foreground">{c.count}</span>
                         </Link>
                       </li>

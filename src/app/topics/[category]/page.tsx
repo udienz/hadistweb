@@ -51,7 +51,7 @@ export default async function TopicPage({ params, searchParams }: PageProps<"/to
   const page = Math.min(requested, Math.max(pages, 1));
   const from = (page - 1) * PER_PAGE + 1;
   const subs = categories.filter((c) => c.parent === category.id);
-  const pager = <Pagination basePath={topicHref(category.id)} page={page} count={pages} from={from} to={from + hadiths.length - 1} total={total} />;
+  const pager = <Pagination prefetch={false} basePath={topicHref(category.id)} page={page} count={pages} from={from} to={from + hadiths.length - 1} total={total} />;
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
@@ -62,7 +62,7 @@ export default async function TopicPage({ params, searchParams }: PageProps<"/to
         {ancestors(category, categories).map((a) => (
           <span key={a.id}>
             {" / "}
-            <Link href={topicHref(a.id)} className="font-medium text-primary hover:underline">
+            <Link prefetch={false} href={topicHref(a.id)} className="font-medium text-primary hover:underline">
               {a.title}
             </Link>
           </span>
@@ -82,7 +82,7 @@ export default async function TopicPage({ params, searchParams }: PageProps<"/to
           <ul className="flex flex-wrap gap-2">
             {subs.map((c) => (
               <li key={c.id}>
-                <Link href={topicHref(c.id)} className="inline-block rounded-full border border-border bg-card px-3 py-1.5 text-sm hover:border-primary/50 hover:text-primary">
+                <Link prefetch={false} href={topicHref(c.id)} className="inline-block rounded-full border border-border bg-card px-3 py-1.5 text-sm hover:border-primary/50 hover:text-primary">
                   {c.title} <span className="text-xs text-muted-foreground">{c.count}</span>
                 </Link>
               </li>
@@ -97,7 +97,7 @@ export default async function TopicPage({ params, searchParams }: PageProps<"/to
         <ol className="overflow-hidden rounded-2xl border border-border bg-card" start={from}>
           {hadiths.map((h, i) => (
             <li key={h.id} className="border-b border-border last:border-b-0">
-              <Link href={topicHadithHref(h.id)} className="flex items-baseline gap-4 px-4 py-3 transition hover:bg-muted">
+              <Link prefetch={false} href={topicHadithHref(h.id)} className="flex items-baseline gap-4 px-4 py-3 transition hover:bg-muted">
                 <span className="w-8 shrink-0 text-right text-xs tabular-nums text-muted-foreground">{from + i}</span>
                 <span className="font-medium">{h.title}</span>
               </Link>

@@ -6,7 +6,8 @@ import { pageItems } from "@/lib/pagination";
 
 /**
  * The pages of a list (a chapter, a topic): previous and next, the page numbers, and which hadiths are shown. Nothing for
- * one page. `basePath` is the address of the first page; later pages add `?page=n`.
+ * one page. `basePath` is the address of the first page; later pages add `?page=n`. `prefetch={false}` for pages whose
+ * data comes from an outside API (topics), so showing the numbers does not call it for every page.
  */
 export default function Pagination({
   basePath,
@@ -15,8 +16,10 @@ export default function Pagination({
   from,
   to,
   total,
+  prefetch,
 }: {
   basePath: string;
+  prefetch?: boolean;
   page: number;
   count: number;
   from: number;
@@ -38,7 +41,7 @@ export default function Pagination({
       <ul className="flex flex-wrap items-center gap-1.5">
         <li>
           {page > 1 ? (
-            <Link href={href(page - 1)} className={link} aria-label={t("pagination.previous")} rel="prev">
+            <Link prefetch={prefetch} href={href(page - 1)} className={link} aria-label={t("pagination.previous")} rel="prev">
               &larr;
             </Link>
           ) : (
@@ -62,7 +65,7 @@ export default function Pagination({
                 {item}
               </span>
             ) : (
-              <Link href={href(item)} className={link} aria-label={t("pagination.page", { number: item })}>
+              <Link prefetch={prefetch} href={href(item)} className={link} aria-label={t("pagination.page", { number: item })}>
                 {item}
               </Link>
             )}
@@ -70,7 +73,7 @@ export default function Pagination({
         ))}
         <li>
           {page < count ? (
-            <Link href={href(page + 1)} className={link} aria-label={t("pagination.next")} rel="next">
+            <Link prefetch={prefetch} href={href(page + 1)} className={link} aria-label={t("pagination.next")} rel="next">
               &rarr;
             </Link>
           ) : (
