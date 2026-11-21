@@ -23,6 +23,13 @@ export const LOCALE_NAMES: Record<Locale, string> = {
 };
 
 /**
+ * The languages in the order of the language menu: alphabetical by each language's own name (the owner's request,
+ * 2026-11-21), names in Latin script first, then Cyrillic, Arabic and Bengali. Written out rather than sorted at run
+ * time, so the server and the browser cannot disagree; a test checks it against the collation order.
+ */
+export const MENU_LOCALES: readonly Locale[] = ["id", "ms", "en", "fr", "tr", "ru", "ur", "ar", "fa", "bn"];
+
+/**
  * The flag shown beside each language in the language menu (the owner's request, 2026-11-21). A language is not a
  * country, so this is the country most readers connect with it. The SVGs are from flag-icons (MIT, public/flags/).
  */
