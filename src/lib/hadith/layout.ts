@@ -91,3 +91,43 @@ export function layoutTranslation(text: string, language: string): TranslationLa
     paragraphs: paragraphs(matn, language).map(segments),
   };
 }
+
+// Arabic. The source marks sentence ends with a full stop wrapped in right-to-left marks ("‏.‏ "): every
+// Arabic text over 600 letters has them (checked 2026-11-21, 3,475 texts). Its sanad opens with حدثنا or أخبرنا (and
+// variants) and the matn starts at the first double quote, as in the Indonesian translation.
+
+const ARABIC_DIACRITICS = /[ؐ-ًؚ-ٰٟۖ-ۭـ]/g;
+/** Letters only, so vowel marks do not count towards a paragraph's length. */
+const arabicLength = (s: string): number => s.replace(ARABIC_DIACRITICS, "").length;
+const ARABIC_PARAGRAPH_LETTERS = 300;
+const ARABIC_SANAD_START = /^\s*(?:و\s*)?(?:حدث|أخبر|اخبر|ثنا)/;
+
+export interface ArabicLayout {
+  sanad: string | null;
+  paragraphs: string[];
+}
+
+export function layoutArabic(text: string): ArabicLayout {
+  const trimmed = text.trim();
+  let sanad: string | null = null;
+  let matn = trimmed;
+  const quote = trimmed.indexOf('"');
+  if (quote > 0 && arabicLength(trimmed.slice(0, quote)) <= MAX_SANAD_CHARS && ARABIC_SANAD_START.test(trimmed.replace(ARABIC_DIACRITICS, ""))) {
+    sanad = trimmed.slice(0, quote).trim();
+    matn = trimmed.slice(quote);
+  }
+  const out: string[] = [];
+  let current: string[] = [];
+  let length = 0;
+  for (const sentence of matn.split(/(?<=[.؟!]‏?)\s+/).map((s) => s.trim()).filter(Boolean)) {
+    if (current.length && length + arabicLength(sentence) > ARABIC_PARAGRAPH_LETTERS) {
+      out.push(current.join(" "));
+      current = [];
+      length = 0;
+    }
+    current.push(sentence);
+    length += arabicLength(sentence) + 1;
+  }
+  if (current.length) out.push(current.join(" "));
+  return { sanad, paragraphs: out };
+}

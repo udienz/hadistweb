@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Translator } from "@/lib/i18n/translate";
-import { layoutTranslation, type Segment } from "@/lib/hadith/layout";
+import { layoutArabic, layoutTranslation, type Segment } from "@/lib/hadith/layout";
 import type { Hadith } from "@/lib/hadith/types";
 import { hadithAnchor, hadithHref } from "@/lib/links";
 import CopyLinkButton from "./CopyLinkButton";
@@ -14,6 +14,25 @@ function Runs({ segments }: { segments: Segment[] }) {
     ) : (
       s.text
     ),
+  );
+}
+
+/** The Arabic text: the sanad smaller and quiet, the matn in paragraphs at the source's full stops (lib/hadith/layout.ts). */
+function ArabicText({ text, sanadLabel }: { text: string; sanadLabel: string }) {
+  const { sanad, paragraphs } = layoutArabic(text);
+  return (
+    <div className="font-arabic text-right" dir="rtl" lang="ar" translate="no">
+      {sanad && (
+        <p className="mb-3 text-[length:calc(1.2rem*var(--arabic-scale,1))] leading-[2] text-muted-foreground" aria-label={sanadLabel}>
+          {sanad}
+        </p>
+      )}
+      <div className="flex flex-col gap-3 text-[length:calc(1.5rem*var(--arabic-scale,1))] leading-[2.1] sm:text-[length:calc(1.7rem*var(--arabic-scale,1))]">
+        {paragraphs.map((p, i) => (
+          <p key={i}>{p}</p>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -83,9 +102,7 @@ export default function HadithCard({
       </header>
 
       {hadith.arabic ? (
-        <p className="font-arabic text-right text-[length:calc(1.5rem*var(--arabic-scale,1))] leading-[2.1] sm:text-[length:calc(1.7rem*var(--arabic-scale,1))]" dir="rtl" lang="ar" translate="no">
-          {hadith.arabic}
-        </p>
+        <ArabicText text={hadith.arabic} sanadLabel={t("hadith.sanad")} />
       ) : (
         <p className="text-sm italic text-muted-foreground">{t("hadith.noArabic")}</p>
       )}
