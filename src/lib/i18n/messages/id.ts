@@ -54,6 +54,7 @@ export const id: Messages = {
     noTranslation: "Sumbernya tidak punya terjemahan untuk hadis ini.",
     noArabic: "Sumbernya tidak punya teks Arab untuk nomor ini.",
     grades: "Derajat",
+    sanad: "Sanad",
     attribution: "Takhrij",
     translationFrom: "Terjemahan dari {source}, ditampilkan tanpa perubahan",
     translationScope: "Yang diterjemahkan adalah hadis dan takhrijnya; catatan sesudahnya di teks Arab di atas (misalnya tentang jalur riwayatnya) bisa jadi tidak ikut diterjemahkan.",
@@ -82,6 +83,13 @@ export const id: Messages = {
     },
     credit: "Dari HadeethEnc.com, terbitan Rowwad Translation Center, ditampilkan tanpa perubahan.",
     original: "Lihat di HadeethEnc.com",
+  },
+  display: {
+    textSize: "Ukuran huruf",
+    arabicSize: "Teks Arab",
+    latinSize: "Terjemahan",
+    smaller: "Perkecil: {name}",
+    larger: "Perbesar: {name}",
   },
   pagination: {
     label: "Halaman",

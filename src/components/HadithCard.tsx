@@ -1,8 +1,42 @@
 import Link from "next/link";
 import type { Translator } from "@/lib/i18n/translate";
+import { layoutTranslation, type Segment } from "@/lib/hadith/layout";
 import type { Hadith } from "@/lib/hadith/types";
 import { hadithAnchor, hadithHref } from "@/lib/links";
 import CopyLinkButton from "./CopyLinkButton";
+
+function Runs({ segments }: { segments: Segment[] }) {
+  return segments.map((s, i) =>
+    s.narrator ? (
+      <span key={i} className="font-semibold text-foreground">
+        {s.text}
+      </span>
+    ) : (
+      s.text
+    ),
+  );
+}
+
+/** A translation from the book's source: the sanad small and quiet above, the text in paragraphs (lib/hadith/layout.ts). */
+function LaidOut({ text, language, sanadLabel }: { text: string; language: string; sanadLabel: string }) {
+  const { sanad, paragraphs } = layoutTranslation(text, language);
+  return (
+    <div lang={language} className="max-w-[65ch]">
+      {sanad && (
+        <p className="mb-3 text-[length:calc(0.875rem*var(--latin-scale,1))] leading-relaxed text-muted-foreground" aria-label={sanadLabel}>
+          <Runs segments={sanad} />
+        </p>
+      )}
+      <div className="flex flex-col gap-3 text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]">
+        {paragraphs.map((p, i) => (
+          <p key={i}>
+            <Runs segments={p} />
+          </p>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 /**
  * One hadith: its number, the Arabic text, the translation (labelled when it is not in the interface language) and the
@@ -49,7 +83,7 @@ export default function HadithCard({
       </header>
 
       {hadith.arabic ? (
-        <p className="font-arabic text-right text-2xl leading-[2.1] sm:text-[1.7rem]" dir="rtl" lang="ar" translate="no">
+        <p className="font-arabic text-right text-[length:calc(1.5rem*var(--arabic-scale,1))] leading-[2.1] sm:text-[length:calc(1.7rem*var(--arabic-scale,1))]" dir="rtl" lang="ar" translate="no">
           {hadith.arabic}
         </p>
       ) : (
@@ -62,9 +96,14 @@ export default function HadithCard({
             {translation.language !== locale && (
               <p className="mb-2 text-xs font-semibold text-muted-foreground">{t(`hadith.fallback.${translation.language}`)}</p>
             )}
-            <p className="whitespace-pre-line leading-relaxed" lang={translation.language}>
-              {translation.text}
-            </p>
+            {translation.source ? (
+              // HadeethEnc's text is shown as delivered (its terms forbid changes): typography only.
+              <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={translation.language}>
+                {translation.text}
+              </p>
+            ) : (
+              <LaidOut text={translation.text} language={translation.language} sanadLabel={t("hadith.sanad")} />
+            )}
             {translation.source && (
               <>
                 {translation.source.attribution && (

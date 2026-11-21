@@ -8,10 +8,11 @@ import "@fontsource-variable/space-grotesk";
 import "./globals.css";
 import LanguageMenu from "@/components/LanguageMenu";
 import Logo from "@/components/Logo";
+import TextSizeMenu from "@/components/TextSizeMenu";
 import ThemeToggle from "@/components/ThemeToggle";
 import { I18nProvider } from "@/lib/i18n/client";
 import { MESSAGES } from "@/lib/i18n/messages";
-import { themeScript } from "@/lib/display";
+import { displayScript } from "@/lib/display";
 import { getI18n } from "@/lib/i18n/server";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -33,8 +34,8 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang={locale} className="h-full antialiased" suppressHydrationWarning>
       <head>
-        {/* Apply the theme before the first paint so the page does not flash. */}
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {/* Apply the theme and text size before the first paint so the page does not flash. */}
+        <script dangerouslySetInnerHTML={{ __html: displayScript }} />
       </head>
       <body className="flex min-h-full flex-col">
         <I18nProvider locale={locale} messages={MESSAGES[locale]}>
@@ -56,6 +57,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
                 </Link>
               </nav>
               <div className="flex items-center gap-2">
+                <TextSizeMenu />
                 <LanguageMenu />
                 <ThemeToggle />
               </div>

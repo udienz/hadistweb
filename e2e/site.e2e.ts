@@ -45,7 +45,7 @@ test("5 or 10 hadiths per page, keeping the first hadith on screen", async ({ pa
 test("a hadith without an Indonesian translation shows the English one, labelled", async ({ page }) => {
   await page.goto("/bukhari/4");
   await expect(page.getByText("Terjemahan bahasa Inggris (hadis ini tidak punya terjemahan Indonesia)")).toBeVisible();
-  await expect(page.locator("article p[lang=en]")).toContainText("Narrated");
+  await expect(page.locator("article div[lang=en]")).toContainText("Narrated");
 });
 
 test("an-Nawawi in Indonesian comes from HadeethEnc, with its takhrij and credit", async ({ page }) => {
@@ -80,4 +80,18 @@ test("the language and the theme can be switched", async ({ page }) => {
   await expect.poll(dark).toBe(!before);
   await page.reload();
   await expect.poll(dark).toBe(!before);
+});
+
+test("a translation reads as a sanad above paragraphs, and the text size is kept", async ({ page }) => {
+  await page.goto("/bukhari/1");
+  const sanad = page.getByLabel("Sanad");
+  await expect(sanad).toContainText("Telah menceritakan kepada kami");
+  await expect(sanad.locator("span.font-semibold").first()).toHaveText("Al Humaidi Abdullah bin Az Zubair");
+  await expect(page.locator("article div[lang=id]")).not.toContainText("[");
+
+  await page.getByRole("button", { name: "Ukuran huruf" }).click();
+  await page.getByRole("button", { name: "Perbesar: Terjemahan" }).click();
+  await page.reload();
+  const scale = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--latin-scale"));
+  expect(scale.trim()).toBe("1.15");
 });
