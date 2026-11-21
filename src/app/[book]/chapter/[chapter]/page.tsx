@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { shareMetadata } from "@/lib/site";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
@@ -21,7 +22,8 @@ export async function generateMetadata({ params }: PageProps<"/[book]/chapter/[c
   const { book, chapter } = await params;
   if (!isBookId(book) || chapterFromSegment(chapter) === null) return {};
   const { t, locale } = await getI18n();
-  return { title: `${localized(bookById(book).name, locale)}, ${t("book.chapterLabel", { number: chapter })} | ${t("meta.title")}` };
+  const title = `${localized(bookById(book).name, locale)}, ${t("book.chapterLabel", { number: chapter })}`;
+  return shareMetadata({ title: `${title} | ${t("meta.title")}`, description: `${title}. ${t("meta.description")}`, path: chapterHref(book, Number(chapter)) });
 }
 
 /** One chapter of a book, 5 or 10 hadiths per page (the reader's choice, in a cookie). */

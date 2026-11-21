@@ -59,6 +59,16 @@ before starting.
   editions are searchable. `reference.ts`: "Bukhari 349" in the search box opens
   that hadith. No index (data read from GitHub) means the page says search is
   unavailable. `node:sqlite` needs Node.js 24 or later.
+- `src/components/ShareMenu.tsx`: share a hadith (owner's request, 2026-11-21):
+  copy text (the card's `data-share` parts as shown, then the reference and the
+  link), copy link, the device share sheet, WhatsApp.
+- `src/lib/site.ts`, `src/app/robots.ts`, `src/app/sitemap.ts`, `public/og.png`
+  (drawn by `scripts/og-image.mjs`): the origin comes from the Host nginx passes
+  (or `SITE_URL`); only https://hadist.udienz.web.id is indexed, QA and local
+  copies get `noindex` and a robots.txt that disallows everything. Sitemap 0
+  lists the books, chapters and topics, 1 to 10 the hadiths of each book (from
+  the search index). Every page sets its canonical address and Open Graph data
+  with `shareMetadata`; a hadith's description is its matn (`excerpt.ts`).
 - `src/proxy.ts`: answers 404 for addresses that are not a book, chapter,
   hadith or HadeethEnc topic or hadith, before rendering (a streamed page
   cannot change its status).

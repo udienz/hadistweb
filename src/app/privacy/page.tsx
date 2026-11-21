@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { shareMetadata } from "@/lib/site";
 import { getI18n } from "@/lib/i18n/server";
 import { privacyContact } from "@/lib/privacy";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { t } = await getI18n();
-  return { title: `${t("privacy.title")} | ${t("meta.title")}` };
+  return shareMetadata({ title: `${t("privacy.title")} | ${t("meta.title")}`, description: t("privacy.intro"), path: "/privacy" });
 }
 
 // Rendered per request (the language and the contact come from the request and the environment).

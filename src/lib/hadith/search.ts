@@ -118,6 +118,8 @@ export interface Searcher {
   /** Whether there is an index to search. */
   available(): boolean;
   search(input: string, options: { book?: BookId; page: number; locale: string }): SearchResult;
+  /** The hadith numbers of a book that have a text, in numeric order, or null without an index (for the sitemap). */
+  numbers(book: BookId): string[] | null;
 }
 
 export function createSearcher(file: string | null): Searcher {
@@ -132,6 +134,13 @@ export function createSearcher(file: string | null): Searcher {
 
   return {
     available: () => open() !== null,
+
+    numbers(book) {
+      const database = open();
+      if (!database) return null;
+      const rows = database.prepare("SELECT number FROM hadith WHERE book = ? ORDER BY CAST(number AS REAL)").all(book) as { number: string }[];
+      return rows.map((r) => String(r.number));
+    },
 
     search(input, { book, page, locale }) {
       const query = buildQuery(input);

@@ -46,6 +46,8 @@ export interface HadithService {
   getChapter(book: BookId, chapter: number, locale: string): Promise<{ chapter: Chapter; hadiths: Hadith[] } | null>;
   /** One hadith, or null when the book has no such number. */
   getHadith(book: BookId, number: string, locale: string): Promise<Hadith | null>;
+  /** Every hadith number the source lists for a book (some have no text in any edition, and no page). */
+  getNumbers(book: BookId): Promise<string[]>;
   /** Whether the index knows this chapter or hadith number (cheap: no chapter file is read). */
   exists(book: BookId, target: { chapter: number } | { hadith: string }): Promise<boolean>;
 }
@@ -156,6 +158,10 @@ export function createHadithService(baseUrl: string, extra?: ExtraTranslation, s
       if (chapter === undefined) return null;
       const hadiths = await chapterHadiths(book, chapter, locale);
       return hadiths.find((h) => h.number === number) ?? null;
+    },
+
+    async getNumbers(book) {
+      return [...((await loadIndex()).get(book)?.chapterOf.keys() ?? [])];
     },
 
     async exists(book, target) {

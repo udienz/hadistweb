@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { isIndexed, shareMetadata, siteOrigin } from "@/lib/site";
 import Link from "next/link";
 import "@fontsource/amiri/arabic-400.css";
 import "@fontsource/amiri/arabic-700.css";
@@ -19,7 +20,13 @@ import { searchHref } from "@/lib/links";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { t } = await getI18n();
-  return { title: t("meta.title"), description: t("meta.description") };
+  const origin = await siteOrigin();
+  return {
+    metadataBase: new URL(origin),
+    ...shareMetadata({ title: t("meta.title"), description: t("meta.description"), path: "/", canonical: false }),
+    // The QA site and local copies are not indexed (robots.ts disallows them too).
+    robots: isIndexed(origin) ? undefined : { index: false, follow: false },
+  };
 }
 
 // The colour of the browser's bar: the page background of each theme (as in quranweb).

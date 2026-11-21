@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { shareMetadata } from "@/lib/site";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Pagination from "@/components/Pagination";
@@ -24,7 +25,9 @@ export async function generateMetadata({ params }: PageProps<"/topics/[category]
   const { category } = await params;
   const { t, locale } = await getI18n();
   const found = await findCategory(category, locale).catch(() => null);
-  return found ? { title: `${found.category.title} | ${t("meta.title")}` } : {};
+  return found
+    ? shareMetadata({ title: `${found.category.title} | ${t("meta.title")}`, description: t("topics.intro"), path: topicHref(found.category.id) })
+    : {};
 }
 
 /** The topics above this one, from the top. */

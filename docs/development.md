@@ -31,6 +31,10 @@ rebuild. See [.env.example](../.env.example).
 - `HADEETHENC_API_URL`: the HadeethEnc API. Empty means `https://hadeethenc.com/api/v1`. Only the browser tests change
   it.
 - `PRIVACY_CONTACT_NAME` and `PRIVACY_CONTACT_EMAIL`: the contact shown on the privacy page.
+- `SITE_URL`: the site's own address, for canonical links, Open Graph and the sitemap. Empty means the Host of the
+  request (nginx passes it). Only `https://hadist.udienz.web.id` is indexed by search engines; any other address gets
+  `noindex` and a robots.txt that disallows everything.
+- `HADITH_SEARCH_DB`: the search index file, when it is not `hadistweb-search.sqlite` in the data folder.
 
 ## The mirror
 
@@ -90,6 +94,11 @@ request; run it yourself before merging a change to the `Dockerfile` or to `publ
 QA (hadist-qa.udienz.web.id) is deployed with the manual "Deploy QA" workflow, production (hadist.udienz.web.id) by
 pushing a `v*` tag on `master`, which runs "Deploy Production". Both run `scripts/deploy.sh` on the server over SSH. The
 details (ports, nginx, secrets, the mirror timer) are in [CLAUDE.md](../CLAUDE.md#deploy).
+
+## Link preview image
+
+`public/og.png` is the image link previews show. It is drawn from HTML by `node scripts/og-image.mjs` (needs Playwright's
+Chromium) and committed.
 
 ## README screenshots
 

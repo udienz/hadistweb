@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { shareMetadata } from "@/lib/site";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import HadithCard from "@/components/HadithCard";
 import { bookById } from "@/lib/hadith/books";
 import { chapterTitle } from "@/lib/hadith/chapter-names";
+import { hadithExcerpt } from "@/lib/hadith/excerpt";
 import { getHadithService } from "@/lib/hadith/service";
 import { isBookId } from "@/lib/hadith/types";
 import { getI18n } from "@/lib/i18n/server";
 import { localized } from "@/lib/i18n/translate";
-import { bookHref, hadithInChapterHref, isHadithNumber } from "@/lib/links";
+import { bookHref, hadithHref, hadithInChapterHref, isHadithNumber } from "@/lib/links";
 import { PAGE_SIZE_COOKIE, parsePageSize } from "@/lib/page-size";
 
 export const instant = false;
@@ -18,7 +20,10 @@ export async function generateMetadata({ params }: PageProps<"/[book]/[hadith]">
   const { book, hadith } = await params;
   if (!isBookId(book) || !isHadithNumber(hadith)) return {};
   const { t, locale } = await getI18n();
-  return { title: `${t("hadith.inBook", { book: localized(bookById(book).name, locale), number: hadith })} | ${t("meta.title")}` };
+  const title = `${t("hadith.inBook", { book: localized(bookById(book).name, locale), number: hadith })} | ${t("meta.title")}`;
+  // The description is the hadith itself, without its chain of narrators: what a link preview shows under the title.
+  const found = await getHadithService().getHadith(book, hadith, locale).catch(() => null);
+  return shareMetadata({ title, description: found ? hadithExcerpt(found) : undefined, path: hadithHref(book, hadith), type: "article" });
 }
 
 /** One hadith on its own page, to share or come back to. */
