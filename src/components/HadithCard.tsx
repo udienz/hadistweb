@@ -86,17 +86,18 @@ export default function HadithCard({
         )}
       </div>
 
+      {/* Grades as a footnote (the owner's choice, 2026-11-21): every grader the source names, in small type at the foot
+          of the card, so they do not compete with the text. */}
       {hadith.grades.length > 0 && (
-        <div className="mt-4">
-          <h3 className="mb-1.5 text-xs font-semibold text-muted-foreground">{t("hadith.grades")}</h3>
-          <ul className="flex flex-wrap gap-2 text-xs">
-            {hadith.grades.map((g) => (
-              <li key={`${g.grader}-${g.grade}`} className="rounded-lg border border-border bg-background px-2.5 py-1">
-                <span className="text-muted-foreground">{g.grader}:</span> <span className="font-semibold">{g.grade}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <footer className="mt-5 border-t border-border pt-3 text-xs leading-relaxed text-muted-foreground">
+          <span className="font-semibold">{t("hadith.grades")}:</span>{" "}
+          {hadith.grades.map((g, i) => (
+            <span key={`${g.grader}-${g.grade}`}>
+              {i > 0 && "; "}
+              {g.grader}: <span className="text-foreground">{g.grade}</span>
+            </span>
+          ))}
+        </footer>
       )}
     </article>
   );

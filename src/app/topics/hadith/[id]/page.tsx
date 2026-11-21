@@ -98,7 +98,7 @@ export default async function TopicHadithPage({ params }: PageProps<"/topics/had
           <ul className="flex flex-wrap gap-2">
             {topics.map((c) => (
               <li key={c.id}>
-                <Link href={topicHref(c.id)} className="inline-block rounded-full border border-border bg-card px-3 py-1.5 text-sm hover:border-primary/50 hover:text-primary">
+                <Link prefetch={false} href={topicHref(c.id)} className="inline-block rounded-full border border-border bg-card px-3 py-1.5 text-sm hover:border-primary/50 hover:text-primary">
                   {c.title}
                 </Link>
               </li>
