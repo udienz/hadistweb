@@ -79,7 +79,11 @@ before starting.
   `sync-mirror.mjs` runs before it swaps a new mirror in). Indonesian and English
   are searched by word with spelling variants (`VARIANTS`); Arabic, normalized
   (no harakat, one alif), by trigram, so النيات finds بالنيات. Only the mirrored
-  editions are searchable. `reference.ts`: "Bukhari 349" in the search box opens
+  editions are searchable by text; the Turkish, Bengali, French, Russian, Urdu
+  and Tamil translations (not mirrored) are indexed at sync time in contentless
+  tables `other_<language>` (`--sources`), so their text is not kept: the search
+  page reads a hit's text from the source for its snippet (`makeSnippet`).
+  `reference.ts`: "Bukhari 349" in the search box opens
   that hadith. No index (data read from GitHub) means the page says search is
   unavailable. `node:sqlite` needs Node.js 24 or later.
 - `src/lib/reading.ts`, `BookmarkButton`, `LastReadTracker`, `ContinueReading`,

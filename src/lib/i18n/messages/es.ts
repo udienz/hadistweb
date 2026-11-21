@@ -121,6 +121,7 @@ export const es: Messages = {
     results: plural("{count} hadices encontrados", "{count} hadiz encontrado"),
     none: "Ningún hadiz contiene «{query}».",
     hint: "Busca en el texto árabe y en las traducciones indonesia e inglesa. Escribe un libro y un número, como Bukhari 1, para abrir ese hadiz.",
+    hintOwn: "Para tu idioma, se busca primero en la traducción al {language}.",
     unavailable: "La búsqueda no está disponible en esta copia del sitio.",
     numberIn: "Hadiz {number} en:",
   },

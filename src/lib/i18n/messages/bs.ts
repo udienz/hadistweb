@@ -121,6 +121,7 @@ export const bs: Messages = {
     results: plural("Pronađeno hadisa: {count}"),
     none: "Nijedan hadis ne sadrži „{query}“.",
     hint: "Pretražuje arapski tekst te indonezijski i engleski prijevod. Upišite knjigu i broj, npr. Bukhari 1, da otvorite taj hadis.",
+    hintOwn: "Za vaš jezik prvo se pretražuje prijevod ({language}).",
     unavailable: "Pretraga nije dostupna na ovoj kopiji stranice.",
     numberIn: "Hadis broj {number} u:",
   },

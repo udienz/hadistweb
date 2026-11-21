@@ -76,7 +76,7 @@ beberapa perawi bisa bernama sama.
    *salat* saling menemukan. Pilih kitab kalau ingin mencari di satu kitab saja.
 3. Untuk membuka hadis yang sudah Anda tahu, ketik nama kitab dan nomornya, misalnya *Bukhari 1* atau *HR. Muslim no. 8*.
 
-Terjemahan dalam bahasa lain belum bisa dicari.
+Pembaca antarmuka berbahasa Turki, Bengali, Prancis, Rusia, Urdu, atau Tamil mencari di terjemahan bahasanya lebih dulu.
 
 ![Hasil pencarian, dengan kata yang ditemukan disorot](docs/screenshots/id/search.png)
 

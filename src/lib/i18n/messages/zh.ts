@@ -121,6 +121,7 @@ export const zh: Messages = {
     results: plural("找到 {count} 段圣训"),
     none: "没有包含“{query}”的圣训。",
     hint: "在阿拉伯语原文以及印度尼西亚语和英语译文中搜索。输入圣训集名称和编号（如 Bukhari 1）可直接打开该圣训。",
+    hintOwn: "对于您的语言，会先搜索{language}译文。",
     unavailable: "本站的这个副本不提供搜索。",
     numberIn: "第 {number} 段圣训，见于：",
   },

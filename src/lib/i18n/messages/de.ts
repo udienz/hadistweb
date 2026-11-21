@@ -121,6 +121,7 @@ export const de: Messages = {
     results: plural("{count} Hadithe gefunden", "{count} Hadith gefunden"),
     none: "Kein Hadith enthält „{query}“.",
     hint: "Sucht im arabischen Text und in der indonesischen und englischen Übersetzung. Gib ein Buch und eine Nummer ein, etwa Bukhari 1, um diesen Hadith zu öffnen.",
+    hintOwn: "Für deine Sprache wird zuerst die Übersetzung ({language}) durchsucht.",
     unavailable: "Die Suche ist in dieser Kopie der Seite nicht verfügbar.",
     numberIn: "Hadith {number} in:",
   },

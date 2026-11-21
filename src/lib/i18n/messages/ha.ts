@@ -121,6 +121,7 @@ export const ha: Messages = {
     results: plural("An samu hadisai {count}", "An samu hadisi {count}"),
     none: "Babu hadisin da ke ɗauke da “{query}”.",
     hint: "Yana nema a rubutun Larabci da fassarorin Indonesiya da Turanci. Rubuta littafi da lamba, kamar Bukhari 1, don buɗe hadisin.",
+    hintOwn: "Don harshenka, ana fara nema a fassarar {language}.",
     unavailable: "Babu nema a wannan kwafin shafin.",
     numberIn: "Hadisi lamba {number} a:",
   },

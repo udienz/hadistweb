@@ -121,6 +121,7 @@ export const vi: Messages = {
     results: plural("Tìm thấy {count} hadith"),
     none: "Không có hadith nào chứa “{query}”.",
     hint: "Tìm trong văn bản tiếng Ả Rập và bản dịch tiếng Indonesia, tiếng Anh. Gõ tên sách và số, như Bukhari 1, để mở hadith đó.",
+    hintOwn: "Với ngôn ngữ của bạn, bản dịch {language} được tìm trước.",
     unavailable: "Tính năng tìm kiếm không có trên bản sao này của trang.",
     numberIn: "Hadith số {number} trong:",
   },

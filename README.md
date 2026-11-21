@@ -75,7 +75,7 @@ different narrators can share a name.
    *sholat* and *salat* find each other. Choose a book to search only in it.
 3. To open a hadith you know, type its book and number, such as *Bukhari 1* or *HR. Muslim no. 8*.
 
-The translations in other languages are not searchable yet.
+A reader of the Turkish, Bengali, French, Russian, Urdu or Tamil interface searches that translation first.
 
 ![Search results, with the words found highlighted](docs/screenshots/en/search.png)
 
