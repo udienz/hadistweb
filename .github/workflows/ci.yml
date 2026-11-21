@@ -63,4 +63,29 @@ jobs:
         env:
           STRICT_PERMISSIONS: "1"
 
-  # Still to come, following quranweb: "Browser tests" (Playwright against the production build).
+  e2e:
+    # Browser tests (e2e/*.e2e.ts) against the production build, as in quranweb. The books come from the small data copy
+    # in e2e/fixtures, HadeethEnc from a fake server over its fixtures, so no network is needed.
+    name: Browser tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "26"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser tests
+        run: npm run test:e2e

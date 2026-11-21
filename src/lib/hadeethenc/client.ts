@@ -8,6 +8,8 @@
 import { Memo } from "../memo";
 
 export const HADEETHENC_API = "https://hadeethenc.com/api/v1";
+/** HADEETHENC_API_URL replaces the API address; the browser tests point it to a fake server. */
+const apiBase = (): string => process.env.HADEETHENC_API_URL?.trim().replace(/\/+$/, "") || HADEETHENC_API;
 export const HADEETHENC_SITE = "https://hadeethenc.com";
 
 /** The API's language codes we use. They match the interface languages. */
@@ -45,7 +47,7 @@ const lists = new Memo<unknown>(400);
 const items = new Memo<EncHadith | null>(800);
 
 async function getJson(path: string): Promise<unknown> {
-  const res = await fetch(`${HADEETHENC_API}${path}`, { headers: { Accept: "application/json" } });
+  const res = await fetch(`${apiBase()}${path}`, { headers: { Accept: "application/json" } });
   if (res.status === 404) throw new EncNotFound(path);
   if (!res.ok) throw new Error(`HadeethEnc answered ${res.status} for ${path}`);
   return res.json();
