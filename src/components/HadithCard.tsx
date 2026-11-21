@@ -3,9 +3,11 @@ import { directionOf } from "@/lib/i18n/config";
 import { languageName } from "@/lib/i18n/languages";
 import type { Translator } from "@/lib/i18n/translate";
 import { layoutArabic, layoutTranslation, type Segment } from "@/lib/hadith/layout";
-import type { Hadith } from "@/lib/hadith/types";
+import type { BookId, Hadith } from "@/lib/hadith/types";
 import { hadithAnchor, hadithHref } from "@/lib/links";
-import CopyLinkButton from "./CopyLinkButton";
+import { bookById } from "@/lib/hadith/books";
+import { localized } from "@/lib/i18n/translate";
+import ShareMenu from "./ShareMenu";
 
 function Runs({ segments }: { segments: Segment[] }) {
   return segments.map((s, i) =>
@@ -23,7 +25,7 @@ function Runs({ segments }: { segments: Segment[] }) {
 function ArabicText({ text, sanadLabel }: { text: string; sanadLabel: string }) {
   const { sanad, paragraphs } = layoutArabic(text);
   return (
-    <div className="font-arabic text-right" dir="rtl" lang="ar" translate="no">
+    <div className="font-arabic text-right" dir="rtl" lang="ar" translate="no" data-share>
       {sanad && (
         <p className="mb-3 text-[length:calc(1.2rem*var(--arabic-scale,1))] leading-[2] text-muted-foreground" aria-label={sanadLabel}>
           {sanad}
@@ -42,7 +44,7 @@ function ArabicText({ text, sanadLabel }: { text: string; sanadLabel: string }) 
 function LaidOut({ text, language, sanadLabel }: { text: string; language: string; sanadLabel: string }) {
   const { sanad, paragraphs } = layoutTranslation(text, language);
   return (
-    <div lang={language} dir={directionOf(language)} className="max-w-[65ch]">
+    <div lang={language} dir={directionOf(language)} className="max-w-[65ch]" data-share>
       {sanad && (
         <p className="mb-3 text-[length:calc(0.875rem*var(--latin-scale,1))] leading-relaxed text-muted-foreground" aria-label={sanadLabel}>
           <Runs segments={sanad} />
@@ -61,7 +63,7 @@ function LaidOut({ text, language, sanadLabel }: { text: string; language: strin
 
 /**
  * One hadith: its number, the Arabic text, the translation (labelled when it is not in the interface language) and the
- * grades. A server component; only the copy button runs in the browser.
+ * grades. A server component; only the share menu runs in the browser.
  */
 export default function HadithCard({
   book,
@@ -100,7 +102,7 @@ export default function HadithCard({
             )}
           </div>
         </div>
-        <CopyLinkButton href={href} />
+        <ShareMenu href={href} reference={t("hadith.inBook", { book: localized(bookById(book as BookId).name, locale), number: hadith.number })} />
       </header>
 
       {hadith.arabic ? (
@@ -119,7 +121,7 @@ export default function HadithCard({
             )}
             {translation.source ? (
               // HadeethEnc's text is shown as delivered (its terms forbid changes): typography only.
-              <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={translation.language} dir={directionOf(translation.language)}>
+              <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={translation.language} dir={directionOf(translation.language)} data-share>
                 {translation.text}
               </p>
             ) : (
@@ -128,12 +130,12 @@ export default function HadithCard({
             {translation.source && (
               <>
                 {translation.source.attribution && (
-                  <p className="mt-3 text-sm" lang={translation.language}>
+                  <p className="mt-3 text-sm" lang={translation.language} data-share>
                     <span className="text-muted-foreground">{t("hadith.attribution")}:</span> {translation.source.attribution}
                   </p>
                 )}
                 <p className="mt-2 text-xs text-muted-foreground">{t("hadith.translationScope")}</p>
-                <p className="mt-1 text-xs text-muted-foreground">
+                <p className="mt-1 text-xs text-muted-foreground" data-share>
                   <a href={translation.source.url} className="font-medium text-primary hover:underline" rel="noopener">
                     {t("hadith.translationFrom", { source: translation.source.name })}
                   </a>
