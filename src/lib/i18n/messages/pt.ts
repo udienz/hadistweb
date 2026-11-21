@@ -15,6 +15,7 @@ export const pt: Messages = {
     topics: "Temas",
     about: "Sobre",
     search: "Pesquisar",
+    bookmarks: "Marcadores",
     language: "Idioma",
     communityBadge: "Comunidade",
     communityTranslation: "Tradução da comunidade: ainda não revisada por um falante do idioma",
@@ -116,6 +117,16 @@ export const pt: Messages = {
     unavailable: "A pesquisa não está disponível nesta cópia do site.",
     numberIn: "Hadice {number} em:",
   },
+  reading: {
+    continue: "Continuar lendo",
+    bookmark: "Marcar",
+    bookmarked: "Marcado",
+    title: "Marcadores",
+    intro: "Os hadices que você marcou. Ficam só neste navegador, não no nosso servidor.",
+    empty: "Ainda não há marcadores. Toque em “Marcar” em um hadice para guardá-lo aqui.",
+    remove: "Remover",
+    count: plural("{count} marcadores", "{count} marcador"),
+  },
   notFound: {
     title: "Página não encontrada",
     description: "A página que você procura não existe ou foi movida.",
@@ -132,7 +143,7 @@ export const pt: Messages = {
     sections: {
       reading: {
         title: "O que fica no seu navegador",
-        body: "A sua escolha de tema claro ou escuro fica guardada no armazenamento local do navegador e não sai dele. A sua escolha de tamanho de texto também fica lá. Dois pequenos cookies guardam o idioma da interface (hw-lang) e quantos hadices uma página de capítulo mostra (hw-page-size), para que a página apareça como você escolheu. O site não guarda mais nada sobre você: nem histórico de leitura, nem marcadores, nem conta.",
+        body: "A sua escolha de tema claro ou escuro fica guardada no armazenamento local do navegador e não sai dele. A sua escolha de tamanho de texto também fica lá. Dois pequenos cookies guardam o idioma da interface (hw-lang) e quantos hadices uma página de capítulo mostra (hw-page-size), para que a página apareça como você escolheu. Seus marcadores e o último hadice que você leu também ficam lá, só neste navegador. O site não guarda nada sobre você no servidor, e não há contas.",
       },
       sources: {
         title: "De onde vêm os textos",

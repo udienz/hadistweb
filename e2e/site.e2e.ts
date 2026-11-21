@@ -154,3 +154,21 @@ test("link previews, the sitemap and robots.txt", async ({ page, request }) => {
   expect(sitemap).toContain("/bukhari/1</loc>");
   expect((await request.get("/og.png")).headers()["content-type"]).toBe("image/png");
 });
+
+test("bookmarks and continue reading are kept in the browser", async ({ page }) => {
+  await page.goto("/bukhari/1");
+  const mark = page.getByRole("button", { name: "Tandai" });
+  await mark.click();
+  await expect(page.getByRole("button", { name: "Ditandai" })).toHaveAttribute("aria-pressed", "true");
+
+  // The page being read is remembered after a moment, for "continue reading" on the home page.
+  await page.waitForTimeout(1800);
+  await page.goto("/");
+  await expect(page.getByRole("link", { name: /Lanjutkan membaca\s*Shahih al-Bukhari, hadis 1/ })).toBeVisible();
+  await page.getByRole("link", { name: /1 penanda/ }).click();
+  await expect(page).toHaveURL(/\/bookmarks$/);
+  await expect(page.getByRole("link", { name: "Shahih al-Bukhari, hadis 1" })).toBeVisible();
+
+  await page.getByRole("button", { name: "Hapus: Shahih al-Bukhari, hadis 1" }).click();
+  await expect(page.getByText(/Belum ada penanda/)).toBeVisible();
+});

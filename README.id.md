@@ -22,6 +22,7 @@ serta bagian hadis pilihan per tema, masing-masing dengan penjelasannya. Anda ti
   diperkecil masing-masing.
 - **Mencari** di teks Arab dan terjemahan Indonesia serta Inggris, atau mengetik nama kitab dan nomor, misalnya
   "Bukhari 1", untuk langsung membuka hadisnya.
+- **Menandai hadis** dan **melanjutkan membaca** dari posisi terakhir, langsung dari beranda.
 - **Membagikan hadis**: salin teksnya lengkap dengan rujukan dan tautan, atau kirim langsung ke WhatsApp. Tautan yang
   dibagikan menampilkan judul dan awal hadisnya di pratinjau.
 
@@ -79,6 +80,14 @@ Selama Anda belum memilih, situs mengikuti bahasa browser Anda.
 Pilihan Anda disimpan di browser ini.
 
 ![Menu ukuran huruf terbuka di ponsel](docs/screenshots/id/text-size.png)
+
+### Penanda dan lanjutkan membaca
+
+1. Tekan **Tandai** di samping nomor hadis. Tekan lagi untuk menghapus tandanya.
+2. Beranda menampilkan **Lanjutkan membaca** dengan hadis terakhir yang Anda baca, dan tautan ke penanda Anda.
+3. Di halaman **Penanda**, buka hadisnya atau hapus dari daftar.
+
+Penanda dan hadis terakhir yang dibaca hanya tersimpan di browser ini. Browser atau ponsel lain punya catatannya sendiri.
 
 ### Terang atau gelap
 
@@ -153,7 +162,8 @@ pun. Kode situs memakai lisensi MIT ([LICENSE](LICENSE)); teksnya mengikuti kete
 
 ## Privasi
 
-Tanpa akun, tanpa riwayat bacaan, tanpa iklan. Dua kuki kecil mengingat bahasa Anda dan jumlah hadis per halaman.
+Tanpa akun dan tanpa iklan. Penanda Anda dan hadis terakhir yang Anda baca tersimpan di browser Anda, tidak pernah di
+server kami. Dua kuki kecil mengingat bahasa Anda dan jumlah hadis per halaman.
 Kunjungan dihitung dengan Cloudflare Web Analytics, yang menurut Cloudflare tidak memasang kuki dan tidak mengenali
 Anda. Rinciannya ada di [halaman privasi](https://hadist.udienz.web.id/privacy).
 

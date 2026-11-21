@@ -4,6 +4,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import HadithCard from "@/components/HadithCard";
+import LastReadTracker from "@/components/LastReadTracker";
 import { bookById } from "@/lib/hadith/books";
 import { chapterTitle } from "@/lib/hadith/chapter-names";
 import { hadithExcerpt } from "@/lib/hadith/excerpt";
@@ -45,6 +46,7 @@ export default async function HadithPage({ params }: PageProps<"/[book]/[hadith]
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
+      <LastReadTracker />
       <p className="mb-3 text-sm">
         <Link href={bookHref(id)} className="font-medium text-primary hover:underline">
           {localized(bookById(id).name, locale)}

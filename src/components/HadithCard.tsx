@@ -7,6 +7,7 @@ import type { BookId, Hadith } from "@/lib/hadith/types";
 import { hadithAnchor, hadithHref } from "@/lib/links";
 import { bookById } from "@/lib/hadith/books";
 import { localized } from "@/lib/i18n/translate";
+import BookmarkButton from "./BookmarkButton";
 import ShareMenu from "./ShareMenu";
 
 function Runs({ segments }: { segments: Segment[] }) {
@@ -83,7 +84,7 @@ export default function HadithCard({
   const translation = hadith.translation;
 
   return (
-    <article id={hadithAnchor(hadith.number)} className="scroll-mt-24 rounded-2xl border border-border bg-card px-5 py-5 sm:px-7">
+    <article id={hadithAnchor(hadith.number)} data-book={book} data-hadith={hadith.number} className="scroll-mt-24 rounded-2xl border border-border bg-card px-5 py-5 sm:px-7">
       <header className="mb-4 flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-3">
           <span className="flex h-9 min-w-9 items-center justify-center rounded-full bg-primary-soft px-2.5 font-display text-xs font-bold tabular-nums text-primary">
@@ -102,7 +103,10 @@ export default function HadithCard({
             )}
           </div>
         </div>
-        <ShareMenu href={href} reference={t("hadith.inBook", { book: localized(bookById(book as BookId).name, locale), number: hadith.number })} />
+        <div className="flex items-center gap-1">
+          <BookmarkButton book={book as BookId} number={hadith.number} />
+          <ShareMenu href={href} reference={t("hadith.inBook", { book: localized(bookById(book as BookId).name, locale), number: hadith.number })} />
+        </div>
       </header>
 
       {hadith.arabic ? (

@@ -15,6 +15,7 @@ export const es: Messages = {
     topics: "Temas",
     about: "Acerca de",
     search: "Buscar",
+    bookmarks: "Marcadores",
     language: "Idioma",
     communityBadge: "Comunidad",
     communityTranslation: "Traducción de la comunidad: aún no revisada por un hablante del idioma",
@@ -116,6 +117,16 @@ export const es: Messages = {
     unavailable: "La búsqueda no está disponible en esta copia del sitio.",
     numberIn: "Hadiz {number} en:",
   },
+  reading: {
+    continue: "Seguir leyendo",
+    bookmark: "Marcar",
+    bookmarked: "Marcado",
+    title: "Marcadores",
+    intro: "Los hadices que marcaste. Se guardan solo en este navegador, no en nuestro servidor.",
+    empty: "Aún no hay marcadores. Pulsa «Marcar» en un hadiz para guardarlo aquí.",
+    remove: "Quitar",
+    count: plural("{count} marcadores", "{count} marcador"),
+  },
   notFound: {
     title: "Página no encontrada",
     description: "La página que buscas no existe o se ha movido.",
@@ -132,7 +143,7 @@ export const es: Messages = {
     sections: {
       reading: {
         title: "Lo que queda en tu navegador",
-        body: "Tu elección de tema claro u oscuro se guarda en el almacenamiento local de tu navegador y no sale de él. Tu elección de tamaño de texto también se guarda allí. Dos pequeñas cookies guardan el idioma de la interfaz (hw-lang) y cuántos hadices muestra una página de capítulo (hw-page-size), para que la página aparezca como la elegiste. El sitio no guarda nada más sobre ti: ni historial de lectura, ni marcadores, ni cuenta.",
+        body: "Tu elección de tema claro u oscuro se guarda en el almacenamiento local de tu navegador y no sale de él. Tu elección de tamaño de texto también se guarda allí. Dos pequeñas cookies guardan el idioma de la interfaz (hw-lang) y cuántos hadices muestra una página de capítulo (hw-page-size), para que la página aparezca como la elegiste. Tus marcadores y el último hadiz que leíste también se guardan allí, solo en este navegador. El sitio no guarda nada sobre ti en su servidor, y no hay cuentas.",
       },
       sources: {
         title: "De dónde vienen los textos",

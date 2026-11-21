@@ -59,6 +59,11 @@ before starting.
   editions are searchable. `reference.ts`: "Bukhari 349" in the search box opens
   that hadith. No index (data read from GitHub) means the page says search is
   unavailable. `node:sqlite` needs Node.js 24 or later.
+- `src/lib/reading.ts`, `BookmarkButton`, `LastReadTracker`, `ContinueReading`,
+  `src/app/bookmarks/`: bookmarks and "continue reading" (owner, 2026-11-21), in
+  local storage (`hadistweb:reading`) only, never sent to the server. The last
+  hadith read is the first card in view once scrolling stops. The privacy page
+  says so; change it with them.
 - `src/components/ShareMenu.tsx`: share a hadith (owner's request, 2026-11-21):
   copy text (the card's `data-share` parts as shown, then the reference and the
   link), copy link, the device share sheet, WhatsApp.

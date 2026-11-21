@@ -15,6 +15,7 @@ export const zh: Messages = {
     topics: "主题",
     about: "关于",
     search: "搜索",
+    bookmarks: "书签",
     language: "语言",
     communityBadge: "社区",
     communityTranslation: "社区翻译：尚未经该语言的使用者审校",
@@ -116,6 +117,16 @@ export const zh: Messages = {
     unavailable: "本站的这个副本不提供搜索。",
     numberIn: "第 {number} 段圣训，见于：",
   },
+  reading: {
+    continue: "继续阅读",
+    bookmark: "加书签",
+    bookmarked: "已加书签",
+    title: "书签",
+    intro: "您加了书签的圣训。仅保存在此浏览器中，不在我们的服务器上。",
+    empty: "还没有书签。在圣训上点“加书签”即可保存到这里。",
+    remove: "移除",
+    count: plural("{count} 个书签"),
+  },
   notFound: {
     title: "未找到页面",
     description: "您要找的页面不存在或已移动。",
@@ -132,7 +143,7 @@ export const zh: Messages = {
     sections: {
       reading: {
         title: "保留在您浏览器中的内容",
-        body: "您选择的浅色或深色主题保存在浏览器的本地存储中，不会离开浏览器。您选择的文字大小也保存在那里。两个小 Cookie 保存界面语言（hw-lang）和章节页面显示的圣训数量（hw-page-size），使页面按您的选择显示。本站不保存关于您的任何其他信息：没有阅读记录，没有书签，没有账户。",
+        body: "您选择的浅色或深色主题保存在浏览器的本地存储中，不会离开浏览器。您选择的文字大小也保存在那里。两个小 Cookie 保存界面语言（hw-lang）和章节页面显示的圣训数量（hw-page-size），使页面按您的选择显示。您的书签和最后阅读的圣训也保存在那里，仅限于此浏览器。本站不会在服务器上保存任何关于您的信息，也没有账户。",
       },
       sources: {
         title: "文本的来源",

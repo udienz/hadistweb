@@ -4,6 +4,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import HadithCard from "@/components/HadithCard";
+import LastReadTracker from "@/components/LastReadTracker";
 import PageSizeSelect from "@/components/PageSizeSelect";
 import Pagination from "@/components/Pagination";
 import { bookById } from "@/lib/hadith/books";
@@ -52,6 +53,7 @@ export default async function ChapterPage({ params, searchParams }: PageProps<"/
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
+      <LastReadTracker />
       <Link href={bookHref(id)} className="text-sm font-medium text-primary hover:underline">
         <span className="inline-block rtl:-scale-x-100">&larr;</span> {localized(bookById(id).name, locale)} · {t("chapter.backToBook")}
       </Link>

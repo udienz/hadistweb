@@ -15,6 +15,7 @@ export const bs: Messages = {
     topics: "Teme",
     about: "O stranici",
     search: "Pretraga",
+    bookmarks: "Oznake",
     language: "Jezik",
     communityBadge: "Zajednica",
     communityTranslation: "Prijevod zajednice: još ga nije pregledao govornik jezika",
@@ -116,6 +117,16 @@ export const bs: Messages = {
     unavailable: "Pretraga nije dostupna na ovoj kopiji stranice.",
     numberIn: "Hadis broj {number} u:",
   },
+  reading: {
+    continue: "Nastavi čitati",
+    bookmark: "Označi",
+    bookmarked: "Označeno",
+    title: "Oznake",
+    intro: "Hadisi koje ste označili. Čuvaju se samo u ovom pregledniku, ne na našem serveru.",
+    empty: "Još nema oznaka. Pritisnite „Označi“ na hadisu da ga sačuvate ovdje.",
+    remove: "Ukloni",
+    count: plural("Oznaka: {count}"),
+  },
   notFound: {
     title: "Stranica nije pronađena",
     description: "Stranica koju tražite ne postoji ili je premještena.",
@@ -132,7 +143,7 @@ export const bs: Messages = {
     sections: {
       reading: {
         title: "Šta ostaje u vašem pregledniku",
-        body: "Vaš izbor svijetle ili tamne teme čuva se u lokalnoj memoriji preglednika i ne napušta je. Tu se čuva i vaš izbor veličine teksta. Dva mala kolačića čuvaju jezik sučelja (hw-lang) i koliko hadisa prikazuje stranica poglavlja (hw-page-size), da bi stranica izgledala kako ste odabrali. Stranica ne čuva ništa drugo o vama: ni historiju čitanja, ni oznake, ni račun.",
+        body: "Vaš izbor svijetle ili tamne teme čuva se u lokalnoj memoriji preglednika i ne napušta je. Tu se čuva i vaš izbor veličine teksta. Dva mala kolačića čuvaju jezik sučelja (hw-lang) i koliko hadisa prikazuje stranica poglavlja (hw-page-size), da bi stranica izgledala kako ste odabrali. Tu se, samo u ovom pregledniku, čuvaju i vaše oznake i posljednji pročitani hadis. Stranica na svom serveru ne čuva ništa o vama i nema računa.",
       },
       sources: {
         title: "Odakle dolaze tekstovi",

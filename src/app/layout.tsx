@@ -16,7 +16,7 @@ import { MESSAGES } from "@/lib/i18n/messages";
 import { displayScript } from "@/lib/display";
 import { getI18n } from "@/lib/i18n/server";
 import { directionOf } from "@/lib/i18n/config";
-import { searchHref } from "@/lib/links";
+import { bookmarksHref, searchHref } from "@/lib/links";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { t } = await getI18n();
@@ -55,12 +55,16 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
                 {/* Below 400px the five header buttons need the room: the name is hidden there, the logo stays (and names the link). */}
                 <span className="hidden font-display text-xl font-bold tracking-tight text-primary min-[400px]:inline">HadistWeb</span>
               </Link>
-              <nav className="hidden rounded-full border border-border bg-card p-1 text-sm sm:flex">
+              {/* From 1024px: below it the five header buttons and the name need the whole row (the home page links the rest). */}
+              <nav className="hidden rounded-full border border-border bg-card p-1 text-sm lg:flex">
                 <Link href="/" className="whitespace-nowrap rounded-full px-4 py-1.5 font-medium hover:bg-background">
                   {t("nav.books")}
                 </Link>
                 <Link href="/topics" className="whitespace-nowrap rounded-full px-4 py-1.5 font-medium hover:bg-background">
                   {t("nav.topics")}
+                </Link>
+                <Link href={bookmarksHref} className="whitespace-nowrap rounded-full px-4 py-1.5 font-medium hover:bg-background">
+                  {t("nav.bookmarks")}
                 </Link>
                 <Link href="/about" className="whitespace-nowrap rounded-full px-4 py-1.5 font-medium hover:bg-background">
                   {t("nav.about")}
