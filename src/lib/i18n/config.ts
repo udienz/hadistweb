@@ -23,6 +23,23 @@ export const LOCALE_NAMES: Record<Locale, string> = {
 };
 
 /**
+ * The flag shown beside each language in the language menu (the owner's request, 2026-11-21). A language is not a
+ * country, so this is the country most readers connect with it. The SVGs are from flag-icons (MIT, public/flags/).
+ */
+export const LOCALE_FLAGS: Record<Locale, string> = {
+  en: "gb",
+  id: "id",
+  tr: "tr",
+  ms: "my",
+  bn: "bd",
+  fr: "fr",
+  ru: "ru",
+  ur: "pk",
+  ar: "sa",
+  fa: "ir",
+};
+
+/**
  * Languages published as a **community translation**: drafts by Claude (the owner's choice, 2026-11-21), not yet reviewed
  * by a speaker of the language, as in quranweb. The language menu marks them and offers a link to report a mistake.
  * Remove a language from this list once a speaker has reviewed it.

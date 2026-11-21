@@ -30,7 +30,7 @@ for i in $(seq 1 30); do
 done
 
 fail=0
-for path in /about /icon.svg; do
+for path in /about /icon.svg /flags/gb.svg; do
   code="$(status "$path")"
   if [ "$code" = "200" ]; then echo "ok   $path"; else echo "FAIL $path -> $code"; fail=1; fi
 done
