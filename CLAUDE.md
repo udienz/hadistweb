@@ -64,6 +64,13 @@ before starting.
   local storage (`hadistweb:reading`) only, never sent to the server. The last
   hadith read is the first card in view once scrolling stops. The privacy page
   says so; change it with them.
+- `src/lib/hadith/explanations.ts` and `hadeethenc-explanations.json`: a book
+  hadith links to HadeethEnc's explanation of it, and the explanation page back
+  to the books (2026-11-22): 2,297 hadiths of the seven large books, matched by
+  the Arabic text offline (workspace `project/hadistweb/scripts/
+  match_books_hadeethenc.py` and `pick_book_pairs.py`, method and checks in its
+  ROADMAP.md), plus the an-Nawawi and Qudsi pairs. Regenerate the JSON with
+  those scripts; do not edit it by hand.
 - `src/lib/daily.ts`, `src/components/DailyHadith.tsx`: the hadith of the day on
   the home page (2026-11-21), an-Nawawi 1 to 42 in turn, changing at midnight in
   Jakarta; read at request time (`connection()`), streamed in a Suspense

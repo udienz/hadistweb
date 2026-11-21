@@ -185,3 +185,13 @@ test("the home page shows a hadith of the day from an-Nawawi", async ({ page }) 
   await expect(daily).toBeVisible();
   await expect(daily.getByRole("link", { name: /Baca selengkapnya/ })).toHaveAttribute("href", /^\/nawawi\/\d+$/);
 });
+
+test("a book hadith links to HadeethEnc's explanation, and the explanation back to the books", async ({ page }) => {
+  await page.goto("/bukhari/1");
+  await page.getByRole("link", { name: /Penjelasan hadis ini, dari HadeethEnc\.com/ }).click();
+  await expect(page).toHaveURL(/\/topics\/hadith\/66511$/);
+
+  await page.goto("/topics/hadith/66512");
+  await expect(page.getByRole("heading", { name: "Di kitab-kitab" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Arbain an-Nawawi, hadis 3" })).toHaveAttribute("href", "/nawawi/3");
+});

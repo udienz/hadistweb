@@ -3,11 +3,14 @@ import { excerpt, shareMetadata } from "@/lib/site";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ShareMenu from "@/components/ShareMenu";
+import { hadithsExplainedBy } from "@/lib/hadith/explanations";
+import { bookById } from "@/lib/hadith/books";
+import { localized } from "@/lib/i18n/translate";
 import { encLanguage, getCategories, getHadith, hadeethencUrl } from "@/lib/hadeethenc/client";
 import { directionOf } from "@/lib/i18n/config";
 import { languageName } from "@/lib/i18n/languages";
 import { getI18n } from "@/lib/i18n/server";
-import { encIdFromSegment, topicHadithHref, topicHref, topicsHref } from "@/lib/links";
+import { encIdFromSegment, hadithHref, topicHadithHref, topicHref, topicsHref } from "@/lib/links";
 
 export const instant = false;
 
@@ -33,6 +36,8 @@ export default async function TopicHadithPage({ params }: PageProps<"/topics/had
   const [hadith, categories] = await Promise.all([getHadith(language, id), getCategories(language)]);
   if (!hadith) notFound();
   const topics = hadith.categories.map((c) => categories.find((x) => x.id === c)).filter((c) => c !== undefined);
+  // The same hadith in the books, where it was matched (lib/hadith/explanations.ts).
+  const inBooks = hadithsExplainedBy(id);
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
@@ -92,6 +97,21 @@ export default async function TopicHadithPage({ params }: PageProps<"/topics/had
           <ul className="flex max-w-[65ch] list-none flex-col gap-2 text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={hadith.language} dir={directionOf(hadith.language)}>
             {hadith.lessons.map((lesson, i) => (
               <li key={i}>{lesson}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {inBooks.length > 0 && (
+        <section className="mt-4">
+          <h2 className="mb-2 text-sm font-semibold text-muted-foreground">{t("topics.inBooks")}</h2>
+          <ul className="flex flex-wrap gap-2">
+            {inBooks.map((h) => (
+              <li key={`${h.book}/${h.number}`}>
+                <Link href={hadithHref(h.book, h.number)} className="inline-block rounded-full border border-border bg-card px-3 py-1.5 text-sm hover:border-primary/50 hover:text-primary">
+                  {t("hadith.inBook", { book: localized(bookById(h.book).name, locale), number: h.number })}
+                </Link>
+              </li>
             ))}
           </ul>
         </section>

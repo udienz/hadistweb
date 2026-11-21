@@ -52,6 +52,9 @@ Gambar menampilkan antarmuka bahasa Indonesia; README bahasa Inggris menampilkan
 
 Tema, penjelasan, dan derajat berasal dari HadeethEnc.com dan ditampilkan persis seperti yang mereka terbitkan.
 
+Sekitar 2.300 hadis di kitab-kitab juga menaut ke penjelasannya: cari **Penjelasan hadis ini** di bawah terjemahan.
+Halaman penjelasan itu menunjukkan, di bagian **Di kitab-kitab**, letak hadis yang sama di kitab-kitab.
+
 ![Hadis dari bagian Tema, dengan derajat, takhrij, dan penjelasannya](docs/screenshots/id/topics.png)
 
 ### Mencari
