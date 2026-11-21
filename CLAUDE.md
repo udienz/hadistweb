@@ -50,6 +50,15 @@ before starting.
   Texts are shown exactly as the API gives them: HadeethEnc's terms forbid
   changes, so no reformatting of its explanation or titles. Every page that
   shows its content carries the credit line.
+- `src/lib/hadith/search.ts`, `src/app/search/`: search (owner's request,
+  2026-11-21) over a SQLite FTS5 index in the mirror,
+  `hadistweb-search.sqlite`, built by `scripts/build-search-index.mjs` (which
+  `sync-mirror.mjs` runs before it swaps a new mirror in). Indonesian and English
+  are searched by word with spelling variants (`VARIANTS`); Arabic, normalized
+  (no harakat, one alif), by trigram, so النيات finds بالنيات. Only the mirrored
+  editions are searchable. `reference.ts`: "Bukhari 349" in the search box opens
+  that hadith. No index (data read from GitHub) means the page says search is
+  unavailable. `node:sqlite` needs Node.js 24 or later.
 - `src/proxy.ts`: answers 404 for addresses that are not a book, chapter,
   hadith or HadeethEnc topic or hadith, before rendering (a streamed page
   cannot change its status).
@@ -157,12 +166,12 @@ containers. Installed on the server with:
 ```bash
 sudo install -d /usr/local/lib/hadistweb
 sudo install -m 755 deploy/mirror-sync.sh /usr/local/lib/hadistweb/
-sudo install -m 644 scripts/sync-mirror.mjs /usr/local/lib/hadistweb/
+sudo install -m 644 scripts/sync-mirror.mjs scripts/build-search-index.mjs /usr/local/lib/hadistweb/
 sudo install -m 644 deploy/systemd/hadistweb-mirror-sync.* /etc/systemd/system/
 sudo systemctl daemon-reload && sudo systemctl enable --now hadistweb-mirror-sync.timer
 ```
 
-Reinstall the two scripts after changing them: the timer runs the installed
+Reinstall the three scripts after changing them: the timer runs the installed
 copies, not the checkout.
 
 The workflow needs the repository variable `QA_DEPLOY=true` and the `QA_SSH_*`

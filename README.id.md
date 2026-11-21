@@ -20,6 +20,8 @@ serta bagian hadis pilihan per tema, masing-masing dengan penjelasannya. Anda ti
 - **Memakai bahasa Anda**: situs ini tersedia dalam 25 bahasa (lihat tabel di bawah).
 - **Membuatnya nyaman dibaca**: tema terang atau gelap, dan huruf Arab serta terjemahan yang bisa diperbesar atau
   diperkecil masing-masing.
+- **Mencari** di teks Arab dan terjemahan Indonesia serta Inggris, atau mengetik nama kitab dan nomor, misalnya
+  "Bukhari 1", untuk langsung membuka hadisnya.
 - **Membagikan hadis** dengan menyalin tautannya.
 
 ![Beranda dengan daftar kitab](docs/screenshots/id/home.png)
@@ -47,6 +49,17 @@ Gambar menampilkan antarmuka bahasa Indonesia; README bahasa Inggris menampilkan
 Tema, penjelasan, dan derajat berasal dari HadeethEnc.com dan ditampilkan persis seperti yang mereka terbitkan.
 
 ![Hadis dari bagian Tema, dengan derajat, takhrij, dan penjelasannya](docs/screenshots/id/topics.png)
+
+### Mencari
+
+1. Tekan ikon kaca pembesar di bagian atas, atau pakai kotak pencarian di beranda.
+2. Ketik beberapa kata, dalam teks Arab atau terjemahan Indonesia atau Inggris. Ejaan seperti *shalat*, *sholat*, dan
+   *salat* saling menemukan. Pilih kitab kalau ingin mencari di satu kitab saja.
+3. Untuk membuka hadis yang sudah Anda tahu, ketik nama kitab dan nomornya, misalnya *Bukhari 1* atau *HR. Muslim no. 8*.
+
+Terjemahan dalam bahasa lain belum bisa dicari.
+
+![Hasil pencarian, dengan kata yang ditemukan disorot](docs/screenshots/id/search.png)
 
 ### Mengganti bahasa
 

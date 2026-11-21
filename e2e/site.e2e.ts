@@ -96,3 +96,23 @@ test("a translation reads as a sanad above paragraphs, and the text size is kept
   const scale = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--latin-scale"));
   expect(scale.trim()).toBe("1.15");
 });
+
+test("search finds words, opens a typed reference, and offers a bare number in each book", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("searchbox", { name: "Kata atau rujukan" }).fill("niat");
+  await page.getByRole("button", { name: "Cari", exact: true }).click();
+  await expect(page).toHaveURL(/\/search\?q=niat/);
+  await expect(page.getByText(/hadis ditemukan/)).toBeVisible();
+  const first = page.getByRole("link", { name: /Shahih al-Bukhari, hadis 1\b/ });
+  await expect(first.locator("mark").first()).toBeVisible();
+
+  await page.goto("/search?q=Bukhari%201");
+  await expect(page).toHaveURL(/\/bukhari\/1$/);
+
+  await page.goto("/search?q=1");
+  await expect(page.getByText("Hadis nomor 1 di:")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Shahih al-Bukhari", exact: true })).toHaveAttribute("href", "/bukhari/1");
+
+  await page.goto("/search?q=zzzzqqq");
+  await expect(page.getByText("Tidak ada hadis yang memuat “zzzzqqq”.")).toBeVisible();
+});

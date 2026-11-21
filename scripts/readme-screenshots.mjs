@@ -41,6 +41,7 @@ for (const lang of ["en", "id"]) {
     p.locator("article div[lang]:not([lang=ar])").first().evaluate((el) => window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 90)),
   );
   await shot(browser, lang, "topics", "/topics/hadith/66512", desktop);
+  await shot(browser, lang, "search", `/search?q=${lang === "id" ? "niat" : "intention"}`, desktop);
   await shot(browser, lang, "language", "/", phone, (p) => p.locator("header button[aria-haspopup=menu]").click());
   await shot(browser, lang, "text-size", "/abudawud/1", phone, (p) => p.locator("header button[aria-haspopup=dialog]").click());
   await shot(browser, lang, "reading-dark", "/bukhari/chapter/2", desktop, toFirstCard, "dark");
