@@ -108,6 +108,9 @@ test("search finds words, opens a typed reference, and offers a bare number in e
 
   await page.goto("/search?q=Bukhari%201");
   await expect(page).toHaveURL(/\/bukhari\/1$/);
+  const redirect = await page.request.get("/search?q=HR.%20Bukhari%20no.%201", { maxRedirects: 0 });
+  expect(redirect.status()).toBe(307);
+  expect(redirect.headers().location).toMatch(/\/bukhari\/1$/);
 
   await page.goto("/search?q=1");
   await expect(page.getByText("Hadis nomor 1 di:")).toBeVisible();

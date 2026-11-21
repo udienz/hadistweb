@@ -2,7 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getCategories, getHadith } from "@/lib/hadeethenc/client";
 import { getHadithService } from "@/lib/hadith/service";
 import { isBookId } from "@/lib/hadith/types";
-import { chapterFromSegment, encIdFromSegment, isHadithNumber } from "@/lib/links";
+import { parseReference } from "@/lib/hadith/reference";
+import { chapterFromSegment, encIdFromSegment, hadithHref, isHadithNumber } from "@/lib/links";
 
 /** Four segments: no route of the app has that many, so Next.js answers 404. */
 const NOT_FOUND_PATH = "/_/not/a/page";
@@ -24,6 +25,7 @@ export async function proxy(request: NextRequest) {
   const [book, second, third] = parts;
   const notFound = () => NextResponse.rewrite(new URL(NOT_FOUND_PATH, request.url));
 
+  if (book === "search" && parts.length === 1) return searchReference(request);
   if (book === "topics") return checkTopic(parts.slice(1), notFound);
   if (!isBookId(book) || parts.length > 3) return notFound();
   if (parts.length === 1) return NextResponse.next();
@@ -46,6 +48,24 @@ export async function proxy(request: NextRequest) {
   }
 }
 
+/**
+ * A reference typed into the search box ("Bukhari 349") is answered with a redirect to the hadith here, as a real 307:
+ * from the page, the response has already started streaming, so the redirect would only happen in the browser.
+ */
+async function searchReference(request: NextRequest): Promise<NextResponse> {
+  const params = request.nextUrl.searchParams;
+  const book = params.get("book") ?? "";
+  const reference = parseReference(params.get("q") ?? "", isBookId(book) ? book : undefined);
+  try {
+    if (reference && (await getHadithService().exists(reference.book, { hadith: reference.number }))) {
+      return NextResponse.redirect(new URL(hadithHref(reference.book, reference.number), request.url), 307);
+    }
+  } catch {
+    // The data could not be loaded: the search page answers.
+  }
+  return NextResponse.next();
+}
+
 async function checkTopic(parts: string[], notFound: () => NextResponse): Promise<NextResponse> {
   if (parts.length === 0) return NextResponse.next();
   const [first, second] = parts;
@@ -61,4 +81,4 @@ async function checkTopic(parts: string[], notFound: () => NextResponse): Promis
 }
 
 // Everything except the pages and files that are not books.
-export const config = { matcher: "/((?!_next/|about$|privacy$|search$|flags/|icon\\.svg$|favicon\\.ico$|_/not/a/page$).+)" };
+export const config = { matcher: "/((?!_next/|about$|privacy$|flags/|icon\\.svg$|favicon\\.ico$|_/not/a/page$).+)" };
