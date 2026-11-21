@@ -43,7 +43,7 @@ export default async function Home() {
               <span className="min-w-0 flex-1">
                 <span className="block font-semibold">{localized(book.name, locale)}</span>
                 {book.indonesianFrom ? (
-                  <span className="block text-xs text-muted-foreground">{t("home.indonesianFrom", { source: book.indonesianFrom })}</span>
+                  <span className="block text-xs text-muted-foreground">{t(book.indonesianPartly ? "home.indonesianPartly" : "home.indonesianFrom", { source: book.indonesianFrom })}</span>
                 ) : (
                   !book.translations.includes("id") && <span className="block text-xs text-muted-foreground">{t("home.englishOnly")}</span>
                 )}

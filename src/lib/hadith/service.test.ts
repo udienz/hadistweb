@@ -145,7 +145,11 @@ describe("an-Nawawi pairs", () => {
     const nawawi = Object.entries(pairs.nawawi);
     expect(nawawi.map(([n]) => n)).toEqual(Array.from({ length: 42 }, (_, i) => String(i + 1)));
     expect(new Set(nawawi.map(([, id]) => id)).size).toBe(42);
-    expect(Object.keys(pairs)).toEqual(["nawawi"]);
+    expect(Object.keys(pairs)).toEqual(["nawawi", "qudsi"]);
+    // Qudsi: the 20 pairs checked by hand; 8, 14 and 30 were rejected.
+    expect(Object.keys(pairs.qudsi)).toHaveLength(20);
+    expect(new Set(Object.values(pairs.qudsi)).size).toBe(20);
+    for (const rejected of ["8", "14", "30"]) expect(pairs.qudsi[rejected]).toBeUndefined();
   });
 });
 

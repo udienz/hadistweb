@@ -24,7 +24,13 @@ export const BOOKS: Book[] = [
     translations: ENGLISH,
     indonesianFrom: "HadeethEnc.com",
   },
-  { id: "qudsi", name: { en: "Forty Hadith Qudsi", id: "Empat Puluh Hadis Qudsi" }, translations: ENGLISH },
+  {
+    id: "qudsi",
+    name: { en: "Forty Hadith Qudsi", id: "Empat Puluh Hadis Qudsi" },
+    translations: ENGLISH,
+    indonesianFrom: "HadeethEnc.com",
+    indonesianPartly: true,
+  },
   {
     id: "dehlawi",
     name: { en: "Forty Hadith of Shah Waliullah Dehlawi", id: "Empat Puluh Hadis Syah Waliyullah ad-Dihlawi" },

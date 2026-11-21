@@ -31,6 +31,8 @@ export interface Book {
   translations: TranslationLanguage[];
   /** Where the Indonesian translation comes from when the book's source has none. */
   indonesianFrom?: string;
+  /** True when that source has only some of the hadiths (the others keep the English translation). */
+  indonesianPartly?: boolean;
 }
 
 export interface Chapter {
