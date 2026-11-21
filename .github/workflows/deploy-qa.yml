@@ -1,0 +1,44 @@
+name: Deploy QA
+
+# Deploys to https://hadist-qa.udienz.web.id when run by hand (Actions > Deploy QA > Run workflow, or
+# `gh workflow run "Deploy QA" -R udienz/hadistweb --ref master`). A push to master does not deploy: the owner chooses
+# when QA changes. Same server and pattern as quranweb's QA deploy.
+# Inactive until the repository variable QA_DEPLOY is set to "true" and these secrets are filled in:
+#   QA_SSH_HOST         server host or IP
+#   QA_SSH_PORT         SSH port
+#   QA_SSH_USER         SSH user (must be able to run `sudo docker` without a password)
+#   QA_SSH_PRIVATE_KEY  deploy private key (ed25519), its own key, separate from quranweb's
+#   QA_SSH_KNOWN_HOSTS  output of `ssh-keyscan -p <port> <host>`
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-qa
+  cancel-in-progress: false
+
+# Least privilege for the GITHUB_TOKEN: the job only reads the code (the deploy uses SSH secrets, not the token).
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy to QA server
+    if: ${{ vars.QA_DEPLOY == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Configure SSH
+        run: |
+          install -m 700 -d ~/.ssh
+          echo "${{ secrets.QA_SSH_PRIVATE_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          echo "${{ secrets.QA_SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+
+      - name: Deploy
+        run: |
+          ssh -i ~/.ssh/id_deploy -p "${{ secrets.QA_SSH_PORT }}" \
+            "${{ secrets.QA_SSH_USER }}@${{ secrets.QA_SSH_HOST }}" \
+            "bash -s -- qa ${{ github.sha }}" < scripts/deploy.sh
