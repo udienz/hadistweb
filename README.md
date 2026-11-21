@@ -51,6 +51,9 @@ The pictures show the English interface; the Indonesian README shows the Indones
 
 The topics, explanations and grades come from HadeethEnc.com and are shown exactly as they publish them.
 
+About 2,300 hadiths in the books also link to their explanation: look for **Explanation of this hadith** under the
+translation. The explanation page lists, under **In the books**, where the same hadith is in the books.
+
 ![A hadith from the Topics section, with its grade and explanation](docs/screenshots/en/topics.png)
 
 ### Search

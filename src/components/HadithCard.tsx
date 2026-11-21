@@ -4,7 +4,8 @@ import { languageName } from "@/lib/i18n/languages";
 import type { Translator } from "@/lib/i18n/translate";
 import { layoutArabic, layoutTranslation, type Segment } from "@/lib/hadith/layout";
 import type { BookId, Hadith } from "@/lib/hadith/types";
-import { hadithAnchor, hadithHref } from "@/lib/links";
+import { explanationId } from "@/lib/hadith/explanations";
+import { hadithAnchor, hadithHref, topicHadithHref } from "@/lib/links";
 import { bookById } from "@/lib/hadith/books";
 import { localized } from "@/lib/i18n/translate";
 import BookmarkButton from "./BookmarkButton";
@@ -82,6 +83,7 @@ export default function HadithCard({
   const href = hadithHref(book, hadith.number);
   const title = t("hadith.number", { number: hadith.number });
   const translation = hadith.translation;
+  const explanation = explanationId(book, hadith.number);
 
   return (
     <article id={hadithAnchor(hadith.number)} data-book={book} data-hadith={hadith.number} className="scroll-mt-24 rounded-2xl border border-border bg-card px-5 py-5 sm:px-7">
@@ -151,6 +153,16 @@ export default function HadithCard({
           <p className="text-sm italic text-muted-foreground">{t("hadith.noTranslation")}</p>
         )}
       </div>
+      )}
+
+      {/* HadeethEnc's explanation of the same hadith, where one was matched (lib/hadith/explanations.ts). No prefetch:
+          the page reads HadeethEnc's API. */}
+      {explanation !== undefined && (
+        <p className="mt-4 text-sm">
+          <Link prefetch={false} href={topicHadithHref(explanation)} className="font-medium text-primary hover:underline">
+            {t("hadith.explanationLink")} <span className="inline-block rtl:-scale-x-100">&rarr;</span>
+          </Link>
+        </p>
       )}
 
       {/* Grades as a footnote (the owner's choice, 2026-11-21): every grader the source names, in small type at the foot
