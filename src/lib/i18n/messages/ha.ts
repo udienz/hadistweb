@@ -143,6 +143,17 @@ export const ha: Messages = {
     none: "Babu hadisi mai wannan daraja a wannan babi.",
     searchAll: "Dukkan darajoji",
   },
+  narrators: {
+    title: "Masu ruwaya",
+    intro: "Sunayen da ke cikin sarkokin masu ruwaya, kamar yadda fassarar Indonesiya ke rubuta su, tare da hadisan da kowanne ke ciki.",
+    note: "Suna ba koyaushe mutum ɗaya ba ne: mai ruwaya ɗaya na iya bayyana da rubutu daban-daban, kuma masu ruwaya daban-daban na iya samun suna ɗaya.",
+    searchLabel: "Nemi mai ruwaya da suna",
+    top: "Masu ruwaya mafiya yawan hadisai",
+    found: "Sunayen da ke da “{query}”",
+    none: "Babu mai ruwaya da wannan suna.",
+    homeLink: "Karanta bisa mai ruwaya",
+    homeText: "Hadisan da kowane suna a sarkokin masu ruwaya ke ciki",
+  },
   notFound: {
     title: "Ba a sami shafin ba",
     description: "Shafin da kake nema babu shi ko an mayar da shi wani wuri.",

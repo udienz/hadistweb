@@ -88,6 +88,19 @@ describe("the index (built from the e2e fixtures)", () => {
     expect(sahih.hits.every((h) => h.book === "bukhari")).toBe(true);
   });
 
+  it("lists the narrators from the Indonesian chains, and the hadiths each is in", () => {
+    const narrators = createSearcher(join(dir, SEARCH_FILE)).narrators();
+    expect(narrators).not.toBeNull();
+    const top = narrators!.top(5);
+    expect(top.length).toBeGreaterThan(0);
+    expect(top[0].count).toBeGreaterThanOrEqual(top[top.length - 1].count);
+    const humaidi = narrators!.find("humaidi", 5)[0];
+    expect(humaidi.name).toMatch(/Humaidi/);
+    expect(narrators!.get(humaidi.key)?.count).toBe(humaidi.count);
+    expect(narrators!.hadiths(humaidi.key, 1, 10)).toContainEqual({ book: "bukhari", number: "1" });
+    expect(narrators!.find("bapaknya", 5)).toEqual([]);
+  });
+
   it("says when there is no index", () => {
     expect(createSearcher(join(dir, "missing.sqlite")).available()).toBe(false);
     expect(createSearcher(null).search("niat", { page: 1, locale: "id" })).toEqual({ total: 0, hits: [] });

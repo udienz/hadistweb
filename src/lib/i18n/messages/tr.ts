@@ -143,6 +143,17 @@ export const tr: Messages = {
     none: "Bu bölümde bu derecede hadis yok.",
     searchAll: "Tüm dereceler",
   },
+  narrators: {
+    title: "Râviler",
+    intro: "Endonezce çevirinin yazdığı şekliyle senetlerdeki isimler ve her birinin geçtiği hadisler.",
+    note: "Bir isim her zaman tek bir kişi değildir: bir râvi farklı yazımlarla geçebilir, farklı râviler aynı ismi taşıyabilir.",
+    searchLabel: "İsme göre râvi bul",
+    top: "En çok hadisi olan râviler",
+    found: "“{query}” geçen isimler",
+    none: "Bu isimde râvi yok.",
+    homeLink: "Râviye göre oku",
+    homeText: "Senetlerdeki her ismin geçtiği hadisler",
+  },
   notFound: {
     title: "Sayfa bulunamadı",
     description: "Aradığınız sayfa yok ya da taşınmış.",

@@ -141,6 +141,17 @@ export const en = {
     none: "No hadith in this chapter has that grade.",
     searchAll: "All grades",
   },
+  narrators: {
+    title: "Narrators",
+    intro: "The names in the chains of narrators, as the Indonesian translation writes them, with the hadiths each is in.",
+    note: "A name is not always one person: a narrator may appear under several spellings, and different narrators may share a name.",
+    searchLabel: "Find a narrator by name",
+    top: "Narrators with the most hadiths",
+    found: "Names with “{query}”",
+    none: "No narrator by that name.",
+    homeLink: "Read by narrator",
+    homeText: "The hadiths each name in the chains of narrators is in",
+  },
   notFound: {
     title: "Page not found",
     description: "The page you are looking for does not exist or has moved.",

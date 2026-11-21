@@ -61,6 +61,14 @@ Halaman penjelasan itu menunjukkan, di bagian **Di kitab-kitab**, letak hadis ya
 
 ![Hadis dari bagian Tema, dengan derajat, takhrij, dan penjelasannya](docs/screenshots/id/topics.png)
 
+### Membaca menurut perawi
+
+Buka **Baca menurut perawi** di beranda, atau tekan sebuah nama di sanad terjemahan Indonesia. Halaman perawi
+menampilkan hadis-hadis yang sanadnya memuat nama itu. Cari nama lewat kotak di atas daftar.
+
+Nama diambil sebagaimana ditulis terjemahan Indonesia, jadi seorang perawi bisa muncul dengan beberapa ejaan, dan
+beberapa perawi bisa bernama sama.
+
 ### Mencari
 
 1. Tekan ikon kaca pembesar di bagian atas, atau pakai kotak pencarian di beranda.

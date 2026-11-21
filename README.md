@@ -60,6 +60,14 @@ translation. The explanation page lists, under **In the books**, where the same 
 
 ![A hadith from the Topics section, with its grade and explanation](docs/screenshots/en/topics.png)
 
+### Read by narrator
+
+Open **Read by narrator** on the home page, or press a name in the chain of narrators of an Indonesian translation. A
+narrator's page lists the hadiths whose chain has that name. Search the names at the top of the list.
+
+The names are taken as the Indonesian translation writes them, so one narrator can appear under several spellings, and
+different narrators can share a name.
+
 ### Search
 
 1. Press the magnifying glass at the top, or use the search box on the home page.

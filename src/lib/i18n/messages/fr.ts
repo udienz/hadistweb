@@ -143,6 +143,17 @@ export const fr: Messages = {
     none: "Aucun hadith de ce chapitre n'a ce degré.",
     searchAll: "Tous les degrés",
   },
+  narrators: {
+    title: "Transmetteurs",
+    intro: "Les noms des chaînes de transmission, tels que la traduction indonésienne les écrit, avec les hadiths où chacun figure.",
+    note: "Un nom n'est pas toujours une personne : un transmetteur peut apparaître sous plusieurs graphies, et des transmetteurs différents peuvent porter le même nom.",
+    searchLabel: "Chercher un transmetteur par son nom",
+    top: "Les transmetteurs qui ont le plus de hadiths",
+    found: "Noms contenant « {query} »",
+    none: "Aucun transmetteur de ce nom.",
+    homeLink: "Lire par transmetteur",
+    homeText: "Les hadiths où figure chaque nom des chaînes de transmission",
+  },
   notFound: {
     title: "Page introuvable",
     description: "La page que vous cherchez n'existe pas ou a été déplacée.",

@@ -143,6 +143,17 @@ export const sw: Messages = {
     none: "Hakuna hadithi yenye daraja hilo katika mlango huu.",
     searchAll: "Daraja zote",
   },
+  narrators: {
+    title: "Wapokezi",
+    intro: "Majina katika minyororo ya wapokezi, kama tafsiri ya Kiindonesia inavyoyaandika, pamoja na hadithi ambazo kila jina limo.",
+    note: "Jina moja si mtu mmoja kila mara: mpokezi mmoja anaweza kuandikwa kwa tahajia kadhaa, na wapokezi tofauti wanaweza kuwa na jina moja.",
+    searchLabel: "Tafuta mpokezi kwa jina",
+    top: "Wapokezi wenye hadithi nyingi zaidi",
+    found: "Majina yenye “{query}”",
+    none: "Hakuna mpokezi mwenye jina hilo.",
+    homeLink: "Soma kwa mpokezi",
+    homeText: "Hadithi ambazo kila jina katika minyororo ya wapokezi limo",
+  },
   notFound: {
     title: "Ukurasa haukupatikana",
     description: "Ukurasa unaoutafuta haupo au umehamishwa.",

@@ -49,6 +49,33 @@ function hadithGrade(book, grades) {
   return grade ? gradeLevel(grade.grade ?? "") : null;
 }
 
+// Narrators, from the [brackets] the Indonesian translation puts around their names (the same rules as
+// src/lib/hadith/narrators.ts, which has a test that the two agree).
+const HONORIFICS = /(?<![a-z])'?(?:radliallahu|radhiallahu|radhiyallahu|radiyallahu|rahimahullah|rahimahumallah|shallallahu|anhu(?:ma|m)?|anha|alaihi|wasallam|alaihis|salam)(?![a-z])/gi;
+const NOT_A_NAME_FIRST = new Set(["seorang", "seseorang", "beberapa", "sebagian", "orang", "salah", "para", "dia", "beliau", "mereka", "kami", "aku", "saya"]);
+
+/** The key a narrator's name is counted under, or null for what is not a name (bapaknya, ayahku, seorang laki-laki). */
+export function narratorKey(name) {
+  const key = name
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(HONORIFICS, " ")
+    .toLowerCase()
+    .replace(/[^a-z ]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (key.length < 2) return null;
+  const words = key.split(" ");
+  if (words.length === 1 && /(?:nya|ku)$/.test(key)) return null;
+  if (NOT_A_NAME_FIRST.has(words[0])) return null;
+  return key;
+}
+
+/** The name as shown: the source's spelling without the honorifics and the brackets' stray punctuation. */
+function narratorDisplay(name) {
+  return name.replace(HONORIFICS, " ").replace(/\s+/g, " ").replace(/^[\s,.;:-]+|[\s,.;:-]+$/g, "").trim();
+}
+
 async function readSection(path) {
   try {
     return JSON.parse(await readFile(path, "utf8"));
@@ -85,9 +112,10 @@ async function collect(dir) {
         const text = (h.text ?? "").trim();
         if (!text) continue;
         const number = String(h.hadithnumber);
-        const entry = hadiths.get(number) ?? { chapter: Number(chapter), ar: "", id: "", en: "", grade: null };
+        const entry = hadiths.get(number) ?? { chapter: Number(chapter), ar: "", id: "", en: "", grade: null, narrators: [] };
         entry[language] = language === "ar" ? normalizeArabic(text) : text;
         if (language === "ar") entry.grade = hadithGrade(book, h.grades);
+        if (language === "id") entry.narrators = [...text.matchAll(/\[([^\]\n]{1,120})\]/g)].map((m) => m[1]);
         hadiths.set(number, entry);
       }
     }
@@ -120,6 +148,44 @@ export async function buildSearchIndex(dir) {
     }
   }
   db.exec("COMMIT");
+
+  // Narrators: each name once per hadith, under its key, shown in its most frequent spelling.
+  db.exec("CREATE TABLE narrator_hadith (key TEXT NOT NULL, book TEXT NOT NULL, number TEXT NOT NULL, position INTEGER NOT NULL)");
+  db.exec("CREATE TABLE narrator (key TEXT PRIMARY KEY, name TEXT NOT NULL, count INTEGER NOT NULL)");
+  const insertLink = db.prepare("INSERT INTO narrator_hadith (key, book, number, position) VALUES (?, ?, ?, ?)");
+  const spellings = new Map();
+  const counts = new Map();
+  // Positions follow the site's order of books (src/lib/hadith/books.ts) and the hadith numbers, so a narrator's list
+  // reads like the books.
+  const ORDER = ["bukhari", "muslim", "abudawud", "tirmidhi", "nasai", "ibnmajah", "malik", "nawawi", "qudsi", "dehlawi"];
+  const ordered = [...books].sort((a, b) => ORDER.indexOf(a[0]) - ORDER.indexOf(b[0]));
+  let position = 0;
+  db.exec("BEGIN");
+  for (const [book, hadiths] of ordered) {
+    for (const [number, h] of [...hadiths].sort((a, b) => Number(a[0]) - Number(b[0]))) {
+      position++;
+      const seen = new Set();
+      for (const raw of h.narrators ?? []) {
+        const key = narratorKey(raw);
+        if (!key || seen.has(key)) continue;
+        seen.add(key);
+        insertLink.run(key, book, number, position);
+        counts.set(key, (counts.get(key) ?? 0) + 1);
+        const forms = spellings.get(key) ?? new Map();
+        const shown = narratorDisplay(raw);
+        forms.set(shown, (forms.get(shown) ?? 0) + 1);
+        spellings.set(key, forms);
+      }
+    }
+  }
+  const insertNarrator = db.prepare("INSERT INTO narrator (key, name, count) VALUES (?, ?, ?)");
+  for (const [key, count] of counts) {
+    const [name] = [...spellings.get(key)].sort((a, b) => b[1] - a[1])[0];
+    insertNarrator.run(key, name, count);
+  }
+  db.exec("COMMIT");
+  db.exec("CREATE INDEX narrator_hadith_key ON narrator_hadith (key, position)");
+  db.exec("CREATE INDEX narrator_count ON narrator (count DESC)");
   db.exec("INSERT INTO hadith(hadith) VALUES ('optimize')");
   db.exec("INSERT INTO arabic(arabic) VALUES ('optimize')");
   db.close();

@@ -143,6 +143,17 @@ export const ms: Messages = {
     none: "Tiada hadis dengan darjat itu dalam bab ini.",
     searchAll: "Semua darjat",
   },
+  narrators: {
+    title: "Perawi",
+    intro: "Nama-nama dalam sanad, seperti yang ditulis terjemahan Indonesia, berserta hadis yang memuatnya.",
+    note: "Satu nama tidak semestinya satu orang: seorang perawi mungkin ditulis dengan beberapa ejaan, dan beberapa perawi mungkin berkongsi nama.",
+    searchLabel: "Cari perawi mengikut nama",
+    top: "Perawi dengan hadis terbanyak",
+    found: "Nama yang mengandungi “{query}”",
+    none: "Tiada perawi dengan nama itu.",
+    homeLink: "Baca mengikut perawi",
+    homeText: "Hadis yang memuat setiap nama dalam sanad",
+  },
   notFound: {
     title: "Halaman tidak dijumpai",
     description: "Halaman yang anda cari tidak wujud atau telah dipindahkan.",

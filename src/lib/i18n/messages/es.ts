@@ -143,6 +143,17 @@ export const es: Messages = {
     none: "Ningún hadiz de este capítulo tiene ese grado.",
     searchAll: "Todos los grados",
   },
+  narrators: {
+    title: "Narradores",
+    intro: "Los nombres de las cadenas de narradores, tal como los escribe la traducción indonesia, con los hadices en que aparece cada uno.",
+    note: "Un nombre no siempre es una persona: un narrador puede aparecer con varias grafías y narradores distintos pueden compartir nombre.",
+    searchLabel: "Buscar un narrador por nombre",
+    top: "Narradores con más hadices",
+    found: "Nombres con «{query}»",
+    none: "No hay ningún narrador con ese nombre.",
+    homeLink: "Leer por narrador",
+    homeText: "Los hadices en que aparece cada nombre de las cadenas de narradores",
+  },
   notFound: {
     title: "Página no encontrada",
     description: "La página que buscas no existe o se ha movido.",

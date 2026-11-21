@@ -55,6 +55,13 @@ before starting.
   of the names in the data recognized), kept only when the verse exists.
   QuranWeb's verse address is `/surah/<n>?page=<ceil(v/10)>#verse-<v>`. Not for
   HadeethEnc texts.
+- `src/lib/hadith/narrators.ts`, `src/app/narrators/`: the narrators index
+  (2026-11-22), from the [brackets] of the Indonesian translation (7 books), in
+  the search index (`narrator`, `narrator_hadith`). Names are counted by
+  `narratorKey` (honorifics, case and punctuation removed; pronouns such as
+  "bapaknya" left out), the same in the script (a test checks it). A name is
+  not a person: the pages say so. Names in a chain link to their page. The
+  proxy answers 404 for an unknown name.
 - `src/lib/second-translation.ts`: a second translation beside the first
   (2026-11-22), the reader's choice in the cookie `hw-second`, set in the text
   size menu; `getChapter`/`getHadith` take `{ second }`. Not shown when it is in

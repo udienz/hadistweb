@@ -11,6 +11,7 @@ import { languageName } from "@/lib/i18n/languages";
 import type { Translator } from "@/lib/i18n/translate";
 import { getI18n } from "@/lib/i18n/server";
 import { localized } from "@/lib/i18n/translate";
+import { narratorsHref } from "@/lib/hadith/narrators";
 import { bookHref, topicsHref } from "@/lib/links";
 
 // Rendered per request: the layout reads the language from the request.
@@ -88,8 +89,21 @@ export default async function Home() {
       </ul>
 
       <Link
-        href={topicsHref}
+        href={narratorsHref()}
         className="mt-8 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-card px-5 py-4 transition hover:border-primary/50 hover:shadow-sm"
+      >
+        <span>
+          <span className="block font-display text-lg font-semibold text-primary">{t("narrators.homeLink")}</span>
+          <span className="block text-sm text-muted-foreground">{t("narrators.homeText")}</span>
+        </span>
+        <span aria-hidden className="text-primary">
+          <span className="inline-block rtl:-scale-x-100">&rarr;</span>
+        </span>
+      </Link>
+
+      <Link
+        href={topicsHref}
+        className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-card px-5 py-4 transition hover:border-primary/50 hover:shadow-sm"
       >
         <span>
           <span className="block font-display text-lg font-semibold text-primary">{t("topics.homeLink")}</span>
