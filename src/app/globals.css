@@ -2,6 +2,19 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* The honorific signs (ﷺ U+FDFA, ﷻ U+FDFB, ﷲ U+FDF2, ﷽ U+FDFD) are in the hadith and HadeethEnc texts, but Plus Jakarta
+   Sans and Space Grotesk have no glyph for them, so browsers fell back to a system font (a tiny, blurry sign). This
+   family takes only those code points from Amiri, the Arabic font already shipped, and sits right after the Latin
+   font in the stacks below. */
+@font-face {
+  font-family: "Honorific Signs";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../../node_modules/@fontsource/amiri/files/amiri-arabic-400-normal.woff2") format("woff2");
+  unicode-range: U+FDF2, U+FDFA-FDFD;
+}
+
 /* Palette: deep teal, gold accent, cream background (light) / dark teal (dark). */
 :root {
   --background: 42 33% 94%;
@@ -39,8 +52,8 @@
   --color-primary: hsl(var(--primary));
   --color-primary-soft: hsl(var(--primary-soft));
   --color-gold: hsl(var(--gold));
-  --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk Variable", "Plus Jakarta Sans Variable", ui-sans-serif, sans-serif;
+  --font-sans: "Plus Jakarta Sans Variable", "Honorific Signs", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", "Plus Jakarta Sans Variable", "Honorific Signs", ui-sans-serif, sans-serif;
   --font-arabic: "Amiri", "Scheherazade New", serif;
 }
 
