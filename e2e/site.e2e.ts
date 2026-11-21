@@ -24,10 +24,10 @@ test("from the books to a chapter, with Indonesian chapter names and the English
   await page.goto("/");
   await page.getByRole("link", { name: /Shahih al-Bukhari/ }).first().click();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Shahih al-Bukhari");
-  const first = page.getByRole("link", { name: /Kitab Permulaan Wahyu/ });
+  const first = page.getByRole("link", { name: /Kitab Permulaan Turunnya Wahyu/ });
   await expect(first).toContainText("Revelation");
   await first.click();
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Kitab Permulaan Wahyu");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Kitab Permulaan Turunnya Wahyu (Bad' al-Wahyi)");
   await expect(page.locator("article")).toHaveCount(7);
   expect(problems).toEqual([]);
 });
