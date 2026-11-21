@@ -37,7 +37,7 @@ export const en = {
     chapters: "Chapters",
     unnamedChapter: "Hadiths without a chapter in the source",
     chapterLabel: "Chapter {number}",
-    chapterNamesNote: "The Indonesian chapter names are not reviewed yet; the English name from the source is shown under each.",
+    chapterNamesNote: "The English name from the source is shown under each chapter name.",
   },
   chapter: {
     previous: "Previous chapter",
@@ -143,7 +143,7 @@ export const en = {
     hadeethenc:
       "The topic section comes from HadeethEnc.com (the Encyclopedia of Translated Prophetic Hadiths), published by the Rowwad Translation Center. Its texts may be reused without changes, with HadeethEnc.com named as publisher and source; they are read from its site and shown exactly as published. It also gives the Indonesian translation of the Forty Hadith of an-Nawawi and of 20 of the Forty Hadith Qudsi, which fawazahmed0/hadith-api does not have.",
     chapterNames:
-      "The source names its chapters in English. The Indonesian chapter names come from compressed_hadith_sqlite by IsmailHosenIsmailJames; they have not been reviewed yet, so the English name is shown with them.",
+      "The source names its chapters in English. The Indonesian chapter names were written for this site, with the Arabic name of each book in brackets, and reviewed; the English name from the source is shown with them.",
     code: "The code of this site is open source under the MIT licence.",
     codeLink: "View the code on GitHub",
   },

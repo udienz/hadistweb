@@ -20,9 +20,12 @@ before starting.
   order), `service.ts` (reads fawazahmed0's chapter files and `info.min.json`
   through `transport.ts`, which takes an HTTP URL or a folder), `types.ts`.
 - `src/lib/hadith/chapter-names.ts` and `chapter-names-id.json`: Indonesian
-  chapter names from compressed_hadith_sqlite (Unlicense, confirmed by the
-  owner 2026-11-20), built by `scripts/build-chapter-names.py`. Not reviewed
-  yet, so the source's English name is always shown under them.
+  chapter names written for this site and reviewed by the owner (2026-11-21),
+  "Kitab <name> (<transliteration>)" in pesantren spelling; Bukhari follows the
+  owner's list of its 97 books. Edit the JSON by hand; the review record is
+  `project/hadistweb/data/chapter-names-proposal.tsv` in the workspace. Chapter 0
+  of Muslim and Ibn Majah is named Muqaddimah. The source's English name is shown
+  under each.
 - `src/lib/hadith/hadeethenc-translation.ts` and `hadeethenc-pairs.json`: the
   Indonesian an-Nawawi (42 pairs, checked against the Arabic and the English
   texts) and 20 of the 40 hadiths Qudsi (checked by hand, 3 automatic matches
