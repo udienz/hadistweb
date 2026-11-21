@@ -1,0 +1,153 @@
+// Community translation: a first draft by Claude, not yet reviewed by a speaker (see COMMUNITY_LOCALES). Strings
+// shared with quranweb are taken from its catalog, so the two sites say the same things the same way.
+import type { Plural } from "../translate";
+import type { Messages } from "./types";
+
+const plural = (other: string, one?: string): Plural => ({ one, other });
+
+export const ha: Messages = {
+  meta: {
+    title: "HadistWeb",
+    description: "Karanta tarin hadisai: rubutun Larabci tare da fassara a harshenka.",
+  },
+  nav: {
+    books: "Littattafai",
+    topics: "Jigogi",
+    about: "Game da mu",
+    language: "Harshe",
+    communityBadge: "Al'umma",
+    communityTranslation: "Fassarar al'umma: wani mai jin harshen bai duba ta ba tukuna",
+    reportTranslation: "Bayar da rahoton kuskuren fassara",
+    switchToLight: "Koma yanayin haske",
+    switchToDark: "Koma yanayin duhu",
+  },
+  footer: {
+    about: "Game da mu da majiyoyi",
+    privacy: "Sirri",
+  },
+  common: {
+    hadiths: plural("hadisai {count}", "hadisi {count}"),
+    chapters: plural("babobi {count}", "babi {count}"),
+  },
+  home: {
+    title: "Tarin hadisai",
+    subtitle: "Rubutun Larabci tare da fassara, littafi bayan littafi da babi bayan babi.",
+    start: "Fara da Sahihul Bukhari",
+    listTitle: "Littattafai",
+    translationIn: "Fassara a {language}",
+    translationFrom: "Fassara a {language} daga {source}",
+    translationPartly: "An fassara wasu hadisai zuwa {language}, daga {source}",
+  },
+  book: {
+    chapters: "Babobi",
+    unnamedChapter: "Hadisan da ba su cikin wani babi a majiyar",
+    chapterLabel: "Babi {number}",
+    chapterNamesNote: "Sunan Turanci daga majiyar yana ƙarƙashin sunan kowane babi.",
+  },
+  chapter: {
+    previous: "Babin da ya gabata",
+    next: "Babi na gaba",
+    backToBook: "Dukkan babobi",
+  },
+  hadith: {
+    number: "Hadisi {number}",
+    arabicNumber: "Lambar Larabci: {number}",
+    fallback: "Fassara a {language}: wannan hadisin ba shi da fassara a harshenka",
+    noTranslation: "Majiyar ba ta da fassarar wannan hadisin.",
+    noArabic: "Majiyar ba ta da rubutun Larabci na wannan lambar.",
+    grades: "Darajoji",
+    sanad: "Sarkar masu ruwaya",
+    attribution: "Majiya",
+    translationFrom: "Fassara daga {source}, ba a canza ta ba",
+    translationScope: "Ta fassara hadisin da majiyarsa; bayanan da ke biye da su a rubutun Larabci da ke sama (kamar game da sarkokinsa) wataƙila ba a fassara su ba.",
+    copyLink: "Kwafi mahaɗi",
+    copied: "An kwafi mahaɗin",
+    open: "Buɗe hadisi {number}",
+    inBook: "{book}, hadisi {number}",
+  },
+  topics: {
+    title: "Hadisai bisa jigo",
+    intro: "Zaɓaɓɓun hadisai da aka tsara bisa jigo, kowanne tare da darajarsa, majiyarsa, bayani da darussan da ake samu daga gare shi.",
+    homeLink: "Karanta bisa jigo",
+    homeText: "Zaɓaɓɓun hadisai tare da bayani, daga HadeethEnc.com",
+    subtopics: "Jigogi",
+    hadiths: "Hadisai",
+    all: "Dukkan jigogi",
+    showSubtopics: "Nuna jigogin",
+    grade: "Daraja",
+    attribution: "Majiya",
+    explanation: "Bayani",
+    lessons: "Darussa",
+    inTopics: "A cikin jigogi",
+    otherLanguage: "A {language}: HadeethEnc ba ta da fassarar wannan hadisin a harshenka",
+    credit: "Daga HadeethEnc.com, Cibiyar Fassara ta Rowwad ce ta wallafa, ba a canza shi ba.",
+    original: "Duba a HadeethEnc.com",
+  },
+  display: {
+    textSize: "Girman rubutu",
+    arabicSize: "Rubutun Larabci",
+    latinSize: "Fassara",
+    smaller: "Ƙarami: {name}",
+    larger: "Babba: {name}",
+  },
+  pagination: {
+    label: "Shafuka",
+    range: "{from} zuwa {to} cikin hadisai {total}",
+    previous: "Shafin baya",
+    next: "Shafi na gaba",
+    page: "Shafi na {number}",
+    perPage: "Hadisai a kowane shafi",
+  },
+  notFound: {
+    title: "Ba a sami shafin ba",
+    description: "Shafin da kake nema babu shi ko an mayar da shi wani wuri.",
+    home: "Koma zuwa littattafai",
+  },
+  error: {
+    title: "Ba a iya loda bayanan hadisai ba",
+    description: "Majiyar ba ta amsa ba. Sake gwadawa nan ba da daɗewa ba.",
+    retry: "Sake gwadawa",
+  },
+  privacy: {
+    title: "Manufar sirri",
+    intro: "HadistWeb shafi ne na kyauta don karanta hadisai. Babu asusu, babu rajista. Wannan shafin yana bayyana abin da shafin ke ajiyewa da wanda kuma ke ganin wani abu.",
+    sections: {
+      reading: {
+        title: "Abin da ke zama a burauzarka",
+        body: "Zaɓinka na jigon haske ko duhu ana ajiye shi a ma'ajiyar burauzarka kuma ba ya fita daga can. Zaɓinka na girman rubutu ma ana ajiye shi a can. Ƙananan kukis biyu suna ajiye harshen shafin (hw-lang) da yawan hadisan da shafin babi ke nunawa (hw-page-size), domin shafin ya bayyana yadda ka zaɓa. Shafin ba ya ajiye wani abu game da kai: babu tarihin karatu, babu alamomi, babu asusu.",
+      },
+      sources: {
+        title: "Inda rubutun suka fito",
+        body: "Littattafan sun fito daga fawazahmed0/hadith-api: rubutun Larabci, Indonesiya da Turanci daga kwafinmu a wannan sabar, sauran fassarori daga majiyar a GitHub. Sashen jigogi da wasu fassarori sun fito daga HadeethEnc.com. Sabarmu ce ke neman su duka, ba burauzarka ba, don haka GitHub da HadeethEnc ba sa ganin adireshin IP ɗinka ko wani abu game da kai.",
+      },
+      analytics: {
+        title: "Ƙididdigar ziyara",
+        body: "Don sanin yawan amfani da shafin, muna amfani da Cloudflare Web Analytics. Idan aka buɗe shafi, ƙaramin rubutun Cloudflare yana ba da rahoton shafin da aka duba, shafin da ka fito, nau'in burauza, tsarin aiki da na'ura, ƙasa, da saurin loda shafin. Cloudflare ya ce wannan kayan aiki ba ya saita kukis, ba ya ajiye komai a burauzarka, kuma ba ya amfani da adireshin IP ɗinka ko bayanan burauza don gane ka ko bin ka. Jimla kawai muke gani (misali ziyara a kowane shafi ko ƙasa), ba mu taɓa ganin baƙo ɗaya-ɗaya ba, kuma muna amfani da su don fahimtar zirga-zirgar wannan shafin ne kawai, ba don talla ba. Idan burauzarka ko wani ƙari ya toshe rubutun, shafin yana aiki daidai.",
+      },
+      recipients: {
+        title: "Waɗanda ke sarrafa bayanai",
+        body: "Cloudflare (DNS da proxy na shafin, da ƙididdigar baƙi) da mai ba da sabis na ajiyar sabar. Sabar yanar gizonmu da Cloudflare suna sarrafa adireshin IP don isar da shafuka, kamar kowane shafin yanar gizo. Ba ma sayar da bayanai kuma ba ma raba su don wata manufa.",
+      },
+      law: {
+        title: "Dokar da ta shafi",
+        body: "Wannan manufa tana bin dokar kare bayanai ta Indonesiya (Doka Lamba 27 ta 2022 kan Kare Bayanan Mutum, UU PDP).",
+      },
+    },
+    contactTitle: "Tuntuɓa",
+    contactBy: "{name} ne ke gudanar da wannan shafin.",
+    contactEmail: "Tambayoyi game da wannan manufar: {email}",
+    contactMissing: "Ba a saita hanyar tuntuɓa don tambayoyi game da wannan manufar ba tukuna.",
+  },
+  about: {
+    title: "Game da mu",
+    intro: "HadistWeb yana nuna tarin hadisai tare da rubutun Larabcinsu da fassara a harshenka. Ana nuna rubutun kamar yadda majiyoyi suka wallafa su; ba a gyara komai a nan.",
+    sourcesTitle: "Majiyoyi",
+    fawaz: "Littattafan, babobinsu, fassarori da darajoji sun fito daga fawazahmed0/hadith-api, wanda aka wallafa ƙarƙashin Unlicense: fassarori a Indonesiya, Turanci, Turkanci, Bengali, Faransanci, Rashanci, Urdu da Tamil, ko da yake ba kowane littafi ne ke cikin kowane harshe ba. Ana ba da rubutun Larabci, Indonesiya da Turanci daga kwafinmu; ana karanta sauran fassarori daga majiyar.",
+    fallback: "Idan hadisi ba shi da fassara a harshenka, ana nuna ta Turanci (ko ta Indonesiya), tare da alama. Fassarar Indonesiya ba ta da rubutu ga hadisai da yawa, domin majiyarta tana haɗa ruwayoyi da dama a shigarwa ɗaya; ba a taɓa haɗa rubutun Larabci da fassarar wani hadisi don cike giɓi. A Larabci, ba a nuna fassara.",
+    hadeethenc: "Sashen jigogi ya fito daga HadeethEnc.com (Kundin Hadisan Annabi da aka Fassara), wanda Cibiyar Fassara ta Rowwad ta wallafa. Ana iya sake amfani da rubutunsa ba tare da canji ba, tare da ambaton HadeethEnc.com a matsayin mai wallafa da majiya; ana karanta su daga shafinsa kuma a nuna su daidai yadda aka wallafa. Yana kuma ba da Hadisai Arba'in na an-Nawawi, da 20 daga cikin Hadisai Arba'in na Qudsi, a harsunan da fawazahmed0/hadith-api ba ta da su.",
+    chapterNames: "Majiyar tana sanya wa babobinta sunaye da Turanci. An rubuta sunayen babobi na Indonesiya don wannan shafin, tare da sunan Larabci na kowane littafi a cikin baka, kuma an duba su; ana nuna sunan Turanci daga majiyar tare da su. A sauran harsuna sunayen babobi da Turanci suke.",
+    languages: "Shafin yana cikin Turanci da Indonesiya, da wasu harsuna 23 a matsayin fassarorin al'umma: daftarin farko na Claude, wata fasahar AI, waɗanda mai jin harshen bai duba su ba tukuna. Menu na harsuna yana yi musu alama kuma yana da mahaɗin ba da rahoton kuskure.",
+    code: "Lambar wannan shafin buɗaɗɗiya ce ƙarƙashin lasisin MIT.",
+    codeLink: "Duba lambar a GitHub",
+  },
+};

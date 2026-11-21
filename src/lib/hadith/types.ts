@@ -3,7 +3,7 @@
 import type { LocalizedText } from "../i18n/translate";
 
 /** A translation language, by its interface language code. fawazahmed0 also has Tamil, which has no interface yet. */
-export const TRANSLATION_LANGUAGES = ["id", "en", "tr", "bn", "fr", "ru", "ur"] as const;
+export const TRANSLATION_LANGUAGES = ["id", "en", "tr", "bn", "fr", "ru", "ur", "ta"] as const;
 export type TranslationLanguage = (typeof TRANSLATION_LANGUAGES)[number];
 export const isTranslationLanguage = (value: string): value is TranslationLanguage =>
   (TRANSLATION_LANGUAGES as readonly string[]).includes(value);

@@ -34,6 +34,9 @@ describe("translation fallback", () => {
     expect(translationOrder(bookById("tirmidhi"), "fr")).toEqual(["en", "id"]);
     expect(translationOrder(bookById("bukhari"), "ms")).toEqual(["en", "id"]);
     expect(translationOrder(bookById("bukhari"), "ar")).toEqual([]);
+    expect(translationOrder(bookById("muslim"), "ta")).toEqual(["ta", "en", "id"]);
+    expect(translationOrder(bookById("abudawud"), "ta")).toEqual(["en", "id"]);
+    expect(translationOrder(bookById("bukhari"), "ja")).toEqual(["en", "id"]);
   });
 
   it("takes the first non-empty text, so an empty Indonesian text falls back to English", () => {

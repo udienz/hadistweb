@@ -1,0 +1,153 @@
+// Community translation: a first draft by Claude, not yet reviewed by a speaker (see COMMUNITY_LOCALES). Strings
+// shared with quranweb are taken from its catalog, so the two sites say the same things the same way.
+import type { Plural } from "../translate";
+import type { Messages } from "./types";
+
+const plural = (other: string, one?: string): Plural => ({ one, other });
+
+export const ja: Messages = {
+  meta: {
+    title: "HadistWeb",
+    description: "ハディース集を読む：アラビア語の本文と、あなたの言語の翻訳。",
+  },
+  nav: {
+    books: "書物",
+    topics: "テーマ",
+    about: "このサイトについて",
+    language: "言語",
+    communityBadge: "コミュニティ",
+    communityTranslation: "コミュニティ翻訳：この言語の話者による確認はまだです",
+    reportTranslation: "翻訳の誤りを報告",
+    switchToLight: "ライトモードに切り替え",
+    switchToDark: "ダークモードに切り替え",
+  },
+  footer: {
+    about: "このサイトについてと出典",
+    privacy: "プライバシー",
+  },
+  common: {
+    hadiths: plural("{count} 件のハディース"),
+    chapters: plural("{count} 章"),
+  },
+  home: {
+    title: "ハディース集",
+    subtitle: "アラビア語の本文と翻訳を、書物ごと、章ごとに。",
+    start: "サヒーフ・ブハーリーから始める",
+    listTitle: "書物",
+    translationIn: "{language}訳",
+    translationFrom: "{language}訳（{source}より）",
+    translationPartly: "一部のハディースに{language}訳あり（{source}より）",
+  },
+  book: {
+    chapters: "章",
+    unnamedChapter: "出典でどの章にも入っていないハディース",
+    chapterLabel: "第{number}章",
+    chapterNamesNote: "各章名の下に出典の英語名を表示しています。",
+  },
+  chapter: {
+    previous: "前の章",
+    next: "次の章",
+    backToBook: "すべての章",
+  },
+  hadith: {
+    number: "ハディース {number}",
+    arabicNumber: "アラビア語版の番号：{number}",
+    fallback: "{language}訳：このハディースにはあなたの言語の翻訳がありません",
+    noTranslation: "出典にはこのハディースの翻訳がありません。",
+    noArabic: "出典にはこの番号のアラビア語本文がありません。",
+    grades: "真正性の評価",
+    sanad: "伝承経路",
+    attribution: "出典",
+    translationFrom: "{source}の翻訳を変更せずに表示",
+    translationScope: "翻訳されているのはハディースとその出典です。上のアラビア語本文でその後に続く注記（伝承経路についてなど）は翻訳されていない場合があります。",
+    copyLink: "リンクをコピー",
+    copied: "リンクをコピーしました",
+    open: "ハディース {number} を開く",
+    inBook: "{book}、ハディース {number}",
+  },
+  topics: {
+    title: "テーマ別のハディース",
+    intro: "テーマごとに整理した選りすぐりのハディース。それぞれに評価、出典、解説、そこから得られる教訓が付いています。",
+    homeLink: "テーマ別に読む",
+    homeText: "HadeethEnc.com の解説付き精選ハディース",
+    subtopics: "テーマ",
+    hadiths: "ハディース",
+    all: "すべてのテーマ",
+    showSubtopics: "テーマを表示",
+    grade: "評価",
+    attribution: "出典",
+    explanation: "解説",
+    lessons: "教訓",
+    inTopics: "含まれるテーマ",
+    otherLanguage: "{language}：HadeethEnc にはこのハディースのあなたの言語の翻訳がありません",
+    credit: "HadeethEnc.com より。Rowwad 翻訳センター発行、変更せずに表示しています。",
+    original: "HadeethEnc.com で見る",
+  },
+  display: {
+    textSize: "文字の大きさ",
+    arabicSize: "アラビア語本文",
+    latinSize: "翻訳",
+    smaller: "小さく：{name}",
+    larger: "大きく：{name}",
+  },
+  pagination: {
+    label: "ページ",
+    range: "{total} 件中 {from}～{to} 件目",
+    previous: "前のページ",
+    next: "次のページ",
+    page: "{number} ページ",
+    perPage: "1ページのハディース数",
+  },
+  notFound: {
+    title: "ページが見つかりません",
+    description: "お探しのページは存在しないか、移動しました。",
+    home: "書物一覧に戻る",
+  },
+  error: {
+    title: "ハディースのデータを読み込めませんでした",
+    description: "出典から応答がありませんでした。少ししてからもう一度お試しください。",
+    retry: "再試行",
+  },
+  privacy: {
+    title: "プライバシーポリシー",
+    intro: "HadistWeb はハディースを読むための無料サイトです。アカウントはなく、登録も不要です。このページでは、サイトが何を保存し、ほかに誰が何を見るのかを説明します。",
+    sections: {
+      reading: {
+        title: "ブラウザに残るもの",
+        body: "ライトテーマかダークテーマかの選択は、ブラウザのローカルストレージに保存され、外には出ません。文字の大きさの選択も同様です。2つの小さな Cookie が、表示言語（hw-lang）と章のページに表示するハディースの数（hw-page-size）を保存し、選んだとおりにページが表示されるようにします。それ以外にあなたについて保存するものはありません。閲覧履歴も、ブックマークも、アカウントもありません。",
+      },
+      sources: {
+        title: "テキストの出どころ",
+        body: "書物は fawazahmed0/hadith-api から取得しています。アラビア語、インドネシア語、英語のテキストはこのサーバー上の私たちのコピーから、その他の翻訳は GitHub 上の出典から読み込みます。テーマのセクションと一部の翻訳は HadeethEnc.com からです。これらはすべて、あなたのブラウザではなく私たちのサーバーが取得するため、GitHub も HadeethEnc もあなたの IP アドレスやその他の情報を見ることはありません。",
+      },
+      analytics: {
+        title: "訪問統計",
+        body: "サイトがどれくらい使われているかを知るために、Cloudflare Web Analytics を使っています。ページを開くと、Cloudflare の小さなスクリプトが、見たページ、どのページから来たか、ブラウザ・OS・端末の種類、国、ページの読み込み速度を送ります。Cloudflare によれば、このツールは Cookie を設定せず、ブラウザに何も保存せず、あなたを識別・追跡するために IP アドレスやブラウザの情報を使いません。私たちが見るのは合計（ページ別や国別の訪問数など）だけで、個々の訪問者は見ません。このサイトの利用状況を知るためだけに使い、広告には決して使いません。ブラウザや拡張機能がスクリプトをブロックしても、サイトは同じように動きます。",
+      },
+      recipients: {
+        title: "データを扱う事業者",
+        body: "Cloudflare（サイトの DNS とプロキシ、および訪問統計）とサーバーのホスティング事業者です。どのウェブサイトでも同じように、私たちのウェブサーバーと Cloudflare はページを届けるために IP アドレスを扱います。データを販売したり、ほかの目的で共有したりすることはありません。",
+      },
+      law: {
+        title: "準拠法",
+        body: "このポリシーはインドネシアのデータ保護法（個人データ保護に関する 2022 年法律第 27 号、UU PDP）に従います。",
+      },
+    },
+    contactTitle: "連絡先",
+    contactBy: "このサイトは {name} が運営しています。",
+    contactEmail: "このポリシーについてのお問い合わせ：{email}",
+    contactMissing: "このポリシーについての問い合わせ先はまだ設定されていません。",
+  },
+  about: {
+    title: "このサイトについて",
+    intro: "HadistWeb は、ハディース集をアラビア語の本文とあなたの言語の翻訳とともに表示します。テキストは出典が公開しているとおりに表示し、ここでは何も編集しません。",
+    sourcesTitle: "出典",
+    fawaz: "書物、章、翻訳、評価は Unlicense で公開されている fawazahmed0/hadith-api からです。インドネシア語、英語、トルコ語、ベンガル語、フランス語、ロシア語、ウルドゥー語、タミル語の翻訳がありますが、すべての書物がすべての言語にあるわけではありません。アラビア語、インドネシア語、英語のテキストは私たちのコピーから提供し、その他の翻訳は出典から読み込みます。",
+    fallback: "ハディースにあなたの言語の翻訳がない場合は、英語の翻訳（またはインドネシア語の翻訳）を、その旨の表示とともに示します。インドネシア語訳では多くのハディースに本文がありません。出典が複数の伝承を一つの項目にまとめているためです。空白を埋めるために、アラビア語本文を別のハディースの翻訳と組み合わせることは決してありません。アラビア語の画面では翻訳を表示しません。",
+    hadeethenc: "テーマのセクションは、Rowwad 翻訳センターが発行する HadeethEnc.com（翻訳預言者ハディース百科）からです。そのテキストは、HadeethEnc.com を発行者および出典として明記すれば、変更せずに再利用できます。サイトから読み込み、公開されているとおりに表示しています。fawazahmed0/hadith-api にない言語については、ナワウィーの40のハディースと、40のハディース・クドスィーのうち20件もここから取得しています。",
+    chapterNames: "出典は章に英語の名前を付けています。インドネシア語の章名はこのサイトのために書かれ、各書物のアラビア語名を括弧で添えて確認済みです。出典の英語名も併せて表示します。その他の言語では章名は英語です。",
+    languages: "画面は英語とインドネシア語のほか、23 の言語でコミュニティ翻訳として提供しています。これらは AI の Claude による初稿で、その言語の話者による確認はまだです。言語メニューにはその印と、誤りを報告するリンクがあります。",
+    code: "このサイトのコードは MIT ライセンスのオープンソースです。",
+    codeLink: "GitHub でコードを見る",
+  },
+};

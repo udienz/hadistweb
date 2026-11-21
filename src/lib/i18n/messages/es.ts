@@ -1,0 +1,153 @@
+// Community translation: a first draft by Claude, not yet reviewed by a speaker (see COMMUNITY_LOCALES). Strings
+// shared with quranweb are taken from its catalog, so the two sites say the same things the same way.
+import type { Plural } from "../translate";
+import type { Messages } from "./types";
+
+const plural = (other: string, one?: string): Plural => ({ one, other });
+
+export const es: Messages = {
+  meta: {
+    title: "HadistWeb",
+    description: "Lee las colecciones de hadices: el texto árabe con una traducción en tu idioma.",
+  },
+  nav: {
+    books: "Libros",
+    topics: "Temas",
+    about: "Acerca de",
+    language: "Idioma",
+    communityBadge: "Comunidad",
+    communityTranslation: "Traducción de la comunidad: aún no revisada por un hablante del idioma",
+    reportTranslation: "Informar de un error de traducción",
+    switchToLight: "Cambiar al modo claro",
+    switchToDark: "Cambiar al modo oscuro",
+  },
+  footer: {
+    about: "Acerca de y fuentes",
+    privacy: "Privacidad",
+  },
+  common: {
+    hadiths: plural("{count} hadices", "{count} hadiz"),
+    chapters: plural("{count} capítulos", "{count} capítulo"),
+  },
+  home: {
+    title: "Las colecciones de hadices",
+    subtitle: "Texto árabe con una traducción, libro por libro y capítulo por capítulo.",
+    start: "Empieza con Sahih al-Bujari",
+    listTitle: "Libros",
+    translationIn: "Traducción en {language}",
+    translationFrom: "Traducción en {language} de {source}",
+    translationPartly: "Algunos hadices traducidos al {language}, de {source}",
+  },
+  book: {
+    chapters: "Capítulos",
+    unnamedChapter: "Hadices sin capítulo en la fuente",
+    chapterLabel: "Capítulo {number}",
+    chapterNamesNote: "Bajo el nombre de cada capítulo se muestra el nombre en inglés de la fuente.",
+  },
+  chapter: {
+    previous: "Capítulo anterior",
+    next: "Capítulo siguiente",
+    backToBook: "Todos los capítulos",
+  },
+  hadith: {
+    number: "Hadiz {number}",
+    arabicNumber: "Numeración árabe: {number}",
+    fallback: "Traducción en {language}: este hadiz no tiene traducción en tu idioma",
+    noTranslation: "La fuente no tiene traducción de este hadiz.",
+    noArabic: "La fuente no tiene texto árabe para este número.",
+    grades: "Grados",
+    sanad: "Cadena de narradores",
+    attribution: "Fuente",
+    translationFrom: "Traducción de {source}, mostrada sin cambios",
+    translationScope: "Traduce el hadiz y su fuente; las notas que les siguen en el texto árabe de arriba (por ejemplo, sobre sus cadenas) pueden no estar traducidas.",
+    copyLink: "Copiar enlace",
+    copied: "Enlace copiado",
+    open: "Abrir el hadiz {number}",
+    inBook: "{book}, hadiz {number}",
+  },
+  topics: {
+    title: "Hadices por tema",
+    intro: "Hadices seleccionados ordenados por tema, cada uno con su grado, su fuente, una explicación y las enseñanzas que se extraen de él.",
+    homeLink: "Leer por tema",
+    homeText: "Hadices seleccionados con explicación, de HadeethEnc.com",
+    subtopics: "Temas",
+    hadiths: "Hadices",
+    all: "Todos los temas",
+    showSubtopics: "Ver los temas",
+    grade: "Grado",
+    attribution: "Fuente",
+    explanation: "Explicación",
+    lessons: "Enseñanzas",
+    inTopics: "En los temas",
+    otherLanguage: "En {language}: HadeethEnc no tiene traducción de este hadiz en tu idioma",
+    credit: "De HadeethEnc.com, publicado por el Centro de Traducción Rowwad, mostrado sin cambios.",
+    original: "Ver en HadeethEnc.com",
+  },
+  display: {
+    textSize: "Tamaño del texto",
+    arabicSize: "Texto árabe",
+    latinSize: "Traducción",
+    smaller: "Más pequeño: {name}",
+    larger: "Más grande: {name}",
+  },
+  pagination: {
+    label: "Páginas",
+    range: "{from} a {to} de {total} hadices",
+    previous: "Página anterior",
+    next: "Página siguiente",
+    page: "Página {number}",
+    perPage: "Hadices por página",
+  },
+  notFound: {
+    title: "Página no encontrada",
+    description: "La página que buscas no existe o se ha movido.",
+    home: "Volver a los libros",
+  },
+  error: {
+    title: "No se pudieron cargar los datos de los hadices",
+    description: "La fuente no respondió. Inténtalo de nuevo en un momento.",
+    retry: "Reintentar",
+  },
+  privacy: {
+    title: "Política de privacidad",
+    intro: "HadistWeb es un sitio gratuito para leer hadices. No hay cuentas ni nada en lo que registrarse. Esta página explica qué guarda el sitio y quién más ve algo.",
+    sections: {
+      reading: {
+        title: "Lo que queda en tu navegador",
+        body: "Tu elección de tema claro u oscuro se guarda en el almacenamiento local de tu navegador y no sale de él. Tu elección de tamaño de texto también se guarda allí. Dos pequeñas cookies guardan el idioma de la interfaz (hw-lang) y cuántos hadices muestra una página de capítulo (hw-page-size), para que la página aparezca como la elegiste. El sitio no guarda nada más sobre ti: ni historial de lectura, ni marcadores, ni cuenta.",
+      },
+      sources: {
+        title: "De dónde vienen los textos",
+        body: "Los libros vienen de fawazahmed0/hadith-api: los textos árabe, indonesio e inglés de nuestra propia copia en este servidor, las demás traducciones de la fuente en GitHub. La sección de temas y algunas traducciones vienen de HadeethEnc.com. Es nuestro servidor el que los pide, no tu navegador, así que ni GitHub ni HadeethEnc ven tu dirección IP ni nada más sobre ti.",
+      },
+      analytics: {
+        title: "Estadísticas de visitas",
+        body: "Para saber cuánto se usa el sitio usamos Cloudflare Web Analytics. Al abrirse una página, un pequeño script de Cloudflare informa qué página se vio, de qué página venías, el tipo de navegador, sistema operativo y dispositivo, el país y lo rápido que cargó la página. Cloudflare afirma que esta herramienta no pone cookies, no guarda nada en tu navegador y no usa tu dirección IP ni los datos de tu navegador para identificarte o seguirte. Solo vemos totales (por ejemplo, visitas por página o por país), nunca a un visitante concreto, y los usamos solo para entender el tráfico de este sitio, nunca para publicidad. Si tu navegador o una extensión bloquea el script, el sitio funciona igual.",
+      },
+      recipients: {
+        title: "Quién trata los datos",
+        body: "Cloudflare (DNS y proxy del sitio, y las estadísticas de visitas) y el proveedor de alojamiento del servidor. Nuestro servidor web y Cloudflare tratan direcciones IP para entregar las páginas, como cualquier sitio web. No vendemos datos ni los compartimos con ningún otro fin.",
+      },
+      law: {
+        title: "Ley aplicable",
+        body: "Esta política sigue la ley indonesia de protección de datos personales (Ley n.º 27 de 2022 sobre Protección de Datos Personales, UU PDP).",
+      },
+    },
+    contactTitle: "Contacto",
+    contactBy: "Este sitio lo gestiona {name}.",
+    contactEmail: "Preguntas sobre esta política: {email}",
+    contactMissing: "Aún no se ha configurado el contacto para preguntas sobre esta política.",
+  },
+  about: {
+    title: "Acerca de",
+    intro: "HadistWeb muestra las colecciones de hadices con su texto árabe y una traducción en tu idioma. Los textos se muestran como los publican sus fuentes; aquí no se edita nada.",
+    sourcesTitle: "Fuentes",
+    fawaz: "Los libros, sus capítulos, traducciones y grados vienen de fawazahmed0/hadith-api, publicado bajo la Unlicense: traducciones en indonesio, inglés, turco, bengalí, francés, ruso, urdu y tamil, aunque no todos los libros en todos los idiomas. Los textos árabe, indonesio e inglés se sirven desde nuestra propia copia; las demás traducciones se leen de la fuente.",
+    fallback: "Cuando un hadiz no tiene traducción en tu idioma, se muestra la inglesa (o la indonesia), con una etiqueta. La traducción indonesia no tiene texto para muchos hadices, porque su fuente une varias narraciones en una sola entrada; el texto árabe nunca se empareja con la traducción de otro hadiz para llenar un hueco. En árabe no se muestra traducción.",
+    hadeethenc: "La sección de temas viene de HadeethEnc.com (la Enciclopedia de Hadices Proféticos Traducidos), publicada por el Centro de Traducción Rowwad. Sus textos pueden reutilizarse sin cambios, citando a HadeethEnc.com como editor y fuente; se leen de su sitio y se muestran tal como se publican. También da los Cuarenta Hadices de an-Nawawi, y 20 de los Cuarenta Hadices Qudsi, en los idiomas en que fawazahmed0/hadith-api no los tiene.",
+    chapterNames: "La fuente nombra sus capítulos en inglés. Los nombres de capítulo en indonesio se escribieron para este sitio, con el nombre árabe de cada libro entre paréntesis, y se revisaron; junto a ellos se muestra el nombre inglés de la fuente. En los demás idiomas los nombres de capítulo están en inglés.",
+    languages: "La interfaz está en inglés e indonesio, y en otros 23 idiomas como traducciones de la comunidad: primeros borradores de Claude, una IA, aún no revisados por un hablante del idioma. El menú de idiomas los marca y tiene un enlace para informar de un error.",
+    code: "El código de este sitio es de código abierto bajo la licencia MIT.",
+    codeLink: "Ver el código en GitHub",
+  },
+};

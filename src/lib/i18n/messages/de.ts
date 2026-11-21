@@ -1,0 +1,153 @@
+// Community translation: a first draft by Claude, not yet reviewed by a speaker (see COMMUNITY_LOCALES). Strings
+// shared with quranweb are taken from its catalog, so the two sites say the same things the same way.
+import type { Plural } from "../translate";
+import type { Messages } from "./types";
+
+const plural = (other: string, one?: string): Plural => ({ one, other });
+
+export const de: Messages = {
+  meta: {
+    title: "HadistWeb",
+    description: "Lies die Hadith-Sammlungen: den arabischen Text mit einer Übersetzung in deiner Sprache.",
+  },
+  nav: {
+    books: "Bücher",
+    topics: "Themen",
+    about: "Über",
+    language: "Sprache",
+    communityBadge: "Community",
+    communityTranslation: "Community-Übersetzung: noch nicht von einer Person geprüft, die die Sprache spricht",
+    reportTranslation: "Übersetzungsfehler melden",
+    switchToLight: "Zum hellen Modus wechseln",
+    switchToDark: "Zum dunklen Modus wechseln",
+  },
+  footer: {
+    about: "Über die Seite und Quellen",
+    privacy: "Datenschutz",
+  },
+  common: {
+    hadiths: plural("{count} Hadithe", "{count} Hadith"),
+    chapters: plural("{count} Kapitel", "{count} Kapitel"),
+  },
+  home: {
+    title: "Die Hadith-Sammlungen",
+    subtitle: "Arabischer Text mit Übersetzung, Buch für Buch und Kapitel für Kapitel.",
+    start: "Mit Sahih al-Buchari beginnen",
+    listTitle: "Bücher",
+    translationIn: "Übersetzung: {language}",
+    translationFrom: "Übersetzung: {language}, von {source}",
+    translationPartly: "Einige Hadithe übersetzt ({language}), von {source}",
+  },
+  book: {
+    chapters: "Kapitel",
+    unnamedChapter: "Hadithe ohne Kapitel in der Quelle",
+    chapterLabel: "Kapitel {number}",
+    chapterNamesNote: "Unter jedem Kapitelnamen steht der englische Name aus der Quelle.",
+  },
+  chapter: {
+    previous: "Vorheriges Kapitel",
+    next: "Nächstes Kapitel",
+    backToBook: "Alle Kapitel",
+  },
+  hadith: {
+    number: "Hadith {number}",
+    arabicNumber: "Arabische Nummerierung: {number}",
+    fallback: "Übersetzung: {language}. Für diesen Hadith gibt es keine Übersetzung in deiner Sprache",
+    noTranslation: "Die Quelle hat keine Übersetzung dieses Hadith.",
+    noArabic: "Die Quelle hat keinen arabischen Text für diese Nummer.",
+    grades: "Bewertungen",
+    sanad: "Überlieferungskette",
+    attribution: "Quelle",
+    translationFrom: "Übersetzung von {source}, unverändert angezeigt",
+    translationScope: "Übersetzt sind der Hadith und seine Quellenangabe; Anmerkungen, die im arabischen Text oben folgen (etwa zu seinen Überlieferungsketten), sind womöglich nicht übersetzt.",
+    copyLink: "Link kopieren",
+    copied: "Link kopiert",
+    open: "Hadith {number} öffnen",
+    inBook: "{book}, Hadith {number}",
+  },
+  topics: {
+    title: "Hadithe nach Themen",
+    intro: "Ausgewählte Hadithe nach Themen geordnet, jeweils mit Bewertung, Quelle, einer Erklärung und den Lehren daraus.",
+    homeLink: "Nach Themen lesen",
+    homeText: "Ausgewählte Hadithe mit Erklärung, von HadeethEnc.com",
+    subtopics: "Themen",
+    hadiths: "Hadithe",
+    all: "Alle Themen",
+    showSubtopics: "Themen anzeigen",
+    grade: "Bewertung",
+    attribution: "Quelle",
+    explanation: "Erklärung",
+    lessons: "Lehren",
+    inTopics: "In den Themen",
+    otherLanguage: "{language}: HadeethEnc hat keine Übersetzung dieses Hadith in deiner Sprache",
+    credit: "Von HadeethEnc.com, herausgegeben vom Rowwad-Übersetzungszentrum, unverändert angezeigt.",
+    original: "Auf HadeethEnc.com ansehen",
+  },
+  display: {
+    textSize: "Textgröße",
+    arabicSize: "Arabischer Text",
+    latinSize: "Übersetzung",
+    smaller: "Kleiner: {name}",
+    larger: "Größer: {name}",
+  },
+  pagination: {
+    label: "Seiten",
+    range: "{from} bis {to} von {total} Hadithen",
+    previous: "Vorige Seite",
+    next: "Nächste Seite",
+    page: "Seite {number}",
+    perPage: "Hadithe pro Seite",
+  },
+  notFound: {
+    title: "Seite nicht gefunden",
+    description: "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+    home: "Zurück zu den Büchern",
+  },
+  error: {
+    title: "Die Hadith-Daten konnten nicht geladen werden",
+    description: "Die Quelle hat nicht geantwortet. Versuche es gleich noch einmal.",
+    retry: "Erneut versuchen",
+  },
+  privacy: {
+    title: "Datenschutzerklärung",
+    intro: "HadistWeb ist eine kostenlose Seite zum Lesen von Hadithen. Es gibt keine Konten und keine Anmeldung. Diese Seite sagt, was die Seite speichert und wer sonst etwas sieht.",
+    sections: {
+      reading: {
+        title: "Was in deinem Browser bleibt",
+        body: "Deine Wahl zwischen hellem und dunklem Design wird im lokalen Speicher deines Browsers gespeichert und verlässt ihn nicht. Deine Wahl der Textgröße ebenfalls. Zwei kleine Cookies speichern die Sprache der Oberfläche (hw-lang) und wie viele Hadithe eine Kapitelseite zeigt (hw-page-size), damit die Seite so erscheint, wie du sie gewählt hast. Sonst speichert die Seite nichts über dich: keinen Leseverlauf, keine Lesezeichen, kein Konto.",
+      },
+      sources: {
+        title: "Woher die Texte kommen",
+        body: "Die Bücher kommen von fawazahmed0/hadith-api: die arabischen, indonesischen und englischen Texte aus unserer eigenen Kopie auf diesem Server, die anderen Übersetzungen aus der Quelle auf GitHub. Der Themenbereich und einige Übersetzungen kommen von HadeethEnc.com. Unser Server fragt sie alle an, nicht dein Browser, daher sehen weder GitHub noch HadeethEnc deine IP-Adresse oder sonst etwas über dich.",
+      },
+      analytics: {
+        title: "Besucherstatistik",
+        body: "Um zu sehen, wie viel die Seite genutzt wird, verwenden wir Cloudflare Web Analytics. Beim Öffnen einer Seite meldet ein kleines Skript von Cloudflare, welche Seite angesehen wurde, von welcher Seite du kamst, den Browser-, Betriebssystem- und Gerätetyp, das Land und wie schnell die Seite geladen hat. Cloudflare gibt an, dass dieses Werkzeug keine Cookies setzt, nichts in deinem Browser speichert und weder deine IP-Adresse noch Browserdaten nutzt, um dich zu erkennen oder zu verfolgen. Wir sehen nur Summen (zum Beispiel Besuche pro Seite oder Land), nie einzelne Besucher, und nutzen sie nur, um den Verkehr dieser Seite zu verstehen, nie für Werbung. Wenn dein Browser oder eine Erweiterung das Skript blockiert, funktioniert die Seite genauso.",
+      },
+      recipients: {
+        title: "Wer Daten verarbeitet",
+        body: "Cloudflare (DNS und Proxy der Seite sowie die Besucherstatistik) und der Hosting-Anbieter des Servers. Unser Webserver und Cloudflare verarbeiten IP-Adressen, um die Seiten auszuliefern, wie jede Website. Wir verkaufen keine Daten und geben sie für keinen anderen Zweck weiter.",
+      },
+      law: {
+        title: "Anwendbares Recht",
+        body: "Diese Erklärung folgt dem indonesischen Datenschutzgesetz (Gesetz Nr. 27 von 2022 über den Schutz personenbezogener Daten, UU PDP).",
+      },
+    },
+    contactTitle: "Kontakt",
+    contactBy: "Diese Seite wird von {name} betrieben.",
+    contactEmail: "Fragen zu dieser Erklärung: {email}",
+    contactMissing: "Der Kontakt für Fragen zu dieser Erklärung ist noch nicht eingerichtet.",
+  },
+  about: {
+    title: "Über HadistWeb",
+    intro: "HadistWeb zeigt die Hadith-Sammlungen mit ihrem arabischen Text und einer Übersetzung in deiner Sprache. Die Texte werden so gezeigt, wie die Quellen sie veröffentlichen; hier wird nichts bearbeitet.",
+    sourcesTitle: "Quellen",
+    fawaz: "Die Bücher, ihre Kapitel, Übersetzungen und Bewertungen kommen von fawazahmed0/hadith-api, veröffentlicht unter der Unlicense: Übersetzungen auf Indonesisch, Englisch, Türkisch, Bengalisch, Französisch, Russisch, Urdu und Tamil, wenn auch nicht jedes Buch in jeder Sprache. Die arabischen, indonesischen und englischen Texte kommen aus unserer eigenen Kopie; die anderen Übersetzungen werden aus der Quelle gelesen.",
+    fallback: "Hat ein Hadith keine Übersetzung in deiner Sprache, wird die englische (oder die indonesische) gezeigt, mit einem Hinweis. Die indonesische Übersetzung hat für viele Hadithe keinen Text, weil ihre Quelle mehrere Überlieferungen in einem Eintrag zusammenfasst; der arabische Text wird nie mit der Übersetzung eines anderen Hadith gepaart, um eine Lücke zu füllen. Auf Arabisch wird keine Übersetzung gezeigt.",
+    hadeethenc: "Der Themenbereich kommt von HadeethEnc.com (der Enzyklopädie übersetzter Prophetenhadithe), herausgegeben vom Rowwad-Übersetzungszentrum. Seine Texte dürfen unverändert weiterverwendet werden, mit HadeethEnc.com als Herausgeber und Quelle; sie werden von seiner Seite gelesen und genau so gezeigt, wie sie veröffentlicht sind. Es liefert auch die Vierzig Hadithe von an-Nawawi und 20 der Vierzig Hadith Qudsi in den Sprachen, in denen fawazahmed0/hadith-api sie nicht hat.",
+    chapterNames: "Die Quelle benennt ihre Kapitel auf Englisch. Die indonesischen Kapitelnamen wurden für diese Seite geschrieben, mit dem arabischen Namen jedes Buches in Klammern, und geprüft; der englische Name aus der Quelle steht dabei. In den anderen Sprachen sind die Kapitelnamen auf Englisch.",
+    languages: "Die Oberfläche gibt es auf Englisch und Indonesisch sowie in 23 weiteren Sprachen als Community-Übersetzungen: erste Entwürfe von Claude, einer KI, noch nicht von einer Person geprüft, die die Sprache spricht. Das Sprachmenü kennzeichnet sie und hat einen Link, um einen Fehler zu melden.",
+    code: "Der Code dieser Seite ist Open Source unter der MIT-Lizenz.",
+    codeLink: "Code auf GitHub ansehen",
+  },
+};

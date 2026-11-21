@@ -9,8 +9,23 @@ import { ms } from "./ms";
 import { ru } from "./ru";
 import { tr } from "./tr";
 import { ur } from "./ur";
+import { es } from "./es";
+import { bs } from "./bs";
+import { zh } from "./zh";
+import { th } from "./th";
+import { uz } from "./uz";
+import { ta } from "./ta";
+import { ml } from "./ml";
+import { de } from "./de";
+import { pt } from "./pt";
+import { it } from "./it";
+import { hi } from "./hi";
+import { sw } from "./sw";
+import { ha } from "./ha";
+import { ja } from "./ja";
+import { vi } from "./vi";
 import type { Messages } from "./types";
 
 export type { Messages, PluralKey, StringKey } from "./types";
 
-export const MESSAGES: Record<Locale, Messages> = { en, id, tr, ms, bn, fr, ru, ur, ar, fa };
+export const MESSAGES: Record<Locale, Messages> = { en, id, tr, ms, bn, fr, ru, ur, ar, fa, es, bs, zh, th, uz, ta, ml, de, pt, it, hi, sw, ha, ja, vi };

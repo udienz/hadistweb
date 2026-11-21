@@ -17,7 +17,7 @@ serta bagian hadis pilihan per tema, masing-masing dengan penjelasannya. Anda ti
 - **Membaca bab demi bab**, seperti kitab cetak, dengan 5 atau 10 hadis per halaman.
 - **Membaca hadis per tema** (akidah, salat, adab, dan lainnya), masing-masing dengan derajat, takhrij, penjelasan, dan
   faedahnya.
-- **Memakai bahasa Anda**: situs ini tersedia dalam sepuluh bahasa (lihat tabel di bawah).
+- **Memakai bahasa Anda**: situs ini tersedia dalam 25 bahasa (lihat tabel di bawah).
 - **Membuatnya nyaman dibaca**: tema terang atau gelap, dan huruf Arab serta terjemahan yang bisa diperbesar atau
   diperkecil masing-masing.
 - **Membagikan hadis** dengan menyalin tautannya.
@@ -78,23 +78,42 @@ Tekan **Salin tautan** di samping nomor hadis, lalu tempel tautannya di mana saj
 
 ## Bahasa
 
-Antarmuka tersedia dalam sepuluh bahasa. Bahasa Inggris dan Indonesia dirawat bersama situs. Delapan lainnya adalah
-**terjemahan komunitas**: draf awal buatan Claude, sebuah AI, yang belum diperiksa penutur bahasanya. Di menu bahasa,
-bahasa ini diberi tanda bintang, dan ada tautan untuk melaporkan kesalahan. Bahasa Arab, Urdu, dan Persia ditulis dari
-kanan ke kiri, dan seluruh halaman ikut berbalik.
+Antarmuka tersedia dalam 25 bahasa, sama dengan [QuranWeb](https://github.com/udienz/quranweb). Bahasa Inggris dan
+Indonesia dirawat bersama situs. 23 lainnya adalah **terjemahan komunitas**: draf awal buatan Claude, sebuah AI, yang
+belum diperiksa penutur bahasanya. Di menu bahasa, bahasa ini diberi tanda bintang, dan ada tautan untuk melaporkan
+kesalahan. Bahasa Arab, Urdu, dan Persia ditulis dari kanan ke kiri, dan seluruh halaman ikut berbalik.
+
+Menu mengurutkan bahasa menurut abjad nama aslinya. Tema dan penjelasannya dari HadeethEnc.com tersedia dalam semua
+bahasa ini. Kitab hadis diterjemahkan ke jauh lebih sedikit bahasa, jadi sebagian besar bahasa menampilkan terjemahan
+Inggris, seperti tertulis di tabel.
 
 | Bahasa | Antarmuka | Terjemahan hadis | Tema dan penjelasan |
 |---|---|---|---|
-| English | ya | 10 kitab | ya |
 | Bahasa Indonesia | ya | 7 kitab, ditambah an-Nawawi dan 20 hadis Qudsi | ya |
-| Türkçe | komunitas | 8 kitab (tanpa Qudsi dan Dihlawi), ditambah 20 hadis Qudsi | ya |
 | Bahasa Melayu | komunitas | tidak ada, yang tampil bahasa Inggris; an-Nawawi dan 20 hadis Qudsi | ya |
-| বাংলা (Bengali) | komunitas | 8 kitab (tanpa Qudsi dan Dihlawi), ditambah 20 hadis Qudsi | ya |
+| Bosanski (Bosnia) | komunitas | tidak ada, yang tampil bahasa Inggris; an-Nawawi dan 20 hadis Qudsi | ya |
+| Deutsch (Jerman) | komunitas | tidak ada, yang tampil bahasa Inggris; sebagian besar an-Nawawi dan 20 hadis Qudsi | ya |
+| English | ya | 10 kitab | ya |
+| Español (Spanyol) | komunitas | tidak ada, yang tampil bahasa Inggris; an-Nawawi dan 20 hadis Qudsi | ya |
 | Français | komunitas | 9 kitab (tanpa Tirmidzi) | ya |
-| Русский | komunitas | Bukhari, Muslim, Abu Dawud; an-Nawawi dan 20 hadis Qudsi | ya |
+| Hausa | komunitas | tidak ada, yang tampil bahasa Inggris; an-Nawawi dan 20 hadis Qudsi | ya |
+| Italiano (Italia) | komunitas | tidak ada, yang tampil bahasa Inggris; beberapa hadis an-Nawawi dan Qudsi | ya |
+| Kiswahili (Swahili) | komunitas | tidak ada, yang tampil bahasa Inggris; sebagian besar an-Nawawi dan 20 hadis Qudsi | ya |
+| Português (Portugis) | komunitas | tidak ada, yang tampil bahasa Inggris; sebagian besar an-Nawawi dan 20 hadis Qudsi | ya |
+| Tiếng Việt (Vietnam) | komunitas | tidak ada, yang tampil bahasa Inggris; sebagian besar an-Nawawi dan 20 hadis Qudsi | ya |
+| Türkçe | komunitas | 8 kitab (tanpa Qudsi dan Dihlawi), ditambah 20 hadis Qudsi | ya |
+| Русский (Rusia) | komunitas | Bukhari, Muslim, Abu Dawud; an-Nawawi dan 20 hadis Qudsi | ya |
+| Ўзбекча (Uzbek) | komunitas | tidak ada, yang tampil bahasa Inggris; sebagian besar an-Nawawi dan 20 hadis Qudsi | ya |
 | اردو (Urdu) | komunitas | 7 kitab; an-Nawawi dan 20 hadis Qudsi | ya |
-| العربية | komunitas | tidak perlu: hadisnya berbahasa Arab | ya |
+| العربية (Arab) | komunitas | tidak perlu: hadisnya berbahasa Arab | ya |
 | فارسی (Persia) | komunitas | tidak ada, yang tampil bahasa Inggris; an-Nawawi dan 20 hadis Qudsi | ya |
+| हिन्दी (Hindi) | komunitas | tidak ada, yang tampil bahasa Inggris; an-Nawawi dan 20 hadis Qudsi | ya |
+| বাংলা (Bengali) | komunitas | 8 kitab (tanpa Qudsi dan Dihlawi), ditambah 20 hadis Qudsi | ya |
+| தமிழ் (Tamil) | komunitas | Bukhari, Muslim; sebagian besar an-Nawawi dan 20 hadis Qudsi | ya |
+| മലയാളം (Malayalam) | komunitas | tidak ada, yang tampil bahasa Inggris; sebagian besar an-Nawawi dan 20 hadis Qudsi | ya |
+| ไทย (Thai) | komunitas | tidak ada, yang tampil bahasa Inggris; sebagian besar an-Nawawi dan 20 hadis Qudsi | ya |
+| 中文 (Mandarin) | komunitas | tidak ada, yang tampil bahasa Inggris; an-Nawawi dan 20 hadis Qudsi | ya |
+| 日本語 (Jepang) | komunitas | tidak ada, yang tampil bahasa Inggris; sekitar separuh an-Nawawi dan 20 hadis Qudsi | ya |
 
 Kalau sebuah hadis tidak punya terjemahan dalam bahasa Anda, terjemahan Inggris yang tampil (atau terjemahan
 Indonesia), dengan keterangan. Sebagian terjemahan Indonesia menggabungkan beberapa riwayat menjadi satu, jadi beberapa

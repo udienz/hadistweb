@@ -57,12 +57,13 @@ before starting.
   `/[book]/[hadith]`, `/topics`, `/topics/[category]`, `/topics/hadith/[id]`,
   `/about`.
 - `src/lib/i18n/`: interface languages as in quranweb: `en` and `id` (default
-  `id`), and community drafts by Claude in `tr`, `ms`, `bn`, `fr`, `ru`, `ur`,
-  `ar`, `fa` (2026-11-21; `ar`, `ur`, `fa` right to left, `<html dir>` and
-  logical CSS). `messages/en.ts` is the source catalog; strings shared with
+  `id`), and community drafts by Claude in the other 23 of quranweb's 25
+  (2026-11-21; `ar`, `ur`, `fa` right to left, `<html dir>` and logical CSS;
+  `uz` in Cyrillic). The menu order is `MENU_LOCALES`, alphabetical by each
+  language's own name. A language with no hadith translation shows English. `messages/en.ts` is the source catalog; strings shared with
   quranweb were taken from its catalogs.
 - Hadith translations (`lib/hadith/books.ts`): `id`, `en`, `tr`, `bn`, `fr`,
-  `ru`, `ur` from fawazahmed0. Only Arabic, Indonesian and English are mirrored;
+  `ru`, `ur`, `ta` (Bukhari and Muslim only) from fawazahmed0. Only Arabic, Indonesian and English are mirrored;
   the others are read from raw GitHub when asked (owner's decision, 2026-11-21),
   and a failed read falls back to English. Order: the reader's language,
   English, Indonesian; Arabic readers get none. HadeethEnc is read in the

@@ -17,7 +17,7 @@ no ads.
 - **Read chapter by chapter**, like a printed book, with 5 or 10 hadiths on a page.
 - **Read hadiths by topic** (belief, prayer, manners and more), each with its grade, its sources, an explanation and the
   lessons drawn from it.
-- **Read in your language**: the site is in ten languages (see the table below).
+- **Read in your language**: the site is in 25 languages (see the table below).
 - **Make it comfortable to read**: a light or dark theme, and larger or smaller letters for the Arabic and the
   translation separately.
 - **Share a hadith** by copying its link.
@@ -77,23 +77,42 @@ Press **Copy link** beside the hadith number, then paste the link wherever you l
 
 ## Languages
 
-The interface is in ten languages. English and Indonesian are kept up to date with the site. The other eight are
-**community translations**: first drafts made by Claude, an AI, not yet checked by a speaker of the language. They are
-marked with an asterisk in the language menu, which also has a link to report a mistake. Arabic, Urdu and Persian are
-written right to left, and the whole page turns with them.
+The interface is in 25 languages, the same as [QuranWeb](https://github.com/udienz/quranweb). English and Indonesian
+are kept up to date with the site. The other 23 are **community translations**: first drafts made by Claude, an AI, not
+yet checked by a speaker of the language. They are marked with an asterisk in the language menu, which also has a link
+to report a mistake. Arabic, Urdu and Persian are written right to left, and the whole page turns with them.
+
+The menu lists the languages alphabetically by their own names. The topics and their explanations come from HadeethEnc.com
+in every one of these languages. The hadith books are translated into far fewer, so most languages show the English
+translation, as the table says.
 
 | Language | Interface | Hadith translation | Topics and explanations |
 |---|---|---|---|
-| English | yes | all 10 books | yes |
 | Bahasa Indonesia | yes | 7 books, plus an-Nawawi and 20 Qudsi hadiths | yes |
-| Türkçe | community | 8 books (not Qudsi or Dehlawi), plus 20 Qudsi hadiths | yes |
 | Bahasa Melayu | community | none, English is shown; an-Nawawi and 20 Qudsi hadiths | yes |
-| বাংলা (Bengali) | community | 8 books (not Qudsi or Dehlawi), plus 20 Qudsi hadiths | yes |
+| Bosanski (Bosnian) | community | none, English is shown; an-Nawawi and 20 Qudsi hadiths | yes |
+| Deutsch (German) | community | none, English is shown; most of an-Nawawi and the 20 Qudsi hadiths | yes |
+| English | yes | all 10 books | yes |
+| Español (Spanish) | community | none, English is shown; an-Nawawi and 20 Qudsi hadiths | yes |
 | Français | community | 9 books (not Tirmidhi) | yes |
-| Русский | community | Bukhari, Muslim, Abu Dawud; an-Nawawi and 20 Qudsi hadiths | yes |
+| Hausa | community | none, English is shown; an-Nawawi and 20 Qudsi hadiths | yes |
+| Italiano (Italian) | community | none, English is shown; a few an-Nawawi and Qudsi hadiths | yes |
+| Kiswahili (Swahili) | community | none, English is shown; most of an-Nawawi and the 20 Qudsi hadiths | yes |
+| Português (Portuguese) | community | none, English is shown; most of an-Nawawi and the 20 Qudsi hadiths | yes |
+| Tiếng Việt (Vietnamese) | community | none, English is shown; most of an-Nawawi and the 20 Qudsi hadiths | yes |
+| Türkçe | community | 8 books (not Qudsi or Dehlawi), plus 20 Qudsi hadiths | yes |
+| Русский (Russian) | community | Bukhari, Muslim, Abu Dawud; an-Nawawi and 20 Qudsi hadiths | yes |
+| Ўзбекча (Uzbek) | community | none, English is shown; most of an-Nawawi and the 20 Qudsi hadiths | yes |
 | اردو (Urdu) | community | 7 books; an-Nawawi and 20 Qudsi hadiths | yes |
-| العربية | community | not needed: the hadiths are in Arabic | yes |
+| العربية (Arabic) | community | not needed: the hadiths are in Arabic | yes |
 | فارسی (Persian) | community | none, English is shown; an-Nawawi and 20 Qudsi hadiths | yes |
+| हिन्दी (Hindi) | community | none, English is shown; an-Nawawi and 20 Qudsi hadiths | yes |
+| বাংলা (Bengali) | community | 8 books (not Qudsi or Dehlawi), plus 20 Qudsi hadiths | yes |
+| தமிழ் (Tamil) | community | Bukhari, Muslim; most of an-Nawawi and the 20 Qudsi hadiths | yes |
+| മലയാളം (Malayalam) | community | none, English is shown; most of an-Nawawi and the 20 Qudsi hadiths | yes |
+| ไทย (Thai) | community | none, English is shown; most of an-Nawawi and the 20 Qudsi hadiths | yes |
+| 中文 (Chinese) | community | none, English is shown; an-Nawawi and 20 Qudsi hadiths | yes |
+| 日本語 (Japanese) | community | none, English is shown; about half of an-Nawawi and the 20 Qudsi hadiths | yes |
 
 When a hadith has no translation in your language, the English one is shown (or the Indonesian one), with a note saying
 so. Some Indonesian translations join several narrations into one, so a few hadiths have no Indonesian text of their own

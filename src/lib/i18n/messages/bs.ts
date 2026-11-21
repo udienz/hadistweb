@@ -1,0 +1,153 @@
+// Community translation: a first draft by Claude, not yet reviewed by a speaker (see COMMUNITY_LOCALES). Strings
+// shared with quranweb are taken from its catalog, so the two sites say the same things the same way.
+import type { Plural } from "../translate";
+import type { Messages } from "./types";
+
+const plural = (other: string, one?: string): Plural => ({ one, other });
+
+export const bs: Messages = {
+  meta: {
+    title: "HadistWeb",
+    description: "Čitajte zbirke hadisa: arapski tekst s prijevodom na vašem jeziku.",
+  },
+  nav: {
+    books: "Knjige",
+    topics: "Teme",
+    about: "O stranici",
+    language: "Jezik",
+    communityBadge: "Zajednica",
+    communityTranslation: "Prijevod zajednice: još ga nije pregledao govornik jezika",
+    reportTranslation: "Prijavi grešku u prijevodu",
+    switchToLight: "Prebaci na svijetli način",
+    switchToDark: "Prebaci na tamni način",
+  },
+  footer: {
+    about: "O stranici i izvori",
+    privacy: "Privatnost",
+  },
+  common: {
+    hadiths: plural("Hadisa: {count}"),
+    chapters: plural("Poglavlja: {count}"),
+  },
+  home: {
+    title: "Zbirke hadisa",
+    subtitle: "Arapski tekst s prijevodom, knjigu po knjigu i poglavlje po poglavlje.",
+    start: "Počnite sa Sahihom el-Buharije",
+    listTitle: "Knjige",
+    translationIn: "Prijevod: {language}",
+    translationFrom: "Prijevod: {language}, iz izvora {source}",
+    translationPartly: "Neki hadisi prevedeni ({language}), iz izvora {source}",
+  },
+  book: {
+    chapters: "Poglavlja",
+    unnamedChapter: "Hadisi koji u izvoru nisu ni u jednom poglavlju",
+    chapterLabel: "Poglavlje {number}",
+    chapterNamesNote: "Ispod naziva svakog poglavlja prikazan je engleski naziv iz izvora.",
+  },
+  chapter: {
+    previous: "Prethodno poglavlje",
+    next: "Sljedeće poglavlje",
+    backToBook: "Sva poglavlja",
+  },
+  hadith: {
+    number: "Hadis {number}",
+    arabicNumber: "Arapsko numerisanje: {number}",
+    fallback: "Prijevod: {language}. Ovaj hadis nema prijevod na vašem jeziku",
+    noTranslation: "Izvor nema prijevod ovog hadisa.",
+    noArabic: "Izvor nema arapski tekst za ovaj broj.",
+    grades: "Ocjene vjerodostojnosti",
+    sanad: "Lanac prenosilaca",
+    attribution: "Izvor",
+    translationFrom: "Prijevod iz izvora {source}, prikazan bez izmjena",
+    translationScope: "Prevedeni su hadis i njegov izvor; napomene koje slijede u arapskom tekstu iznad (npr. o njegovim lancima) možda nisu prevedene.",
+    copyLink: "Kopiraj link",
+    copied: "Link kopiran",
+    open: "Otvori hadis {number}",
+    inBook: "{book}, hadis {number}",
+  },
+  topics: {
+    title: "Hadisi po temama",
+    intro: "Odabrani hadisi poredani po temama, svaki s ocjenom vjerodostojnosti, izvorom, objašnjenjem i poukama.",
+    homeLink: "Čitajte po temama",
+    homeText: "Odabrani hadisi s objašnjenjem, sa HadeethEnc.com",
+    subtopics: "Teme",
+    hadiths: "Hadisi",
+    all: "Sve teme",
+    showSubtopics: "Prikaži teme",
+    grade: "Ocjena",
+    attribution: "Izvor",
+    explanation: "Objašnjenje",
+    lessons: "Pouke",
+    inTopics: "U temama",
+    otherLanguage: "{language}: HadeethEnc nema prijevod ovog hadisa na vašem jeziku",
+    credit: "Sa HadeethEnc.com, izdavač Prevodilački centar Rowwad, prikazano bez izmjena.",
+    original: "Pogledaj na HadeethEnc.com",
+  },
+  display: {
+    textSize: "Veličina teksta",
+    arabicSize: "Arapski tekst",
+    latinSize: "Prijevod",
+    smaller: "Manje: {name}",
+    larger: "Veće: {name}",
+  },
+  pagination: {
+    label: "Stranice",
+    range: "{from}–{to} od {total} hadisa",
+    previous: "Prethodna stranica",
+    next: "Sljedeća stranica",
+    page: "Stranica {number}",
+    perPage: "Hadisa po stranici",
+  },
+  notFound: {
+    title: "Stranica nije pronađena",
+    description: "Stranica koju tražite ne postoji ili je premještena.",
+    home: "Nazad na knjige",
+  },
+  error: {
+    title: "Podaci o hadisima se nisu mogli učitati",
+    description: "Izvor nije odgovorio. Pokušajte ponovo za trenutak.",
+    retry: "Pokušaj ponovo",
+  },
+  privacy: {
+    title: "Politika privatnosti",
+    intro: "HadistWeb je besplatna stranica za čitanje hadisa. Nema računa niti registracije. Ova stranica govori šta stranica čuva i ko još nešto vidi.",
+    sections: {
+      reading: {
+        title: "Šta ostaje u vašem pregledniku",
+        body: "Vaš izbor svijetle ili tamne teme čuva se u lokalnoj memoriji preglednika i ne napušta je. Tu se čuva i vaš izbor veličine teksta. Dva mala kolačića čuvaju jezik sučelja (hw-lang) i koliko hadisa prikazuje stranica poglavlja (hw-page-size), da bi stranica izgledala kako ste odabrali. Stranica ne čuva ništa drugo o vama: ni historiju čitanja, ni oznake, ni račun.",
+      },
+      sources: {
+        title: "Odakle dolaze tekstovi",
+        body: "Knjige dolaze iz fawazahmed0/hadith-api: arapski, indonezijski i engleski tekstovi iz naše kopije na ovom serveru, ostali prijevodi iz izvora na GitHubu. Dio s temama i neki prijevodi dolaze sa HadeethEnc.com. Sve to traži naš server, a ne vaš preglednik, pa ni GitHub ni HadeethEnc ne vide vašu IP adresu niti išta drugo o vama.",
+      },
+      analytics: {
+        title: "Statistika posjeta",
+        body: "Da bismo znali koliko se stranica koristi, koristimo Cloudflare Web Analytics. Kad se stranica otvori, mala Cloudflareova skripta javlja koja je stranica pregledana, s koje ste stranice došli, vrstu preglednika, operativnog sistema i uređaja, državu i koliko se brzo stranica učitala. Cloudflare navodi da ovaj alat ne postavlja kolačiće, ništa ne čuva u vašem pregledniku i ne koristi vašu IP adresu ni podatke o pregledniku da vas prepozna ili prati. Vidimo samo ukupne brojke (npr. posjete po stranici ili državi), nikad pojedinačnog posjetioca, i koristimo ih samo da razumijemo promet ove stranice, nikad za oglašavanje. Ako preglednik ili proširenje blokira skriptu, stranica radi isto.",
+      },
+      recipients: {
+        title: "Ko obrađuje podatke",
+        body: "Cloudflare (DNS i proxy stranice, te statistika posjeta) i pružalac hostinga servera. Naš web server i Cloudflare obrađuju IP adrese da bi isporučili stranice, kao i svaka web stranica. Podatke ne prodajemo niti ih dijelimo u bilo koju drugu svrhu.",
+      },
+      law: {
+        title: "Mjerodavno pravo",
+        body: "Ova politika slijedi indonezijski zakon o zaštiti ličnih podataka (Zakon br. 27 iz 2022. o zaštiti ličnih podataka, UU PDP).",
+      },
+    },
+    contactTitle: "Kontakt",
+    contactBy: "Ovu stranicu vodi {name}.",
+    contactEmail: "Pitanja o ovoj politici: {email}",
+    contactMissing: "Kontakt za pitanja o ovoj politici još nije postavljen.",
+  },
+  about: {
+    title: "O stranici",
+    intro: "HadistWeb prikazuje zbirke hadisa s arapskim tekstom i prijevodom na vašem jeziku. Tekstovi se prikazuju onako kako ih izvori objavljuju; ovdje se ništa ne mijenja.",
+    sourcesTitle: "Izvori",
+    fawaz: "Knjige, njihova poglavlja, prijevodi i ocjene dolaze iz fawazahmed0/hadith-api, objavljenog pod licencom Unlicense: prijevodi na indonezijski, engleski, turski, bengalski, francuski, ruski, urdu i tamilski, iako nije svaka knjiga na svakom jeziku. Arapski, indonezijski i engleski tekstovi poslužuju se iz naše kopije; ostali prijevodi čitaju se iz izvora.",
+    fallback: "Kad hadis nema prijevod na vašem jeziku, prikazuje se engleski (ili indonezijski), s oznakom. Indonezijski prijevod nema tekst za mnoge hadise, jer njegov izvor spaja više predaja u jedan unos; arapski tekst se nikad ne spaja s prijevodom drugog hadisa da bi se popunila praznina. Na arapskom se prijevod ne prikazuje.",
+    hadeethenc: "Dio s temama dolazi sa HadeethEnc.com (Enciklopedija prevedenih poslaničkih hadisa), izdavač Prevodilački centar Rowwad. Njegovi tekstovi smiju se ponovo koristiti bez izmjena, uz navođenje HadeethEnc.com kao izdavača i izvora; čitaju se s njegove stranice i prikazuju tačno kako su objavljeni. Odatle su i Četrdeset hadisa en-Nevevija te 20 od Četrdeset kudsi hadisa, na jezicima na kojima ih fawazahmed0/hadith-api nema.",
+    chapterNames: "Izvor imenuje poglavlja na engleskom. Indonezijski nazivi poglavlja napisani su za ovu stranicu, s arapskim nazivom svake knjige u zagradi, i pregledani; uz njih je prikazan engleski naziv iz izvora. Na ostalim jezicima nazivi poglavlja su na engleskom.",
+    languages: "Sučelje je na engleskom i indonezijskom, te na još 23 jezika kao prijevodi zajednice: prve verzije koje je napravio Claude, umjetna inteligencija, a koje još nije provjerio govornik jezika. Meni jezika ih označava i ima link za prijavu greške.",
+    code: "Kod ove stranice je otvorenog koda pod MIT licencom.",
+    codeLink: "Pogledaj kod na GitHubu",
+  },
+};

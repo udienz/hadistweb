@@ -42,9 +42,9 @@ sources.
 ## Translating the interface
 
 You can translate HadistWeb's interface (menus, buttons, messages, and the About and privacy pages) into your language.
-The interface is in English and Indonesian, and in Turkish, Malay, Bengali, French, Russian, Urdu, Arabic and Persian as
-community translations. **Those eight are first drafts made by Claude (an AI) at the owner's request**, published so that
-speakers can correct them. A review of one of them, even of a few messages, is very welcome, and a reviewer can become
+The interface is in English and Indonesian, and in 23 more languages as community translations, the same set as
+QuranWeb (the README lists them). **Those 23 are first drafts made by Claude (an AI) at the owner's request**, published so
+that speakers can correct them. A review of one of them, even of a few messages, is very welcome, and a reviewer can become
 that language's maintainer.
 
 **Only the interface is translated this way, never a hadith.** Hadith translations come only from published sources.
