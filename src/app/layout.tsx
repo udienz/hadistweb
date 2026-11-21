@@ -15,6 +15,7 @@ import { MESSAGES } from "@/lib/i18n/messages";
 import { displayScript } from "@/lib/display";
 import { getI18n } from "@/lib/i18n/server";
 import { directionOf } from "@/lib/i18n/config";
+import { searchHref } from "@/lib/links";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { t } = await getI18n();
@@ -42,9 +43,10 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <I18nProvider locale={locale} messages={MESSAGES[locale]}>
           <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
             <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between gap-2 px-4">
-              <Link href="/" className="flex items-center gap-2.5">
+              <Link href="/" className="flex items-center gap-2.5" aria-label="HadistWeb">
                 <Logo />
-                <span className="font-display text-xl font-bold tracking-tight text-primary">HadistWeb</span>
+                {/* Below 400px the five header buttons need the room: the name is hidden there, the logo stays (and names the link). */}
+                <span className="hidden font-display text-xl font-bold tracking-tight text-primary min-[400px]:inline">HadistWeb</span>
               </Link>
               <nav className="hidden rounded-full border border-border bg-card p-1 text-sm sm:flex">
                 <Link href="/" className="whitespace-nowrap rounded-full px-4 py-1.5 font-medium hover:bg-background">
@@ -58,6 +60,17 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
                 </Link>
               </nav>
               <div className="flex items-center gap-2">
+                <Link
+                  href={searchHref()}
+                  aria-label={t("nav.search")}
+                  title={t("nav.search")}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition hover:bg-muted"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="m20 20-3.5-3.5" />
+                  </svg>
+                </Link>
                 <TextSizeMenu />
                 <LanguageMenu />
                 <ThemeToggle />

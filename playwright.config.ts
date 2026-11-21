@@ -28,7 +28,8 @@ export default defineConfig({
       reuseExistingServer: !process.env.CI,
     },
     {
-      command: `npm run start -- -p ${PORT} -H 127.0.0.1`,
+      // The search index of the fixtures is built first (it is not committed: scripts/build-search-index.mjs).
+      command: `node scripts/build-search-index.mjs e2e/fixtures/hadith-api && npm run start -- -p ${PORT} -H 127.0.0.1`,
       url: `http://127.0.0.1:${PORT}/about`,
       reuseExistingServer: !process.env.CI,
       timeout: 60_000,

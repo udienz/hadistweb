@@ -61,4 +61,4 @@ async function checkTopic(parts: string[], notFound: () => NextResponse): Promis
 }
 
 // Everything except the pages and files that are not books.
-export const config = { matcher: "/((?!_next/|about$|privacy$|flags/|icon\\.svg$|favicon\\.ico$|_/not/a/page$).+)" };
+export const config = { matcher: "/((?!_next/|about$|privacy$|search$|flags/|icon\\.svg$|favicon\\.ico$|_/not/a/page$).+)" };

@@ -5,7 +5,9 @@
 //
 // Writes <dir>/info.min.json and <dir>/editions/<edition>/sections/<n>.min.json for the Arabic, Indonesian and English
 // editions of the ten books, and <dir>/hadistweb-counts.min.json: per book and chapter, how many hadith numbers have a
-// text in at least one of those editions (the app shows a number only then; info.min.json counts every number) (27 editions, about 100 MB). The source repository is 1.65 GB and jsDelivr refuses it (over
+// text in at least one of those editions (the app shows a number only then; info.min.json counts every number), and
+// <dir>/hadistweb-search.sqlite, the search index (build-search-index.mjs, which must sit beside this script) (27 editions,
+// about 100 MB, and about 140 MB of index). The source repository is 1.65 GB and jsDelivr refuses it (over
 // its 150 MB limit), so the whole edition files are downloaded from raw GitHub and split into chapters here. Checked
 // 2026-11-20: a chapter split this way is identical to the source's own sections file (Abu Dawud 1, 390 hadiths).
 //
@@ -16,6 +18,7 @@
 
 import { mkdir, rename, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
+import { buildSearchIndex } from "./build-search-index.mjs";
 
 const SOURCE = "https://raw.githubusercontent.com/fawazahmed0/hadith-api/1";
 // Keep in step with src/lib/hadith/books.ts.
@@ -81,6 +84,7 @@ async function main() {
     for (const chapter of withText.values()) counts[book][chapter] = (counts[book][chapter] ?? 0) + 1;
   }
   await writeFile(join(next, "hadistweb-counts.min.json"), JSON.stringify(counts));
+  console.log(`search index: ${await buildSearchIndex(next)} hadiths`);
 
   // Swap in the new copy.
   const old = `${dir}.old`;

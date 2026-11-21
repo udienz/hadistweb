@@ -20,6 +20,8 @@ no ads.
 - **Read in your language**: the site is in 25 languages (see the table below).
 - **Make it comfortable to read**: a light or dark theme, and larger or smaller letters for the Arabic and the
   translation separately.
+- **Search** the Arabic text and the Indonesian and English translations, or type a book and number such as
+  "Bukhari 1" to open that hadith.
 - **Share a hadith** by copying its link.
 
 ![The home page with the list of books](docs/screenshots/en/home.png)
@@ -46,6 +48,17 @@ The pictures show the English interface; the Indonesian README shows the Indones
 The topics, explanations and grades come from HadeethEnc.com and are shown exactly as they publish them.
 
 ![A hadith from the Topics section, with its grade and explanation](docs/screenshots/en/topics.png)
+
+### Search
+
+1. Press the magnifying glass at the top, or use the search box on the home page.
+2. Type a few words, in the Arabic text or in the Indonesian or English translation. Spellings such as *shalat*,
+   *sholat* and *salat* find each other. Choose a book to search only in it.
+3. To open a hadith you know, type its book and number, such as *Bukhari 1* or *HR. Muslim no. 8*.
+
+The translations in other languages are not searchable yet.
+
+![Search results, with the words found highlighted](docs/screenshots/en/search.png)
 
 ### Change the language
 

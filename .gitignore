@@ -19,3 +19,6 @@ next-env.d.ts
 # Playwright (browser tests)
 /test-results/
 /playwright-report/
+
+# Search index built from the e2e fixtures before the browser tests
+/e2e/fixtures/hadith-api/hadistweb-search.sqlite*

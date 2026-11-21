@@ -11,6 +11,16 @@ export const chapterHref = (book: string, chapter: number, page = 1): string =>
 
 export const hadithHref = (book: string, number: string): string => `/${book}/${number}`;
 
+/** The search page, with a query, a book filter and a page when given. */
+export function searchHref(query?: string, book?: string, page = 1): string {
+  const params = new URLSearchParams();
+  if (query) params.set("q", query);
+  if (book) params.set("book", book);
+  if (page > 1) params.set("page", String(page));
+  const search = params.toString();
+  return search ? `/search?${search}` : "/search";
+}
+
 export const topicsHref = "/topics";
 export const topicHref = (category: number): string => `/topics/${category}`;
 export const topicHadithHref = (id: number): string => `/topics/hadith/${id}`;

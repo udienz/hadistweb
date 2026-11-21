@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SearchForm from "@/components/SearchForm";
 import { BOOKS, translationOrder } from "@/lib/hadith/books";
 import type { Book } from "@/lib/hadith/types";
 import { languageName } from "@/lib/i18n/languages";
@@ -41,6 +42,10 @@ export default async function Home() {
           </Link>
         </div>
       </section>
+
+      <div className="mb-8">
+        <SearchForm i18n={i18n} />
+      </div>
 
       <h2 className="mb-5 font-display text-xl font-semibold">{t("home.listTitle")}</h2>
       <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">

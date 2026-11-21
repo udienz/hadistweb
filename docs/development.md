@@ -43,8 +43,22 @@ node scripts/sync-mirror.mjs /srv/hadith-mirror/hadith-api
 ```
 
 It downloads the editions from raw GitHub and also writes `hadistweb-counts.min.json`, the number of hadiths per
-chapter, so the chapter lists match the pages. On the server a weekly systemd timer runs it; see
-[CLAUDE.md](../CLAUDE.md#deploy).
+chapter, so the chapter lists match the pages, and `hadistweb-search.sqlite`, the search index (about 140 MB). On the
+server a weekly systemd timer runs it; see [CLAUDE.md](../CLAUDE.md#deploy).
+
+## Search
+
+`/search` reads a SQLite FTS5 index (`node:sqlite`, Node.js 24 or later) that `scripts/build-search-index.mjs` builds from
+a copy of the data in a folder. `sync-mirror.mjs` runs it on every sync; to build it for an existing mirror:
+
+```bash
+umask 022
+node scripts/build-search-index.mjs /srv/hadith-mirror/hadith-api
+```
+
+The app finds the index in the folder `HADITH_FAWAZ_URL` points to, or at `HADITH_SEARCH_DB`. With the data read from
+GitHub there is no index and the page says search is unavailable. Only the Arabic, Indonesian and English texts are
+searchable. The browser tests build an index of the fixtures before they start.
 
 ## Browser tests
 

@@ -6,7 +6,7 @@ import { pageItems } from "@/lib/pagination";
 
 /**
  * The pages of a list (a chapter, a topic): previous and next, the page numbers, and which hadiths are shown. Nothing for
- * one page. `basePath` is the address of the first page; later pages add `?page=n`. `prefetch={false}` for pages whose
+ * one page. `basePath` is the address of the first page; later pages add `page=n` to its query. `prefetch={false}` for pages whose
  * data comes from an outside API (topics), so showing the numbers does not call it for every page.
  */
 export default function Pagination({
@@ -28,7 +28,7 @@ export default function Pagination({
 }) {
   const { t } = useI18n();
   if (count <= 1) return null;
-  const href = (p: number) => (p > 1 ? `${basePath}?page=${p}` : basePath);
+  const href = (p: number) => (p > 1 ? `${basePath}${basePath.includes("?") ? "&" : "?"}page=${p}` : basePath);
 
   // 36px to look at, 44px or more to tap: the ::after layer reaches 6px out from inside the 1px border.
   const box = "flex h-9 min-w-9 items-center justify-center rounded-full px-3 text-sm font-medium relative after:absolute after:-inset-1.5 after:rounded-full";
