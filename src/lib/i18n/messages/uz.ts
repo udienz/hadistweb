@@ -71,6 +71,7 @@ export const uz: Messages = {
     textCopied: "Матн нусхаланди",
     shareVia: "Орқали улашиш…",
     explanationLink: "Бу ҳадиснинг шарҳи, HadeethEnc.com дан",
+    quranLink: "QuranWeb да Қуръон {verse} оятини ўқиш",
     open: "{number}-ҳадисни очиш",
     inBook: "{book}, {number}-ҳадис",
   },

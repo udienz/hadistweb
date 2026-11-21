@@ -71,6 +71,7 @@ export const th: Messages = {
     textCopied: "คัดลอกข้อความแล้ว",
     shareVia: "แชร์ผ่าน…",
     explanationLink: "คำอธิบายหะดีษนี้ จาก HadeethEnc.com",
+    quranLink: "อ่านอัลกุรอาน {verse} บน QuranWeb",
     open: "เปิดหะดีษที่ {number}",
     inBook: "{book} หะดีษที่ {number}",
   },

@@ -69,6 +69,7 @@ export const en = {
     textCopied: "Text copied",
     shareVia: "Share via…",
     explanationLink: "Explanation of this hadith, from HadeethEnc.com",
+    quranLink: "Read Qur'an {verse} on QuranWeb",
     open: "Open hadith {number}",
     inBook: "{book}, hadith {number}",
   },

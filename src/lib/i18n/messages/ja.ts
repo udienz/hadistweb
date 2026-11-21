@@ -71,6 +71,7 @@ export const ja: Messages = {
     textCopied: "本文をコピーしました",
     shareVia: "ほかのアプリで共有…",
     explanationLink: "このハディースの解説（HadeethEnc.com）",
+    quranLink: "QuranWeb でクルアーン {verse} を読む",
     open: "ハディース {number} を開く",
     inBook: "{book}、ハディース {number}",
   },

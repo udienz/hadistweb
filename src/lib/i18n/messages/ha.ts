@@ -71,6 +71,7 @@ export const ha: Messages = {
     textCopied: "An kwafi rubutun",
     shareVia: "Raba ta…",
     explanationLink: "Bayanin wannan hadisin, daga HadeethEnc.com",
+    quranLink: "Karanta Alƙur'ani {verse} a QuranWeb",
     open: "Buɗe hadisi {number}",
     inBook: "{book}, hadisi {number}",
   },

@@ -71,6 +71,7 @@ export const fa: Messages = {
     textCopied: "متن رونوشت شد",
     shareVia: "هم‌رسانی با…",
     explanationLink: "شرح این حدیث، از HadeethEnc.com",
+    quranLink: "خواندن قرآن {verse} در QuranWeb",
     open: "باز کردن حدیث {number}",
     inBook: "{book}، حدیث {number}",
   },

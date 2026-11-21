@@ -71,6 +71,7 @@ export const ur: Messages = {
     textCopied: "متن کاپی ہو گیا",
     shareVia: "اس کے ذریعے شیئر کریں…",
     explanationLink: "اس حدیث کی شرح، HadeethEnc.com سے",
+    quranLink: "QuranWeb پر قرآن {verse} پڑھیں",
     open: "حدیث {number} کھولیں",
     inBook: "{book}، حدیث {number}",
   },

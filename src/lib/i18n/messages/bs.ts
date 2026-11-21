@@ -71,6 +71,7 @@ export const bs: Messages = {
     textCopied: "Tekst kopiran",
     shareVia: "Podijeli putem…",
     explanationLink: "Objašnjenje ovog hadisa, sa HadeethEnc.com",
+    quranLink: "Čitaj Kur'an {verse} na QuranWebu",
     open: "Otvori hadis {number}",
     inBook: "{book}, hadis {number}",
   },

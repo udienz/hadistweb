@@ -71,6 +71,7 @@ export const ms: Messages = {
     textCopied: "Teks disalin",
     shareVia: "Kongsi melalui…",
     explanationLink: "Penjelasan hadis ini, daripada HadeethEnc.com",
+    quranLink: "Baca al-Quran {verse} di QuranWeb",
     open: "Buka hadis {number}",
     inBook: "{book}, hadis {number}",
   },

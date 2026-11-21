@@ -49,6 +49,12 @@ before starting.
   count as sahih; the small books have none. The search index stores each
   hadith's level; `build-search-index.mjs` repeats `gradeLevel` (a test checks
   they agree). Rebuild the index on the server after changing it.
+- `src/lib/hadith/quran-refs.ts`: a Qur'an reference in a translation links to
+  the verse on QuranWeb (2026-11-22): the English "(3.77)" and the Indonesian
+  "QS. Ali 'Imran: 77" with its many spellings of surah names (`nameKeys`, 99%
+  of the names in the data recognized), kept only when the verse exists.
+  QuranWeb's verse address is `/surah/<n>?page=<ceil(v/10)>#verse-<v>`. Not for
+  HadeethEnc texts.
 - `src/lib/second-translation.ts`: a second translation beside the first
   (2026-11-22), the reader's choice in the cookie `hw-second`, set in the text
   size menu; `getChapter`/`getHadith` take `{ second }`. Not shown when it is in

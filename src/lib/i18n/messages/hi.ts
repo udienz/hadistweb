@@ -71,6 +71,7 @@ export const hi: Messages = {
     textCopied: "पाठ कॉपी हो गया",
     shareVia: "इससे शेयर करें…",
     explanationLink: "इस हदीस की व्याख्या, HadeethEnc.com से",
+    quranLink: "QuranWeb पर क़ुरआन {verse} पढ़ें",
     open: "हदीस {number} खोलें",
     inBook: "{book}, हदीस {number}",
   },

@@ -5,20 +5,40 @@ import type { Translator } from "@/lib/i18n/translate";
 import { layoutArabic, layoutTranslation, type Segment } from "@/lib/hadith/layout";
 import type { BookId, Hadith } from "@/lib/hadith/types";
 import { explanationId } from "@/lib/hadith/explanations";
+import { findQuranRefs, quranwebVerseUrl } from "@/lib/hadith/quran-refs";
 import { hadithAnchor, hadithHref, topicHadithHref } from "@/lib/links";
 import { bookById } from "@/lib/hadith/books";
 import { localized } from "@/lib/i18n/translate";
 import BookmarkButton from "./BookmarkButton";
 import ShareMenu from "./ShareMenu";
 
-function Runs({ segments }: { segments: Segment[] }) {
+/** Plain text, with each Qur'an reference in it ("(3.77)", "QS. Ali 'Imran: 77") linked to the verse on QuranWeb. */
+function WithVerseLinks({ text, title }: { text: string; title: (surah: number, ayah: number) => string }) {
+  const refs = findQuranRefs(text);
+  if (refs.length === 0) return text;
+  const parts: React.ReactNode[] = [];
+  let at = 0;
+  refs.forEach((r, i) => {
+    if (r.start > at) parts.push(text.slice(at, r.start));
+    parts.push(
+      <a key={i} href={quranwebVerseUrl(r.surah, r.ayah)} title={title(r.surah, r.ayah)} target="_blank" rel="noopener" className="text-primary underline decoration-primary/40 underline-offset-2 hover:decoration-primary">
+        {text.slice(r.start, r.end)}
+      </a>,
+    );
+    at = r.end;
+  });
+  if (at < text.length) parts.push(text.slice(at));
+  return parts;
+}
+
+function Runs({ segments, verseTitle }: { segments: Segment[]; verseTitle: (surah: number, ayah: number) => string }) {
   return segments.map((s, i) =>
     s.narrator ? (
       <span key={i} className="font-semibold text-foreground">
         {s.text}
       </span>
     ) : (
-      s.text
+      <WithVerseLinks key={i} text={s.text} title={verseTitle} />
     ),
   );
 }
@@ -43,19 +63,19 @@ function ArabicText({ text, sanadLabel }: { text: string; sanadLabel: string }) 
 }
 
 /** A translation from the book's source: the sanad small and quiet above, the text in paragraphs (lib/hadith/layout.ts). */
-function LaidOut({ text, language, sanadLabel }: { text: string; language: string; sanadLabel: string }) {
+function LaidOut({ text, language, sanadLabel, verseTitle }: { text: string; language: string; sanadLabel: string; verseTitle: (surah: number, ayah: number) => string }) {
   const { sanad, paragraphs } = layoutTranslation(text, language);
   return (
     <div lang={language} dir={directionOf(language)} className="max-w-[65ch]" data-share>
       {sanad && (
         <p className="mb-3 text-[length:calc(0.875rem*var(--latin-scale,1))] leading-relaxed text-muted-foreground" aria-label={sanadLabel}>
-          <Runs segments={sanad} />
+          <Runs segments={sanad} verseTitle={verseTitle} />
         </p>
       )}
       <div className="flex flex-col gap-3 text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]">
         {paragraphs.map((p, i) => (
           <p key={i}>
-            <Runs segments={p} />
+            <Runs segments={p} verseTitle={verseTitle} />
           </p>
         ))}
       </div>
@@ -84,6 +104,7 @@ export default function HadithCard({
   const title = t("hadith.number", { number: hadith.number });
   const translation = hadith.translation;
   const second = hadith.second;
+  const verseTitle = (surah: number, ayah: number) => t("hadith.quranLink", { verse: `${surah}:${ayah}` });
   const explanation = explanationId(book, hadith.number);
 
   return (
@@ -139,7 +160,7 @@ export default function HadithCard({
                         {translation.text}
                       </p>
                     ) : (
-                      <LaidOut text={translation.text} language={translation.language} sanadLabel={t("hadith.sanad")} />
+                      <LaidOut text={translation.text} language={translation.language} sanadLabel={t("hadith.sanad")} verseTitle={verseTitle} />
                     )}
                     {translation.source && (
                       <>
@@ -165,7 +186,7 @@ export default function HadithCard({
             {second && (
               <div className="md:border-s md:border-border md:ps-6">
                 <p className="mb-2 text-xs font-semibold text-muted-foreground">{t("home.translationIn", { language: languageName(second.language, locale) })}</p>
-                <LaidOut text={second.text} language={second.language} sanadLabel={t("hadith.sanad")} />
+                <LaidOut text={second.text} language={second.language} sanadLabel={t("hadith.sanad")} verseTitle={verseTitle} />
               </div>
             )}
           </div>
