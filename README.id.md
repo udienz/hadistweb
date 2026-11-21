@@ -23,6 +23,7 @@ serta bagian hadis pilihan per tema, masing-masing dengan penjelasannya. Anda ti
 - **Mencari** di teks Arab dan terjemahan Indonesia serta Inggris, atau mengetik nama kitab dan nomor, misalnya
   "Bukhari 1", untuk langsung membuka hadisnya.
 - **Menandai hadis** dan **melanjutkan membaca** dari posisi terakhir, langsung dari beranda.
+- **Memasangnya sebagai aplikasi** di ponsel atau komputer, dengan ikon sendiri.
 - **Membagikan hadis**: salin teksnya lengkap dengan rujukan dan tautan, atau kirim langsung ke WhatsApp. Tautan yang
   dibagikan menampilkan judul dan awal hadisnya di pratinjau.
 
@@ -88,6 +89,11 @@ Pilihan Anda disimpan di browser ini.
 3. Di halaman **Penanda**, buka hadisnya atau hapus dari daftar.
 
 Penanda dan hadis terakhir yang dibaca hanya tersimpan di browser ini. Browser atau ponsel lain punya catatannya sendiri.
+
+### Memasangnya sebagai aplikasi
+
+Di ponsel atau komputer, HadistWeb bisa punya ikon dan jendela sendiri: "Instal aplikasi" di Chrome atau Edge (di menu,
+atau ikon di bilah alamat), "Tambahkan ke Layar Utama" di Safari pada iPhone. Tetap butuh koneksi internet.
 
 ### Terang atau gelap
 

@@ -23,6 +23,7 @@ no ads.
 - **Search** the Arabic text and the Indonesian and English translations, or type a book and number such as
   "Bukhari 1" to open that hadith.
 - **Bookmark hadiths** and **continue reading** where you stopped, from the home page.
+- **Install it as an app** on your phone or computer, with its own icon.
 - **Share a hadith**: copy its text with the reference and link, or send it straight to WhatsApp. A shared link shows
   the hadith's title and opening words in the preview.
 
@@ -87,6 +88,11 @@ Your choice is kept in this browser.
 3. On the **Bookmarks** page, open a hadith or remove it from the list.
 
 Bookmarks and the last hadith read are kept in this browser only. Another browser or phone has its own.
+
+### Install it as an app
+
+On a phone or computer, HadistWeb can have its own icon and window: "Install app" in Chrome or Edge (in the menu, or
+the icon in the address bar), "Add to Home Screen" in Safari on an iPhone. It still needs an internet connection.
 
 ### Light or dark
 
