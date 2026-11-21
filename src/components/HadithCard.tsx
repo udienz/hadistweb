@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { directionOf } from "@/lib/i18n/config";
+import { languageName } from "@/lib/i18n/languages";
 import type { Translator } from "@/lib/i18n/translate";
 import { layoutArabic, layoutTranslation, type Segment } from "@/lib/hadith/layout";
 import type { Hadith } from "@/lib/hadith/types";
@@ -40,7 +42,7 @@ function ArabicText({ text, sanadLabel }: { text: string; sanadLabel: string }) 
 function LaidOut({ text, language, sanadLabel }: { text: string; language: string; sanadLabel: string }) {
   const { sanad, paragraphs } = layoutTranslation(text, language);
   return (
-    <div lang={language} className="max-w-[65ch]">
+    <div lang={language} dir={directionOf(language)} className="max-w-[65ch]">
       {sanad && (
         <p className="mb-3 text-[length:calc(0.875rem*var(--latin-scale,1))] leading-relaxed text-muted-foreground" aria-label={sanadLabel}>
           <Runs segments={sanad} />
@@ -107,15 +109,17 @@ export default function HadithCard({
         <p className="text-sm italic text-muted-foreground">{t("hadith.noArabic")}</p>
       )}
 
+      {/* In Arabic no translation is shown: the hadith is already in the reader's language. */}
+      {locale !== "ar" && (
       <div className="mt-5 border-t border-border pt-4">
         {translation ? (
           <>
             {translation.language !== locale && (
-              <p className="mb-2 text-xs font-semibold text-muted-foreground">{t(`hadith.fallback.${translation.language}`)}</p>
+              <p className="mb-2 text-xs font-semibold text-muted-foreground">{t("hadith.fallback", { language: languageName(translation.language, locale) })}</p>
             )}
             {translation.source ? (
               // HadeethEnc's text is shown as delivered (its terms forbid changes): typography only.
-              <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={translation.language}>
+              <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={translation.language} dir={directionOf(translation.language)}>
                 {translation.text}
               </p>
             ) : (
@@ -141,6 +145,7 @@ export default function HadithCard({
           <p className="text-sm italic text-muted-foreground">{t("hadith.noTranslation")}</p>
         )}
       </div>
+      )}
 
       {/* Grades as a footnote (the owner's choice, 2026-11-21): every grader the source names, in small type at the foot
           of the card, so they do not compete with the text. */}

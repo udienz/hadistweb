@@ -5,8 +5,8 @@
 // have no single-hadith file, and one path for all keeps it simple. `info.min.json` (6.4 MB) is read once per process
 // and reduced to the chapter list and a number -> chapter map per book.
 
-import { bookById, EDITION_PREFIX, pickTranslation, translationOrder } from "./books";
-import { hadeethencIndonesian } from "./hadeethenc-translation";
+import { bookById, EDITION_PREFIX, MIRRORED, pickTranslation, translationOrder } from "./books";
+import { hadeethencTranslation } from "./hadeethenc-translation";
 import { Memo } from "../memo";
 import { loadJson } from "./transport";
 import type { BookId, Chapter, Grade, Hadith, Translation, TranslationLanguage } from "./types";
@@ -56,18 +56,23 @@ export interface HadithService {
  */
 export type ExtraTranslation = (book: BookId, number: string, locale: string) => Promise<Translation | null>;
 
-export function createHadithService(baseUrl: string, extra?: ExtraTranslation): HadithService {
+/**
+ * `baseUrl` serves the mirrored editions (Arabic, Indonesian, English) and `info.min.json`; `sourceUrl` the other
+ * translations, which are not mirrored (the owner's decision, 2026-11-21). Both have the source's layout.
+ */
+export function createHadithService(baseUrl: string, extra?: ExtraTranslation, sourceUrl: string = DEFAULT_FAWAZ_URL): HadithService {
   const base = baseUrl.replace(/\/+$/, "");
+  const source = sourceUrl.replace(/\/+$/, "");
   const sections = new Memo<RawSection>(64);
   let index: Promise<Map<string, BookIndex>> | null = null;
 
   /** `.min.json` first, the pretty `.json` as a fallback (the source recommends trying both). */
-  async function loadFile(path: string): Promise<unknown> {
+  async function loadFile(path: string, from: string = base): Promise<unknown> {
     try {
-      return await loadJson(`${base}/${path}.min.json`);
+      return await loadJson(`${from}/${path}.min.json`);
     } catch (first) {
       try {
-        return await loadJson(`${base}/${path}.json`);
+        return await loadJson(`${from}/${path}.json`);
       } catch {
         throw first;
       }
@@ -87,14 +92,20 @@ export function createHadithService(baseUrl: string, extra?: ExtraTranslation): 
 
   function loadSection(edition: string, chapter: number): Promise<RawSection> {
     const key = `${edition}/${chapter}`;
-    return sections.get(key, () => loadFile(`editions/${edition}/sections/${chapter}`) as Promise<RawSection>);
+    const from = MIRRORED.has(edition.split("-")[0]) ? base : source;
+    return sections.get(key, () => loadFile(`editions/${edition}/sections/${chapter}`, from) as Promise<RawSection>);
   }
 
   async function chapterHadiths(book: BookId, chapter: number, locale: string): Promise<Hadith[]> {
     const order = translationOrder(bookById(book), locale);
     const [arabic, ...translations] = await Promise.all([
       loadSection(`${EDITION_PREFIX.ar}-${book}`, chapter),
-      ...order.map((language) => loadSection(`${EDITION_PREFIX[language]}-${book}`, chapter)),
+      // A translation read from the source may fail (the source is down): the hadiths then fall back to the next language.
+      ...order.map((language) => {
+        const edition = `${EDITION_PREFIX[language]}-${book}`;
+        const section = loadSection(edition, chapter);
+        return MIRRORED.has(EDITION_PREFIX[language]) ? section : section.catch((): RawSection => ({ hadiths: [] }));
+      }),
     ]);
     const texts = order.map((language, i) => ({
       language,
@@ -118,11 +129,11 @@ export function createHadithService(baseUrl: string, extra?: ExtraTranslation): 
       .filter((h) => h.arabic || h.translation);
     if (!extra) return hadiths;
 
-    // A translation from another source wins over a fallback in the other language, not over one in the reader's own.
+    // A translation from another source wins over a fallback in another language, not over one in the reader's own.
     // If that source is down, the hadith keeps what it had.
     return Promise.all(
       hadiths.map(async (h) => {
-        if (h.translation?.language === (locale === "en" ? "en" : "id")) return h;
+        if (h.translation?.language === locale) return h;
         const found = await extra(book, h.number, locale).catch(() => null);
         return found ? { ...h, translation: found } : h;
       }),
@@ -199,9 +210,9 @@ let service: HadithService | null = null;
 
 /**
  * The service for this process, reading from HADITH_FAWAZ_URL (our mirror) or the source on GitHub, with the Indonesian
- * an-Nawawi from HadeethEnc.
+ * an-Nawawi and Qudsi from HadeethEnc where the source has no translation in the reader's language.
  */
 export function getHadithService(): HadithService {
-  service ??= createHadithService(process.env.HADITH_FAWAZ_URL?.trim() || DEFAULT_FAWAZ_URL, hadeethencIndonesian);
+  service ??= createHadithService(process.env.HADITH_FAWAZ_URL?.trim() || DEFAULT_FAWAZ_URL, hadeethencTranslation);
   return service;
 }

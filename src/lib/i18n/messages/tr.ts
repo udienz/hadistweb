@@ -1,0 +1,153 @@
+// Community translation: a first draft by Claude, not yet reviewed by a speaker (see COMMUNITY_LOCALES). Strings
+// shared with quranweb are taken from its catalog, so the two sites say the same things the same way.
+import type { Plural } from "../translate";
+import type { Messages } from "./types";
+
+const plural = (other: string, one?: string): Plural => ({ one, other });
+
+export const tr: Messages = {
+  meta: {
+    title: "HadistWeb",
+    description: "Hadis kitaplarını okuyun: Arapça metin ve kendi dilinizde bir çeviri.",
+  },
+  nav: {
+    books: "Kitaplar",
+    topics: "Konular",
+    about: "Hakkında",
+    language: "Dil",
+    communityBadge: "Topluluk",
+    communityTranslation: "Topluluk çevirisi: henüz bu dili konuşan biri tarafından gözden geçirilmedi",
+    reportTranslation: "Çeviri hatası bildir",
+    switchToLight: "Açık moda geç",
+    switchToDark: "Koyu moda geç",
+  },
+  footer: {
+    about: "Hakkında ve kaynaklar",
+    privacy: "Gizlilik",
+  },
+  common: {
+    hadiths: plural("{count} hadis"),
+    chapters: plural("{count} bölüm"),
+  },
+  home: {
+    title: "Hadis kitapları",
+    subtitle: "Arapça metin ve çevirisi, kitap kitap ve bölüm bölüm.",
+    start: "Sahîh-i Buhârî'den başlayın",
+    listTitle: "Kitaplar",
+    translationIn: "{language} çeviri",
+    translationFrom: "{source} kaynağından {language} çeviri",
+    translationPartly: "Bazı hadisler {language} diline çevrili, {source} kaynağından",
+  },
+  book: {
+    chapters: "Bölümler",
+    unnamedChapter: "Kaynakta bir bölüme konmamış hadisler",
+    chapterLabel: "Bölüm {number}",
+    chapterNamesNote: "Kaynaktaki İngilizce ad her bölüm adının altında gösterilir.",
+  },
+  chapter: {
+    previous: "Önceki bölüm",
+    next: "Sonraki bölüm",
+    backToBook: "Tüm bölümler",
+  },
+  hadith: {
+    number: "Hadis {number}",
+    arabicNumber: "Arapça numara: {number}",
+    fallback: "{language} çeviri: bu hadisin sizin dilinizde çevirisi yok",
+    noTranslation: "Kaynakta bu hadisin çevirisi yok.",
+    noArabic: "Kaynakta bu numara için Arapça metin yok.",
+    grades: "Sıhhat dereceleri",
+    sanad: "Senet",
+    attribution: "Kaynak",
+    translationFrom: "{source} çevirisi, değiştirilmeden gösterilir",
+    translationScope: "Çeviri hadisi ve kaynağını kapsar; yukarıdaki Arapça metinde onlardan sonra gelen notlar (örneğin rivayet yolları hakkında) çevrilmemiş olabilir.",
+    copyLink: "Bağlantıyı kopyala",
+    copied: "Bağlantı kopyalandı",
+    open: "Hadis {number} sayfasını aç",
+    inBook: "{book}, hadis {number}",
+  },
+  topics: {
+    title: "Konulara göre hadisler",
+    intro: "Konulara göre düzenlenmiş seçme hadisler; her biri sıhhat derecesi, kaynağı, açıklaması ve çıkarılan derslerle birlikte.",
+    homeLink: "Konulara göre okuyun",
+    homeText: "HadeethEnc.com'dan açıklamalı seçme hadisler",
+    subtopics: "Konular",
+    hadiths: "Hadisler",
+    all: "Tüm konular",
+    showSubtopics: "Konuları göster",
+    grade: "Derece",
+    attribution: "Kaynak",
+    explanation: "Açıklama",
+    lessons: "Çıkarılan dersler",
+    inTopics: "Bulunduğu konular",
+    otherLanguage: "{language}: HadeethEnc'te bu hadisin sizin dilinizde çevirisi yok",
+    credit: "HadeethEnc.com'dan, Rowwad Tercüme Merkezi yayını; değiştirilmeden gösterilir.",
+    original: "HadeethEnc.com'da görüntüle",
+  },
+  display: {
+    textSize: "Yazı boyutu",
+    arabicSize: "Arapça metin",
+    latinSize: "Çeviri",
+    smaller: "Küçült: {name}",
+    larger: "Büyüt: {name}",
+  },
+  pagination: {
+    label: "Sayfalar",
+    range: "{total} hadisten {from}–{to}",
+    previous: "Önceki sayfa",
+    next: "Sonraki sayfa",
+    page: "{number}. sayfa",
+    perPage: "Sayfa başına hadis",
+  },
+  notFound: {
+    title: "Sayfa bulunamadı",
+    description: "Aradığınız sayfa yok ya da taşınmış.",
+    home: "Kitaplara dön",
+  },
+  error: {
+    title: "Hadis verileri yüklenemedi",
+    description: "Kaynak yanıt vermedi. Biraz sonra yeniden deneyin.",
+    retry: "Yeniden dene",
+  },
+  privacy: {
+    title: "Gizlilik politikası",
+    intro: "HadistWeb ücretsiz bir hadis okuma sitesidir. Hesap yoktur ve kayıt olmanız gerekmez. Bu sayfa sitenin neleri sakladığını ve başka kimin neyi gördüğünü anlatır.",
+    sections: {
+      reading: {
+        title: "Tarayıcınızda kalanlar",
+        body: "Açık ya da koyu tema ve yazı boyutu seçiminiz tarayıcınızın yerel depolamasında tutulur ve oradan çıkmaz. İki küçük çerez arayüz dilini (hw-lang) ve bir bölüm sayfasında kaç hadis gösterileceğini (hw-page-size) saklar, böylece sayfa seçtiğiniz gibi görünür. Site sizinle ilgili başka hiçbir şey saklamaz: okuma geçmişi, yer imi ya da hesap yoktur.",
+      },
+      sources: {
+        title: "Metinlerin kaynağı",
+        body: "Kitaplar fawazahmed0/hadith-api'den gelir: Arapça, Endonezce ve İngilizce metinler bu sunucudaki kendi kopyamızdan, diğer çeviriler GitHub'daki kaynaktan. Konular bölümü ve bazı çeviriler HadeethEnc.com'dan gelir. Bunların hepsini tarayıcınız değil sunucumuz ister; bu yüzden ne GitHub ne de HadeethEnc IP adresinizi ya da sizinle ilgili başka bir bilgiyi görür.",
+      },
+      analytics: {
+        title: "Ziyaretçi istatistikleri",
+        body: "Sitenin ne kadar kullanıldığını görmek için Cloudflare Web Analytics kullanıyoruz. Bir sayfa açıldığında Cloudflare'in küçük bir betiği şunları bildirir: görüntülenen sayfa, geldiğiniz sayfa, tarayıcı, işletim sistemi ve cihaz türü, ülke ve sayfanın ne kadar hızlı yüklendiği. Cloudflare'e göre bu araç çerez kullanmaz, tarayıcınızda hiçbir şey saklamaz ve sizi tanımak ya da izlemek için IP adresinizi veya tarayıcı bilgilerinizi kullanmaz. Biz yalnızca toplamları görürüz (örneğin sayfa veya ülke başına ziyaret sayısı), hiçbir zaman tek bir ziyaretçiyi görmeyiz; bunları yalnızca bu sitenin trafiğini anlamak için kullanırız, asla reklam için kullanmayız. Tarayıcınız veya bir eklenti betiği engellerse site aynı şekilde çalışır.",
+      },
+      recipients: {
+        title: "Verileri kim işler",
+        body: "Cloudflare (sitenin DNS'i ve vekil sunucusu, ayrıca ziyaretçi istatistikleri) ve sunucunun barındırma sağlayıcısı. Her web sitesinde olduğu gibi, sunucumuz ve Cloudflare sayfaları iletmek için IP adreslerini işler. Verileri satmayız ve başka bir amaçla paylaşmayız.",
+      },
+      law: {
+        title: "Uygulanan hukuk",
+        body: "Bu politika, Endonezya kişisel verilerin korunması hukukunu (2022 tarihli 27 sayılı Kişisel Verilerin Korunması Kanunu, UU PDP) esas alır.",
+      },
+    },
+    contactTitle: "İletişim",
+    contactBy: "Bu siteyi {name} işletiyor.",
+    contactEmail: "Bu politika hakkındaki sorular için: {email}",
+    contactMissing: "Bu politika hakkındaki sorular için iletişim bilgisi henüz ayarlanmadı.",
+  },
+  about: {
+    title: "Hakkında",
+    intro: "HadistWeb hadis kitaplarını Arapça metinleri ve kendi dilinizde bir çeviriyle gösterir. Metinler kaynakların yayımladığı gibi gösterilir; burada hiçbir şey düzenlenmez.",
+    sourcesTitle: "Kaynaklar",
+    fawaz: "Kitaplar, bölümleri, çevirileri ve sıhhat dereceleri Unlicense ile yayımlanan fawazahmed0/hadith-api'den gelir: Endonezce, İngilizce, Türkçe, Bengalce, Fransızca, Rusça ve Urduca çeviriler, ancak her kitap her dilde yoktur. Arapça, Endonezce ve İngilizce metinler kendi kopyamızdan sunulur; diğer çeviriler kaynaktan okunur.",
+    fallback: "Bir hadisin sizin dilinizde çevirisi yoksa İngilizce çevirisi (ya da Endonezce çevirisi) bir etiketle gösterilir. Endonezce çeviride birçok hadisin metni yoktur, çünkü kaynağı birkaç rivayeti tek kayıtta birleştirir; bu boşluğu doldurmak için Arapça metin asla başka bir hadisin çevirisiyle eşleştirilmez. Arapça arayüzde çeviri gösterilmez.",
+    hadeethenc: "Konular bölümü Rowwad Tercüme Merkezi'nin yayımladığı HadeethEnc.com'dan (Tercüme Edilmiş Nebevî Hadisler Ansiklopedisi) gelir. Metinleri, HadeethEnc.com yayıncı ve kaynak olarak belirtilerek ve değiştirilmeden yeniden kullanılabilir; sitesinden okunur ve yayımlandığı gibi gösterilir. Nevevî'nin Kırk Hadis'ini ve Kırk Kudsî Hadis'in 20'sini de fawazahmed0/hadith-api'de bulunmayan dillerde oradan alırız.",
+    chapterNames: "Kaynak bölümlerini İngilizce adlandırır. Endonezce bölüm adları bu site için yazıldı ve gözden geçirildi. Diğer dillerde bölüm adları İngilizcedir.",
+    languages: "Arayüz İngilizce ve Endonezce, ayrıca topluluk çevirisi olarak Türkçe, Malayca, Bengalce, Fransızca, Rusça, Urduca, Arapça ve Farsça dillerindedir. Bunlar bir yapay zekâ olan Claude'un ilk taslaklarıdır ve henüz bu dilleri konuşan biri tarafından kontrol edilmemiştir; dil menüsünde bir hatayı bildirmek için bağlantı vardır.",
+    code: "Bu sitenin kodu MIT lisansıyla açık kaynaktır.",
+    codeLink: "Kodu GitHub'da görüntüle",
+  },
+};

@@ -1,0 +1,153 @@
+// Community translation: a first draft by Claude, not yet reviewed by a speaker (see COMMUNITY_LOCALES). Strings
+// shared with quranweb are taken from its catalog, so the two sites say the same things the same way.
+import type { Plural } from "../translate";
+import type { Messages } from "./types";
+
+const plural = (other: string, one?: string): Plural => ({ one, other });
+
+export const ms: Messages = {
+  meta: {
+    title: "HadistWeb",
+    description: "Baca kitab-kitab hadis: teks Arab dengan terjemahan dalam bahasa anda.",
+  },
+  nav: {
+    books: "Kitab",
+    topics: "Tema",
+    about: "Perihal",
+    language: "Bahasa",
+    communityBadge: "Komuniti",
+    communityTranslation: "Terjemahan komuniti: belum disemak oleh penutur bahasa ini",
+    reportTranslation: "Laporkan kesilapan terjemahan",
+    switchToLight: "Tukar ke mod cerah",
+    switchToDark: "Tukar ke mod gelap",
+  },
+  footer: {
+    about: "Perihal dan sumber",
+    privacy: "Privasi",
+  },
+  common: {
+    hadiths: plural("{count} hadis"),
+    chapters: plural("{count} bab"),
+  },
+  home: {
+    title: "Kitab-kitab hadis",
+    subtitle: "Teks Arab dengan terjemahan, kitab demi kitab dan bab demi bab.",
+    start: "Mula dengan Sahih al-Bukhari",
+    listTitle: "Kitab",
+    translationIn: "Terjemahan {language}",
+    translationFrom: "Terjemahan {language} daripada {source}",
+    translationPartly: "Sebahagian hadis diterjemahkan ke {language}, daripada {source}",
+  },
+  book: {
+    chapters: "Bab",
+    unnamedChapter: "Hadis yang tidak dimasukkan ke dalam bab oleh sumbernya",
+    chapterLabel: "Bab {number}",
+    chapterNamesNote: "Nama bahasa Inggeris daripada sumber ditunjukkan di bawah setiap nama bab.",
+  },
+  chapter: {
+    previous: "Bab sebelumnya",
+    next: "Bab seterusnya",
+    backToBook: "Semua bab",
+  },
+  hadith: {
+    number: "Hadis {number}",
+    arabicNumber: "Penomboran Arab: {number}",
+    fallback: "Terjemahan {language}: hadis ini tiada terjemahan dalam bahasa anda",
+    noTranslation: "Sumber tidak mempunyai terjemahan hadis ini.",
+    noArabic: "Sumber tidak mempunyai teks Arab bagi nombor ini.",
+    grades: "Darjat",
+    sanad: "Sanad",
+    attribution: "Takhrij",
+    translationFrom: "Terjemahan daripada {source}, dipaparkan tanpa perubahan",
+    translationScope: "Yang diterjemahkan ialah hadis dan takhrijnya; catatan selepasnya dalam teks Arab di atas (contohnya tentang jalur riwayat) mungkin tidak diterjemahkan.",
+    copyLink: "Salin pautan",
+    copied: "Pautan disalin",
+    open: "Buka hadis {number}",
+    inBook: "{book}, hadis {number}",
+  },
+  topics: {
+    title: "Hadis mengikut tema",
+    intro: "Hadis-hadis pilihan yang disusun mengikut tema, setiap satu dengan darjat, sumber, penjelasan dan pengajarannya.",
+    homeLink: "Baca mengikut tema",
+    homeText: "Hadis pilihan dengan penjelasan, daripada HadeethEnc.com",
+    subtopics: "Tema",
+    hadiths: "Hadis",
+    all: "Semua tema",
+    showSubtopics: "Tunjukkan tema",
+    grade: "Darjat",
+    attribution: "Takhrij",
+    explanation: "Penjelasan",
+    lessons: "Pengajaran",
+    inTopics: "Termasuk dalam tema",
+    otherLanguage: "Dalam {language}: HadeethEnc tidak mempunyai terjemahan hadis ini dalam bahasa anda",
+    credit: "Daripada HadeethEnc.com, terbitan Rowwad Translation Center, dipaparkan tanpa perubahan.",
+    original: "Lihat di HadeethEnc.com",
+  },
+  display: {
+    textSize: "Saiz teks",
+    arabicSize: "Teks Arab",
+    latinSize: "Terjemahan",
+    smaller: "Lebih kecil: {name}",
+    larger: "Lebih besar: {name}",
+  },
+  pagination: {
+    label: "Halaman",
+    range: "{from} hingga {to} daripada {total} hadis",
+    previous: "Halaman sebelumnya",
+    next: "Halaman seterusnya",
+    page: "Halaman {number}",
+    perPage: "Hadis setiap halaman",
+  },
+  notFound: {
+    title: "Halaman tidak dijumpai",
+    description: "Halaman yang anda cari tidak wujud atau telah dipindahkan.",
+    home: "Kembali ke senarai kitab",
+  },
+  error: {
+    title: "Data hadis tidak dapat dimuatkan",
+    description: "Sumber tidak menjawab. Cuba lagi sebentar lagi.",
+    retry: "Cuba lagi",
+  },
+  privacy: {
+    title: "Dasar privasi",
+    intro: "HadistWeb ialah laman membaca hadis secara percuma. Tiada akaun dan tiada pendaftaran. Halaman ini menerangkan apa yang disimpan oleh laman ini dan siapa lagi yang melihat apa-apa.",
+    sections: {
+      reading: {
+        title: "Apa yang kekal dalam pelayar anda",
+        body: "Pilihan tema cerah atau gelap dan saiz teks disimpan dalam storan setempat pelayar anda dan tidak keluar daripadanya. Dua kuki kecil menyimpan bahasa antara muka (hw-lang) dan bilangan hadis bagi setiap halaman bab (hw-page-size), supaya halaman dipaparkan seperti yang anda pilih. Laman ini tidak menyimpan apa-apa lagi tentang anda: tiada sejarah bacaan, penanda buku atau akaun.",
+      },
+      sources: {
+        title: "Dari mana datangnya teks",
+        body: "Kitab-kitab datang daripada fawazahmed0/hadith-api: teks Arab, Indonesia dan Inggeris daripada salinan kami sendiri di pelayan ini, terjemahan lain daripada sumbernya di GitHub. Bahagian tema dan sebahagian terjemahan datang daripada HadeethEnc.com. Semuanya diminta oleh pelayan kami, bukan pelayar anda, jadi GitHub mahupun HadeethEnc tidak melihat alamat IP anda atau apa-apa lagi tentang anda.",
+      },
+      analytics: {
+        title: "Statistik pelawat",
+        body: "Untuk melihat sejauh mana laman ini digunakan, kami menggunakan Cloudflare Web Analytics. Apabila halaman dibuka, skrip kecil daripada Cloudflare melaporkan halaman yang dilihat, halaman asal anda, jenis pelayar, sistem pengendalian dan peranti, negara, dan kepantasan halaman dimuatkan. Cloudflare menyatakan bahawa alat ini tidak menetapkan kuki, tidak menyimpan apa-apa dalam pelayar anda, dan tidak menggunakan alamat IP atau butiran pelayar anda untuk mengenal pasti atau menjejaki anda. Kami hanya melihat jumlah (contohnya lawatan bagi setiap halaman atau negara), tidak pernah pelawat individu, dan kami menggunakannya hanya untuk memahami trafik laman ini, tidak pernah untuk pengiklanan. Jika pelayar atau sambungan anda menyekat skrip itu, laman ini berfungsi seperti biasa.",
+      },
+      recipients: {
+        title: "Siapa yang mengendalikan data",
+        body: "Cloudflare (DNS dan proksi laman, serta statistik pelawat) dan penyedia pengehosan pelayan. Pelayan web kami dan Cloudflare mengendalikan alamat IP untuk menghantar halaman, seperti semua laman web. Kami tidak menjual data atau berkongsinya untuk tujuan lain.",
+      },
+      law: {
+        title: "Undang-undang yang terpakai",
+        body: "Dasar ini mengikut undang-undang perlindungan data peribadi Indonesia (Undang-Undang No. 27 Tahun 2022 tentang Pelindungan Data Pribadi, UU PDP).",
+      },
+    },
+    contactTitle: "Hubungi",
+    contactBy: "Laman ini dikendalikan oleh {name}.",
+    contactEmail: "Soalan tentang dasar ini: {email}",
+    contactMissing: "Kenalan bagi soalan tentang dasar ini belum disediakan.",
+  },
+  about: {
+    title: "Perihal",
+    intro: "HadistWeb memaparkan kitab-kitab hadis dengan teks Arab dan terjemahan dalam bahasa anda. Teks dipaparkan seperti yang diterbitkan oleh sumbernya; tiada apa-apa yang disunting di sini.",
+    sourcesTitle: "Sumber",
+    fawaz: "Kitab, bab, terjemahan dan darjat hadis datang daripada fawazahmed0/hadith-api, yang diterbitkan di bawah Unlicense: terjemahan bahasa Indonesia, Inggeris, Turki, Bengali, Perancis, Rusia dan Urdu, walaupun tidak semua kitab ada dalam semua bahasa. Tiada terjemahan bahasa Melayu. Teks Arab, Indonesia dan Inggeris disajikan daripada salinan kami sendiri; terjemahan lain dibaca daripada sumbernya.",
+    fallback: "Jika sesuatu hadis tiada terjemahan dalam bahasa anda, terjemahan bahasa Inggeris (atau bahasa Indonesia) dipaparkan dengan label. Terjemahan Indonesia tiada teks bagi banyak hadis, kerana sumbernya menggabungkan beberapa riwayat dalam satu entri; teks Arab tidak pernah dipadankan dengan terjemahan hadis lain untuk menutup kekosongan itu. Dalam bahasa Arab, terjemahan tidak dipaparkan.",
+    hadeethenc: "Bahagian tema datang daripada HadeethEnc.com (Ensiklopedia Hadis Nabi Terjemahan), terbitan Rowwad Translation Center. Teksnya boleh digunakan semula tanpa perubahan, dengan menyebut HadeethEnc.com sebagai penerbit dan sumber; teks dibaca daripada lamannya dan dipaparkan tepat seperti diterbitkan. Dari situ juga Hadis 40 an-Nawawi, dan 20 daripada 40 Hadis Qudsi, dalam bahasa yang tidak dimiliki oleh fawazahmed0/hadith-api.",
+    chapterNames: "Sumber menamakan babnya dalam bahasa Inggeris. Nama bab bahasa Indonesia ditulis untuk laman ini dan telah disemak. Dalam bahasa lain, nama bab dalam bahasa Inggeris.",
+    languages: "Antara muka tersedia dalam bahasa Inggeris dan Indonesia, serta sebagai terjemahan komuniti dalam bahasa Turki, Melayu, Bengali, Perancis, Rusia, Urdu, Arab dan Parsi. Ini ialah draf pertama oleh Claude, sebuah AI, yang belum disemak oleh penutur bahasanya; menu bahasa mempunyai pautan untuk melaporkan kesilapan.",
+    code: "Kod laman ini ialah sumber terbuka di bawah lesen MIT.",
+    codeLink: "Lihat kod di GitHub",
+  },
+};

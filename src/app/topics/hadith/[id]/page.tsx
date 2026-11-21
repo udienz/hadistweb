@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import CopyLinkButton from "@/components/CopyLinkButton";
 import { encLanguage, getCategories, getHadith, hadeethencUrl } from "@/lib/hadeethenc/client";
+import { directionOf } from "@/lib/i18n/config";
+import { languageName } from "@/lib/i18n/languages";
 import { getI18n } from "@/lib/i18n/server";
 import { encIdFromSegment, topicHadithHref, topicHref, topicsHref } from "@/lib/links";
 
@@ -32,12 +34,12 @@ export default async function TopicHadithPage({ params }: PageProps<"/topics/had
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
       <Link href={topicsHref} className="text-sm font-medium text-primary hover:underline">
-        &larr; {t("topics.all")}
+        <span className="inline-block rtl:-scale-x-100">&larr;</span> {t("topics.all")}
       </Link>
 
       <article className="mt-3 rounded-2xl border border-border bg-card px-5 py-5 sm:px-7">
         <header className="mb-4 flex flex-wrap items-start justify-between gap-2">
-          <h1 className="font-display text-xl font-semibold sm:text-2xl" lang={hadith.language}>
+          <h1 className="font-display text-xl font-semibold sm:text-2xl" lang={hadith.language} dir={directionOf(hadith.language)}>
             {hadith.title}
           </h1>
           <CopyLinkButton href={topicHadithHref(id)} />
@@ -51,9 +53,9 @@ export default async function TopicHadithPage({ params }: PageProps<"/topics/had
 
         <div className="mt-5 border-t border-border pt-4">
           {hadith.language !== locale && (
-            <p className="mb-2 text-xs font-semibold text-muted-foreground">{t(`topics.otherLanguage.${hadith.language}`)}</p>
+            <p className="mb-2 text-xs font-semibold text-muted-foreground">{t("topics.otherLanguage", { language: languageName(hadith.language, locale) })}</p>
           )}
-          <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={hadith.language}>
+          <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={hadith.language} dir={directionOf(hadith.language)}>
             {hadith.text}
           </p>
         </div>
@@ -75,7 +77,7 @@ export default async function TopicHadithPage({ params }: PageProps<"/topics/had
       {hadith.explanation && (
         <section className="mt-4 rounded-2xl border border-border bg-card px-5 py-5 sm:px-7">
           <h2 className="mb-2 font-display text-lg font-semibold">{t("topics.explanation")}</h2>
-          <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={hadith.language}>
+          <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={hadith.language} dir={directionOf(hadith.language)}>
             {hadith.explanation}
           </p>
         </section>
@@ -84,7 +86,7 @@ export default async function TopicHadithPage({ params }: PageProps<"/topics/had
       {hadith.lessons.length > 0 && (
         <section className="mt-4 rounded-2xl border border-border bg-card px-5 py-5 sm:px-7">
           <h2 className="mb-2 font-display text-lg font-semibold">{t("topics.lessons")}</h2>
-          <ul className="flex max-w-[65ch] list-none flex-col gap-2 text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={hadith.language}>
+          <ul className="flex max-w-[65ch] list-none flex-col gap-2 text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={hadith.language} dir={directionOf(hadith.language)}>
             {hadith.lessons.map((lesson, i) => (
               <li key={i}>{lesson}</li>
             ))}

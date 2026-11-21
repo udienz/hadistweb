@@ -42,11 +42,11 @@ export default function Pagination({
         <li>
           {page > 1 ? (
             <Link prefetch={prefetch} href={href(page - 1)} className={link} aria-label={t("pagination.previous")} rel="prev">
-              &larr;
+              <span className="inline-block rtl:-scale-x-100">&larr;</span>
             </Link>
           ) : (
             <span className={off} aria-hidden>
-              &larr;
+              <span className="inline-block rtl:-scale-x-100">&larr;</span>
             </span>
           )}
         </li>
@@ -74,11 +74,11 @@ export default function Pagination({
         <li>
           {page < count ? (
             <Link prefetch={prefetch} href={href(page + 1)} className={link} aria-label={t("pagination.next")} rel="next">
-              &rarr;
+              <span className="inline-block rtl:-scale-x-100">&rarr;</span>
             </Link>
           ) : (
             <span className={off} aria-hidden>
-              &rarr;
+              <span className="inline-block rtl:-scale-x-100">&rarr;</span>
             </span>
           )}
         </li>

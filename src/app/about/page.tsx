@@ -36,6 +36,7 @@ export default async function AboutPage() {
           </p>
           <p className="text-muted-foreground">{t("about.fallback")}</p>
           <p className="text-muted-foreground">{t("about.chapterNames")}</p>
+          <p className="text-muted-foreground">{t("about.languages")}</p>
         </div>
       </section>
 

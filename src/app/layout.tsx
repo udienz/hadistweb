@@ -14,6 +14,7 @@ import { I18nProvider } from "@/lib/i18n/client";
 import { MESSAGES } from "@/lib/i18n/messages";
 import { displayScript } from "@/lib/display";
 import { getI18n } from "@/lib/i18n/server";
+import { directionOf } from "@/lib/i18n/config";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { t } = await getI18n();
@@ -32,7 +33,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const { locale, t } = await getI18n();
 
   return (
-    <html lang={locale} className="h-full antialiased" suppressHydrationWarning>
+    <html lang={locale} dir={directionOf(locale)} className="h-full antialiased" suppressHydrationWarning>
       <head>
         {/* Apply the theme and text size before the first paint so the page does not flash. */}
         <script dangerouslySetInnerHTML={{ __html: displayScript }} />

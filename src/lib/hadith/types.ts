@@ -2,8 +2,11 @@
 
 import type { LocalizedText } from "../i18n/translate";
 
-/** A translation language. "id" and "en" match the interface languages. */
-export type TranslationLanguage = "id" | "en";
+/** A translation language, by its interface language code. fawazahmed0 also has Tamil, which has no interface yet. */
+export const TRANSLATION_LANGUAGES = ["id", "en", "tr", "bn", "fr", "ru", "ur"] as const;
+export type TranslationLanguage = (typeof TRANSLATION_LANGUAGES)[number];
+export const isTranslationLanguage = (value: string): value is TranslationLanguage =>
+  (TRANSLATION_LANGUAGES as readonly string[]).includes(value);
 
 export const BOOK_IDS = [
   "bukhari",
@@ -29,10 +32,11 @@ export interface Book {
   arabicName?: string;
   /** The translations the source has for this book. */
   translations: TranslationLanguage[];
-  /** Where the Indonesian translation comes from when the book's source has none. */
-  indonesianFrom?: string;
-  /** True when that source has only some of the hadiths (the others keep the English translation). */
-  indonesianPartly?: boolean;
+  /**
+   * HadeethEnc has this book's hadiths ("all") or some of them ("some"), in many languages: it gives the translation in
+   * the reader's language when the book's source has none (lib/hadith/hadeethenc-translation.ts).
+   */
+  hadeethenc?: "all" | "some";
 }
 
 export interface Chapter {
@@ -59,7 +63,8 @@ export interface TranslationSource {
 }
 
 export interface Translation {
-  language: TranslationLanguage;
+  /** A TranslationLanguage, or for HadeethEnc any interface language. */
+  language: string;
   text: string;
   source?: TranslationSource;
 }

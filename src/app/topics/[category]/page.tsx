@@ -98,7 +98,7 @@ export default async function TopicPage({ params, searchParams }: PageProps<"/to
           {hadiths.map((h, i) => (
             <li key={h.id} className="border-b border-border last:border-b-0">
               <Link prefetch={false} href={topicHadithHref(h.id)} className="flex items-baseline gap-4 px-4 py-3 transition hover:bg-muted">
-                <span className="w-8 shrink-0 text-right text-xs tabular-nums text-muted-foreground">{from + i}</span>
+                <span className="w-8 shrink-0 text-end text-xs tabular-nums text-muted-foreground">{from + i}</span>
                 <span className="font-medium">{h.title}</span>
               </Link>
             </li>
