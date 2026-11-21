@@ -100,6 +100,11 @@ details (ports, nginx, secrets, the mirror timer) are in [CLAUDE.md](../CLAUDE.m
 `public/og.png` is the image link previews show. It is drawn from HTML by `node scripts/og-image.mjs` (needs Playwright's
 Chromium) and committed.
 
+## App icons
+
+`public/icons/` and `src/app/apple-icon.png` are drawn from `src/app/icon.svg` by `node scripts/app-icons.mjs` (needs
+Playwright's Chromium) and committed. `src/app/manifest.ts` lists them.
+
 ## README screenshots
 
 The pictures in `docs/screenshots/` are taken from a running site, in English and Indonesian:
