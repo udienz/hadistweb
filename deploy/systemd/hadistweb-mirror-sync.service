@@ -1,0 +1,8 @@
+[Unit]
+Description=Refresh the hadistweb mirror of fawazahmed0/hadith-api and restart the app
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/lib/hadistweb/mirror-sync.sh

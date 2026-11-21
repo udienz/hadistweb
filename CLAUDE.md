@@ -110,6 +110,25 @@ The books come from our mirror in `/srv/hadith-mirror/hadith-api`, built by
 read the files). The container mounts `/srv/hadith-mirror`, the parent, because
 the sync swaps the mirror directory. Restart or redeploy after a sync.
 
+Production (hadist.udienz.web.id, vhost `hadist`) deploys from a `v*` tag on
+`master` through "Deploy Production" (`deploy-prod.yml`), like quranweb.
+
+The mirror is refreshed weekly by `hadistweb-mirror-sync.timer`
+(`deploy/systemd/`), which runs `deploy/mirror-sync.sh`: the sync in a
+`node:26-alpine` container (the host has no Node.js), then a restart of the
+containers. Installed on the server with:
+
+```bash
+sudo install -d /usr/local/lib/hadistweb
+sudo install -m 755 deploy/mirror-sync.sh /usr/local/lib/hadistweb/
+sudo install -m 644 scripts/sync-mirror.mjs /usr/local/lib/hadistweb/
+sudo install -m 644 deploy/systemd/hadistweb-mirror-sync.* /etc/systemd/system/
+sudo systemctl daemon-reload && sudo systemctl enable --now hadistweb-mirror-sync.timer
+```
+
+Reinstall the two scripts after changing them: the timer runs the installed
+copies, not the checkout.
+
 The workflow needs the repository variable `QA_DEPLOY=true` and the `QA_SSH_*`
 secrets listed in `.github/workflows/deploy-qa.yml`. Its SSH key is its own
 (`github-actions-deploy@hadistweb`), not quranweb's, so either can be revoked
