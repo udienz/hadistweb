@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useOptimistic, useRef, useState, useTransition } from "react";
 import { writeCookie } from "@/lib/cookies";
-import { directionOf, isCommunityLocale, LOCALE_COOKIE, LOCALE_NAMES, LOCALES, reportTranslationUrl, type Locale } from "@/lib/i18n/config";
+import { directionOf, isCommunityLocale, LOCALE_COOKIE, LOCALE_FLAGS, LOCALE_NAMES, LOCALES, reportTranslationUrl, type Locale } from "@/lib/i18n/config";
 import { useI18n } from "@/lib/i18n/client";
 import { useDismiss } from "@/lib/useDismiss";
 
@@ -32,7 +32,10 @@ const GlobeIcon = () => (
   </svg>
 );
 
-/** The language button in the header and its dropdown (quranweb's menu): community translations are marked. */
+/**
+ * The language button in the header and its dropdown (quranweb's menu): each language with a flag, and community
+ * translations marked with an asterisk explained once under the list, which keeps the menu narrow.
+ */
 export default function LanguageMenu() {
   const { t } = useI18n();
   const { current, choose } = useLocaleChoice();
@@ -57,7 +60,7 @@ export default function LanguageMenu() {
       </button>
 
       {open && (
-        <div role="menu" aria-label={t("nav.language")} className="absolute end-0 top-full z-50 mt-2 w-56 rounded-2xl border border-border bg-card p-2 shadow-lg">
+        <div role="menu" aria-label={t("nav.language")} className="absolute end-0 top-full z-50 mt-2 w-60 rounded-2xl border border-border bg-card p-2 shadow-lg">
           {LOCALES.map((code) => (
             <button
               key={code}
@@ -70,16 +73,15 @@ export default function LanguageMenu() {
               }}
               className="flex w-full items-center justify-between gap-3 whitespace-nowrap rounded-xl px-3 py-2 text-start text-sm font-medium hover:bg-background"
             >
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2.5">
+                {/* eslint-disable-next-line @next/next/no-img-element -- a 4:3 SVG from public/, nothing to optimise */}
+                <img src={`/flags/${LOCALE_FLAGS[code]}.svg`} alt="" width={20} height={15} className="h-[15px] w-5 shrink-0 rounded-[2px] border border-border object-cover" />
                 <span lang={code} dir={directionOf(code)} translate="no">
                   {LOCALE_NAMES[code]}
                 </span>
                 {isCommunityLocale(code) && (
-                  <span
-                    title={t("nav.communityTranslation")}
-                    className="rounded-full border border-gold/60 px-1.5 text-[10px] font-semibold uppercase leading-4 text-gold"
-                  >
-                    {t("nav.communityBadge")}
+                  <span aria-label={t("nav.communityBadge")} title={t("nav.communityTranslation")} className="-ms-1.5 font-semibold text-primary">
+                    *
                   </span>
                 )}
               </span>
@@ -90,17 +92,16 @@ export default function LanguageMenu() {
               )}
             </button>
           ))}
-          {isCommunityLocale(current) && (
-            <a
-              href={reportTranslationUrl(current)}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={close}
-              className="mt-1 block rounded-xl border-t border-border px-3 pb-2 pt-3 text-xs font-medium text-primary hover:underline"
-            >
-              {t("nav.reportTranslation")}
-            </a>
-          )}
+          <div className="mt-1 border-t border-border px-3 pb-1 pt-2 text-xs text-muted-foreground">
+            <p>
+              <span className="font-semibold text-primary">*</span> {t("nav.communityTranslation")}
+            </p>
+            {isCommunityLocale(current) && (
+              <a href={reportTranslationUrl(current)} target="_blank" rel="noopener noreferrer" onClick={close} className="mt-1.5 block font-medium text-primary hover:underline">
+                {t("nav.reportTranslation")}
+              </a>
+            )}
+          </div>
         </div>
       )}
     </div>
