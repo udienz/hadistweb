@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useOptimistic, useRef, useState, useTransition } from "react";
 import { writeCookie } from "@/lib/cookies";
-import { directionOf, isCommunityLocale, LOCALE_COOKIE, LOCALE_FLAGS, LOCALE_NAMES, LOCALES, reportTranslationUrl, type Locale } from "@/lib/i18n/config";
+import { directionOf, isCommunityLocale, LOCALE_COOKIE, LOCALE_FLAGS, LOCALE_NAMES, MENU_LOCALES, reportTranslationUrl, type Locale } from "@/lib/i18n/config";
 import { useI18n } from "@/lib/i18n/client";
 import { useDismiss } from "@/lib/useDismiss";
 
@@ -61,7 +61,7 @@ export default function LanguageMenu() {
 
       {open && (
         <div role="menu" aria-label={t("nav.language")} className="absolute end-0 top-full z-50 mt-2 w-60 rounded-2xl border border-border bg-card p-2 shadow-lg">
-          {LOCALES.map((code) => (
+          {MENU_LOCALES.map((code) => (
             <button
               key={code}
               type="button"

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_LOCALE, isLocale, LOCALES, negotiateLocale } from "./config";
+import { DEFAULT_LOCALE, isLocale, LOCALE_NAMES, LOCALES, MENU_LOCALES, negotiateLocale } from "./config";
 import { MESSAGES } from "./messages";
 import { createTranslator, format, localized } from "./translate";
 
@@ -67,5 +67,13 @@ describe("catalogs", () => {
     for (const locale of LOCALES) {
       expect(paths(MESSAGES[locale]).sort()).toEqual(english);
     }
+  });
+});
+
+describe("MENU_LOCALES", () => {
+  it("lists every language once, alphabetical by its own name, Latin script first", () => {
+    const sorted = [...LOCALES].sort((a, b) => new Intl.Collator("en").compare(LOCALE_NAMES[a], LOCALE_NAMES[b]));
+    expect(MENU_LOCALES).toEqual(sorted);
+    expect([...MENU_LOCALES].sort()).toEqual([...LOCALES].sort());
   });
 });
