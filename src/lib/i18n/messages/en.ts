@@ -119,6 +119,7 @@ export const en = {
     results: plural("{count} hadiths found", "{count} hadith found"),
     none: "No hadith contains “{query}”.",
     hint: "Searches the Arabic, Indonesian and English texts. Type a book and a number, such as Bukhari 1, to open that hadith.",
+    hintOwn: "For your language, the {language} translation is searched first.",
     unavailable: "Search is not available on this copy of the site.",
     numberIn: "Hadith {number} in:",
   },

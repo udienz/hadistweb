@@ -121,6 +121,7 @@ export const ja: Messages = {
     results: plural("{count} 件のハディースが見つかりました"),
     none: "「{query}」を含むハディースはありません。",
     hint: "アラビア語の本文と、インドネシア語・英語の翻訳を検索します。書物名と番号（例：Bukhari 1）を入力すると、そのハディースを開きます。",
+    hintOwn: "あなたの言語では、まず{language}訳を検索します。",
     unavailable: "このサイトのコピーでは検索を利用できません。",
     numberIn: "ハディース {number}：",
   },

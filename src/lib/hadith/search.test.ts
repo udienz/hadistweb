@@ -1,9 +1,9 @@
-import { cpSync, mkdtempSync, rmSync } from "node:fs";
+import { cpSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { buildSearchIndex, normalizeArabic as scriptNormalize } from "../../../scripts/build-search-index.mjs";
-import { buildQuery, createSearcher, MARK_END, MARK_START, normalizeArabic, SEARCH_FILE, snippetOrder, snippetParts } from "./search";
+import { buildQuery, createSearcher, makeSnippet, MARK_END, MARK_START, normalizeArabic, plainWords, SEARCH_FILE, snippetOrder, snippetParts } from "./search";
 
 describe("buildQuery", () => {
   it("asks for every word as the start of a word", () => {
@@ -24,6 +24,21 @@ describe("buildQuery", () => {
   it("searches Arabic, normalized like the index, in the Arabic table", () => {
     expect(buildQuery("الأَعْمَالُ بِالنِّيَّاتِ")).toEqual({ table: "arabic", match: '"الاعمال" AND "بالنيات"' });
     expect(buildQuery("في")).toBeNull();
+  });
+});
+
+describe("snippets of translations whose text the index does not keep", () => {
+  it("marks every word that starts with a word typed, around the first one", () => {
+    const text = "Ameller niyetlere göredir. Herkese niyet ettiği şey vardır. Kimin hicreti Allah'a ise hicreti Allah'adır.";
+    const snippet = makeSnippet(text, plainWords("Niyet"), 30);
+    expect(snippetParts(snippet).filter((p) => p.match).map((p) => p.text)).toEqual(["niyetlere", "niyet"]);
+    expect(snippet.endsWith("…")).toBe(true);
+  });
+
+  it("works for scripts other than Latin, and finds nothing for a word not in the text", () => {
+    expect(snippetParts(makeSnippet("Поистине, дела оцениваются по намерениям", ["намерен"]))).toContainEqual({ text: "намерениям", match: true });
+    expect(snippetParts(makeSnippet("কর্মসমূহ নিয়্যতের উপর নির্ভরশীল", ["নিয়্যতের"]))).toContainEqual({ text: "নিয়্যতের", match: true });
+    expect(makeSnippet("abc", ["xyz"])).toBe("");
   });
 });
 
@@ -99,6 +114,27 @@ describe("the index (built from the e2e fixtures)", () => {
     expect(narrators!.get(humaidi.key)?.count).toBe(humaidi.count);
     expect(narrators!.hadiths(humaidi.key, 1, 10)).toContainEqual({ book: "bukhari", number: "1" });
     expect(narrators!.find("bapaknya", 5)).toEqual([]);
+  });
+
+  it("searches a translation whose text it does not keep, for its readers", async () => {
+    // A Turkish edition of Bukhari 1 in a second folder, standing in for the source.
+    const source = mkdtempSync(join(tmpdir(), "hw-source-"));
+    mkdirSync(join(source, "editions"), { recursive: true });
+    writeFileSync(join(source, "editions", "tur-bukhari.min.json"), JSON.stringify({ hadiths: [{ hadithnumber: 1, text: "Ameller niyetlere göredir." }] }));
+    const withSources = mkdtempSync(join(tmpdir(), "hw-search-sources-"));
+    cpSync(join(__dirname, "../../../e2e/fixtures/hadith-api"), withSources, { recursive: true });
+    await buildSearchIndex(withSources, { sources: true, sourceUrl: source });
+    const searcher = createSearcher(join(withSources, SEARCH_FILE));
+    const tr = searcher.search("niyet", { page: 1, locale: "tr" });
+    expect(tr.total).toBe(1);
+    expect(tr.hits[0]).toMatchObject({ book: "bukhari", number: "1", language: "tr", snippet: "" });
+    expect(tr.live).toEqual({ language: "tr", words: ["niyet"] });
+    // Not in the Turkish text: the Arabic, Indonesian and English texts are searched instead.
+    const fallback = searcher.search("intention", { page: 1, locale: "tr" });
+    expect(fallback.live).toBeUndefined();
+    expect(fallback.total).toBeGreaterThan(0);
+    rmSync(source, { recursive: true, force: true });
+    rmSync(withSources, { recursive: true, force: true });
   });
 
   it("says when there is no index", () => {

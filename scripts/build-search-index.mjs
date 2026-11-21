@@ -123,8 +123,69 @@ async function collect(dir) {
   return books;
 }
 
-/** Write <dir>/hadistweb-search.sqlite. Returns the number of hadiths indexed. */
-export async function buildSearchIndex(dir) {
+// The translations that are not mirrored (the owner's decision, 2026-11-21): with { sources: true } each edition is
+// downloaded from the source, indexed and dropped. The tables are contentless (FTS5 content=''): they hold the words to
+// find a hadith by, not the text, so no copy of these translations stays on the server. The search page reads the text
+// of a result from the source, as the reading pages do.
+export const SOURCE_URL = "https://raw.githubusercontent.com/fawazahmed0/hadith-api/1";
+export const SOURCE_LANGUAGES = { tr: "tur", bn: "ben", fr: "fra", ru: "rus", ur: "urd", ta: "tam" };
+const BOOK_IDS = ["bukhari", "muslim", "abudawud", "tirmidhi", "nasai", "ibnmajah", "malik", "nawawi", "qudsi", "dehlawi"];
+
+/** A whole edition from the source (an HTTP URL, or a folder with the source's layout, for the tests), or null. */
+async function fetchEdition(edition, sourceUrl) {
+  if (!/^https?:\/\//.test(sourceUrl)) {
+    try {
+      return JSON.parse(await readFile(join(sourceUrl, "editions", `${edition}.min.json`), "utf8"));
+    } catch {
+      return null;
+    }
+  }
+  for (let attempt = 1; ; attempt++) {
+    const res = await fetch(`${sourceUrl}/editions/${edition}.min.json`, { headers: { "User-Agent": "hadistweb-search-index" } });
+    if (res.status === 404) return null; // this book has no edition in this language
+    if (res.ok) return res.json();
+    if (attempt >= 3) throw new Error(`${edition}: status ${res.status}`);
+    await new Promise((r) => setTimeout(r, 2000 * attempt));
+  }
+}
+
+async function indexSources(db, sourceUrl) {
+  const rowids = new Map(db.prepare("SELECT rowid, book, number FROM hadith").all().map((r) => [`${r.book}/${r.number}`, r.rowid]));
+  for (const [language, prefix] of Object.entries(SOURCE_LANGUAGES)) {
+    db.exec(`CREATE VIRTUAL TABLE other_${language} USING fts5(text, content = '', tokenize = 'unicode61 remove_diacritics 2')`);
+    const insert = db.prepare(`INSERT INTO other_${language} (rowid, text) VALUES (?, ?)`);
+    let rows = 0;
+    for (const book of BOOK_IDS) {
+      let edition;
+      try {
+        edition = await fetchEdition(`${prefix}-${book}`, sourceUrl);
+      } catch (error) {
+        // One language or book that cannot be read leaves the others searchable.
+        console.error(`skipped ${prefix}-${book}: ${error.message}`);
+        continue;
+      }
+      if (!edition) continue;
+      db.exec("BEGIN");
+      for (const h of edition.hadiths ?? []) {
+        const rowid = rowids.get(`${book}/${h.hadithnumber}`);
+        const text = (h.text ?? "").trim();
+        if (rowid !== undefined && text) {
+          insert.run(rowid, text);
+          rows++;
+        }
+      }
+      db.exec("COMMIT");
+    }
+    db.exec(`INSERT INTO other_${language}(other_${language}) VALUES ('optimize')`);
+    console.log(`${language}: ${rows} hadiths indexed (text not kept)`);
+  }
+}
+
+/**
+ * Write <dir>/hadistweb-search.sqlite. Returns the number of hadiths indexed. With { sources: true } it also indexes
+ * the translations that are not mirrored, downloading them from the source.
+ */
+export async function buildSearchIndex(dir, { sources = false, sourceUrl = SOURCE_URL } = {}) {
   const target = join(dir, SEARCH_FILE);
   const next = `${target}.new`;
   await rm(next, { force: true });
@@ -188,6 +249,7 @@ export async function buildSearchIndex(dir) {
   db.exec("CREATE INDEX narrator_count ON narrator (count DESC)");
   db.exec("INSERT INTO hadith(hadith) VALUES ('optimize')");
   db.exec("INSERT INTO arabic(arabic) VALUES ('optimize')");
+  if (sources) await indexSources(db, sourceUrl);
   db.close();
   await rename(next, target);
   return rows;
@@ -196,9 +258,9 @@ export async function buildSearchIndex(dir) {
 if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
   const dir = process.argv[2];
   if (!dir) {
-    console.error("usage: node scripts/build-search-index.mjs <dir>");
+    console.error("usage: node scripts/build-search-index.mjs <dir> [--sources]");
     process.exit(2);
   }
-  const rows = await buildSearchIndex(resolve(dir));
+  const rows = await buildSearchIndex(resolve(dir), { sources: process.argv.includes("--sources") });
   console.log(`indexed ${rows} hadiths into ${join(resolve(dir), SEARCH_FILE)}`);
 }

@@ -121,6 +121,7 @@ export const tr: Messages = {
     results: plural("{count} hadis bulundu"),
     none: "“{query}” içeren hadis yok.",
     hint: "Arapça, Endonezce ve İngilizce metinlerde arar. Bir hadisi açmak için kitap adı ve numara yazın, örneğin Buhari 1.",
+    hintOwn: "Diliniz için önce {language} çeviri aranır.",
     unavailable: "Sitenin bu kopyasında arama kullanılamıyor.",
     numberIn: "{number} numaralı hadis:",
   },

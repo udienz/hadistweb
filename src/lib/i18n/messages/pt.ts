@@ -121,6 +121,7 @@ export const pt: Messages = {
     results: plural("{count} hadices encontrados", "{count} hadice encontrado"),
     none: "Nenhum hadice contém “{query}”.",
     hint: "Pesquisa no texto árabe e nas traduções indonésia e inglesa. Digite um livro e um número, como Bukhari 1, para abrir esse hadice.",
+    hintOwn: "Para o seu idioma, procura-se primeiro na tradução em {language}.",
     unavailable: "A pesquisa não está disponível nesta cópia do site.",
     numberIn: "Hadice {number} em:",
   },

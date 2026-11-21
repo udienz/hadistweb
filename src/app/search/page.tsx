@@ -6,9 +6,11 @@ import SearchForm from "@/components/SearchForm";
 import { BOOKS, bookById } from "@/lib/hadith/books";
 import { isBareNumber, parseReference } from "@/lib/hadith/reference";
 import { parseGradeFilter } from "@/lib/hadith/grade";
-import { getSearcher, SEARCH_PAGE_SIZE, snippetParts } from "@/lib/hadith/search";
+import { getSearcher, makeSnippet, SEARCH_PAGE_SIZE, snippetParts, SOURCE_LANGUAGES } from "@/lib/hadith/search";
+import { languageName } from "@/lib/i18n/languages";
 import { getHadithService } from "@/lib/hadith/service";
 import { isBookId, type BookId } from "@/lib/hadith/types";
+import { directionOf } from "@/lib/i18n/config";
 import { getI18n } from "@/lib/i18n/server";
 import { localized } from "@/lib/i18n/translate";
 import { clampPage, pageCount } from "@/lib/pagination";
@@ -59,6 +61,18 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
   let result = query && available && numberIn.length === 0 ? searcher.search(query, { book, page: 1, locale, grade }) : null;
   const page = result ? clampPage(first(params.page), result.total, SEARCH_PAGE_SIZE) : 1;
   if (result && page > 1) result = searcher.search(query, { book, page, locale, grade });
+  // Hits in a translation whose text the index does not keep: their snippets come from the text read from the source.
+  if (result?.live) {
+    const { language, words } = result.live;
+    const hits = await Promise.all(
+      result.hits.map(async (hit) => {
+        const hadith = await service.getHadith(hit.book, hit.number, locale).catch(() => null);
+        const text = hadith?.translation?.language === language ? hadith.translation.text : "";
+        return { ...hit, snippet: text ? makeSnippet(text, words) : "" };
+      }),
+    );
+    result = { ...result, hits };
+  }
   const from = (page - 1) * SEARCH_PAGE_SIZE + 1;
   const to = result ? Math.min(result.total, from + result.hits.length - 1) : 0;
   const pager = result && (
@@ -69,7 +83,10 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
     <div className="mx-auto max-w-4xl px-4 py-6">
       <h1 className="mb-4 font-display text-2xl font-bold">{t("search.title")}</h1>
       <SearchForm i18n={i18n} query={query} book={book} grade={grade} autoFocus={!query} />
-      <p className="mt-3 text-sm text-muted-foreground">{t("search.hint")}</p>
+      <p className="mt-3 text-sm text-muted-foreground">
+        {t("search.hint")}
+        {(SOURCE_LANGUAGES as readonly string[]).includes(locale) && ` ${t("search.hintOwn", { language: languageName(locale, locale) })}`}
+      </p>
 
       {!available && <p className="mt-6 rounded-2xl border border-border bg-card px-5 py-4">{t("search.unavailable")}</p>}
 
@@ -108,7 +125,7 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
                   </span>
                   <span
                     lang={hit.language}
-                    dir={hit.language === "ar" ? "rtl" : "ltr"}
+                    dir={directionOf(hit.language)}
                     className={`mt-1.5 block ${hit.language === "ar" ? "font-arabic text-xl leading-loose" : "text-[0.95rem] leading-relaxed"}`}
                   >
                     {snippetParts(hit.snippet).map((part, i) =>

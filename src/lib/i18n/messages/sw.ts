@@ -121,6 +121,7 @@ export const sw: Messages = {
     results: plural("Hadithi {count} zimepatikana", "Hadithi {count} imepatikana"),
     none: "Hakuna hadithi yenye “{query}”.",
     hint: "Hutafuta katika maandishi ya Kiarabu na tafsiri za Kiindonesia na Kiingereza. Andika kitabu na namba, kama Bukhari 1, ili kufungua hadithi hiyo.",
+    hintOwn: "Kwa lugha yako, tafsiri ya {language} hutafutwa kwanza.",
     unavailable: "Utafutaji haupatikani kwenye nakala hii ya tovuti.",
     numberIn: "Hadithi namba {number} katika:",
   },

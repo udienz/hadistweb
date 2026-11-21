@@ -119,6 +119,7 @@ export const id: Messages = {
     results: plural("{count} hadis ditemukan"),
     none: "Tidak ada hadis yang memuat “{query}”.",
     hint: "Mencari di teks Arab, terjemahan Indonesia, dan terjemahan Inggris. Ketik nama kitab dan nomor, misalnya Bukhari 1, untuk langsung membuka hadisnya.",
+    hintOwn: "Untuk bahasa Anda, terjemahan {language} dicari lebih dulu.",
     unavailable: "Pencarian tidak tersedia di salinan situs ini.",
     numberIn: "Hadis nomor {number} di:",
   },

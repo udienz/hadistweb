@@ -19,7 +19,12 @@ export const SEARCH_PAGE_SIZE = 20;
 export const MARK_START = "\u0001";
 export const MARK_END = "\u0002";
 
-export type SnippetLanguage = "ar" | "id" | "en";
+export type SnippetLanguage = "ar" | "id" | "en" | SourceLanguage;
+
+/** The translations searched without keeping their text (scripts/build-search-index.mjs, tables other_<language>). */
+export const SOURCE_LANGUAGES = ["tr", "bn", "fr", "ru", "ur", "ta"] as const;
+export type SourceLanguage = (typeof SOURCE_LANGUAGES)[number];
+const isSourceLanguage = (value: string): value is SourceLanguage => (SOURCE_LANGUAGES as readonly string[]).includes(value);
 
 export interface SearchHit {
   book: BookId;
@@ -33,6 +38,11 @@ export interface SearchHit {
 export interface SearchResult {
   total: number;
   hits: SearchHit[];
+  /**
+   * Set when the hits come from a translation whose text the index does not keep: their snippets are empty, and the page
+   * makes them from the text read from the source (makeSnippet) with these words.
+   */
+  live?: { language: SourceLanguage; words: string[] };
 }
 
 /** Arabic text as it is indexed: the same as normalizeArabic in scripts/build-search-index.mjs (a test checks it). */
@@ -100,6 +110,37 @@ export function buildQuery(input: string): Query | null {
     })
     .join(" AND ");
   return { table: "hadith", match };
+}
+
+/** The words of a query for a translation searched by word (no spelling variants, no Arabic). */
+export function plainWords(input: string): string[] {
+  return input
+    .normalize("NFC")
+    .toLowerCase()
+    .split(/\s+/)
+    .map((w) => w.replace(SYNTAX, "").replace(/'/g, " ").trim())
+    .flatMap((w) => w.split(/\s+/))
+    .filter((w) => w.length > 0)
+    .slice(0, 12);
+}
+
+/**
+ * A snippet of a text around the first of the words, with every word that starts with one of them marked, as the index
+ * marks its own snippets. Empty when none of the words is in the text.
+ */
+export function makeSnippet(text: string, words: string[], radius = 110): string {
+  if (words.length === 0) return "";
+  const escaped = words.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const word = new RegExp(`(?<![\\p{L}\\p{N}\\p{M}])(?:${escaped.join("|")})[\\p{L}\\p{N}\\p{M}]*`, "giu");
+  const first = word.exec(text);
+  if (!first) return "";
+  let start = Math.max(0, first.index - radius);
+  let end = Math.min(text.length, first.index + first[0].length + radius);
+  // Cut at spaces, not inside a word.
+  if (start > 0) start = text.indexOf(" ", start) + 1 || start;
+  if (end < text.length) end = text.lastIndexOf(" ", end) > first.index ? text.lastIndexOf(" ", end) : end;
+  const window = text.slice(start, end).replace(word, (m) => `${MARK_START}${m}${MARK_END}`);
+  return `${start > 0 ? "…" : ""}${window}${end < text.length ? "…" : ""}`;
 }
 
 /** Which translation's snippet to show first: the reader's, then English (Indonesian first for Indonesian readers). */
@@ -194,9 +235,35 @@ export function createSearcher(file: string | null): Searcher {
     },
 
     search(input, { book, page, locale, grade }) {
-      const query = buildQuery(input);
       const database = open();
-      if (!query || !database) return { total: 0, hits: [] };
+      if (!database) return { total: 0, hits: [] };
+      const levels = grade && columns.includes("grade") ? (grade === "sahih" ? ["sahih"] : ["sahih", "hasan"]) : [];
+      const filters = `${book ? " AND hadith.book = ?" : ""}${levels.length ? ` AND hadith.grade IN (${levels.map(() => "?").join(", ")})` : ""}`;
+      const filterParams = [...(book ? [book] : []), ...levels];
+
+      // A reader of a translation that is not mirrored searches it first, where the index has it; with no result there,
+      // the Arabic, Indonesian and English texts as for everyone.
+      const table = `other_${locale}`;
+      if (isSourceLanguage(locale) && database.prepare("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = ?").get(table)) {
+        const words = plainWords(input);
+        if (words.length > 0) {
+          const match = words.map((w) => `"${w}"*`).join(" AND ");
+          const from = `${table} JOIN hadith ON hadith.rowid = ${table}.rowid WHERE ${table} MATCH ?${filters}`;
+          const { total } = database.prepare(`SELECT count(*) AS total FROM ${from}`).get(match, ...filterParams) as { total: number };
+          if (total > 0) {
+            const rows = database
+              .prepare(`SELECT hadith.book AS book, hadith.number AS number, hadith.chapter AS chapter FROM ${from} ORDER BY bm25(${table}) LIMIT ? OFFSET ?`)
+              .all(match, ...filterParams, SEARCH_PAGE_SIZE, (page - 1) * SEARCH_PAGE_SIZE) as unknown as Row[];
+            const hits = rows
+              .filter((r) => isBookId(r.book))
+              .map((r): SearchHit => ({ book: r.book as BookId, number: String(r.number), chapter: Number(r.chapter), language: locale, snippet: "" }));
+            return { total, hits, live: { language: locale, words } };
+          }
+        }
+      }
+
+      const query = buildQuery(input);
+      if (!query) return { total: 0, hits: [] };
       // A snippet's length is counted in tokens: words in `hadith`, trigrams (about a third of a word) in `arabic`.
       const snip = (table: string, column: number) =>
         `snippet(${table}, ${column}, '${MARK_START}', '${MARK_END}', '…', ${table === "arabic" ? 64 : 24})`;
@@ -206,9 +273,8 @@ export function createSearcher(file: string | null): Searcher {
           ? `arabic JOIN hadith ON hadith.rowid = arabic.rowid WHERE arabic MATCH ?`
           : `hadith WHERE hadith MATCH ?`;
       // The grade filter needs the grade column; an older index searches without it rather than failing.
-      const levels = grade && columns.includes("grade") ? (grade === "sahih" ? ["sahih"] : ["sahih", "hasan"]) : [];
-      const where = `${from}${book ? " AND hadith.book = ?" : ""}${levels.length ? ` AND hadith.grade IN (${levels.map(() => "?").join(", ")})` : ""}`;
-      const params = [query.match, ...(book ? [book] : []), ...levels];
+      const where = `${from}${filters}`;
+      const params = [query.match, ...filterParams];
       const { total } = database.prepare(`SELECT count(*) AS total FROM ${where}`).get(...params) as { total: number };
       const selected =
         query.table === "arabic"

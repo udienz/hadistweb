@@ -84,7 +84,7 @@ async function main() {
     for (const chapter of withText.values()) counts[book][chapter] = (counts[book][chapter] ?? 0) + 1;
   }
   await writeFile(join(next, "hadistweb-counts.min.json"), JSON.stringify(counts));
-  console.log(`search index: ${await buildSearchIndex(next)} hadiths`);
+  console.log(`search index: ${await buildSearchIndex(next, { sources: true })} hadiths`);
 
   // Swap in the new copy.
   const old = `${dir}.old`;
