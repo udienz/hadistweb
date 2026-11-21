@@ -133,6 +133,15 @@ export const uz: Messages = {
     remove: "Олиб ташлаш",
     count: plural("{count} та хатчўп"),
   },
+  grade: {
+    label: "Даража",
+    by: "{grader} баҳосига кўра",
+    all: "Барчаси",
+    accepted: "Саҳиҳ ва ҳасан",
+    sahih: "Саҳиҳ",
+    none: "Бу бобда бундай даражадаги ҳадис йўқ.",
+    searchAll: "Барча даражалар",
+  },
   notFound: {
     title: "Саҳифа топилмади",
     description: "Сиз қидираётган саҳифа мавжуд эмас ёки кўчирилган.",

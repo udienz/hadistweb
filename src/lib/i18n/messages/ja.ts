@@ -133,6 +133,15 @@ export const ja: Messages = {
     remove: "削除",
     count: plural("ブックマーク {count} 件"),
   },
+  grade: {
+    label: "真正性",
+    by: "{grader} による評価",
+    all: "すべて",
+    accepted: "サヒーフとハサン",
+    sahih: "サヒーフ",
+    none: "この章にはその評価のハディースはありません。",
+    searchAll: "すべての評価",
+  },
   notFound: {
     title: "ページが見つかりません",
     description: "お探しのページは存在しないか、移動しました。",

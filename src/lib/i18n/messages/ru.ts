@@ -133,6 +133,15 @@ export const ru: Messages = {
     remove: "Удалить",
     count: plural("Закладок: {count}"),
   },
+  grade: {
+    label: "Степень",
+    by: "Степени по оценке {grader}",
+    all: "Все",
+    accepted: "Сахих и хасан",
+    sahih: "Сахих",
+    none: "В этой главе нет хадисов такой степени.",
+    searchAll: "Все степени",
+  },
   notFound: {
     title: "Страница не найдена",
     description: "Страница, которую вы ищете, не существует или была перемещена.",

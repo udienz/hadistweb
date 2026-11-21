@@ -133,6 +133,15 @@ export const th: Messages = {
     remove: "ลบ",
     count: plural("{count} บุ๊กมาร์ก"),
   },
+  grade: {
+    label: "ระดับ",
+    by: "ระดับตามการประเมินของ {grader}",
+    all: "ทั้งหมด",
+    accepted: "เศาะฮีหฺและหะสัน",
+    sahih: "เศาะฮีหฺ",
+    none: "ไม่มีหะดีษระดับนั้นในบทนี้",
+    searchAll: "ทุกระดับ",
+  },
   notFound: {
     title: "ไม่พบหน้า",
     description: "หน้าที่คุณค้นหาไม่มีอยู่หรือถูกย้ายแล้ว",

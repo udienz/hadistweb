@@ -78,6 +78,16 @@ describe("the index (built from the e2e fixtures)", () => {
     expect(searcher.search("zzzzqqq", { page: 1, locale: "id" }).total).toBe(0);
   });
 
+  it("filters by grade: Bukhari counts as sahih, an-Nawawi has no grade", () => {
+    const searcher = createSearcher(join(dir, SEARCH_FILE));
+    const all = searcher.search("Allah", { page: 1, locale: "en" });
+    const sahih = searcher.search("Allah", { page: 1, locale: "en", grade: "sahih" });
+    expect(all.hits.some((h) => h.book === "nawawi")).toBe(true);
+    expect(sahih.total).toBeGreaterThan(0);
+    expect(sahih.total).toBeLessThan(all.total);
+    expect(sahih.hits.every((h) => h.book === "bukhari")).toBe(true);
+  });
+
   it("says when there is no index", () => {
     expect(createSearcher(join(dir, "missing.sqlite")).available()).toBe(false);
     expect(createSearcher(null).search("niat", { page: 1, locale: "id" })).toEqual({ total: 0, hits: [] });

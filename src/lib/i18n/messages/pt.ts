@@ -133,6 +133,15 @@ export const pt: Messages = {
     remove: "Remover",
     count: plural("{count} marcadores", "{count} marcador"),
   },
+  grade: {
+    label: "Grau",
+    by: "Graus segundo {grader}",
+    all: "Todos",
+    accepted: "Sahih e hasan",
+    sahih: "Sahih",
+    none: "Nenhum hadice deste capítulo tem esse grau.",
+    searchAll: "Todos os graus",
+  },
   notFound: {
     title: "Página não encontrada",
     description: "A página que você procura não existe ou foi movida.",

@@ -211,3 +211,19 @@ test("a second translation stands beside the first", async ({ page }) => {
   await page.getByLabel("Terjemahan kedua").selectOption("");
   await expect(page.locator("article").first().locator('div[lang="en"]')).toHaveCount(0);
 });
+
+test("a Sunan chapter can show only the sahih, or the sahih and hasan hadiths, by Al-Albani", async ({ page }) => {
+  await page.goto("/tirmidhi/chapter/30");
+  const filter = page.getByRole("navigation", { name: "Derajat menurut Al-Albani" });
+  await expect(page.locator("article")).toHaveCount(9);
+  await filter.getByRole("link", { name: "Sahih", exact: true }).click();
+  await expect(page).toHaveURL(/grade=sahih/);
+  await expect(page.locator("article")).toHaveCount(6);
+  await filter.getByRole("link", { name: "Sahih dan hasan" }).click();
+  await expect(page.locator("article")).toHaveCount(7);
+  await filter.getByRole("link", { name: "Semua" }).click();
+  await expect(page.locator("article")).toHaveCount(9);
+  // Bukhari has no grades in the source, and no filter.
+  await page.goto("/bukhari/chapter/1");
+  await expect(page.getByRole("navigation", { name: /Derajat menurut/ })).toHaveCount(0);
+});

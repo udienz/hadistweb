@@ -133,6 +133,15 @@ export const ur: Messages = {
     remove: "ہٹائیں",
     count: plural("{count} بُک مارک"),
   },
+  grade: {
+    label: "درجہ",
+    by: "{grader} کے مطابق درجات",
+    all: "سب",
+    accepted: "صحیح اور حسن",
+    sahih: "صحیح",
+    none: "اس باب میں اس درجے کی کوئی حدیث نہیں۔",
+    searchAll: "تمام درجات",
+  },
   notFound: {
     title: "صفحہ نہیں ملا",
     description: "آپ جو صفحہ تلاش کر رہے ہیں وہ موجود نہیں یا منتقل ہو چکا ہے۔",

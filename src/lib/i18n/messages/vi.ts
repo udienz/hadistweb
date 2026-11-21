@@ -133,6 +133,15 @@ export const vi: Messages = {
     remove: "Xóa",
     count: plural("{count} dấu trang"),
   },
+  grade: {
+    label: "Mức độ",
+    by: "Mức độ theo {grader}",
+    all: "Tất cả",
+    accepted: "Sahih và hasan",
+    sahih: "Sahih",
+    none: "Chương này không có hadith ở mức độ đó.",
+    searchAll: "Mọi mức độ",
+  },
   notFound: {
     title: "Không tìm thấy trang",
     description: "Trang bạn tìm không tồn tại hoặc đã được chuyển đi.",

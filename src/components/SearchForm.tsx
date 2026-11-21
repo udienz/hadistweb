@@ -1,4 +1,5 @@
 import { BOOKS } from "@/lib/hadith/books";
+import type { GradeFilter } from "@/lib/hadith/grade";
 import type { BookId } from "@/lib/hadith/types";
 import type { Translator } from "@/lib/i18n/translate";
 import { localized } from "@/lib/i18n/translate";
@@ -8,7 +9,7 @@ import { searchHref } from "@/lib/links";
  * The search box: words, or a reference such as "Bukhari 1", and an optional book. A plain GET form to /search, so it
  * works without JavaScript and every search has its own address.
  */
-export default function SearchForm({ i18n, query = "", book, autoFocus }: { i18n: Translator; query?: string; book?: BookId; autoFocus?: boolean }) {
+export default function SearchForm({ i18n, query = "", book, grade, autoFocus }: { i18n: Translator; query?: string; book?: BookId; grade?: GradeFilter | null; autoFocus?: boolean }) {
   const { t, locale } = i18n;
   return (
     <form action={searchHref()} method="get" role="search" className="flex flex-col gap-2 sm:flex-row">
@@ -43,6 +44,19 @@ export default function SearchForm({ i18n, query = "", book, autoFocus }: { i18n
               {localized(b.name, locale)}
             </option>
           ))}
+        </select>
+        <label className="sr-only" htmlFor="search-grade">
+          {t("grade.label")}
+        </label>
+        <select
+          id="search-grade"
+          name="grade"
+          defaultValue={grade ?? ""}
+          className="h-11 min-w-0 flex-1 rounded-full border border-border bg-card px-3 text-sm text-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 sm:w-40 sm:flex-none"
+        >
+          <option value="">{t("grade.searchAll")}</option>
+          <option value="accepted">{t("grade.accepted")}</option>
+          <option value="sahih">{t("grade.sahih")}</option>
         </select>
         <button
           type="submit"

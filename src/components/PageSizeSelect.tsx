@@ -12,7 +12,7 @@ import { pageOf } from "@/lib/pagination";
  * Hadiths per page, 5 or 10. Changing it keeps the reader where they were: the new page is the one that holds the
  * first hadith shown now.
  */
-export default function PageSizeSelect({ book, chapter, size, from }: { book: string; chapter: number; size: PageSize; from: number }) {
+export default function PageSizeSelect({ book, chapter, size, from, grade }: { book: string; chapter: number; size: PageSize; from: number; grade?: string | null }) {
   const { t } = useI18n();
   const router = useRouter();
   const [pending, startTransition] = useTransition();
@@ -20,7 +20,9 @@ export default function PageSizeSelect({ book, chapter, size, from }: { book: st
   function choose(next: PageSize) {
     if (next === size) return;
     writeCookie(PAGE_SIZE_COOKIE, String(next));
-    startTransition(() => router.replace(chapterHref(book, chapter, pageOf(from, next))));
+    const href = chapterHref(book, chapter, pageOf(from, next));
+    // The grade filter stays as it was.
+    startTransition(() => router.replace(grade ? `${href}${href.includes("?") ? "&" : "?"}grade=${grade}` : href));
   }
 
   return (

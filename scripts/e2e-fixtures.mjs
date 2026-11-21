@@ -4,7 +4,8 @@
 //
 //   node scripts/e2e-fixtures.mjs [/srv/hadith-mirror/hadith-api]
 //
-// From our mirror of fawazahmed0/hadith-api: Bukhari chapters 1 and 2 (Arabic, Indonesian, English), an-Nawawi
+// From our mirror of fawazahmed0/hadith-api: Bukhari chapters 1 and 2 and Tirmidhi chapter 30 (Arabic, Indonesian,
+// English), an-Nawawi
 // (Arabic, English), and info.min.json reduced to those hadiths. From the live HadeethEnc API: the category list, one
 // page of one category, and the hadiths the tests open, saved under the request path (see e2e/hadeethenc-fake.mjs).
 
@@ -13,7 +14,12 @@ import { dirname, join } from "node:path";
 
 const MIRROR = process.argv[2] ?? "/srv/hadith-mirror/hadith-api";
 const OUT = new URL("../e2e/fixtures/", import.meta.url).pathname;
-const BOOKS = { bukhari: { chapters: [1, 2], editions: ["ara", "ind", "eng"] }, nawawi: { chapters: [1], editions: ["ara", "eng"] } };
+const BOOKS = {
+  bukhari: { chapters: [1, 2], editions: ["ara", "ind", "eng"] },
+  nawawi: { chapters: [1], editions: ["ara", "eng"] },
+  // A small chapter with sahih, hasan and weak hadiths (Al-Albani), for the grade filter.
+  tirmidhi: { chapters: [30], editions: ["ara", "ind", "eng"] },
+};
 const ENC = "https://hadeethenc.com/api/v1";
 const ENC_PATHS = [
   "/categories/list/?language=id",

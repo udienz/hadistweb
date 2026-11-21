@@ -133,6 +133,15 @@ export const ha: Messages = {
     remove: "Cire",
     count: plural("Alamomi {count}"),
   },
+  grade: {
+    label: "Daraja",
+    by: "Darajoji bisa ga {grader}",
+    all: "Duka",
+    accepted: "Sahihi da hasan",
+    sahih: "Sahihi",
+    none: "Babu hadisi mai wannan daraja a wannan babi.",
+    searchAll: "Dukkan darajoji",
+  },
   notFound: {
     title: "Ba a sami shafin ba",
     description: "Shafin da kake nema babu shi ko an mayar da shi wani wuri.",

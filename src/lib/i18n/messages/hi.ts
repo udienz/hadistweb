@@ -133,6 +133,15 @@ export const hi: Messages = {
     remove: "हटाएँ",
     count: plural("{count} बुकमार्क"),
   },
+  grade: {
+    label: "दर्जा",
+    by: "{grader} के अनुसार दर्जे",
+    all: "सभी",
+    accepted: "सहीह और हसन",
+    sahih: "सहीह",
+    none: "इस अध्याय में उस दर्जे की कोई हदीस नहीं है।",
+    searchAll: "सभी दर्जे",
+  },
   notFound: {
     title: "पेज नहीं मिला",
     description: "आप जो पेज ढूँढ रहे हैं वह मौजूद नहीं है या हटा दिया गया है।",

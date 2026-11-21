@@ -133,6 +133,15 @@ export const it: Messages = {
     remove: "Rimuovi",
     count: plural("{count} segnalibri", "{count} segnalibro"),
   },
+  grade: {
+    label: "Grado",
+    by: "Gradi secondo {grader}",
+    all: "Tutti",
+    accepted: "Sahih e hasan",
+    sahih: "Sahih",
+    none: "Nessun hadith di questo capitolo ha quel grado.",
+    searchAll: "Tutti i gradi",
+  },
   notFound: {
     title: "Pagina non trovata",
     description: "La pagina che cerchi non esiste o è stata spostata.",

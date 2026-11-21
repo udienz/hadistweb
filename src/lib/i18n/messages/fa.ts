@@ -133,6 +133,15 @@ export const fa: Messages = {
     remove: "حذف",
     count: plural("{count} نشانک"),
   },
+  grade: {
+    label: "درجه",
+    by: "درجه‌ها به ارزیابی {grader}",
+    all: "همه",
+    accepted: "صحیح و حسن",
+    sahih: "صحیح",
+    none: "در این باب حدیثی با این درجه نیست.",
+    searchAll: "همهٔ درجه‌ها",
+  },
   notFound: {
     title: "صفحه پیدا نشد",
     description: "صفحه‌ای که دنبالش هستید وجود ندارد یا جابه‌جا شده است.",
