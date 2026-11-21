@@ -49,7 +49,9 @@ have no single-hadith file in the source. Chapter 0 holds the hadiths the source
 puts in no chapter (Bukhari 311, Muslim 344, ...); it is shown as its own
 chapter, first when it starts the book (an introduction), otherwise last.
 
-Commands: `npm test`, `npm run lint`, `npm run build`, `bash
+Commands: `npm test`, `npm run lint`, `npm run build`, `npm run test:e2e`
+(browser tests against the build, with fixtures in `e2e/fixtures` and a fake
+HadeethEnc; regenerate the fixtures with `node scripts/e2e-fixtures.mjs`), `bash
 scripts/docker-smoke.sh` (needs Docker). Run the Docker smoke test before
 merging a change to the Dockerfile or to `public/`.
 

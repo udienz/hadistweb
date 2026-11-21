@@ -1,0 +1,83 @@
+import { expect, test, type Page } from "@playwright/test";
+
+/** Errors in the browser console (React hydration problems, failed scripts) fail a test. */
+function watchConsole(page: Page): string[] {
+  const problems: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") problems.push(message.text());
+  });
+  page.on("pageerror", (error) => problems.push(error.message));
+  return problems;
+}
+
+test("addresses that are not a book, chapter, hadith or topic answer 404", async ({ request }) => {
+  for (const ok of ["/", "/about", "/privacy", "/bukhari", "/bukhari/chapter/1", "/bukhari/1", "/topics", "/topics/59", "/topics/hadith/66512"]) {
+    expect((await request.get(ok)).status(), ok).toBe(200);
+  }
+  for (const bad of ["/xyz", "/bukhari/chapter/99", "/bukhari/99999", "/bukhari/abc", "/bukhari/chapter/1/x", "/topics/999999", "/topics/hadith/1"]) {
+    expect((await request.get(bad)).status(), bad).toBe(404);
+  }
+});
+
+test("from the books to a chapter, with Indonesian chapter names and the English one under each", async ({ page }) => {
+  const problems = watchConsole(page);
+  await page.goto("/");
+  await page.getByRole("link", { name: /Shahih al-Bukhari/ }).first().click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Shahih al-Bukhari");
+  const first = page.getByRole("link", { name: /Kitab Permulaan Wahyu/ });
+  await expect(first).toContainText("Revelation");
+  await first.click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Kitab Permulaan Wahyu");
+  await expect(page.locator("article")).toHaveCount(7);
+  expect(problems).toEqual([]);
+});
+
+test("5 or 10 hadiths per page, keeping the first hadith on screen", async ({ page, context }) => {
+  await page.goto("/bukhari/chapter/2?page=2");
+  await expect(page.locator("article").first()).toHaveId("h-18");
+  await page.getByRole("radio", { name: "5" }).click();
+  await expect(page).toHaveURL(/page=3$/);
+  await expect(page.locator("article")).toHaveCount(5);
+  await expect(page.locator("article").first()).toHaveId("h-18");
+  expect((await context.cookies()).find((c) => c.name === "hw-page-size")?.value).toBe("5");
+});
+
+test("a hadith without an Indonesian translation shows the English one, labelled", async ({ page }) => {
+  await page.goto("/bukhari/4");
+  await expect(page.getByText("Terjemahan bahasa Inggris (hadis ini tidak punya terjemahan Indonesia)")).toBeVisible();
+  await expect(page.locator("article p[lang=en]")).toContainText("Narrated");
+});
+
+test("an-Nawawi in Indonesian comes from HadeethEnc, with its takhrij and credit", async ({ page }) => {
+  await page.goto("/nawawi/1");
+  const card = page.locator("article");
+  await expect(card.locator("p[lang=id]").first()).toContainText("Sesungguhnya segala amalan itu tergantung pada niatnya");
+  await expect(card.getByText("Takhrij:")).toBeVisible();
+  await expect(card.getByRole("link", { name: /Terjemahan dari HadeethEnc.com/ })).toHaveAttribute("href", "https://hadeethenc.com/id/browse/hadith/66511");
+});
+
+test("topics: a topic lists its hadiths, a hadith has its explanation and credit", async ({ page }) => {
+  const problems = watchConsole(page);
+  await page.goto("/topics/59");
+  await page.getByRole("link", { name: "Islam dibangun di atas lima perkara" }).click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Islam dibangun di atas lima perkara");
+  await expect(page.getByRole("heading", { name: "Penjelasan" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Faedah" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Lihat di HadeethEnc.com" })).toHaveAttribute("href", "https://hadeethenc.com/id/browse/hadith/66512");
+  expect(problems).toEqual([]);
+});
+
+test("the language and the theme can be switched", async ({ page }) => {
+  await page.goto("/bukhari");
+  await page.getByRole("button", { name: /Bahasa/ }).click();
+  await page.getByRole("menuitemradio", { name: "English" }).click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Sahih al-Bukhari");
+  await expect(page.getByRole("link", { name: /Revelation/ })).toBeVisible();
+
+  const dark = () => page.evaluate(() => document.documentElement.classList.contains("dark"));
+  const before = await dark();
+  await page.getByRole("button", { name: /Switch to (dark|light) mode/ }).click();
+  await expect.poll(dark).toBe(!before);
+  await page.reload();
+  await expect.poll(dark).toBe(!before);
+});
