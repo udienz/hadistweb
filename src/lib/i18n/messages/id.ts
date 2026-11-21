@@ -6,13 +6,16 @@ const plural = (other: string, one?: string): Plural => ({ one, other });
 export const id: Messages = {
   meta: {
     title: "HadistWeb",
-    description: "Baca kitab-kitab hadis: teks Arab dengan terjemahan bahasa Indonesia dan Inggris.",
+    description: "Baca kitab-kitab hadis: teks Arab dengan terjemahan dalam bahasa Anda.",
   },
   nav: {
     books: "Kitab",
     topics: "Tema",
     about: "Tentang",
     language: "Bahasa",
+    communityBadge: "Komunitas",
+    communityTranslation: "Terjemahan komunitas: belum ditinjau oleh penutur bahasanya",
+    reportTranslation: "Laporkan kesalahan terjemahan",
     switchToLight: "Ganti ke mode terang",
     switchToDark: "Ganti ke mode gelap",
   },
@@ -29,9 +32,9 @@ export const id: Messages = {
     subtitle: "Teks Arab dengan terjemahan, per kitab dan per bab.",
     start: "Mulai dari Shahih al-Bukhari",
     listTitle: "Kitab",
-    englishOnly: "Terjemahan bahasa Inggris",
-    indonesianFrom: "Terjemahan Indonesia dari {source}",
-    indonesianPartly: "Sebagian hadis berterjemahan Indonesia, dari {source}",
+    translationIn: "Terjemahan {language}",
+    translationFrom: "Terjemahan {language} dari {source}",
+    translationPartly: "Sebagian hadis berterjemahan {language}, dari {source}",
   },
   book: {
     chapters: "Bab",
@@ -47,10 +50,7 @@ export const id: Messages = {
   hadith: {
     number: "Hadis {number}",
     arabicNumber: "Penomoran Arab: {number}",
-    fallback: {
-      en: "Terjemahan bahasa Inggris (hadis ini tidak punya terjemahan Indonesia)",
-      id: "Terjemahan bahasa Indonesia (hadis ini tidak punya terjemahan Inggris)",
-    },
+    fallback: "Terjemahan {language}: hadis ini tidak punya terjemahan dalam bahasa Anda",
     noTranslation: "Sumbernya tidak punya terjemahan untuk hadis ini.",
     noArabic: "Sumbernya tidak punya teks Arab untuk nomor ini.",
     grades: "Derajat",
@@ -77,10 +77,7 @@ export const id: Messages = {
     explanation: "Penjelasan",
     lessons: "Faedah",
     inTopics: "Termasuk dalam tema",
-    otherLanguage: {
-      en: "Dalam bahasa Inggris (hadis ini tidak punya terjemahan Indonesia di HadeethEnc)",
-      id: "Dalam bahasa Indonesia (hadis ini tidak punya terjemahan Inggris di HadeethEnc)",
-    },
+    otherLanguage: "Dalam {language}: HadeethEnc tidak punya terjemahan hadis ini dalam bahasa Anda",
     credit: "Dari HadeethEnc.com, terbitan Rowwad Translation Center, ditampilkan tanpa perubahan.",
     original: "Lihat di HadeethEnc.com",
   },
@@ -115,11 +112,11 @@ export const id: Messages = {
     sections: {
       reading: {
         title: "Yang tersimpan di browser Anda",
-        body: "Pilihan tema terang atau gelap disimpan di penyimpanan lokal (local storage) browser Anda dan tidak keluar dari sana. Dua cookie kecil menyimpan bahasa antarmuka (hw-lang) dan jumlah hadis per halaman bab (hw-page-size), supaya halaman tampil sesuai pilihan Anda. Situs ini tidak menyimpan hal lain tentang Anda: tidak ada riwayat bacaan, penanda, atau akun.",
+        body: "Pilihan tema terang atau gelap dan ukuran huruf disimpan di penyimpanan lokal (local storage) browser Anda dan tidak keluar dari sana. Dua cookie kecil menyimpan bahasa antarmuka (hw-lang) dan jumlah hadis per halaman bab (hw-page-size), supaya halaman tampil sesuai pilihan Anda. Situs ini tidak menyimpan hal lain tentang Anda: tidak ada riwayat bacaan, penanda, atau akun.",
       },
       sources: {
         title: "Asal teks",
-        body: "Kitab-kitab hadis berasal dari salinan fawazahmed0/hadith-api milik kami di server ini. Bagian tema dan sebagian terjemahan Indonesia berasal dari HadeethEnc.com: yang meminta datanya ke HadeethEnc adalah server kami, bukan browser Anda, jadi HadeethEnc tidak melihat alamat IP Anda atau data lain tentang Anda.",
+        body: "Kitab-kitab hadis berasal dari fawazahmed0/hadith-api: teks Arab, Indonesia, dan Inggris dari salinan kami di server ini, terjemahan lainnya dari sumbernya di GitHub. Bagian tema dan sebagian terjemahan berasal dari HadeethEnc.com. Semuanya diminta oleh server kami, bukan browser Anda, jadi GitHub maupun HadeethEnc tidak melihat alamat IP Anda atau data lain tentang Anda.",
       },
       analytics: {
         title: "Statistik pengunjung",
@@ -142,16 +139,18 @@ export const id: Messages = {
   about: {
     title: "Tentang",
     intro:
-      "HadistWeb menampilkan kitab-kitab hadis dengan teks Arab dan terjemahan bahasa Indonesia atau Inggris. Teksnya ditampilkan sesuai terbitan sumbernya; tidak ada yang disunting di sini.",
+      "HadistWeb menampilkan kitab-kitab hadis dengan teks Arab dan terjemahan dalam bahasa Anda. Teksnya ditampilkan sesuai terbitan sumbernya; tidak ada yang disunting di sini.",
     sourcesTitle: "Sumber",
     fawaz:
-      "Kitab, bab, terjemahan, dan derajat hadis berasal dari fawazahmed0/hadith-api, yang diterbitkan dengan lisensi Unlicense. Kami menyajikannya dari salinan kami sendiri.",
+      "Kitab, bab, terjemahan, dan derajat hadis berasal dari fawazahmed0/hadith-api, yang diterbitkan dengan lisensi Unlicense: terjemahan bahasa Indonesia, Inggris, Turki, Bengali, Prancis, Rusia, dan Urdu, walaupun tidak semua kitab ada dalam semua bahasa. Teks Arab, Indonesia, dan Inggris disajikan dari salinan kami sendiri; terjemahan lainnya dibaca dari sumbernya.",
     fallback:
-      "Kalau sebuah hadis tidak punya terjemahan dalam bahasa Anda, terjemahan bahasa lainnya yang ditampilkan, dengan label. Terjemahan Indonesia kosong untuk banyak hadis, karena sumbernya menggabungkan beberapa riwayat dalam satu entri; teks Arab tidak pernah dipasangkan dengan terjemahan hadis lain untuk menutup kekosongan itu.",
+      "Kalau sebuah hadis tidak punya terjemahan dalam bahasa Anda, terjemahan Inggris yang ditampilkan (atau Indonesia), dengan label. Terjemahan Indonesia kosong untuk banyak hadis, karena sumbernya menggabungkan beberapa riwayat dalam satu entri; teks Arab tidak pernah dipasangkan dengan terjemahan hadis lain untuk menutup kekosongan itu. Dalam bahasa Arab, terjemahan tidak ditampilkan.",
     hadeethenc:
-      "Bagian tema berasal dari HadeethEnc.com (Ensiklopedia Hadis Nabi Terjemahan), terbitan Rowwad Translation Center. Isinya boleh dipakai ulang tanpa diubah, dengan menyebut HadeethEnc.com sebagai penerbit dan sumber; teksnya dibaca dari situs itu dan ditampilkan persis seperti terbitannya. Terjemahan Indonesia Arbain an-Nawawi dan 20 dari Empat Puluh Hadis Qudsi juga berasal dari sana, karena fawazahmed0/hadith-api tidak memilikinya.",
+      "Bagian tema berasal dari HadeethEnc.com (Ensiklopedia Hadis Nabi Terjemahan), terbitan Rowwad Translation Center. Isinya boleh dipakai ulang tanpa diubah, dengan menyebut HadeethEnc.com sebagai penerbit dan sumber; teksnya dibaca dari situs itu dan ditampilkan persis seperti terbitannya. Dari sana pula Arbain an-Nawawi, dan 20 dari Empat Puluh Hadis Qudsi, dalam bahasa-bahasa yang tidak dimiliki fawazahmed0/hadith-api.",
     chapterNames:
-      "Sumbernya memberi nama bab dalam bahasa Inggris. Nama bab bahasa Indonesia disusun untuk situs ini, dengan nama Arab setiap kitab dalam kurung, lalu ditinjau; nama Inggris dari sumbernya tetap ditampilkan.",
+      "Sumbernya memberi nama bab dalam bahasa Inggris. Nama bab bahasa Indonesia disusun untuk situs ini, dengan nama Arab setiap kitab dalam kurung, lalu ditinjau; nama Inggris dari sumbernya tetap ditampilkan. Dalam bahasa lain, nama babnya berbahasa Inggris.",
+    languages:
+      "Antarmukanya tersedia dalam bahasa Inggris dan Indonesia, serta terjemahan komunitas dalam bahasa Turki, Melayu, Bengali, Prancis, Rusia, Urdu, Arab, dan Persia. Terjemahan komunitas ini adalah draf pertama dari Claude, sebuah AI, dan belum dicek oleh penutur bahasanya; menu bahasa punya tautan untuk melaporkan kesalahan.",
     code: "Kode situs ini terbuka dengan lisensi MIT.",
     codeLink: "Lihat kodenya di GitHub",
   },

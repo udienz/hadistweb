@@ -92,7 +92,7 @@ export default function TextSizeMenu() {
         </span>
       </button>
       {open && (
-        <div role="dialog" aria-label={t("display.textSize")} className="absolute right-0 top-full z-50 mt-2 w-72 rounded-2xl border border-border bg-card p-4 shadow-lg">
+        <div role="dialog" aria-label={t("display.textSize")} className="absolute end-0 top-full z-50 mt-2 w-72 rounded-2xl border border-border bg-card p-4 shadow-lg">
           <div className="flex flex-col gap-3">
             <SizeRow kind="arabic" />
             <SizeRow kind="latin" />

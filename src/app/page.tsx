@@ -1,5 +1,8 @@
 import Link from "next/link";
-import { BOOKS } from "@/lib/hadith/books";
+import { BOOKS, translationOrder } from "@/lib/hadith/books";
+import type { Book } from "@/lib/hadith/types";
+import { languageName } from "@/lib/i18n/languages";
+import type { Translator } from "@/lib/i18n/translate";
 import { getI18n } from "@/lib/i18n/server";
 import { localized } from "@/lib/i18n/translate";
 import { bookHref, topicsHref } from "@/lib/links";
@@ -7,9 +10,19 @@ import { bookHref, topicsHref } from "@/lib/links";
 // Rendered per request: the layout reads the language from the request.
 export const instant = false;
 
+/** What a book offers a reader of this language, when it is not a translation in that language: nothing to say otherwise. */
+function translationNote(book: Book, { t, locale }: Translator): string | null {
+  const order = translationOrder(book, locale);
+  if (locale === "ar" || order[0] === locale) return null;
+  const own = languageName(locale, locale);
+  if (book.hadeethenc) return t(book.hadeethenc === "all" ? "home.translationFrom" : "home.translationPartly", { language: own, source: "HadeethEnc.com" });
+  return order[0] ? t("home.translationIn", { language: languageName(order[0], locale) }) : null;
+}
+
 /** The books. The list is fixed (lib/hadith/books.ts), so this page needs no data source. */
 export default async function Home() {
-  const { t, locale } = await getI18n();
+  const i18n = await getI18n();
+  const { t, locale } = i18n;
 
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-8">
@@ -42,11 +55,7 @@ export default async function Home() {
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block font-semibold">{localized(book.name, locale)}</span>
-                {book.indonesianFrom ? (
-                  <span className="block text-xs text-muted-foreground">{t(book.indonesianPartly ? "home.indonesianPartly" : "home.indonesianFrom", { source: book.indonesianFrom })}</span>
-                ) : (
-                  !book.translations.includes("id") && <span className="block text-xs text-muted-foreground">{t("home.englishOnly")}</span>
-                )}
+                {translationNote(book, i18n) && <span className="block text-xs text-muted-foreground">{translationNote(book, i18n)}</span>}
               </span>
               {book.arabicName && (
                 <span className="font-arabic text-xl text-primary" dir="rtl" lang="ar" translate="no">
@@ -67,7 +76,7 @@ export default async function Home() {
           <span className="block text-sm text-muted-foreground">{t("topics.homeText")}</span>
         </span>
         <span aria-hidden className="text-primary">
-          &rarr;
+          <span className="inline-block rtl:-scale-x-100">&rarr;</span>
         </span>
       </Link>
     </div>

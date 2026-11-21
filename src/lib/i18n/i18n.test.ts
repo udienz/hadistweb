@@ -11,15 +11,16 @@ describe("negotiateLocale", () => {
 
   it("uses the first supported language the browser lists", () => {
     expect(negotiateLocale(undefined, "en-US,en;q=0.9,id;q=0.8")).toBe("en");
-    expect(negotiateLocale(undefined, "fr-FR,id;q=0.8,en;q=0.5")).toBe("id");
+    expect(negotiateLocale(undefined, "ja-JP,id;q=0.8,en;q=0.5")).toBe("id");
   });
 
   it("falls back to Indonesian for an unknown cookie, an unsupported language or no header", () => {
     expect(DEFAULT_LOCALE).toBe("id");
-    expect(negotiateLocale("fr", "de-DE,fr;q=0.9")).toBe("id");
+    expect(negotiateLocale("ja", "de-DE,ja;q=0.9")).toBe("id");
     expect(negotiateLocale(undefined, null)).toBe("id");
     expect(LOCALES.every(isLocale)).toBe(true);
-    expect(isLocale("tr")).toBe(false);
+    expect(isLocale("tr")).toBe(true);
+    expect(isLocale("de")).toBe(false);
   });
 });
 

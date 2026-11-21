@@ -53,7 +53,7 @@ export default async function BookPage({ params }: PageProps<"/[book]">) {
           return (
             <li key={c.number} className="border-b border-border last:border-b-0">
               <Link href={chapterHref(id, c.number)} className="flex items-center gap-4 px-4 py-3 transition hover:bg-muted">
-                <span className="w-10 shrink-0 text-right font-display text-sm font-semibold tabular-nums text-primary">
+                <span className="w-10 shrink-0 text-end font-display text-sm font-semibold tabular-nums text-primary">
                   {c.number === 0 ? "–" : c.number}
                 </span>
                 <span className="min-w-0 flex-1">

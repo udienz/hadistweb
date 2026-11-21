@@ -1,5 +1,5 @@
-// Indonesian translations from HadeethEnc for the books fawazahmed0 has none of: all 42 hadiths of an-Nawawi, and 20 of
-// the 40 hadiths Qudsi.
+// Translations from HadeethEnc, in the reader's language, where fawazahmed0 has none in it: all 42 hadiths of an-Nawawi
+// and 20 of the 40 hadiths Qudsi (first for Indonesian; since 2026-11-21 for every interface language but Arabic).
 //
 // The pairs (our number -> HadeethEnc id) were matched on 2026-11-20 by two independent checks, recorded in the
 // workspace repository (project/hadistweb/ROADMAP.md): the Arabic text (HadeethEnc's text found in ours) and the English
@@ -21,15 +21,15 @@ const PAIRS = pairs as Record<string, Record<string, number>>;
 /** The HadeethEnc id paired with a hadith of a book, if any. */
 export const hadeethencPair = (book: string, number: string): number | undefined => PAIRS[book]?.[number];
 
-export const hadeethencIndonesian: ExtraTranslation = async (book, number, locale) => {
-  if (locale !== "id") return null;
+export const hadeethencTranslation: ExtraTranslation = async (book, number, locale) => {
+  if (locale === "ar") return null; // the hadith is already in Arabic
   const id = hadeethencPair(book, number);
   if (id === undefined) return null;
-  const hadith = await getHadith("id", id);
-  if (!hadith || hadith.language !== "id" || !hadith.text) return null;
+  const hadith = await getHadith(locale, id);
+  if (!hadith || hadith.language !== locale || !hadith.text) return null;
   return {
-    language: "id",
+    language: locale,
     text: hadith.text,
-    source: { name: "HadeethEnc.com", url: hadeethencUrl("id", id), attribution: hadith.attribution },
+    source: { name: "HadeethEnc.com", url: hadeethencUrl(locale, id), attribution: hadith.attribution },
   };
 };

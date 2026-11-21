@@ -44,7 +44,7 @@ test("5 or 10 hadiths per page, keeping the first hadith on screen", async ({ pa
 
 test("a hadith without an Indonesian translation shows the English one, labelled", async ({ page }) => {
   await page.goto("/bukhari/4");
-  await expect(page.getByText("Terjemahan bahasa Inggris (hadis ini tidak punya terjemahan Indonesia)")).toBeVisible();
+  await expect(page.getByText("Terjemahan Inggris: hadis ini tidak punya terjemahan dalam bahasa Anda")).toBeVisible();
   await expect(page.locator("article div[lang=en]")).toContainText("Narrated");
 });
 

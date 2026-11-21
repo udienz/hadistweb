@@ -56,8 +56,17 @@ before starting.
 - `src/app/`: `/`, `/[book]`, `/[book]/chapter/[chapter]`,
   `/[book]/[hadith]`, `/topics`, `/topics/[category]`, `/topics/hadith/[id]`,
   `/about`.
-- `src/lib/i18n/`: interface languages `en` and `id` (default `id`), copied
-  from quranweb; `messages/en.ts` is the source catalog.
+- `src/lib/i18n/`: interface languages as in quranweb: `en` and `id` (default
+  `id`), and community drafts by Claude in `tr`, `ms`, `bn`, `fr`, `ru`, `ur`,
+  `ar`, `fa` (2026-11-21; `ar`, `ur`, `fa` right to left, `<html dir>` and
+  logical CSS). `messages/en.ts` is the source catalog; strings shared with
+  quranweb were taken from its catalogs.
+- Hadith translations (`lib/hadith/books.ts`): `id`, `en`, `tr`, `bn`, `fr`,
+  `ru`, `ur` from fawazahmed0. Only Arabic, Indonesian and English are mirrored;
+  the others are read from raw GitHub when asked (owner's decision, 2026-11-21),
+  and a failed read falls back to English. Order: the reader's language,
+  English, Indonesian; Arabic readers get none. HadeethEnc is read in the
+  interface language and fills an-Nawawi and Qudsi where fawazahmed0 has none.
 
 Every hadith is read from its chapter file: decimal numbers such as `402.2`
 have no single-hadith file in the source. Chapter 0 holds the hadiths the source

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { layoutArabic, layoutTranslation, paragraphs, segments, sentences } from "./layout";
+import { layoutArabic, layoutTranslation, paragraphs, segments, sentences, sentencesAnyScript } from "./layout";
 
 const plain = (segs: { text: string }[]) => segs.map((s) => s.text).join("");
 /** The text without whitespace and brackets, to compare what the reader gets with the source. */
@@ -98,5 +98,21 @@ describe("Arabic layout", () => {
   it("leaves a short text, or one without a sanad opening, as one paragraph", () => {
     expect(layoutArabic("قَالَ رَسُولُ اللَّهِ").paragraphs).toEqual(["قَالَ رَسُولُ اللَّهِ"]);
     expect(layoutArabic('عَنْ أَبِي هُرَيْرَةَ "قَالَ"').sanad).toBeNull();
+  });
+});
+
+describe("other translations", () => {
+  it("splits sentences at the stops of other scripts and keeps the text", () => {
+    expect(sentencesAnyScript("একটি বাক্য। আরেকটি বাক্য।")).toEqual(["একটি বাক্য।", "আরেকটি বাক্য।"]);
+    expect(sentencesAnyScript("پہلا جملہ۔ دوسرا جملہ۔")).toEqual(["پہلا جملہ۔", "دوسرا جملہ۔"]);
+    expect(sentencesAnyScript("Первое. «Второе.» Третье!")).toEqual(["Первое.", "«Второе.»", "Третье!"]);
+  });
+
+  it("separates no sanad outside Indonesian and English, and keeps every character", () => {
+    const text = "[Ali] dedi ki: \"Söz.\" " + "Uzun bir cümle burada devam ediyor. ".repeat(20);
+    const layout = layoutTranslation(text, "tr");
+    expect(layout.sanad).toBeNull();
+    expect(layout.paragraphs.length).toBeGreaterThan(1);
+    expect(layout.paragraphs.map((p) => p.map((x) => x.text).join("")).join("").replace(/[\s[\]]/g, "")).toBe(text.replace(/[\s[\]]/g, ""));
   });
 });

@@ -6,13 +6,16 @@ const plural = (other: string, one?: string): Plural => ({ one, other });
 export const en = {
   meta: {
     title: "HadistWeb",
-    description: "Read the hadith collections: Arabic text with Indonesian and English translations.",
+    description: "Read the hadith collections: Arabic text with a translation in your language.",
   },
   nav: {
     books: "Books",
     topics: "Topics",
     about: "About",
     language: "Language",
+    communityBadge: "Community",
+    communityTranslation: "Community translation: not yet reviewed by a speaker of the language",
+    reportTranslation: "Report a translation mistake",
     switchToLight: "Switch to light mode",
     switchToDark: "Switch to dark mode",
   },
@@ -29,9 +32,9 @@ export const en = {
     subtitle: "Arabic text with a translation, book by book and chapter by chapter.",
     start: "Start with Sahih al-Bukhari",
     listTitle: "Books",
-    englishOnly: "English translation",
-    indonesianFrom: "Indonesian translation from {source}",
-    indonesianPartly: "Indonesian translation of some hadiths, from {source}",
+    translationIn: "Translation in {language}",
+    translationFrom: "Translation in {language} from {source}",
+    translationPartly: "Some hadiths translated into {language}, from {source}",
   },
   book: {
     chapters: "Chapters",
@@ -47,10 +50,7 @@ export const en = {
   hadith: {
     number: "Hadith {number}",
     arabicNumber: "Arabic numbering: {number}",
-    fallback: {
-      en: "English translation (there is no Indonesian translation of this hadith)",
-      id: "Indonesian translation (there is no English translation of this hadith)",
-    },
+    fallback: "Translation in {language}: this hadith has none in your language",
     noTranslation: "The source has no translation of this hadith.",
     noArabic: "The source has no Arabic text for this number.",
     grades: "Grades",
@@ -77,10 +77,7 @@ export const en = {
     explanation: "Explanation",
     lessons: "Lessons",
     inTopics: "In the topics",
-    otherLanguage: {
-      en: "In English (this hadith has no Indonesian translation on HadeethEnc)",
-      id: "In Indonesian (this hadith has no English translation on HadeethEnc)",
-    },
+    otherLanguage: "In {language}: HadeethEnc has no translation of this hadith in your language",
     credit: "From HadeethEnc.com, published by the Rowwad Translation Center, shown without changes.",
     original: "View on HadeethEnc.com",
   },
@@ -115,11 +112,11 @@ export const en = {
     sections: {
       reading: {
         title: "What stays in your browser",
-        body: "Your choice of light or dark theme is kept in your browser's local storage and does not leave it. Two small cookies keep the interface language (hw-lang) and how many hadiths a chapter page shows (hw-page-size), so the page appears the way you chose. The site stores nothing else about you: no reading history, no bookmarks, no account.",
+        body: "Your choice of light or dark theme is kept in your browser's local storage and does not leave it. Your choice of text size is kept there too. Two small cookies keep the interface language (hw-lang) and how many hadiths a chapter page shows (hw-page-size), so the page appears the way you chose. The site stores nothing else about you: no reading history, no bookmarks, no account.",
       },
       sources: {
         title: "Where the texts come from",
-        body: "The books come from our own copy of fawazahmed0/hadith-api on this server. The topic section and some Indonesian translations come from HadeethEnc.com: our server asks HadeethEnc for them, not your browser, so HadeethEnc does not see your IP address or anything else about you.",
+        body: "The books come from fawazahmed0/hadith-api: the Arabic, Indonesian and English texts from our own copy on this server, the other translations from the source on GitHub. The topic section and some translations come from HadeethEnc.com. Our server asks for all of them, not your browser, so neither GitHub nor HadeethEnc sees your IP address or anything else about you.",
       },
       analytics: {
         title: "Visitor statistics",
@@ -142,16 +139,18 @@ export const en = {
   about: {
     title: "About",
     intro:
-      "HadistWeb shows the hadith collections with their Arabic text and a translation in Indonesian or English. The texts are shown as the sources publish them; nothing is edited here.",
+      "HadistWeb shows the hadith collections with their Arabic text and a translation in your language. The texts are shown as the sources publish them; nothing is edited here.",
     sourcesTitle: "Sources",
     fawaz:
-      "The books, their chapters, translations and grades come from fawazahmed0/hadith-api, published under the Unlicense. We serve them from our own copy.",
+      "The books, their chapters, translations and grades come from fawazahmed0/hadith-api, published under the Unlicense: translations in Indonesian, English, Turkish, Bengali, French, Russian and Urdu, though not every book in every language. The Arabic, Indonesian and English texts are served from our own copy; the other translations are read from the source.",
     fallback:
-      "When a hadith has no translation in your language, the other translation is shown and labelled. The Indonesian translation has no text for many hadiths, because its source joins several narrations into one entry; the Arabic text is never paired with the translation of another hadith to fill a gap.",
+      "When a hadith has no translation in your language, the English one is shown (or the Indonesian one), with a label. The Indonesian translation has no text for many hadiths, because its source joins several narrations into one entry; the Arabic text is never paired with the translation of another hadith to fill a gap. In Arabic, no translation is shown.",
     hadeethenc:
-      "The topic section comes from HadeethEnc.com (the Encyclopedia of Translated Prophetic Hadiths), published by the Rowwad Translation Center. Its texts may be reused without changes, with HadeethEnc.com named as publisher and source; they are read from its site and shown exactly as published. It also gives the Indonesian translation of the Forty Hadith of an-Nawawi and of 20 of the Forty Hadith Qudsi, which fawazahmed0/hadith-api does not have.",
+      "The topic section comes from HadeethEnc.com (the Encyclopedia of Translated Prophetic Hadiths), published by the Rowwad Translation Center. Its texts may be reused without changes, with HadeethEnc.com named as publisher and source; they are read from its site and shown exactly as published. It also gives the Forty Hadith of an-Nawawi, and 20 of the Forty Hadith Qudsi, in the languages fawazahmed0/hadith-api does not have them in.",
     chapterNames:
-      "The source names its chapters in English. The Indonesian chapter names were written for this site, with the Arabic name of each book in brackets, and reviewed; the English name from the source is shown with them.",
+      "The source names its chapters in English. The Indonesian chapter names were written for this site, with the Arabic name of each book in brackets, and reviewed; the English name from the source is shown with them. In the other languages the chapter names are in English.",
+    languages:
+      "The interface is in English and Indonesian, and as community translations in Turkish, Malay, Bengali, French, Russian, Urdu, Arabic and Persian. These are first drafts by Claude, an AI, not yet checked by a speaker of the language; the language menu has a link to report a mistake.",
     code: "The code of this site is open source under the MIT licence.",
     codeLink: "View the code on GitHub",
   },

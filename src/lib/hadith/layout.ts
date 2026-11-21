@@ -50,6 +50,7 @@ function splitSanad(text: string, language: string): { sanad: string | null; mat
     const m = /^((?:Narrated|It was narrated from|It is narrated on the authority of) [^:"]{1,200}:)\s*/.exec(text);
     return m ? { sanad: m[1], matn: text.slice(m[0].length) } : { sanad: null, matn: text };
   }
+  if (language !== "id") return { sanad: null, matn: text };
   const quote = text.indexOf('"');
   if (quote > 0 && quote <= MAX_SANAD_CHARS && text.slice(0, quote).includes("[")) {
     return { sanad: text.slice(0, quote).trim(), matn: text.slice(quote) };
@@ -65,14 +66,27 @@ export function sentences(text: string): string[] {
     .filter(Boolean);
 }
 
+/**
+ * Sentences in the other translations (Turkish, Bengali, French, Russian, Urdu): a break after a full stop of any of
+ * their scripts (. ! ? । ۔ ؟) and any closing quotes. Without capitals to look for in every script, a stop followed by a
+ * space is taken as the end of a sentence.
+ */
+export function sentencesAnyScript(text: string): string[] {
+  return text
+    .split(/(?<=[.!?।۔؟]["'”’»]?)\s+(?=\S)/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
 /** Group sentences into paragraphs of about PARAGRAPH_CHARS, and start one where a narrator takes the word. */
 export function paragraphs(text: string, language: string): string[] {
-  const turn = NARRATOR_TURN[language === "en" ? "en" : "id"];
+  const turn = NARRATOR_TURN[language];
+  const split = language === "id" || language === "en" ? sentences : sentencesAnyScript;
   const out: string[] = [];
   let current: string[] = [];
   let length = 0;
-  for (const sentence of sentences(text)) {
-    if (current.length && (turn.test(sentence) || length + sentence.length > PARAGRAPH_CHARS)) {
+  for (const sentence of split(text)) {
+    if (current.length && (turn?.test(sentence) || length + sentence.length > PARAGRAPH_CHARS)) {
       out.push(current.join(" "));
       current = [];
       length = 0;

@@ -13,8 +13,9 @@ describe("books", () => {
   });
 
   it("knows which books have no Indonesian edition", () => {
-    const englishOnly = BOOKS.filter((b) => !b.translations.includes("id")).map((b) => b.id);
-    expect(englishOnly).toEqual(["nawawi", "qudsi", "dehlawi"]);
+    const noIndonesian = BOOKS.filter((b) => !b.translations.includes("id")).map((b) => b.id);
+    expect(noIndonesian).toEqual(["nawawi", "qudsi", "dehlawi"]);
+    expect(BOOKS.filter((b) => b.translations.includes("ru")).map((b) => b.id)).toEqual(["bukhari", "muslim", "abudawud"]);
   });
 
   it("only accepts known book ids", () => {
@@ -29,6 +30,10 @@ describe("translation fallback", () => {
     expect(translationOrder(bookById("bukhari"), "id")).toEqual(["id", "en"]);
     expect(translationOrder(bookById("bukhari"), "en")).toEqual(["en", "id"]);
     expect(translationOrder(bookById("nawawi"), "id")).toEqual(["en"]);
+    expect(translationOrder(bookById("bukhari"), "tr")).toEqual(["tr", "en", "id"]);
+    expect(translationOrder(bookById("tirmidhi"), "fr")).toEqual(["en", "id"]);
+    expect(translationOrder(bookById("bukhari"), "ms")).toEqual(["en", "id"]);
+    expect(translationOrder(bookById("bukhari"), "ar")).toEqual([]);
   });
 
   it("takes the first non-empty text, so an empty Indonesian text falls back to English", () => {

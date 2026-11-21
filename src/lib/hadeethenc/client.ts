@@ -12,8 +12,8 @@ export const HADEETHENC_API = "https://hadeethenc.com/api/v1";
 const apiBase = (): string => process.env.HADEETHENC_API_URL?.trim().replace(/\/+$/, "") || HADEETHENC_API;
 export const HADEETHENC_SITE = "https://hadeethenc.com";
 
-/** The API's language codes we use. They match the interface languages. */
-export type EncLanguage = "id" | "en";
+/** The API's language codes we use: the interface languages, which HadeethEnc all has (checked 2026-11-21). */
+export type EncLanguage = string;
 
 export interface EncCategory {
   id: number;
@@ -127,7 +127,7 @@ async function fetchHadith(language: EncLanguage, id: number): Promise<EncHadith
 export async function getHadith(language: EncLanguage, id: number): Promise<EncHadith | null> {
   const first = await items.get(`${language}/${id}`, () => fetchHadith(language, id));
   if (!first || first.text) return first;
-  const other: EncLanguage = language === "id" ? "en" : "id";
+  const other: EncLanguage = language === "en" ? "id" : "en";
   const second = await items.get(`${other}/${id}`, () => fetchHadith(other, id));
   return second?.text ? second : first;
 }
@@ -136,4 +136,4 @@ export async function getHadith(language: EncLanguage, id: number): Promise<EncH
 export const hadeethencUrl = (language: EncLanguage, id: number): string => `${HADEETHENC_SITE}/${language}/browse/hadith/${id}`;
 
 /** The interface language as a HadeethEnc language. */
-export const encLanguage = (locale: string): EncLanguage => (locale === "en" ? "en" : "id");
+export const encLanguage = (locale: string): EncLanguage => locale;
