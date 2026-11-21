@@ -133,6 +133,15 @@ export const de: Messages = {
     remove: "Entfernen",
     count: plural("{count} Lesezeichen", "{count} Lesezeichen"),
   },
+  grade: {
+    label: "Bewertung",
+    by: "Bewertungen nach {grader}",
+    all: "Alle",
+    accepted: "Sahih und hasan",
+    sahih: "Sahih",
+    none: "Kein Hadith in diesem Kapitel hat diese Bewertung.",
+    searchAll: "Alle Bewertungen",
+  },
   notFound: {
     title: "Seite nicht gefunden",
     description: "Die gesuchte Seite existiert nicht oder wurde verschoben.",

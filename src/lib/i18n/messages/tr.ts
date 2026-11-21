@@ -133,6 +133,15 @@ export const tr: Messages = {
     remove: "Kaldır",
     count: plural("{count} yer imi"),
   },
+  grade: {
+    label: "Derece",
+    by: "{grader} değerlendirmesine göre",
+    all: "Tümü",
+    accepted: "Sahih ve hasen",
+    sahih: "Sahih",
+    none: "Bu bölümde bu derecede hadis yok.",
+    searchAll: "Tüm dereceler",
+  },
   notFound: {
     title: "Sayfa bulunamadı",
     description: "Aradığınız sayfa yok ya da taşınmış.",

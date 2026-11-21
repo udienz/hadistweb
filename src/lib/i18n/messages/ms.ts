@@ -133,6 +133,15 @@ export const ms: Messages = {
     remove: "Buang",
     count: plural("{count} penanda buku"),
   },
+  grade: {
+    label: "Darjat",
+    by: "Darjat menurut {grader}",
+    all: "Semua",
+    accepted: "Sahih dan hasan",
+    sahih: "Sahih",
+    none: "Tiada hadis dengan darjat itu dalam bab ini.",
+    searchAll: "Semua darjat",
+  },
   notFound: {
     title: "Halaman tidak dijumpai",
     description: "Halaman yang anda cari tidak wujud atau telah dipindahkan.",

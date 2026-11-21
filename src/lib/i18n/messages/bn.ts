@@ -133,6 +133,15 @@ export const bn: Messages = {
     remove: "সরান",
     count: plural("{count}টি বুকমার্ক"),
   },
+  grade: {
+    label: "মান",
+    by: "{grader}-এর মূল্যায়ন অনুযায়ী",
+    all: "সব",
+    accepted: "সহিহ ও হাসান",
+    sahih: "সহিহ",
+    none: "এই অধ্যায়ে এই মানের কোনো হাদিস নেই।",
+    searchAll: "সব মান",
+  },
   notFound: {
     title: "পেজটি পাওয়া যায়নি",
     description: "আপনি যে পেজটি খুঁজছেন সেটি নেই অথবা সরানো হয়েছে।",

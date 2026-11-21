@@ -5,6 +5,7 @@ import Pagination from "@/components/Pagination";
 import SearchForm from "@/components/SearchForm";
 import { BOOKS, bookById } from "@/lib/hadith/books";
 import { isBareNumber, parseReference } from "@/lib/hadith/reference";
+import { parseGradeFilter } from "@/lib/hadith/grade";
 import { getSearcher, SEARCH_PAGE_SIZE, snippetParts } from "@/lib/hadith/search";
 import { getHadithService } from "@/lib/hadith/service";
 import { isBookId, type BookId } from "@/lib/hadith/types";
@@ -33,6 +34,7 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
   const query = first(params.q).trim().slice(0, 200);
   const rawBook = first(params.book);
   const book: BookId | undefined = isBookId(rawBook) ? rawBook : undefined;
+  const grade = parseGradeFilter(params.grade);
 
   const i18n = await getI18n();
   const { t, tn, locale } = i18n;
@@ -54,19 +56,19 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
 
   const searcher = getSearcher();
   const available = searcher.available();
-  let result = query && available && numberIn.length === 0 ? searcher.search(query, { book, page: 1, locale }) : null;
+  let result = query && available && numberIn.length === 0 ? searcher.search(query, { book, page: 1, locale, grade }) : null;
   const page = result ? clampPage(first(params.page), result.total, SEARCH_PAGE_SIZE) : 1;
-  if (result && page > 1) result = searcher.search(query, { book, page, locale });
+  if (result && page > 1) result = searcher.search(query, { book, page, locale, grade });
   const from = (page - 1) * SEARCH_PAGE_SIZE + 1;
   const to = result ? Math.min(result.total, from + result.hits.length - 1) : 0;
   const pager = result && (
-    <Pagination basePath={searchHref(query, book)} page={page} count={pageCount(result.total, SEARCH_PAGE_SIZE)} from={from} to={to} total={result.total} />
+    <Pagination basePath={searchHref(query, book, 1, grade)} page={page} count={pageCount(result.total, SEARCH_PAGE_SIZE)} from={from} to={to} total={result.total} />
   );
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
       <h1 className="mb-4 font-display text-2xl font-bold">{t("search.title")}</h1>
-      <SearchForm i18n={i18n} query={query} book={book} autoFocus={!query} />
+      <SearchForm i18n={i18n} query={query} book={book} grade={grade} autoFocus={!query} />
       <p className="mt-3 text-sm text-muted-foreground">{t("search.hint")}</p>
 
       {!available && <p className="mt-6 rounded-2xl border border-border bg-card px-5 py-4">{t("search.unavailable")}</p>}

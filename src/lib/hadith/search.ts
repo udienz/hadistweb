@@ -9,6 +9,7 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import { isRemote, toFilePath } from "./transport";
+import type { GradeFilter } from "./grade";
 import { isBookId, type BookId } from "./types";
 
 export const SEARCH_FILE = "hadistweb-search.sqlite";
@@ -117,18 +118,21 @@ interface Row {
 export interface Searcher {
   /** Whether there is an index to search. */
   available(): boolean;
-  search(input: string, options: { book?: BookId; page: number; locale: string }): SearchResult;
+  search(input: string, options: { book?: BookId; page: number; locale: string; grade?: GradeFilter | null }): SearchResult;
   /** The hadith numbers of a book that have a text, in numeric order, or null without an index (for the sitemap). */
   numbers(book: BookId): string[] | null;
 }
 
 export function createSearcher(file: string | null): Searcher {
   let db: DatabaseSync | null = null;
+  /** The columns of the `hadith` table, read from the index: an index built before the grade column has none. */
+  let columns: string[] = [];
 
   function open(): DatabaseSync | null {
     if (db) return db;
     if (!file || !existsSync(file)) return null;
     db = new DatabaseSync(file, { readOnly: true });
+    columns = (db.prepare("PRAGMA table_info(hadith)").all() as { name: string }[]).map((c) => c.name);
     return db;
   }
 
@@ -142,7 +146,7 @@ export function createSearcher(file: string | null): Searcher {
       return rows.map((r) => String(r.number));
     },
 
-    search(input, { book, page, locale }) {
+    search(input, { book, page, locale, grade }) {
       const query = buildQuery(input);
       const database = open();
       if (!query || !database) return { total: 0, hits: [] };
@@ -154,14 +158,18 @@ export function createSearcher(file: string | null): Searcher {
         query.table === "arabic"
           ? `arabic JOIN hadith ON hadith.rowid = arabic.rowid WHERE arabic MATCH ?`
           : `hadith WHERE hadith MATCH ?`;
-      const where = `${from}${book ? " AND hadith.book = ?" : ""}`;
-      const params = book ? [query.match, book] : [query.match];
+      // The grade filter needs the grade column; an older index searches without it rather than failing.
+      const levels = grade && columns.includes("grade") ? (grade === "sahih" ? ["sahih"] : ["sahih", "hasan"]) : [];
+      const where = `${from}${book ? " AND hadith.book = ?" : ""}${levels.length ? ` AND hadith.grade IN (${levels.map(() => "?").join(", ")})` : ""}`;
+      const params = [query.match, ...(book ? [book] : []), ...levels];
       const { total } = database.prepare(`SELECT count(*) AS total FROM ${where}`).get(...params) as { total: number };
-      const columns =
-        query.table === "arabic" ? `${snip("arabic", 0)} AS ar` : `${snip("hadith", 3)} AS id, ${snip("hadith", 4)} AS en`;
+      const selected =
+        query.table === "arabic"
+          ? `${snip("arabic", 0)} AS ar`
+          : `${snip("hadith", columns.indexOf("id"))} AS id, ${snip("hadith", columns.indexOf("en"))} AS en`;
       const rows = database
         .prepare(
-          `SELECT hadith.book AS book, hadith.number AS number, hadith.chapter AS chapter, ${columns}
+          `SELECT hadith.book AS book, hadith.number AS number, hadith.chapter AS chapter, ${selected}
            FROM ${where} ORDER BY bm25(${query.table}) LIMIT ? OFFSET ?`,
         )
         .all(...params, SEARCH_PAGE_SIZE, (page - 1) * SEARCH_PAGE_SIZE) as unknown as Row[];

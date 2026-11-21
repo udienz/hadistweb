@@ -131,6 +131,15 @@ export const en = {
     remove: "Remove",
     count: plural("{count} bookmarks", "{count} bookmark"),
   },
+  grade: {
+    label: "Grade",
+    by: "Grades according to {grader}",
+    all: "All",
+    accepted: "Sahih and hasan",
+    sahih: "Sahih",
+    none: "No hadith in this chapter has that grade.",
+    searchAll: "All grades",
+  },
   notFound: {
     title: "Page not found",
     description: "The page you are looking for does not exist or has moved.",

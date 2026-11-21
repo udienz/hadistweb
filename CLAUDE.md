@@ -43,6 +43,12 @@ before starting.
 - `src/components/TextSizeMenu.tsx` and `src/lib/display.ts`: text size for
   Arabic and translation, quranweb's steps, kept in local storage
   (`hadistweb:font-size`) and applied before the first paint.
+- `src/lib/hadith/grade.ts`: the grade filter (2026-11-22), `?grade=sahih` or
+  `accepted` (sahih and hasan) on chapter pages and in search. One grader per
+  book (Al-Albani for the Sunan, Salim al-Hilali for Malik); Bukhari and Muslim
+  count as sahih; the small books have none. The search index stores each
+  hadith's level; `build-search-index.mjs` repeats `gradeLevel` (a test checks
+  they agree). Rebuild the index on the server after changing it.
 - `src/lib/second-translation.ts`: a second translation beside the first
   (2026-11-22), the reader's choice in the cookie `hw-second`, set in the text
   size menu; `getChapter`/`getHadith` take `{ second }`. Not shown when it is in

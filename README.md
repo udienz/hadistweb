@@ -41,6 +41,9 @@ The pictures show the English interface; the Indonesian README shows the Indones
 3. The chain of narrators (who passed the hadith on to whom) is shown first, in small grey letters, and the words of
    the hadith after it, in paragraphs.
 4. Choose 5 or 10 hadiths per page above the first hadith, and move between pages with the numbers.
+5. In the Sunan books and Malik, show **All** hadiths, only **Sahih and hasan**, or only **Sahih**, by the grades of
+   one scholar (Al-Albani; Salim al-Hilali for Malik). Bukhari and Muslim have no filter: all their hadiths are sahih.
+   The search page has the same choice.
 
 ![One hadith on a phone: the chain of narrators in small grey letters, then the hadith in paragraphs](docs/screenshots/en/hadith-phone.png)
 

@@ -133,6 +133,15 @@ export const ar: Messages = {
     remove: "إزالة",
     count: plural("عدد العلامات: {count}"),
   },
+  grade: {
+    label: "الدرجة",
+    by: "الدرجات بحسب {grader}",
+    all: "الكل",
+    accepted: "الصحيح والحسن",
+    sahih: "الصحيح",
+    none: "لا يوجد في هذا الباب حديث بهذه الدرجة.",
+    searchAll: "كل الدرجات",
+  },
   notFound: {
     title: "الصفحة غير موجودة",
     description: "الصفحة التي تبحث عنها غير موجودة أو نُقلت.",

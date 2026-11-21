@@ -133,6 +133,15 @@ export const zh: Messages = {
     remove: "移除",
     count: plural("{count} 个书签"),
   },
+  grade: {
+    label: "等级",
+    by: "按 {grader} 的评定",
+    all: "全部",
+    accepted: "正确和良好",
+    sahih: "正确",
+    none: "本章没有该等级的圣训。",
+    searchAll: "所有等级",
+  },
   notFound: {
     title: "未找到页面",
     description: "您要找的页面不存在或已移动。",

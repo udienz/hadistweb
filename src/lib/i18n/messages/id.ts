@@ -131,6 +131,15 @@ export const id: Messages = {
     remove: "Hapus",
     count: plural("{count} penanda"),
   },
+  grade: {
+    label: "Derajat",
+    by: "Derajat menurut {grader}",
+    all: "Semua",
+    accepted: "Sahih dan hasan",
+    sahih: "Sahih",
+    none: "Tidak ada hadis dengan derajat itu di bab ini.",
+    searchAll: "Semua derajat",
+  },
   notFound: {
     title: "Halaman tidak ditemukan",
     description: "Halaman yang Anda cari tidak ada atau sudah dipindah.",

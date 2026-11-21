@@ -133,6 +133,15 @@ export const bs: Messages = {
     remove: "Ukloni",
     count: plural("Oznaka: {count}"),
   },
+  grade: {
+    label: "Ocjena",
+    by: "Ocjene prema {grader}",
+    all: "Svi",
+    accepted: "Sahih i hasen",
+    sahih: "Sahih",
+    none: "Nijedan hadis u ovom poglavlju nema tu ocjenu.",
+    searchAll: "Sve ocjene",
+  },
   notFound: {
     title: "Stranica nije pronađena",
     description: "Stranica koju tražite ne postoji ili je premještena.",

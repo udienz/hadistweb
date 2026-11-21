@@ -31,6 +31,24 @@ export function normalizeArabic(text) {
     .replace(/ة/g, "ه");
 }
 
+// The grade a hadith is filtered by: the same rules as src/lib/hadith/grade.ts (a test checks that they agree).
+const GRADER = { abudawud: "Al-Albani", tirmidhi: "Al-Albani", nasai: "Al-Albani", ibnmajah: "Al-Albani", malik: "Salim al-Hilali" };
+const SAHIH_BOOKS = new Set(["bukhari", "muslim"]);
+const WEAK = /\b(?:daif|da'if|very daif|munkar|shadh|mawdu|maudu|batil)\b/i;
+
+export function gradeLevel(text) {
+  if (WEAK.test(text)) return "daif";
+  if (/\bsahih\b/i.test(text)) return "sahih";
+  if (/\bhasan\b/i.test(text)) return "hasan";
+  return null;
+}
+
+function hadithGrade(book, grades) {
+  if (SAHIH_BOOKS.has(book)) return "sahih";
+  const grade = (grades ?? []).find((g) => g.name?.trim() === GRADER[book]);
+  return grade ? gradeLevel(grade.grade ?? "") : null;
+}
+
 async function readSection(path) {
   try {
     return JSON.parse(await readFile(path, "utf8"));
@@ -67,8 +85,9 @@ async function collect(dir) {
         const text = (h.text ?? "").trim();
         if (!text) continue;
         const number = String(h.hadithnumber);
-        const entry = hadiths.get(number) ?? { chapter: Number(chapter), ar: "", id: "", en: "" };
+        const entry = hadiths.get(number) ?? { chapter: Number(chapter), ar: "", id: "", en: "", grade: null };
         entry[language] = language === "ar" ? normalizeArabic(text) : text;
+        if (language === "ar") entry.grade = hadithGrade(book, h.grades);
         hadiths.set(number, entry);
       }
     }
@@ -85,18 +104,18 @@ export async function buildSearchIndex(dir) {
 
   const db = new DatabaseSync(next);
   db.exec(`CREATE VIRTUAL TABLE hadith USING fts5(
-    book UNINDEXED, number UNINDEXED, chapter UNINDEXED, id, en,
+    book UNINDEXED, number UNINDEXED, chapter UNINDEXED, grade UNINDEXED, id, en,
     tokenize = 'unicode61 remove_diacritics 2'
   )`);
   db.exec(`CREATE VIRTUAL TABLE arabic USING fts5(ar, tokenize = 'trigram')`);
-  const insert = db.prepare("INSERT INTO hadith (rowid, book, number, chapter, id, en) VALUES (?, ?, ?, ?, ?, ?)");
+  const insert = db.prepare("INSERT INTO hadith (rowid, book, number, chapter, grade, id, en) VALUES (?, ?, ?, ?, ?, ?, ?)");
   const insertArabic = db.prepare("INSERT INTO arabic (rowid, ar) VALUES (?, ?)");
   let rows = 0;
   db.exec("BEGIN");
   for (const [book, hadiths] of books) {
     for (const [number, h] of hadiths) {
       rows++;
-      insert.run(rows, book, number, h.chapter, h.id, h.en);
+      insert.run(rows, book, number, h.chapter, h.grade, h.id, h.en);
       insertArabic.run(rows, h.ar);
     }
   }

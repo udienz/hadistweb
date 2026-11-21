@@ -133,6 +133,15 @@ export const sw: Messages = {
     remove: "Ondoa",
     count: plural("Alamisho {count}"),
   },
+  grade: {
+    label: "Daraja",
+    by: "Daraja kwa mujibu wa {grader}",
+    all: "Zote",
+    accepted: "Sahih na hasan",
+    sahih: "Sahih",
+    none: "Hakuna hadithi yenye daraja hilo katika mlango huu.",
+    searchAll: "Daraja zote",
+  },
   notFound: {
     title: "Ukurasa haukupatikana",
     description: "Ukurasa unaoutafuta haupo au umehamishwa.",

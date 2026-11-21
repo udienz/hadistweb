@@ -3,7 +3,9 @@ import { shareMetadata } from "@/lib/site";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
+import GradeFilterLinks from "@/components/GradeFilterLinks";
 import HadithCard from "@/components/HadithCard";
+import { GRADER, hadithGrade, parseGradeFilter, passesFilter } from "@/lib/hadith/grade";
 import LastReadTracker from "@/components/LastReadTracker";
 import PageSizeSelect from "@/components/PageSizeSelect";
 import Pagination from "@/components/Pagination";
@@ -41,8 +43,13 @@ export default async function ChapterPage({ params, searchParams }: PageProps<"/
   const [result, chapters] = await Promise.all([service.getChapter(id, number, locale, { second }), service.getChapters(id)]);
   if (!result) notFound();
 
-  const { chapter, hadiths } = result;
+  const { chapter } = result;
+  // The grade filter (lib/hadith/grade.ts), in the URL, for the books that have grades.
+  const grader = GRADER[id] ?? null;
+  const grade = grader ? parseGradeFilter((await searchParams).grade) : null;
+  const hadiths = result.hadiths.filter((h) => passesFilter(hadithGrade(id, h.grades).level, grade));
   const total = hadiths.length;
+  const withGrade = (href: string) => (grade ? `${href}${href.includes("?") ? "&" : "?"}grade=${grade}` : href);
   const size = parsePageSize((await cookies()).get(PAGE_SIZE_COOKIE)?.value);
   const count = pageCount(total, size);
   const page = clampPage((await searchParams).page, total, size);
@@ -51,7 +58,7 @@ export default async function ChapterPage({ params, searchParams }: PageProps<"/
   const prev = chapters[position - 1];
   const next = chapters[position + 1];
   const title = chapterTitle(id, chapter, locale, t("book.unnamedChapter"));
-  const pager = <Pagination basePath={chapterHref(id, chapter.number)} page={page} count={count} from={from} to={to} total={total} />;
+  const pager = <Pagination basePath={withGrade(chapterHref(id, chapter.number))} page={page} count={count} from={from} to={to} total={total} />;
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
@@ -75,8 +82,12 @@ export default async function ChapterPage({ params, searchParams }: PageProps<"/
       </header>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <PageSizeSelect book={id} chapter={chapter.number} size={size} from={from} />
+        <PageSizeSelect book={id} chapter={chapter.number} size={size} from={from} grade={grade} />
+        {grader && (
+          <GradeFilterLinks i18n={i18n} grader={grader} current={grade} href={(filter) => (filter ? `${chapterHref(id, chapter.number)}?grade=${filter}` : chapterHref(id, chapter.number))} />
+        )}
       </div>
+      {total === 0 && <p className="mt-4 rounded-2xl border border-border bg-card px-5 py-4 text-muted-foreground">{t("grade.none")}</p>}
       {pager}
       <div className="flex flex-col gap-4">
         {hadiths.slice(from - 1, to).map((h) => (

@@ -133,6 +133,15 @@ export const fr: Messages = {
     remove: "Retirer",
     count: plural("{count} signets", "{count} signet"),
   },
+  grade: {
+    label: "Degré",
+    by: "Degrés selon {grader}",
+    all: "Tous",
+    accepted: "Sahih et hasan",
+    sahih: "Sahih",
+    none: "Aucun hadith de ce chapitre n'a ce degré.",
+    searchAll: "Tous les degrés",
+  },
   notFound: {
     title: "Page introuvable",
     description: "La page que vous cherchez n'existe pas ou a été déplacée.",

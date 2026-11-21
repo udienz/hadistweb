@@ -41,6 +41,9 @@ Gambar menampilkan antarmuka bahasa Indonesia; README bahasa Inggris menampilkan
 3. Sanad (rangkaian perawi yang menyampaikan hadis) tampil lebih dulu dengan huruf kecil berwarna abu-abu, lalu isi
    hadis sesudahnya, dibagi menjadi paragraf.
 4. Pilih 5 atau 10 hadis per halaman di atas hadis pertama, dan pindah halaman dengan nomor halaman.
+5. Di kitab-kitab Sunan dan Malik, tampilkan **Semua** hadis, hanya **Sahih dan hasan**, atau hanya **Sahih**, menurut
+   penilaian satu ulama (Al-Albani; Salim al-Hilali untuk Malik). Bukhari dan Muslim tidak punya saringan ini: semua
+   hadisnya sahih. Halaman pencarian punya pilihan yang sama.
 
 ![Satu hadis di ponsel: sanad dengan huruf kecil abu-abu, lalu isi hadis dalam paragraf](docs/screenshots/id/hadith-phone.png)
 
