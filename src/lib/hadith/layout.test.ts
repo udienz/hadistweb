@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { layoutTranslation, paragraphs, segments, sentences } from "./layout";
+import { layoutArabic, layoutTranslation, paragraphs, segments, sentences } from "./layout";
 
 const plain = (segs: { text: string }[]) => segs.map((s) => s.text).join("");
 /** The text without whitespace and brackets, to compare what the reader gets with the source. */
@@ -75,5 +75,28 @@ describe("helpers", () => {
       { text: "Az Zuhri", narrator: true },
       { text: "." },
     ]);
+  });
+});
+
+describe("Arabic layout", () => {
+  const sanad = "حَدَّثَنَا يَحْيَى بْنُ بُكَيْرٍ، قَالَ حَدَّثَنَا اللَّيْثُ، عَنْ يُونُسَ، قَالَ ";
+  const sentence = "قَالَ هَذَا جِبْرِيلُ وَمَعِي مُحَمَّدٌ صلى الله عليه وسلم فَفَتَحَ لَنَا السَّمَاءَ الدُّنْيَا";
+  const text = sanad + '"' + Array.from({ length: 12 }, () => sentence + "\u200f.\u200f").join(" ") + '"';
+
+  it("separates the sanad at the first quote and splits the matn at the full stops", () => {
+    const layout = layoutArabic(text);
+    expect(layout.sanad).toBe(sanad.trim());
+    expect(layout.paragraphs.length).toBeGreaterThan(1);
+    expect(layout.paragraphs[0].startsWith('"')).toBe(true);
+  });
+
+  it("keeps every character apart from whitespace", () => {
+    const layout = layoutArabic(text);
+    expect(((layout.sanad ?? "") + layout.paragraphs.join("")).replace(/\s/g, "")).toBe(text.replace(/\s/g, ""));
+  });
+
+  it("leaves a short text, or one without a sanad opening, as one paragraph", () => {
+    expect(layoutArabic("قَالَ رَسُولُ اللَّهِ").paragraphs).toEqual(["قَالَ رَسُولُ اللَّهِ"]);
+    expect(layoutArabic('عَنْ أَبِي هُرَيْرَةَ "قَالَ"').sanad).toBeNull();
   });
 });

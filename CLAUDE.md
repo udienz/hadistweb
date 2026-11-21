@@ -37,7 +37,9 @@ before starting.
   paragraphs of about 400 characters, broken only at sentence ends and where a
   narrator takes the word. Display only: a test over the whole mirror found no
   character changed. Not for HadeethEnc texts (no changes allowed), which get
-  the typography only.
+  the typography only. `layoutArabic` does the same for the Arabic text: sanad
+  up to the first quote (opening with حدثنا/أخبرنا), paragraphs of about 300
+  letters at the source's full stops, which it wraps in right-to-left marks.
 - `src/components/TextSizeMenu.tsx` and `src/lib/display.ts`: text size for
   Arabic and translation, quranweb's steps, kept in local storage
   (`hadistweb:font-size`) and applied before the first paint.

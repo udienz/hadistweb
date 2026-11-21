@@ -84,7 +84,8 @@ test("the language and the theme can be switched", async ({ page }) => {
 
 test("a translation reads as a sanad above paragraphs, and the text size is kept", async ({ page }) => {
   await page.goto("/bukhari/1");
-  const sanad = page.getByLabel("Sanad");
+  const sanad = page.locator("article div[lang=id]").getByLabel("Sanad");
+  await expect(page.locator("article div[lang=ar]").getByLabel("Sanad")).toBeVisible();
   await expect(sanad).toContainText("Telah menceritakan kepada kami");
   await expect(sanad.locator("span.font-semibold").first()).toHaveText("Al Humaidi Abdullah bin Az Zubair");
   await expect(page.locator("article div[lang=id]")).not.toContainText("[");
