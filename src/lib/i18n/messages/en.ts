@@ -18,6 +18,7 @@ export const en = {
   },
   footer: {
     about: "About and sources",
+    privacy: "Privacy",
   },
   common: {
     hadiths: plural("{count} hadiths", "{count} hadith"),
@@ -99,6 +100,36 @@ export const en = {
     title: "The hadith data could not be loaded",
     description: "The source did not answer. Try again in a moment.",
     retry: "Try again",
+  },
+  privacy: {
+    title: "Privacy policy",
+    intro: "HadistWeb is a free hadith reading site. There are no accounts and nothing to sign up for. This page says what the site keeps and who else sees anything.",
+    sections: {
+      reading: {
+        title: "What stays in your browser",
+        body: "Your choice of light or dark theme is kept in your browser's local storage and does not leave it. Two small cookies keep the interface language (hw-lang) and how many hadiths a chapter page shows (hw-page-size), so the page appears the way you chose. The site stores nothing else about you: no reading history, no bookmarks, no account.",
+      },
+      sources: {
+        title: "Where the texts come from",
+        body: "The books come from our own copy of fawazahmed0/hadith-api on this server. The topic section and some Indonesian translations come from HadeethEnc.com: our server asks HadeethEnc for them, not your browser, so HadeethEnc does not see your IP address or anything else about you.",
+      },
+      analytics: {
+        title: "Visitor statistics",
+        body: "To see how much the site is used, we use Cloudflare Web Analytics. When a page opens, a small script from Cloudflare reports which page was viewed, the page you came from, the type of browser, operating system and device, the country, and how fast the page loaded. Cloudflare states that this tool sets no cookies, stores nothing in your browser, and does not use your IP address or browser details to identify or follow you. We only see totals (for example visits per page or per country), never a single visitor, and we use them only to understand the traffic of this site, never for advertising. If your browser or an extension blocks the script, the site works the same.",
+      },
+      recipients: {
+        title: "Who handles data",
+        body: "Cloudflare (DNS and proxying of the site, and the visitor statistics) and the hosting provider of the server. Our web server and Cloudflare handle IP addresses to deliver the pages, as every website does. We do not sell data or share it for any other purpose.",
+      },
+      law: {
+        title: "Applicable law",
+        body: "This policy follows Indonesian personal data protection law (Law No. 27 of 2022 on Personal Data Protection, UU PDP).",
+      },
+    },
+    contactTitle: "Contact",
+    contactBy: "This site is run by {name}.",
+    contactEmail: "Questions about this policy: {email}",
+    contactMissing: "The contact for questions about this policy has not been set up yet.",
   },
   about: {
     title: "About",

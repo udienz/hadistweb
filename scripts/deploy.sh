@@ -26,6 +26,16 @@ if [ ! -f "$MIRROR_ROOT/hadith-api/info.min.json" ] || [ ! -d "$MIRROR_ROOT/hadi
 fi
 DATA_ARGS=(-v "$MIRROR_ROOT:/data:ro" -e HADITH_FAWAZ_URL=/data/hadith-api)
 
+# The privacy contact (not secret, shown on the privacy page) comes from the GitHub variables or secrets
+# PRIVACY_CONTACT_NAME and PRIVACY_CONTACT_EMAIL, sent base64-encoded by the workflows (as in quranweb), so no character
+# in a name can break the ssh command line. Unset or empty: the page says the contact is not set up.
+decode_b64() { [ -n "${1:-}" ] && printf '%s' "$1" | base64 -d 2>/dev/null | tr -d '\r\n' || true; }
+for var in PRIVACY_CONTACT_NAME PRIVACY_CONTACT_EMAIL; do
+  encoded="${var}_B64"
+  value="$(decode_b64 "${!encoded:-}")"
+  if [ -n "$value" ]; then DATA_ARGS+=(-e "$var=$value"); fi
+done
+
 NAME="hadistweb-$ENVIRONMENT"
 IMAGE="hadistweb:$ENVIRONMENT"
 DIR="${DEPLOY_DIR:-$HOME/deploy/$NAME}"
