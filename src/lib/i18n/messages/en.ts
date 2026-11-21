@@ -54,6 +54,7 @@ export const en = {
     noTranslation: "The source has no translation of this hadith.",
     noArabic: "The source has no Arabic text for this number.",
     grades: "Grades",
+    sanad: "Chain of narrators",
     attribution: "Source",
     translationFrom: "Translation from {source}, shown without changes",
     translationScope: "It translates the hadith and its source; remarks that follow them in the Arabic text above (such as notes on its chains) may not be translated.",
@@ -82,6 +83,13 @@ export const en = {
     },
     credit: "From HadeethEnc.com, published by the Rowwad Translation Center, shown without changes.",
     original: "View on HadeethEnc.com",
+  },
+  display: {
+    textSize: "Text size",
+    arabicSize: "Arabic text",
+    latinSize: "Translation",
+    smaller: "Smaller: {name}",
+    larger: "Larger: {name}",
   },
   pagination: {
     label: "Pages",

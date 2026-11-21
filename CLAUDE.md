@@ -31,6 +31,16 @@ before starting.
   texts) and 20 of the 40 hadiths Qudsi (checked by hand, 3 automatic matches
   rejected) from HadeethEnc. Shown with HadeethEnc's attribution line, its credit and a note
   that remarks after the hadith in the Arabic may not be translated.
+- `src/lib/hadith/layout.ts`: how a translation is laid out (owner's choice,
+  2026-11-21): the sanad small and quiet above (narrator names from the
+  [brackets] in bold, brackets dropped; English "Narrated X:"), the text in
+  paragraphs of about 400 characters, broken only at sentence ends and where a
+  narrator takes the word. Display only: a test over the whole mirror found no
+  character changed. Not for HadeethEnc texts (no changes allowed), which get
+  the typography only.
+- `src/components/TextSizeMenu.tsx` and `src/lib/display.ts`: text size for
+  Arabic and translation, quranweb's steps, kept in local storage
+  (`hadistweb:font-size`) and applied before the first paint.
 - `src/lib/page-size.ts`: 5 or 10 hadiths per chapter page, the reader's
   choice, in the cookie `hw-page-size` (default 10).
 - `src/lib/hadeethenc/client.ts`: the HadeethEnc API (categories, a page of a

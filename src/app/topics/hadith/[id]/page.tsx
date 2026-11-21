@@ -44,7 +44,7 @@ export default async function TopicHadithPage({ params }: PageProps<"/topics/had
         </header>
 
         {hadith.arabic && (
-          <p className="font-arabic text-right text-2xl leading-[2.1] sm:text-[1.7rem]" dir="rtl" lang="ar" translate="no">
+          <p className="font-arabic text-right text-[length:calc(1.5rem*var(--arabic-scale,1))] leading-[2.1] sm:text-[length:calc(1.7rem*var(--arabic-scale,1))]" dir="rtl" lang="ar" translate="no">
             {hadith.arabic}
           </p>
         )}
@@ -53,7 +53,7 @@ export default async function TopicHadithPage({ params }: PageProps<"/topics/had
           {hadith.language !== locale && (
             <p className="mb-2 text-xs font-semibold text-muted-foreground">{t(`topics.otherLanguage.${hadith.language}`)}</p>
           )}
-          <p className="whitespace-pre-line leading-relaxed" lang={hadith.language}>
+          <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={hadith.language}>
             {hadith.text}
           </p>
         </div>
@@ -75,7 +75,7 @@ export default async function TopicHadithPage({ params }: PageProps<"/topics/had
       {hadith.explanation && (
         <section className="mt-4 rounded-2xl border border-border bg-card px-5 py-5 sm:px-7">
           <h2 className="mb-2 font-display text-lg font-semibold">{t("topics.explanation")}</h2>
-          <p className="whitespace-pre-line leading-relaxed" lang={hadith.language}>
+          <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={hadith.language}>
             {hadith.explanation}
           </p>
         </section>
@@ -84,7 +84,7 @@ export default async function TopicHadithPage({ params }: PageProps<"/topics/had
       {hadith.lessons.length > 0 && (
         <section className="mt-4 rounded-2xl border border-border bg-card px-5 py-5 sm:px-7">
           <h2 className="mb-2 font-display text-lg font-semibold">{t("topics.lessons")}</h2>
-          <ul className="flex list-none flex-col gap-2 leading-relaxed" lang={hadith.language}>
+          <ul className="flex max-w-[65ch] list-none flex-col gap-2 text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={hadith.language}>
             {hadith.lessons.map((lesson, i) => (
               <li key={i}>{lesson}</li>
             ))}
