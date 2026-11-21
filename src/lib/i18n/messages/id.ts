@@ -95,6 +95,8 @@ export const id: Messages = {
     textSize: "Ukuran huruf",
     arabicSize: "Teks Arab",
     latinSize: "Terjemahan",
+    secondTranslation: "Terjemahan kedua",
+    secondNone: "Tidak ada",
     smaller: "Perkecil: {name}",
     larger: "Perbesar: {name}",
   },

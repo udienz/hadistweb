@@ -97,6 +97,8 @@ export const zh: Messages = {
     textSize: "文字大小",
     arabicSize: "阿拉伯语原文",
     latinSize: "译文",
+    secondTranslation: "第二种译文",
+    secondNone: "无",
     smaller: "缩小：{name}",
     larger: "放大：{name}",
   },

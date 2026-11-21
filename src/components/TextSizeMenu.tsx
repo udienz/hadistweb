@@ -1,6 +1,11 @@
 "use client";
 
-import { useCallback, useRef, useState, useSyncExternalStore } from "react";
+import { useRouter } from "next/navigation";
+import { useCallback, useRef, useState, useSyncExternalStore, useTransition } from "react";
+import { writeCookie } from "@/lib/cookies";
+import { TRANSLATION_LANGUAGES } from "@/lib/hadith/types";
+import { languageName } from "@/lib/i18n/languages";
+import { parseSecond, SECOND_COOKIE } from "@/lib/second-translation";
 import {
   applyFontSize,
   DEFAULT_FONT_SIZE,
@@ -68,6 +73,39 @@ function SizeRow({ kind }: { kind: keyof FontSize }) {
   );
 }
 
+function readSecondCookie(): string {
+  return document.cookie.match(new RegExp(`(?:^|; )${SECOND_COOKIE}=([^;]*)`))?.[1] ?? "";
+}
+
+/** A second translation beside the first: a cookie the server reads, then the page is rendered again with it. */
+function SecondTranslationRow() {
+  const { t, locale } = useI18n();
+  const router = useRouter();
+  const [pending, startTransition] = useTransition();
+  const current = parseSecond(useSyncExternalStore(() => () => {}, readSecondCookie, () => "")) ?? "";
+  return (
+    <label className="flex flex-col gap-1.5 text-sm">
+      <span className="font-medium">{t("display.secondTranslation")}</span>
+      <select
+        value={current}
+        disabled={pending}
+        onChange={(e) => {
+          writeCookie(SECOND_COOKIE, e.target.value);
+          startTransition(() => router.refresh());
+        }}
+        className="h-9 rounded-full border border-border bg-background px-3 text-sm text-foreground focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+      >
+        <option value="">{t("display.secondNone")}</option>
+        {TRANSLATION_LANGUAGES.map((code) => (
+          <option key={code} value={code}>
+            {languageName(code, locale)}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
 /** The text size button in the header: Arabic and translation sizes, each on quranweb's scale, kept in this browser. */
 export default function TextSizeMenu() {
   const { t } = useI18n();
@@ -96,6 +134,9 @@ export default function TextSizeMenu() {
           <div className="flex flex-col gap-3">
             <SizeRow kind="arabic" />
             <SizeRow kind="latin" />
+            <div className="border-t border-border pt-3">
+              <SecondTranslationRow />
+            </div>
           </div>
         </div>
       )}

@@ -97,6 +97,8 @@ export const bn: Messages = {
     textSize: "লেখার আকার",
     arabicSize: "আরবি পাঠ",
     latinSize: "অনুবাদ",
+    secondTranslation: "দ্বিতীয় অনুবাদ",
+    secondNone: "কোনোটি নয়",
     smaller: "ছোট: {name}",
     larger: "বড়: {name}",
   },

@@ -84,6 +84,9 @@ Selama Anda belum memilih, situs mengikuti bahasa browser Anda.
 
 Pilihan Anda disimpan di browser ini.
 
+Di menu yang sama, **Terjemahan kedua** menampilkan terjemahan lain di samping terjemahan pertama, misalnya bahasa
+Inggris di samping bahasa Indonesia: berdampingan di layar lebar, bertumpuk di ponsel.
+
 ![Menu ukuran huruf terbuka di ponsel](docs/screenshots/id/text-size.png)
 
 ### Penanda dan lanjutkan membaca

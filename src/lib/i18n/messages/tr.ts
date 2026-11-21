@@ -97,6 +97,8 @@ export const tr: Messages = {
     textSize: "Yazı boyutu",
     arabicSize: "Arapça metin",
     latinSize: "Çeviri",
+    secondTranslation: "İkinci çeviri",
+    secondNone: "Yok",
     smaller: "Küçült: {name}",
     larger: "Büyüt: {name}",
   },

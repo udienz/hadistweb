@@ -97,6 +97,8 @@ export const fa: Messages = {
     textSize: "اندازهٔ متن",
     arabicSize: "متن عربی",
     latinSize: "ترجمه",
+    secondTranslation: "ترجمهٔ دوم",
+    secondNone: "هیچ",
     smaller: "کوچک‌تر: {name}",
     larger: "بزرگ‌تر: {name}",
   },

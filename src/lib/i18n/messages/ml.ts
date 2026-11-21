@@ -97,6 +97,8 @@ export const ml: Messages = {
     textSize: "അക്ഷര വലുപ്പം",
     arabicSize: "അറബി പാഠം",
     latinSize: "പരിഭാഷ",
+    secondTranslation: "രണ്ടാമത്തെ പരിഭാഷ",
+    secondNone: "ഒന്നുമില്ല",
     smaller: "ചെറുത്: {name}",
     larger: "വലുത്: {name}",
   },

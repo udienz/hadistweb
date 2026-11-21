@@ -43,6 +43,10 @@ before starting.
 - `src/components/TextSizeMenu.tsx` and `src/lib/display.ts`: text size for
   Arabic and translation, quranweb's steps, kept in local storage
   (`hadistweb:font-size`) and applied before the first paint.
+- `src/lib/second-translation.ts`: a second translation beside the first
+  (2026-11-22), the reader's choice in the cookie `hw-second`, set in the text
+  size menu; `getChapter`/`getHadith` take `{ second }`. Not shown when it is in
+  the same language as the first.
 - `src/lib/page-size.ts`: 5 or 10 hadiths per chapter page, the reader's
   choice, in the cookie `hw-page-size` (default 10).
 - `src/lib/hadeethenc/client.ts`: the HadeethEnc API (categories, a page of a

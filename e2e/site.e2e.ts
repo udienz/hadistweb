@@ -195,3 +195,19 @@ test("a book hadith links to HadeethEnc's explanation, and the explanation back 
   await expect(page.getByRole("heading", { name: "Di kitab-kitab" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Arbain an-Nawawi, hadis 3" })).toHaveAttribute("href", "/nawawi/3");
 });
+
+test("a second translation stands beside the first", async ({ page }) => {
+  await page.goto("/bukhari/1");
+  await page.getByRole("button", { name: "Ukuran huruf" }).click();
+  await page.getByLabel("Terjemahan kedua").selectOption("en");
+  const card = page.locator("article").first();
+  await expect(card.locator('div[lang="en"]')).toBeVisible();
+  await expect(card.locator('div[lang="id"]')).toBeVisible();
+  await expect(card.getByText("Terjemahan Inggris", { exact: true })).toBeVisible();
+  // Kept for the next page, and removed again.
+  await page.goto("/bukhari/chapter/1");
+  await expect(page.locator("article").first().locator('div[lang="en"]')).toBeVisible();
+  await page.getByRole("button", { name: "Ukuran huruf" }).click();
+  await page.getByLabel("Terjemahan kedua").selectOption("");
+  await expect(page.locator("article").first().locator('div[lang="en"]')).toHaveCount(0);
+});

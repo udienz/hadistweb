@@ -79,5 +79,7 @@ export interface Hadith {
   arabic: string;
   /** The first translation available in the reader's order, or null when there is none. */
   translation: Translation | null;
+  /** The reader's second translation, when they chose one, the book has it in that language and it is not the first. */
+  second?: Translation | null;
   grades: Grade[];
 }

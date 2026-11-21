@@ -97,6 +97,8 @@ export const ta: Messages = {
     textSize: "எழுத்து அளவு",
     arabicSize: "அரபு உரை",
     latinSize: "மொழிபெயர்ப்பு",
+    secondTranslation: "இரண்டாவது மொழிபெயர்ப்பு",
+    secondNone: "எதுவும் இல்லை",
     smaller: "சிறியது: {name}",
     larger: "பெரியது: {name}",
   },

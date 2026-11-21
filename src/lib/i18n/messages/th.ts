@@ -97,6 +97,8 @@ export const th: Messages = {
     textSize: "ขนาดตัวอักษร",
     arabicSize: "ตัวบทภาษาอาหรับ",
     latinSize: "คำแปล",
+    secondTranslation: "คำแปลที่สอง",
+    secondNone: "ไม่มี",
     smaller: "เล็กลง: {name}",
     larger: "ใหญ่ขึ้น: {name}",
   },

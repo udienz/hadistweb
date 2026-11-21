@@ -83,6 +83,7 @@ export default function HadithCard({
   const href = hadithHref(book, hadith.number);
   const title = t("hadith.number", { number: hadith.number });
   const translation = hadith.translation;
+  const second = hadith.second;
   const explanation = explanationId(book, hadith.number);
 
   return (
@@ -117,42 +118,58 @@ export default function HadithCard({
         <p className="text-sm italic text-muted-foreground">{t("hadith.noArabic")}</p>
       )}
 
-      {/* In Arabic no translation is shown: the hadith is already in the reader's language. */}
-      {locale !== "ar" && (
-      <div className="mt-5 border-t border-border pt-4">
-        {translation ? (
-          <>
-            {translation.language !== locale && (
-              <p className="mb-2 text-xs font-semibold text-muted-foreground">{t("hadith.fallback", { language: languageName(translation.language, locale) })}</p>
-            )}
-            {translation.source ? (
-              // HadeethEnc's text is shown as delivered (its terms forbid changes): typography only.
-              <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={translation.language} dir={directionOf(translation.language)} data-share>
-                {translation.text}
-              </p>
-            ) : (
-              <LaidOut text={translation.text} language={translation.language} sanadLabel={t("hadith.sanad")} />
-            )}
-            {translation.source && (
-              <>
-                {translation.source.attribution && (
-                  <p className="mt-3 text-sm" lang={translation.language} data-share>
-                    <span className="text-muted-foreground">{t("hadith.attribution")}:</span> {translation.source.attribution}
-                  </p>
+      {/* In Arabic no translation is shown (the hadith is already in the reader's language), unless they chose a second
+          one. With a second translation the two stand side by side on a wide screen, one above the other on a phone. */}
+      {(locale !== "ar" || second) && (
+        <div className="mt-5 border-t border-border pt-4">
+          <div className={second ? "grid gap-6 md:grid-cols-2" : undefined}>
+            {locale !== "ar" && (
+              <div>
+                {second && translation && translation.language === locale && (
+                  <p className="mb-2 text-xs font-semibold text-muted-foreground">{t("home.translationIn", { language: languageName(translation.language, locale) })}</p>
                 )}
-                <p className="mt-2 text-xs text-muted-foreground">{t("hadith.translationScope")}</p>
-                <p className="mt-1 text-xs text-muted-foreground" data-share>
-                  <a href={translation.source.url} className="font-medium text-primary hover:underline" rel="noopener">
-                    {t("hadith.translationFrom", { source: translation.source.name })}
-                  </a>
-                </p>
-              </>
+                {translation ? (
+                  <>
+                    {translation.language !== locale && (
+                      <p className="mb-2 text-xs font-semibold text-muted-foreground">{t("hadith.fallback", { language: languageName(translation.language, locale) })}</p>
+                    )}
+                    {translation.source ? (
+                      // HadeethEnc's text is shown as delivered (its terms forbid changes): typography only.
+                      <p className="max-w-[65ch] whitespace-pre-line text-[length:calc(1rem*var(--latin-scale,1))] leading-[1.8]" lang={translation.language} dir={directionOf(translation.language)} data-share>
+                        {translation.text}
+                      </p>
+                    ) : (
+                      <LaidOut text={translation.text} language={translation.language} sanadLabel={t("hadith.sanad")} />
+                    )}
+                    {translation.source && (
+                      <>
+                        {translation.source.attribution && (
+                          <p className="mt-3 text-sm" lang={translation.language} data-share>
+                            <span className="text-muted-foreground">{t("hadith.attribution")}:</span> {translation.source.attribution}
+                          </p>
+                        )}
+                        <p className="mt-2 text-xs text-muted-foreground">{t("hadith.translationScope")}</p>
+                        <p className="mt-1 text-xs text-muted-foreground" data-share>
+                          <a href={translation.source.url} className="font-medium text-primary hover:underline" rel="noopener">
+                            {t("hadith.translationFrom", { source: translation.source.name })}
+                          </a>
+                        </p>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <p className="text-sm italic text-muted-foreground">{t("hadith.noTranslation")}</p>
+                )}
+              </div>
             )}
-          </>
-        ) : (
-          <p className="text-sm italic text-muted-foreground">{t("hadith.noTranslation")}</p>
-        )}
-      </div>
+            {second && (
+              <div className="md:border-s md:border-border md:ps-6">
+                <p className="mb-2 text-xs font-semibold text-muted-foreground">{t("home.translationIn", { language: languageName(second.language, locale) })}</p>
+                <LaidOut text={second.text} language={second.language} sanadLabel={t("hadith.sanad")} />
+              </div>
+            )}
+          </div>
+        </div>
       )}
 
       {/* HadeethEnc's explanation of the same hadith, where one was matched (lib/hadith/explanations.ts). No prefetch:

@@ -97,6 +97,8 @@ export const ms: Messages = {
     textSize: "Saiz teks",
     arabicSize: "Teks Arab",
     latinSize: "Terjemahan",
+    secondTranslation: "Terjemahan kedua",
+    secondNone: "Tiada",
     smaller: "Lebih kecil: {name}",
     larger: "Lebih besar: {name}",
   },
