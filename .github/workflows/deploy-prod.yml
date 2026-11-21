@@ -1,0 +1,60 @@
+name: Deploy Production
+
+# Deploys to https://hadist.udienz.web.id when a `v*` release tag is pushed (same as quranweb):
+#   git tag -a v0.2.0 -m "..." && git push origin v0.2.0
+# Only commits that are already on `master` can be released. To roll back, re-run this workflow for an older tag.
+#
+# It uses the GitHub Environment `production` (the QA_SSH_* secrets come from the repository: QA and production are on
+# the same server). Add "Required reviewers" in Settings > Environments > production for a manual approval.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
+
+# Least privilege for the GITHUB_TOKEN: the job only reads the code (the deploy uses SSH secrets, not the token).
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy to production
+    if: ${{ vars.QA_DEPLOY == 'true' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://hadist.udienz.web.id
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Require a v* tag on master
+        run: |
+          case "$GITHUB_REF" in
+            refs/tags/v*) ;;
+            *) echo "Production deploys only from a v* tag, not $GITHUB_REF" >&2; exit 1 ;;
+          esac
+          git fetch origin master
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/master; then
+            echo "Commit $GITHUB_SHA is not on master, release cancelled" >&2
+            exit 1
+          fi
+
+      - name: Configure SSH
+        run: |
+          install -m 700 -d ~/.ssh
+          echo "${{ secrets.QA_SSH_PRIVATE_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          echo "${{ secrets.QA_SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+
+      - name: Deploy
+        run: |
+          ssh -i ~/.ssh/id_deploy -p "${{ secrets.QA_SSH_PORT }}" \
+            "${{ secrets.QA_SSH_USER }}@${{ secrets.QA_SSH_HOST }}" \
+            "bash -s -- prod ${{ github.sha }}" < scripts/deploy.sh
