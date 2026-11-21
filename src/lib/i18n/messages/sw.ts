@@ -36,6 +36,8 @@ export const sw: Messages = {
     subtitle: "Maandishi ya Kiarabu pamoja na tafsiri, kitabu kwa kitabu na mlango kwa mlango.",
     start: "Anza na Sahih al-Bukhari",
     listTitle: "Vitabu",
+    dailyTitle: "Hadithi ya leo",
+    dailyMore: "Soma hadithi nzima",
     translationIn: "Tafsiri ya {language}",
     translationFrom: "Tafsiri ya {language} kutoka {source}",
     translationPartly: "Baadhi ya hadithi zimetafsiriwa kwa {language}, kutoka {source}",

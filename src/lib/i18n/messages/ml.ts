@@ -36,6 +36,8 @@ export const ml: Messages = {
     subtitle: "അറബി മൂലം പരിഭാഷയോടൊപ്പം, ഗ്രന്ഥം ഗ്രന്ഥമായും അധ്യായം അധ്യായമായും.",
     start: "സ്വഹീഹുൽ ബുഖാരിയിൽ നിന്ന് തുടങ്ങുക",
     listTitle: "ഗ്രന്ഥങ്ങൾ",
+    dailyTitle: "ഇന്നത്തെ ഹദീസ്",
+    dailyMore: "ഹദീസ് പൂർണമായി വായിക്കുക",
     translationIn: "{language} പരിഭാഷ",
     translationFrom: "{language} പരിഭാഷ, {source} ൽ നിന്ന്",
     translationPartly: "ചില ഹദീസുകൾക്ക് {language} പരിഭാഷ, {source} ൽ നിന്ന്",

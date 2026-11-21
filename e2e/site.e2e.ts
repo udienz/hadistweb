@@ -178,3 +178,10 @@ test("bookmarks and continue reading are kept in the browser", async ({ page }) 
   await page.getByRole("button", { name: "Hapus: Shahih al-Bukhari, hadis 1" }).click();
   await expect(page.getByText(/Belum ada penanda/)).toBeVisible();
 });
+
+test("the home page shows a hadith of the day from an-Nawawi", async ({ page }) => {
+  await page.goto("/");
+  const daily = page.getByRole("region", { name: "Hadis hari ini" }).or(page.locator("section", { hasText: "Hadis hari ini" }));
+  await expect(daily).toBeVisible();
+  await expect(daily.getByRole("link", { name: /Baca selengkapnya/ })).toHaveAttribute("href", /^\/nawawi\/\d+$/);
+});

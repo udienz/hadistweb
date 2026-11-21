@@ -36,6 +36,8 @@ export const bs: Messages = {
     subtitle: "Arapski tekst s prijevodom, knjigu po knjigu i poglavlje po poglavlje.",
     start: "Počnite sa Sahihom el-Buharije",
     listTitle: "Knjige",
+    dailyTitle: "Hadis dana",
+    dailyMore: "Pročitajte cijeli hadis",
     translationIn: "Prijevod: {language}",
     translationFrom: "Prijevod: {language}, iz izvora {source}",
     translationPartly: "Neki hadisi prevedeni ({language}), iz izvora {source}",

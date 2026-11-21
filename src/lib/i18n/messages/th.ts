@@ -36,6 +36,8 @@ export const th: Messages = {
     subtitle: "ตัวบทภาษาอาหรับพร้อมคำแปล ทีละเล่มและทีละบท",
     start: "เริ่มจากเศาะฮีหฺอัลบุคอรี",
     listTitle: "หนังสือ",
+    dailyTitle: "หะดีษประจำวัน",
+    dailyMore: "อ่านหะดีษฉบับเต็ม",
     translationIn: "คำแปลภาษา{language}",
     translationFrom: "คำแปลภาษา{language} จาก {source}",
     translationPartly: "บางหะดีษมีคำแปลภาษา{language} จาก {source}",

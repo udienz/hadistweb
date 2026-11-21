@@ -22,6 +22,7 @@ serta bagian hadis pilihan per tema, masing-masing dengan penjelasannya. Anda ti
   diperkecil masing-masing.
 - **Mencari** di teks Arab dan terjemahan Indonesia serta Inggris, atau mengetik nama kitab dan nomor, misalnya
   "Bukhari 1", untuk langsung membuka hadisnya.
+- **Hadis hari ini** di beranda, dari Arbain an-Nawawi, berganti setiap hari (menurut WIB).
 - **Menandai hadis** dan **melanjutkan membaca** dari posisi terakhir, langsung dari beranda.
 - **Memasangnya sebagai aplikasi** di ponsel atau komputer, dengan ikon sendiri.
 - **Membagikan hadis**: salin teksnya lengkap dengan rujukan dan tautan, atau kirim langsung ke WhatsApp. Tautan yang

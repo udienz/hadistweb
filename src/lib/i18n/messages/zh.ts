@@ -36,6 +36,8 @@ export const zh: Messages = {
     subtitle: "阿拉伯语原文附译文，逐部逐章阅读。",
     start: "从《布哈里圣训实录》开始",
     listTitle: "圣训集",
+    dailyTitle: "今日圣训",
+    dailyMore: "阅读整段圣训",
     translationIn: "{language}译文",
     translationFrom: "{language}译文，来自 {source}",
     translationPartly: "部分圣训有{language}译文，来自 {source}",

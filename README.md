@@ -22,6 +22,7 @@ no ads.
   translation separately.
 - **Search** the Arabic text and the Indonesian and English translations, or type a book and number such as
   "Bukhari 1" to open that hadith.
+- **A hadith of the day** on the home page, from an-Nawawi's forty hadiths, a new one each day (Indonesian time).
 - **Bookmark hadiths** and **continue reading** where you stopped, from the home page.
 - **Install it as an app** on your phone or computer, with its own icon.
 - **Share a hadith**: copy its text with the reference and link, or send it straight to WhatsApp. A shared link shows

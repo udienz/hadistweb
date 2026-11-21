@@ -36,6 +36,8 @@ export const bn: Messages = {
     subtitle: "আরবি মূলপাঠ ও অনুবাদ, গ্রন্থ ধরে ও অধ্যায় ধরে।",
     start: "সহিহ বুখারি দিয়ে শুরু করুন",
     listTitle: "গ্রন্থসমূহ",
+    dailyTitle: "আজকের হাদিস",
+    dailyMore: "পুরো হাদিস পড়ুন",
     translationIn: "{language} অনুবাদ",
     translationFrom: "{source} থেকে {language} অনুবাদ",
     translationPartly: "কিছু হাদিসের {language} অনুবাদ, {source} থেকে",

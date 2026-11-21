@@ -36,6 +36,8 @@ export const ha: Messages = {
     subtitle: "Rubutun Larabci tare da fassara, littafi bayan littafi da babi bayan babi.",
     start: "Fara da Sahihul Bukhari",
     listTitle: "Littattafai",
+    dailyTitle: "Hadisin yau",
+    dailyMore: "Karanta cikakken hadisin",
     translationIn: "Fassara a {language}",
     translationFrom: "Fassara a {language} daga {source}",
     translationPartly: "An fassara wasu hadisai zuwa {language}, daga {source}",

@@ -36,6 +36,8 @@ export const ta: Messages = {
     subtitle: "அரபு மூலம் மொழிபெயர்ப்புடன், நூல் நூலாகவும் பாடம் பாடமாகவும்.",
     start: "ஸஹீஹுல் புகாரியிலிருந்து தொடங்குங்கள்",
     listTitle: "நூல்கள்",
+    dailyTitle: "இன்றைய ஹதீஸ்",
+    dailyMore: "முழு ஹதீஸையும் படியுங்கள்",
     translationIn: "{language} மொழிபெயர்ப்பு",
     translationFrom: "{language} மொழிபெயர்ப்பு, {source} இலிருந்து",
     translationPartly: "சில ஹதீஸ்களுக்கு {language} மொழிபெயர்ப்பு, {source} இலிருந்து",

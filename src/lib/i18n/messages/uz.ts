@@ -36,6 +36,8 @@ export const uz: Messages = {
     subtitle: "Арабча матн ва таржимаси, китобма-китоб ва бобма-боб.",
     start: "Саҳиҳи Бухорийдан бошланг",
     listTitle: "Китоблар",
+    dailyTitle: "Кун ҳадиси",
+    dailyMore: "Ҳадиснинг тўлиқ матнини ўқиш",
     translationIn: "Таржима: {language}",
     translationFrom: "Таржима: {language}, манба: {source}",
     translationPartly: "Баъзи ҳадислар таржима қилинган ({language}), манба: {source}",

@@ -36,6 +36,8 @@ export const hi: Messages = {
     subtitle: "अरबी पाठ अनुवाद के साथ, किताब-दर-किताब और अध्याय-दर-अध्याय।",
     start: "सहीह अल-बुख़ारी से शुरू करें",
     listTitle: "किताबें",
+    dailyTitle: "आज की हदीस",
+    dailyMore: "पूरी हदीस पढ़ें",
     translationIn: "{language} अनुवाद",
     translationFrom: "{language} अनुवाद, {source} से",
     translationPartly: "कुछ हदीसों का {language} अनुवाद, {source} से",

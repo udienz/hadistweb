@@ -36,6 +36,8 @@ export const ja: Messages = {
     subtitle: "アラビア語の本文と翻訳を、書物ごと、章ごとに。",
     start: "サヒーフ・ブハーリーから始める",
     listTitle: "書物",
+    dailyTitle: "今日のハディース",
+    dailyMore: "ハディース全文を読む",
     translationIn: "{language}訳",
     translationFrom: "{language}訳（{source}より）",
     translationPartly: "一部のハディースに{language}訳あり（{source}より）",

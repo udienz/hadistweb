@@ -34,6 +34,8 @@ export const en = {
     subtitle: "Arabic text with a translation, book by book and chapter by chapter.",
     start: "Start with Sahih al-Bukhari",
     listTitle: "Books",
+    dailyTitle: "Hadith of the day",
+    dailyMore: "Read the whole hadith",
     translationIn: "Translation in {language}",
     translationFrom: "Translation in {language} from {source}",
     translationPartly: "Some hadiths translated into {language}, from {source}",

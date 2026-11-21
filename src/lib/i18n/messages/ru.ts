@@ -36,6 +36,8 @@ export const ru: Messages = {
     subtitle: "Арабский текст с переводом, сборник за сборником и глава за главой.",
     start: "Начать с «Сахиха» аль-Бухари",
     listTitle: "Сборники",
+    dailyTitle: "Хадис дня",
+    dailyMore: "Читать хадис полностью",
     translationIn: "Перевод: {language}",
     translationFrom: "Перевод ({language}) из {source}",
     translationPartly: "Часть хадисов переведена ({language}), из {source}",

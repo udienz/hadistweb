@@ -36,6 +36,8 @@ export const ur: Messages = {
     subtitle: "عربی متن اور ترجمہ، کتاب بہ کتاب اور باب بہ باب۔",
     start: "صحیح بخاری سے شروع کریں",
     listTitle: "کتابیں",
+    dailyTitle: "آج کی حدیث",
+    dailyMore: "پوری حدیث پڑھیں",
     translationIn: "{language} ترجمہ",
     translationFrom: "{source} سے {language} ترجمہ",
     translationPartly: "کچھ احادیث کا {language} ترجمہ، {source} سے",

@@ -64,6 +64,10 @@ before starting.
   local storage (`hadistweb:reading`) only, never sent to the server. The last
   hadith read is the first card in view once scrolling stops. The privacy page
   says so; change it with them.
+- `src/lib/daily.ts`, `src/components/DailyHadith.tsx`: the hadith of the day on
+  the home page (2026-11-21), an-Nawawi 1 to 42 in turn, changing at midnight in
+  Jakarta; read at request time (`connection()`), streamed in a Suspense
+  boundary, and left out when the data cannot be read.
 - `src/components/ShareMenu.tsx`: share a hadith (owner's request, 2026-11-21):
   copy text (the card's `data-share` parts as shown, then the reference and the
   link), copy link, the device share sheet, WhatsApp.
