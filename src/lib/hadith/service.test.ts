@@ -153,6 +153,24 @@ describe("an-Nawawi pairs", () => {
   });
 });
 
+describe("chapter counts", () => {
+  it("counts only the hadiths with a text when the mirror's counts file is there", async () => {
+    // From the fixture above: chapter 2 has "3.2" with no text in any edition, chapter 0 has two hadiths with a text.
+    await writeFile(join(dir, "hadistweb-counts.min.json"), JSON.stringify({ bukhari: { "1": 2, "2": 1, "0": 2 } }));
+    try {
+      const chapters = await createHadithService(dir).getChapters("bukhari");
+      expect(chapters.map((c) => [c.number, c.count])).toEqual([[1, 2], [2, 1], [0, 2]]);
+    } finally {
+      await rm(join(dir, "hadistweb-counts.min.json"));
+    }
+  });
+
+  it("counts every number from info.min.json without that file (reading the source directly)", async () => {
+    const chapters = await createHadithService(dir).getChapters("bukhari");
+    expect(chapters.find((c) => c.number === 2)?.count).toBe(2);
+  });
+});
+
 describe("buildIndex", () => {
   it("puts chapter 0 first when it starts the book (an introduction, as in Muslim)", () => {
     const index = buildIndex({

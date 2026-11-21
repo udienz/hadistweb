@@ -4,7 +4,8 @@
 //   node scripts/sync-mirror.mjs <dir>
 //
 // Writes <dir>/info.min.json and <dir>/editions/<edition>/sections/<n>.min.json for the Arabic, Indonesian and English
-// editions of the ten books (27 editions, about 100 MB). The source repository is 1.65 GB and jsDelivr refuses it (over
+// editions of the ten books, and <dir>/hadistweb-counts.min.json: per book and chapter, how many hadith numbers have a
+// text in at least one of those editions (the app shows a number only then; info.min.json counts every number) (27 editions, about 100 MB). The source repository is 1.65 GB and jsDelivr refuses it (over
 // its 150 MB limit), so the whole edition files are downloaded from raw GitHub and split into chapters here. Checked
 // 2026-11-20: a chapter split this way is identical to the source's own sections file (Abu Dawud 1, 390 hadiths).
 //
@@ -49,7 +50,9 @@ async function main() {
   await writeFile(join(next, "info.min.json"), JSON.stringify(info));
 
   let files = 0;
+  const counts = {};
   for (const book of BOOKS) {
+    const withText = new Map(); // number -> chapter, for numbers with a text in some edition
     const languages = ENGLISH_ONLY.has(book) ? ["ara", "eng"] : ["ara", "ind", "eng"];
     for (const language of languages) {
       const edition = `${language}-${book}`;
@@ -57,6 +60,7 @@ async function main() {
       const byChapter = new Map();
       for (const hadith of full.hadiths) {
         const chapter = hadith.reference?.book ?? 0;
+        if (String(hadith.text ?? "").trim()) withText.set(String(hadith.hadithnumber), chapter);
         if (!byChapter.has(chapter)) byChapter.set(chapter, []);
         byChapter.get(chapter).push(hadith);
       }
@@ -73,7 +77,10 @@ async function main() {
       }
       console.log(`${edition}: ${full.hadiths.length} hadiths, ${byChapter.size} chapters`);
     }
+    counts[book] = {};
+    for (const chapter of withText.values()) counts[book][chapter] = (counts[book][chapter] ?? 0) + 1;
   }
+  await writeFile(join(next, "hadistweb-counts.min.json"), JSON.stringify(counts));
 
   // Swap in the new copy.
   const old = `${dir}.old`;

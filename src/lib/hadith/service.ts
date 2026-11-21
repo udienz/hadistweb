@@ -30,6 +30,9 @@ interface RawInfo {
   };
 }
 
+/** Per book and chapter: how many hadith numbers have a text in some edition (our mirror only). */
+type RawCounts = Record<string, Record<string, number>>;
+
 interface BookIndex {
   chapters: Chapter[];
   chapterOf: Map<string, number>;
@@ -73,7 +76,10 @@ export function createHadithService(baseUrl: string, extra?: ExtraTranslation): 
 
   function loadIndex(): Promise<Map<string, BookIndex>> {
     if (!index) {
-      index = (loadFile("info") as Promise<RawInfo>).then(buildIndex);
+      // hadistweb-counts is written by scripts/sync-mirror.mjs; the source itself has no such file, so without our mirror
+      // the counts from info.min.json are used.
+      const counts = (loadFile("hadistweb-counts") as Promise<RawCounts>).catch(() => undefined);
+      index = Promise.all([loadFile("info") as Promise<RawInfo>, counts]).then(([info, c]) => buildIndex(info, c));
       index.catch(() => (index = null));
     }
     return index;
@@ -157,16 +163,19 @@ function toGrades(raw: RawHadith["grades"]): Grade[] {
     .map((g) => ({ grader: g.name!.trim(), grade: g.grade!.trim() }));
 }
 
-/** The chapter list of every book (only chapters that have hadiths) and where each hadith number is. */
-export function buildIndex(info: RawInfo): Map<string, BookIndex> {
+/**
+ * The chapter list of every book (only chapters that have hadiths) and where each hadith number is. With `counts`, a
+ * chapter's count is the number of hadiths that have a text, as its page shows them; without, every number counts.
+ */
+export function buildIndex(info: RawInfo, counts?: RawCounts): Map<string, BookIndex> {
   const result = new Map<string, BookIndex>();
   for (const [book, { metadata, hadiths }] of Object.entries(info)) {
-    const counts = new Map<number, number>();
+    const numbers = new Map<number, number>();
     const chapterOf = new Map<string, number>();
     let unplacedFirst = false;
     for (const h of hadiths) {
       const chapter = h.reference?.book ?? 0;
-      counts.set(chapter, (counts.get(chapter) ?? 0) + 1);
+      numbers.set(chapter, (numbers.get(chapter) ?? 0) + 1);
       chapterOf.set(numberKey(h.hadithnumber), chapter);
       if (chapter === 0 && Number(h.hadithnumber) === 1) unplacedFirst = true;
     }
@@ -174,7 +183,11 @@ export function buildIndex(info: RawInfo): Map<string, BookIndex> {
     // Ibn Majah begin at hadith 1) it comes first; otherwise (scattered hadiths, as in Bukhari) it comes last.
     const rank = (n: number) => (n === 0 ? (unplacedFirst ? -1 : Number.MAX_SAFE_INTEGER) : n);
     const chapters = Object.entries(metadata.sections)
-      .map(([n, name]) => ({ number: Number(n), name: name.trim(), count: counts.get(Number(n)) ?? 0 }))
+      .map(([n, name]) => ({
+        number: Number(n),
+        name: name.trim(),
+        count: counts?.[book] ? (counts[book][n] ?? 0) : (numbers.get(Number(n)) ?? 0),
+      }))
       .filter((c) => Number.isInteger(c.number) && c.count > 0)
       .sort((a, b) => rank(a.number) - rank(b.number));
     result.set(book, { chapters, chapterOf });
