@@ -71,6 +71,7 @@ export const es: Messages = {
     textCopied: "Texto copiado",
     shareVia: "Compartir con…",
     explanationLink: "Explicación de este hadiz, de HadeethEnc.com",
+    quranLink: "Leer el Corán {verse} en QuranWeb",
     open: "Abrir el hadiz {number}",
     inBook: "{book}, hadiz {number}",
   },

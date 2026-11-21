@@ -71,6 +71,7 @@ export const vi: Messages = {
     textCopied: "Đã sao chép văn bản",
     shareVia: "Chia sẻ qua…",
     explanationLink: "Giải thích hadith này, từ HadeethEnc.com",
+    quranLink: "Đọc Qur'an {verse} trên QuranWeb",
     open: "Mở hadith {number}",
     inBook: "{book}, hadith {number}",
   },

@@ -69,6 +69,7 @@ export const id: Messages = {
     textCopied: "Teks disalin",
     shareVia: "Bagikan lewat…",
     explanationLink: "Penjelasan hadis ini, dari HadeethEnc.com",
+    quranLink: "Baca Al-Qur'an {verse} di QuranWeb",
     open: "Buka hadis {number}",
     inBook: "{book}, hadis {number}",
   },

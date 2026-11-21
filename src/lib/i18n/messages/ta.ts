@@ -71,6 +71,7 @@ export const ta: Messages = {
     textCopied: "உரை நகலெடுக்கப்பட்டது",
     shareVia: "இதன் மூலம் பகிர்…",
     explanationLink: "இந்த ஹதீஸின் விளக்கம், HadeethEnc.com இலிருந்து",
+    quranLink: "QuranWeb இல் குர்ஆன் {verse} ஐப் படியுங்கள்",
     open: "ஹதீஸ் {number} ஐத் திற",
     inBook: "{book}, ஹதீஸ் {number}",
   },

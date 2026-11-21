@@ -71,6 +71,7 @@ export const tr: Messages = {
     textCopied: "Metin kopyalandı",
     shareVia: "Şununla paylaş…",
     explanationLink: "Bu hadisin açıklaması, HadeethEnc.com'dan",
+    quranLink: "Kur'an {verse} ayetini QuranWeb'de oku",
     open: "Hadis {number} sayfasını aç",
     inBook: "{book}, hadis {number}",
   },

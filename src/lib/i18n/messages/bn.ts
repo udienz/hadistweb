@@ -71,6 +71,7 @@ export const bn: Messages = {
     textCopied: "পাঠ কপি হয়েছে",
     shareVia: "শেয়ার করুন…",
     explanationLink: "এই হাদিসের ব্যাখ্যা, HadeethEnc.com থেকে",
+    quranLink: "QuranWeb-এ কুরআন {verse} পড়ুন",
     open: "হাদিস {number} খুলুন",
     inBook: "{book}, হাদিস {number}",
   },

@@ -71,6 +71,7 @@ export const ml: Messages = {
     textCopied: "പാഠം പകർത്തി",
     shareVia: "ഇതുവഴി പങ്കിടുക…",
     explanationLink: "ഈ ഹദീസിന്റെ വിശദീകരണം, HadeethEnc.com ൽ നിന്ന്",
+    quranLink: "QuranWeb ൽ ഖുർആൻ {verse} വായിക്കുക",
     open: "ഹദീസ് {number} തുറക്കുക",
     inBook: "{book}, ഹദീസ് {number}",
   },

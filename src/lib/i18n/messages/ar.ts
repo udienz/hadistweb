@@ -71,6 +71,7 @@ export const ar: Messages = {
     textCopied: "تم نسخ النص",
     shareVia: "المشاركة عبر…",
     explanationLink: "شرح هذا الحديث، من HadeethEnc.com",
+    quranLink: "اقرأ الآية {verse} في QuranWeb",
     open: "افتح الحديث {number}",
     inBook: "{book}، الحديث {number}",
   },

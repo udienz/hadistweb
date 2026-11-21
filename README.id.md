@@ -39,7 +39,8 @@ Gambar menampilkan antarmuka bahasa Indonesia; README bahasa Inggris menampilkan
 1. Di beranda, pilih kitab. Daftar babnya muncul.
 2. Pilih bab. Setiap hadis menampilkan nomornya, teks Arab, dan terjemahannya.
 3. Sanad (rangkaian perawi yang menyampaikan hadis) tampil lebih dulu dengan huruf kecil berwarna abu-abu, lalu isi
-   hadis sesudahnya, dibagi menjadi paragraf.
+   hadis sesudahnya, dibagi menjadi paragraf. Kalau terjemahan menyebut ayat Al-Qur'an, misalnya "QS. Luqman: 34" atau
+   "(3.77)", rujukan itu menaut ke ayatnya di [QuranWeb](https://quranweb.udienz.web.id).
 4. Pilih 5 atau 10 hadis per halaman di atas hadis pertama, dan pindah halaman dengan nomor halaman.
 5. Di kitab-kitab Sunan dan Malik, tampilkan **Semua** hadis, hanya **Sahih dan hasan**, atau hanya **Sahih**, menurut
    penilaian satu ulama (Al-Albani; Salim al-Hilali untuk Malik). Bukhari dan Muslim tidak punya saringan ini: semua

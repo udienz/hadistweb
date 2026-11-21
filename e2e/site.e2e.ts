@@ -227,3 +227,10 @@ test("a Sunan chapter can show only the sahih, or the sahih and hasan hadiths, b
   await page.goto("/bukhari/chapter/1");
   await expect(page.getByRole("navigation", { name: /Derajat menurut/ })).toHaveCount(0);
 });
+
+test("a verse quoted in a translation links to it on QuranWeb", async ({ page }) => {
+  await page.goto("/bukhari/50");
+  const link = page.locator('article div[lang="id"] a', { hasText: "QS. Luqman: 34" });
+  await expect(link).toHaveAttribute("href", "https://quranweb.udienz.web.id/surah/31?page=4#verse-34");
+  await expect(link).toHaveAttribute("title", "Baca Al-Qur'an 31:34 di QuranWeb");
+});

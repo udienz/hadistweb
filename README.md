@@ -39,7 +39,8 @@ The pictures show the English interface; the Indonesian README shows the Indones
 1. On the home page, pick a book. You see its list of chapters.
 2. Pick a chapter. Each hadith shows its number, the Arabic text and the translation.
 3. The chain of narrators (who passed the hadith on to whom) is shown first, in small grey letters, and the words of
-   the hadith after it, in paragraphs.
+   the hadith after it, in paragraphs. Where a translation cites a verse of the Qur'an, such as "QS. Luqman: 34" or
+   "(3.77)", the reference links to that verse on [QuranWeb](https://quranweb.udienz.web.id).
 4. Choose 5 or 10 hadiths per page above the first hadith, and move between pages with the numbers.
 5. In the Sunan books and Malik, show **All** hadiths, only **Sahih and hasan**, or only **Sahih**, by the grades of
    one scholar (Al-Albani; Salim al-Hilali for Malik). Bukhari and Muslim have no filter: all their hadiths are sahih.

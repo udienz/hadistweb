@@ -71,6 +71,7 @@ export const zh: Messages = {
     textCopied: "文本已复制",
     shareVia: "通过…分享",
     explanationLink: "这段圣训的解释，来自 HadeethEnc.com",
+    quranLink: "在 QuranWeb 上阅读《古兰经》{verse}",
     open: "打开圣训 {number}",
     inBook: "{book}，圣训 {number}",
   },

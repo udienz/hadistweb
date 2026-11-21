@@ -71,6 +71,7 @@ export const sw: Messages = {
     textCopied: "Maandishi yamenakiliwa",
     shareVia: "Shiriki kupitia…",
     explanationLink: "Maelezo ya hadithi hii, kutoka HadeethEnc.com",
+    quranLink: "Soma Qur'ani {verse} kwenye QuranWeb",
     open: "Fungua hadithi {number}",
     inBook: "{book}, hadithi {number}",
   },
