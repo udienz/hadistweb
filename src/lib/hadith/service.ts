@@ -6,9 +6,10 @@
 // and reduced to the chapter list and a number -> chapter map per book.
 
 import { bookById, EDITION_PREFIX, pickTranslation, translationOrder } from "./books";
+import { hadeethencIndonesian } from "./hadeethenc-translation";
 import { Memo } from "../memo";
 import { loadJson } from "./transport";
-import type { BookId, Chapter, Grade, Hadith, TranslationLanguage } from "./types";
+import type { BookId, Chapter, Grade, Hadith, Translation, TranslationLanguage } from "./types";
 
 export const DEFAULT_FAWAZ_URL = "https://raw.githubusercontent.com/fawazahmed0/hadith-api/1";
 
@@ -46,7 +47,13 @@ export interface HadithService {
   exists(book: BookId, target: { chapter: number } | { hadith: string }): Promise<boolean>;
 }
 
-export function createHadithService(baseUrl: string): HadithService {
+/**
+ * A translation from another source for one hadith, or null. Used for the Indonesian an-Nawawi from HadeethEnc
+ * (getHadithService wires it); it must not throw for a missing hadith, only for a source that is down.
+ */
+export type ExtraTranslation = (book: BookId, number: string, locale: string) => Promise<Translation | null>;
+
+export function createHadithService(baseUrl: string, extra?: ExtraTranslation): HadithService {
   const base = baseUrl.replace(/\/+$/, "");
   const sections = new Memo<RawSection>(64);
   let index: Promise<Map<string, BookIndex>> | null = null;
@@ -88,7 +95,7 @@ export function createHadithService(baseUrl: string): HadithService {
       byNumber: new Map(translations[i].hadiths.map((h) => [numberKey(h.hadithnumber), h.text ?? ""])),
     }));
 
-    return arabic.hadiths
+    const hadiths = arabic.hadiths
       .map((raw): Hadith => {
         const number = numberKey(raw.hadithnumber);
         const found: Partial<Record<TranslationLanguage, string>> = {};
@@ -103,6 +110,17 @@ export function createHadithService(baseUrl: string): HadithService {
         };
       })
       .filter((h) => h.arabic || h.translation);
+    if (!extra) return hadiths;
+
+    // A translation from another source wins over a fallback in the other language, not over one in the reader's own.
+    // If that source is down, the hadith keeps what it had.
+    return Promise.all(
+      hadiths.map(async (h) => {
+        if (h.translation?.language === (locale === "en" ? "en" : "id")) return h;
+        const found = await extra(book, h.number, locale).catch(() => null);
+        return found ? { ...h, translation: found } : h;
+      }),
+    );
   }
 
   return {
@@ -166,8 +184,11 @@ export function buildIndex(info: RawInfo): Map<string, BookIndex> {
 
 let service: HadithService | null = null;
 
-/** The service for this process, reading from HADITH_FAWAZ_URL (our mirror) or the source on GitHub. */
+/**
+ * The service for this process, reading from HADITH_FAWAZ_URL (our mirror) or the source on GitHub, with the Indonesian
+ * an-Nawawi from HadeethEnc.
+ */
 export function getHadithService(): HadithService {
-  service ??= createHadithService(process.env.HADITH_FAWAZ_URL?.trim() || DEFAULT_FAWAZ_URL);
+  service ??= createHadithService(process.env.HADITH_FAWAZ_URL?.trim() || DEFAULT_FAWAZ_URL, hadeethencIndonesian);
   return service;
 }

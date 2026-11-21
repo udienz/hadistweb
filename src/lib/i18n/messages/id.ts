@@ -29,6 +29,7 @@ export const id: Messages = {
     start: "Mulai dari Shahih al-Bukhari",
     listTitle: "Kitab",
     englishOnly: "Terjemahan bahasa Inggris",
+    indonesianFrom: "Terjemahan Indonesia dari {source}",
   },
   book: {
     chapters: "Bab",
@@ -51,6 +52,9 @@ export const id: Messages = {
     noTranslation: "Sumbernya tidak punya terjemahan untuk hadis ini.",
     noArabic: "Sumbernya tidak punya teks Arab untuk nomor ini.",
     grades: "Derajat",
+    attribution: "Takhrij",
+    translationFrom: "Terjemahan dari {source}, ditampilkan tanpa perubahan",
+    translationScope: "Yang diterjemahkan adalah hadis dan takhrijnya; catatan sesudahnya di teks Arab di atas (misalnya tentang jalur riwayatnya) bisa jadi tidak ikut diterjemahkan.",
     copyLink: "Salin tautan",
     copied: "Tautan disalin",
     open: "Buka hadis {number}",
@@ -105,7 +109,7 @@ export const id: Messages = {
     fallback:
       "Kalau sebuah hadis tidak punya terjemahan dalam bahasa Anda, terjemahan bahasa lainnya yang ditampilkan, dengan label. Terjemahan Indonesia kosong untuk banyak hadis, karena sumbernya menggabungkan beberapa riwayat dalam satu entri; teks Arab tidak pernah dipasangkan dengan terjemahan hadis lain untuk menutup kekosongan itu.",
     hadeethenc:
-      "Bagian tema berasal dari HadeethEnc.com (Ensiklopedia Hadis Nabi Terjemahan), terbitan Rowwad Translation Center. Isinya boleh dipakai ulang tanpa diubah, dengan menyebut HadeethEnc.com sebagai penerbit dan sumber; teksnya dibaca dari situs itu dan ditampilkan persis seperti terbitannya.",
+      "Bagian tema berasal dari HadeethEnc.com (Ensiklopedia Hadis Nabi Terjemahan), terbitan Rowwad Translation Center. Isinya boleh dipakai ulang tanpa diubah, dengan menyebut HadeethEnc.com sebagai penerbit dan sumber; teksnya dibaca dari situs itu dan ditampilkan persis seperti terbitannya. Terjemahan Indonesia Arbain an-Nawawi juga berasal dari sana, karena fawazahmed0/hadith-api tidak memilikinya.",
     chapterNames:
       "Sumbernya memberi nama bab dalam bahasa Inggris. Nama bab bahasa Indonesia berasal dari compressed_hadith_sqlite karya IsmailHosenIsmailJames; nama-nama itu belum ditinjau, jadi nama Inggrisnya tetap ditampilkan.",
     code: "Kode situs ini terbuka dengan lisensi MIT.",

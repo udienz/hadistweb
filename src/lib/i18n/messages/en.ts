@@ -29,6 +29,7 @@ export const en = {
     start: "Start with Sahih al-Bukhari",
     listTitle: "Books",
     englishOnly: "English translation",
+    indonesianFrom: "Indonesian translation from {source}",
   },
   book: {
     chapters: "Chapters",
@@ -51,6 +52,9 @@ export const en = {
     noTranslation: "The source has no translation of this hadith.",
     noArabic: "The source has no Arabic text for this number.",
     grades: "Grades",
+    attribution: "Source",
+    translationFrom: "Translation from {source}, shown without changes",
+    translationScope: "It translates the hadith and its source; remarks that follow them in the Arabic text above (such as notes on its chains) may not be translated.",
     copyLink: "Copy link",
     copied: "Link copied",
     open: "Open hadith {number}",
@@ -105,7 +109,7 @@ export const en = {
     fallback:
       "When a hadith has no translation in your language, the other translation is shown and labelled. The Indonesian translation has no text for many hadiths, because its source joins several narrations into one entry; the Arabic text is never paired with the translation of another hadith to fill a gap.",
     hadeethenc:
-      "The topic section comes from HadeethEnc.com (the Encyclopedia of Translated Prophetic Hadiths), published by the Rowwad Translation Center. Its texts may be reused without changes, with HadeethEnc.com named as publisher and source; they are read from its site and shown exactly as published.",
+      "The topic section comes from HadeethEnc.com (the Encyclopedia of Translated Prophetic Hadiths), published by the Rowwad Translation Center. Its texts may be reused without changes, with HadeethEnc.com named as publisher and source; they are read from its site and shown exactly as published. It also gives the Indonesian translation of the Forty Hadith of an-Nawawi, which fawazahmed0/hadith-api does not have.",
     chapterNames:
       "The source names its chapters in English. The Indonesian chapter names come from compressed_hadith_sqlite by IsmailHosenIsmailJames; they have not been reviewed yet, so the English name is shown with them.",
     code: "The code of this site is open source under the MIT licence.",

@@ -2,7 +2,7 @@
 // come from fawazahmed0/hadith-api's editions.json (checked 2026-11-20): an-Nawawi, Qudsi and Dehlawi have no Indonesian
 // edition.
 
-import type { Book, BookId, TranslationLanguage } from "./types";
+import type { Book, BookId, Translation, TranslationLanguage } from "./types";
 
 const BOTH: TranslationLanguage[] = ["id", "en"];
 const ENGLISH: TranslationLanguage[] = ["en"];
@@ -15,7 +15,15 @@ export const BOOKS: Book[] = [
   { id: "nasai", name: { en: "Sunan an-Nasa'i", id: "Sunan an-Nasa'i" }, arabicName: "سنن النسائي", translations: BOTH },
   { id: "ibnmajah", name: { en: "Sunan Ibn Majah", id: "Sunan Ibnu Majah" }, arabicName: "سنن ابن ماجه", translations: BOTH },
   { id: "malik", name: { en: "Muwatta Malik", id: "Al-Muwaththa' Malik" }, arabicName: "موطأ مالك", translations: BOTH },
-  { id: "nawawi", name: { en: "Forty Hadith of an-Nawawi", id: "Arbain an-Nawawi" }, arabicName: "الأربعون النووية", translations: ENGLISH },
+  // The Indonesian an-Nawawi comes from HadeethEnc (hadeethenc-translation.ts), not from fawazahmed0: "id" is not listed
+  // here because the edition files have none, and the home page labels the book by what HadeethEnc adds (indonesianFrom).
+  {
+    id: "nawawi",
+    name: { en: "Forty Hadith of an-Nawawi", id: "Arbain an-Nawawi" },
+    arabicName: "الأربعون النووية",
+    translations: ENGLISH,
+    indonesianFrom: "HadeethEnc.com",
+  },
   { id: "qudsi", name: { en: "Forty Hadith Qudsi", id: "Empat Puluh Hadis Qudsi" }, translations: ENGLISH },
   {
     id: "dehlawi",
@@ -42,7 +50,7 @@ export function translationOrder(book: Book, locale: string): TranslationLanguag
 export function pickTranslation(
   order: TranslationLanguage[],
   texts: Partial<Record<TranslationLanguage, string>>,
-): { language: TranslationLanguage; text: string } | null {
+): Translation | null {
   for (const language of order) {
     const text = texts[language]?.trim();
     if (text) return { language, text };

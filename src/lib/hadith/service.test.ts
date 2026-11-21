@@ -116,6 +116,39 @@ describe("hadith service", () => {
   });
 });
 
+describe("translation from another source", () => {
+  const fromEnc = { language: "id" as const, text: "Dari HadeethEnc", source: { name: "HadeethEnc.com" as const, url: "u", attribution: "HR. Muslim" } };
+
+  it("replaces a fallback in the other language, not a translation in the reader's own", async () => {
+    const asked: string[] = [];
+    const service = createHadithService(dir, async (_book, number) => {
+      asked.push(number);
+      return fromEnc;
+    });
+    const result = await service.getChapter("bukhari", 1, "id");
+    expect(result?.hadiths.map((h) => h.translation?.text)).toEqual(["Teks satu", "Dari HadeethEnc"]);
+    expect(asked).toEqual(["2"]);
+  });
+
+  it("keeps the fallback when the other source fails", async () => {
+    const service = createHadithService(dir, async () => {
+      throw new Error("down");
+    });
+    const result = await service.getChapter("bukhari", 1, "id");
+    expect(result?.hadiths[1].translation).toEqual({ language: "en", text: "Text two" });
+  });
+});
+
+describe("an-Nawawi pairs", () => {
+  it("pairs each of the 42 hadiths with a different HadeethEnc id", async () => {
+    const pairs = (await import("./hadeethenc-pairs.json")).default as Record<string, Record<string, number>>;
+    const nawawi = Object.entries(pairs.nawawi);
+    expect(nawawi.map(([n]) => n)).toEqual(Array.from({ length: 42 }, (_, i) => String(i + 1)));
+    expect(new Set(nawawi.map(([, id]) => id)).size).toBe(42);
+    expect(Object.keys(pairs)).toEqual(["nawawi"]);
+  });
+});
+
 describe("buildIndex", () => {
   it("puts chapter 0 first when it starts the book (an introduction, as in Muslim)", () => {
     const index = buildIndex({
