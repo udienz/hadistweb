@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { shareMetadata } from "@/lib/site";
 import { getI18n } from "@/lib/i18n/server";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { t } = await getI18n();
-  return { title: `${t("about.title")} | ${t("meta.title")}` };
+  return shareMetadata({ title: `${t("about.title")} | ${t("meta.title")}`, description: t("about.intro"), path: "/about" });
 }
 
 export const instant = false;

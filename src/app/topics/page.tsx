@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { shareMetadata } from "@/lib/site";
 import Link from "next/link";
 import { encLanguage, getCategories, HADEETHENC_SITE } from "@/lib/hadeethenc/client";
 import { getI18n } from "@/lib/i18n/server";
@@ -8,7 +9,7 @@ export const instant = false;
 
 export async function generateMetadata(): Promise<Metadata> {
   const { t } = await getI18n();
-  return { title: `${t("topics.title")} | ${t("meta.title")}` };
+  return shareMetadata({ title: `${t("topics.title")} | ${t("meta.title")}`, description: t("topics.intro"), path: "/topics" });
 }
 
 /** The seven main topics of HadeethEnc, each with its topics folded underneath. */

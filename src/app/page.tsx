@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { shareMetadata } from "@/lib/site";
 import Link from "next/link";
 import SearchForm from "@/components/SearchForm";
 import { BOOKS, translationOrder } from "@/lib/hadith/books";
@@ -10,6 +12,11 @@ import { bookHref, topicsHref } from "@/lib/links";
 
 // Rendered per request: the layout reads the language from the request.
 export const instant = false;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getI18n();
+  return shareMetadata({ title: t("meta.title"), description: t("meta.description"), path: "/" });
+}
 
 /** What a book offers a reader of this language, when it is not a translation in that language: nothing to say otherwise. */
 function translationNote(book: Book, { t, locale }: Translator): string | null {

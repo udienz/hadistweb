@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { excerpt, shareMetadata } from "@/lib/site";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ShareMenu from "@/components/ShareMenu";
@@ -15,7 +16,9 @@ export async function generateMetadata({ params }: PageProps<"/topics/hadith/[id
   if (id === null) return {};
   const { t, locale } = await getI18n();
   const hadith = await getHadith(encLanguage(locale), id).catch(() => null);
-  return hadith ? { title: `${hadith.title} | ${t("meta.title")}` } : {};
+  return hadith
+    ? shareMetadata({ title: `${hadith.title} | ${t("meta.title")}`, description: excerpt(hadith.text), path: topicHadithHref(id), type: "article" })
+    : {};
 }
 
 /**

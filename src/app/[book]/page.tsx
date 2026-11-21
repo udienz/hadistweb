@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { shareMetadata } from "@/lib/site";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { bookById } from "@/lib/hadith/books";
@@ -7,7 +8,7 @@ import { getHadithService } from "@/lib/hadith/service";
 import { isBookId } from "@/lib/hadith/types";
 import { getI18n } from "@/lib/i18n/server";
 import { localized } from "@/lib/i18n/translate";
-import { chapterHref } from "@/lib/links";
+import { bookHref, chapterHref } from "@/lib/links";
 
 export const instant = false;
 
@@ -15,7 +16,8 @@ export async function generateMetadata({ params }: PageProps<"/[book]">): Promis
   const { book } = await params;
   if (!isBookId(book)) return {};
   const { t, locale } = await getI18n();
-  return { title: `${localized(bookById(book).name, locale)} | ${t("meta.title")}` };
+  const name = localized(bookById(book).name, locale);
+  return shareMetadata({ title: `${name} | ${t("meta.title")}`, description: `${name}: ${t("meta.description")}`, path: bookHref(book) });
 }
 
 /** One book: its name and the list of its chapters. */

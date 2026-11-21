@@ -22,7 +22,8 @@ no ads.
   translation separately.
 - **Search** the Arabic text and the Indonesian and English translations, or type a book and number such as
   "Bukhari 1" to open that hadith.
-- **Share a hadith** by copying its link.
+- **Share a hadith**: copy its text with the reference and link, or send it straight to WhatsApp. A shared link shows
+  the hadith's title and opening words in the preview.
 
 ![The home page with the list of books](docs/screenshots/en/home.png)
 
@@ -86,7 +87,13 @@ Press the moon (or sun) button at the top. At first the site follows your device
 
 ### Share a hadith
 
-Press **Copy link** beside the hadith number, then paste the link wherever you like. The link opens that hadith.
+Press **Share** beside the hadith number, then choose:
+
+- **Copy text**: the Arabic text, the translation, the reference (such as "Shahih al-Bukhari, hadith 1") and the link,
+  ready to paste into a chat or a document.
+- **Copy link**: only the address of the hadith.
+- **Share via…** (on phones): the phone's own list of apps.
+- **WhatsApp**: opens WhatsApp with the text filled in.
 
 ## Languages
 

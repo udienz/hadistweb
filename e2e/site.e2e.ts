@@ -137,3 +137,20 @@ test("a hadith can be copied with its reference and link", async ({ page, contex
   await page.getByRole("menuitem", { name: "Salin tautan" }).click();
   expect(await page.evaluate(() => navigator.clipboard.readText())).toMatch(/^http:\/\/127\.0\.0\.1:\d+\/bukhari\/1$/);
 });
+
+test("link previews, the sitemap and robots.txt", async ({ page, request }) => {
+  await page.goto("/bukhari/1");
+  const meta = (property: string) => page.locator(`meta[property="${property}"]`).getAttribute("content");
+  expect(await meta("og:title")).toBe("Shahih al-Bukhari, hadis 1 | HadistWeb");
+  expect(await meta("og:url")).toMatch(/\/bukhari\/1$/);
+  expect(await meta("og:image")).toMatch(/\/og\.png$/);
+  expect((await meta("og:description"))?.length).toBeGreaterThan(20);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\/bukhari\/1$/);
+  // A test server is not the production site: it is not indexed.
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+  expect(await (await request.get("/robots.txt")).text()).toContain("Disallow: /");
+
+  const sitemap = await (await request.get("/sitemap/1.xml")).text();
+  expect(sitemap).toContain("/bukhari/1</loc>");
+  expect((await request.get("/og.png")).headers()["content-type"]).toBe("image/png");
+});

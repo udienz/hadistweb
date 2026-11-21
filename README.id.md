@@ -22,7 +22,8 @@ serta bagian hadis pilihan per tema, masing-masing dengan penjelasannya. Anda ti
   diperkecil masing-masing.
 - **Mencari** di teks Arab dan terjemahan Indonesia serta Inggris, atau mengetik nama kitab dan nomor, misalnya
   "Bukhari 1", untuk langsung membuka hadisnya.
-- **Membagikan hadis** dengan menyalin tautannya.
+- **Membagikan hadis**: salin teksnya lengkap dengan rujukan dan tautan, atau kirim langsung ke WhatsApp. Tautan yang
+  dibagikan menampilkan judul dan awal hadisnya di pratinjau.
 
 ![Beranda dengan daftar kitab](docs/screenshots/id/home.png)
 
@@ -87,7 +88,13 @@ Tekan tombol bulan (atau matahari) di bagian atas. Awalnya situs mengikuti penga
 
 ### Membagikan hadis
 
-Tekan **Salin tautan** di samping nomor hadis, lalu tempel tautannya di mana saja. Tautan itu membuka hadis tersebut.
+Tekan **Bagikan** di samping nomor hadis, lalu pilih:
+
+- **Salin teks**: teks Arab, terjemahan, rujukan (misalnya "Shahih al-Bukhari, hadis 1"), dan tautannya, siap ditempel
+  di obrolan atau dokumen.
+- **Salin tautan**: hanya alamat hadisnya.
+- **Bagikan lewat…** (di ponsel): daftar aplikasi bawaan ponsel.
+- **WhatsApp**: membuka WhatsApp dengan teks yang sudah terisi.
 
 ## Bahasa
 
