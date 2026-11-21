@@ -109,6 +109,15 @@ Indonesian source merges several narrations into one entry). If English is
 missing too, show the Arabic alone with a note. Never pair a translation with
 the Arabic of a different hadith to fill a gap.
 
+## Documents
+
+`README.md` and `README.id.md` are for readers who are not technical (the owner's
+request, 2026-11-21): what the site does and how to use it, with screenshots from
+`docs/screenshots/` (`scripts/readme-screenshots.mjs`). Keep commands, settings
+and deployment out of them; they belong in `docs/development.md`. Change both
+READMEs together. `CONTRIBUTING.md`, `SECURITY.md` and `CODE_OF_CONDUCT.md` are
+adapted from quranweb's.
+
 ## Language rule
 
 Code, comments, error messages, tests, scripts, documents, commit messages and
