@@ -143,6 +143,17 @@ export const it: Messages = {
     none: "Nessun hadith di questo capitolo ha quel grado.",
     searchAll: "Tutti i gradi",
   },
+  narrators: {
+    title: "Narratori",
+    intro: "I nomi delle catene di narratori, come li scrive la traduzione indonesiana, con gli hadith in cui compare ciascuno.",
+    note: "Un nome non è sempre una persona: un narratore può comparire con più grafie, e narratori diversi possono avere lo stesso nome.",
+    searchLabel: "Cerca un narratore per nome",
+    top: "Narratori con più hadith",
+    found: "Nomi con «{query}»",
+    none: "Nessun narratore con quel nome.",
+    homeLink: "Leggi per narratore",
+    homeText: "Gli hadith in cui compare ogni nome delle catene di narratori",
+  },
   notFound: {
     title: "Pagina non trovata",
     description: "La pagina che cerchi non esiste o è stata spostata.",

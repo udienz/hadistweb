@@ -143,6 +143,17 @@ export const de: Messages = {
     none: "Kein Hadith in diesem Kapitel hat diese Bewertung.",
     searchAll: "Alle Bewertungen",
   },
+  narrators: {
+    title: "Überlieferer",
+    intro: "Die Namen in den Überlieferungsketten, wie die indonesische Übersetzung sie schreibt, mit den Hadithen, in denen jeder vorkommt.",
+    note: "Ein Name ist nicht immer eine Person: ein Überlieferer kann in mehreren Schreibweisen vorkommen, und verschiedene Überlieferer können denselben Namen tragen.",
+    searchLabel: "Überlieferer nach Namen suchen",
+    top: "Überlieferer mit den meisten Hadithen",
+    found: "Namen mit „{query}“",
+    none: "Kein Überlieferer mit diesem Namen.",
+    homeLink: "Nach Überlieferern lesen",
+    homeText: "Die Hadithe, in denen jeder Name der Überlieferungsketten vorkommt",
+  },
   notFound: {
     title: "Seite nicht gefunden",
     description: "Die gesuchte Seite existiert nicht oder wurde verschoben.",

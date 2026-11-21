@@ -143,6 +143,17 @@ export const zh: Messages = {
     none: "本章没有该等级的圣训。",
     searchAll: "所有等级",
   },
+  narrators: {
+    title: "传述人",
+    intro: "传述系统中的人名（按印度尼西亚语译文的写法），以及每个名字出现的圣训。",
+    note: "一个名字不一定是一个人：同一传述人可能有几种拼写，不同的传述人也可能同名。",
+    searchLabel: "按姓名查找传述人",
+    top: "圣训最多的传述人",
+    found: "包含“{query}”的名字",
+    none: "没有这个名字的传述人。",
+    homeLink: "按传述人阅读",
+    homeText: "传述系统中每个名字出现的圣训",
+  },
   notFound: {
     title: "未找到页面",
     description: "您要找的页面不存在或已移动。",

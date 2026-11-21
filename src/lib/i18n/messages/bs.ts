@@ -143,6 +143,17 @@ export const bs: Messages = {
     none: "Nijedan hadis u ovom poglavlju nema tu ocjenu.",
     searchAll: "Sve ocjene",
   },
+  narrators: {
+    title: "Prenosioci",
+    intro: "Imena u lancima prenosilaca, kako ih piše indonezijski prijevod, s hadisima u kojima se svako pojavljuje.",
+    note: "Ime nije uvijek jedna osoba: jedan prenosilac može se pojaviti s više načina pisanja, a različiti prenosioci mogu imati isto ime.",
+    searchLabel: "Pronađi prenosioca po imenu",
+    top: "Prenosioci s najviše hadisa",
+    found: "Imena sa „{query}“",
+    none: "Nema prenosioca s tim imenom.",
+    homeLink: "Čitaj po prenosiocu",
+    homeText: "Hadisi u kojima se pojavljuje svako ime iz lanaca prenosilaca",
+  },
   notFound: {
     title: "Stranica nije pronađena",
     description: "Stranica koju tražite ne postoji ili je premještena.",

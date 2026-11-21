@@ -10,6 +10,7 @@ import { join } from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import { isRemote, toFilePath } from "./transport";
 import type { GradeFilter } from "./grade";
+import { narratorKey } from "./narrators";
 import { isBookId, type BookId } from "./types";
 
 export const SEARCH_FILE = "hadistweb-search.sqlite";
@@ -115,10 +116,28 @@ interface Row {
   en?: string;
 }
 
+export interface Narrator {
+  key: string;
+  name: string;
+  count: number;
+}
+
+export interface NarratorIndex {
+  /** The narrators with the most hadiths. */
+  top(limit: number): Narrator[];
+  /** Narrators whose name contains the words typed, most hadiths first. */
+  find(query: string, limit: number): Narrator[];
+  get(key: string): Narrator | null;
+  /** A page of the hadiths a narrator is in, in the books' order. */
+  hadiths(key: string, page: number, size: number): { book: BookId; number: string }[];
+}
+
 export interface Searcher {
   /** Whether there is an index to search. */
   available(): boolean;
   search(input: string, options: { book?: BookId; page: number; locale: string; grade?: GradeFilter | null }): SearchResult;
+  /** The narrators index (lib/hadith/narrators.ts), or null when the index has none (built before it existed). */
+  narrators(): NarratorIndex | null;
   /** The hadith numbers of a book that have a text, in numeric order, or null without an index (for the sitemap). */
   numbers(book: BookId): string[] | null;
 }
@@ -138,6 +157,34 @@ export function createSearcher(file: string | null): Searcher {
 
   return {
     available: () => open() !== null,
+
+    narrators() {
+      const database = open();
+      if (!database) return null;
+      const has = database.prepare("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'narrator'").get();
+      if (!has) return null;
+      const list = (sql: string, ...params: (string | number)[]) => database.prepare(sql).all(...params) as unknown as Narrator[];
+      return {
+        top: (limit) => list("SELECT key, name, count FROM narrator ORDER BY count DESC, key LIMIT ?", limit),
+        find: (query, limit) => {
+          const key = narratorKey(query);
+          if (!key) return [];
+          // Each word typed must be in the name, in any place ("hurairah" finds "abu hurairah").
+          const words = key.split(" ");
+          return list(
+            `SELECT key, name, count FROM narrator WHERE ${words.map(() => "key LIKE ?").join(" AND ")} ORDER BY count DESC, key LIMIT ?`,
+            ...words.map((w) => `%${w}%`),
+            limit,
+          );
+        },
+        get: (key) => (database.prepare("SELECT key, name, count FROM narrator WHERE key = ?").get(key) as Narrator | undefined) ?? null,
+        hadiths: (key, page, size) =>
+          (database
+            .prepare("SELECT book, number FROM narrator_hadith WHERE key = ? ORDER BY position LIMIT ? OFFSET ?")
+            .all(key, size, (page - 1) * size) as { book: string; number: string }[])
+            .filter((r): r is { book: BookId; number: string } => isBookId(r.book)),
+      };
+    },
 
     numbers(book) {
       const database = open();

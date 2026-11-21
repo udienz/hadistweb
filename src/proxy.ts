@@ -2,7 +2,9 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getCategories, getHadith } from "@/lib/hadeethenc/client";
 import { getHadithService } from "@/lib/hadith/service";
 import { isBookId } from "@/lib/hadith/types";
+import { keyFromSlug } from "@/lib/hadith/narrators";
 import { parseReference } from "@/lib/hadith/reference";
+import { getSearcher } from "@/lib/hadith/search";
 import { chapterFromSegment, encIdFromSegment, hadithHref, isHadithNumber } from "@/lib/links";
 
 /** Four segments: no route of the app has that many, so Next.js answers 404. */
@@ -27,6 +29,7 @@ export async function proxy(request: NextRequest) {
 
   if (book === "search" && parts.length === 1) return searchReference(request);
   if (book === "topics") return checkTopic(parts.slice(1), notFound);
+  if (book === "narrators") return checkNarrator(parts.slice(1), notFound);
   if (!isBookId(book) || parts.length > 3) return notFound();
   if (parts.length === 1) return NextResponse.next();
 
@@ -64,6 +67,15 @@ async function searchReference(request: NextRequest): Promise<NextResponse> {
     // The data could not be loaded: the search page answers.
   }
   return NextResponse.next();
+}
+
+/** A narrator's page exists when the index knows the name; without an index the page says search is unavailable. */
+function checkNarrator(parts: string[], notFound: () => NextResponse): NextResponse {
+  if (parts.length === 0) return NextResponse.next();
+  const key = parts.length === 1 ? keyFromSlug(parts[0]) : null;
+  if (!key) return notFound();
+  const index = getSearcher().narrators();
+  return !index || index.get(key) ? NextResponse.next() : notFound();
 }
 
 async function checkTopic(parts: string[], notFound: () => NextResponse): Promise<NextResponse> {

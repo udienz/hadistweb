@@ -60,7 +60,7 @@ umask 022
 node scripts/build-search-index.mjs /srv/hadith-mirror/hadith-api
 ```
 
-The app finds the index in the folder `HADITH_FAWAZ_URL` points to, or at `HADITH_SEARCH_DB`. With the data read from
+The index also holds the narrators (from the Indonesian chains) for `/narrators`. The app finds the index in the folder `HADITH_FAWAZ_URL` points to, or at `HADITH_SEARCH_DB`. With the data read from
 GitHub there is no index and the page says search is unavailable. Only the Arabic, Indonesian and English texts are
 searchable. The browser tests build an index of the fixtures before they start.
 

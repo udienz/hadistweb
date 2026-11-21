@@ -87,7 +87,7 @@ test("a translation reads as a sanad above paragraphs, and the text size is kept
   const sanad = page.locator("article div[lang=id]").getByLabel("Sanad");
   await expect(page.locator("article div[lang=ar]").getByLabel("Sanad")).toBeVisible();
   await expect(sanad).toContainText("Telah menceritakan kepada kami");
-  await expect(sanad.locator("span.font-semibold").first()).toHaveText("Al Humaidi Abdullah bin Az Zubair");
+  await expect(sanad.locator(".font-semibold").first()).toHaveText("Al Humaidi Abdullah bin Az Zubair");
   await expect(page.locator("article div[lang=id]")).not.toContainText("[");
 
   await page.getByRole("button", { name: "Ukuran huruf" }).click();
@@ -233,4 +233,18 @@ test("a verse quoted in a translation links to it on QuranWeb", async ({ page })
   const link = page.locator('article div[lang="id"] a', { hasText: "QS. Luqman: 34" });
   await expect(link).toHaveAttribute("href", "https://quranweb.udienz.web.id/surah/31?page=4#verse-34");
   await expect(link).toHaveAttribute("title", "Baca Al-Qur'an 31:34 di QuranWeb");
+});
+
+test("a narrator's name in a chain leads to the hadiths it is in", async ({ page }) => {
+  await page.goto("/bukhari/1");
+  await page.locator("article div[lang=id]").getByRole("link", { name: "Sufyan", exact: true }).click();
+  await expect(page).toHaveURL(/\/narrators\/sufyan$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Sufyan");
+  await expect(page.getByRole("link", { name: "Shahih al-Bukhari, hadis 1", exact: true })).toBeVisible();
+
+  await page.goto("/narrators?q=humaidi");
+  await expect(page.getByRole("link", { name: /Al Humaidi/ }).first()).toBeVisible();
+  await page.goto("/narrators?q=bapaknya");
+  await expect(page.getByText("Tidak ada perawi dengan nama itu.")).toBeVisible();
+  expect((await page.request.get("/narrators/tidak-ada-orang")).status()).toBe(404);
 });

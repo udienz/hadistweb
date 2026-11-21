@@ -143,6 +143,17 @@ export const vi: Messages = {
     none: "Chương này không có hadith ở mức độ đó.",
     searchAll: "Mọi mức độ",
   },
+  narrators: {
+    title: "Người truyền thuật",
+    intro: "Các tên trong chuỗi người truyền thuật, theo cách bản dịch tiếng Indonesia viết, cùng các hadith có mỗi tên.",
+    note: "Một tên không phải lúc nào cũng là một người: một người truyền thuật có thể được viết theo nhiều cách, và nhiều người có thể trùng tên.",
+    searchLabel: "Tìm người truyền thuật theo tên",
+    top: "Người truyền thuật có nhiều hadith nhất",
+    found: "Tên có “{query}”",
+    none: "Không có người truyền thuật nào tên như vậy.",
+    homeLink: "Đọc theo người truyền thuật",
+    homeText: "Các hadith có mỗi tên trong chuỗi người truyền thuật",
+  },
   notFound: {
     title: "Không tìm thấy trang",
     description: "Trang bạn tìm không tồn tại hoặc đã được chuyển đi.",

@@ -5,6 +5,7 @@ import type { Translator } from "@/lib/i18n/translate";
 import { layoutArabic, layoutTranslation, type Segment } from "@/lib/hadith/layout";
 import type { BookId, Hadith } from "@/lib/hadith/types";
 import { explanationId } from "@/lib/hadith/explanations";
+import { narratorHref, narratorKey } from "@/lib/hadith/narrators";
 import { findQuranRefs, quranwebVerseUrl } from "@/lib/hadith/quran-refs";
 import { hadithAnchor, hadithHref, topicHadithHref } from "@/lib/links";
 import { bookById } from "@/lib/hadith/books";
@@ -32,15 +33,23 @@ function WithVerseLinks({ text, title }: { text: string; title: (surah: number, 
 }
 
 function Runs({ segments, verseTitle }: { segments: Segment[]; verseTitle: (surah: number, ayah: number) => string }) {
-  return segments.map((s, i) =>
-    s.narrator ? (
-      <span key={i} className="font-semibold text-foreground">
-        {s.text}
-      </span>
+  return segments.map((s, i) => {
+    // A narrator's name links to the hadiths it is in (lib/hadith/narrators.ts); no prefetch, a chain has many names.
+    const key = s.narrator ? narratorKey(s.text) : null;
+    return s.narrator ? (
+      key ? (
+        <Link key={i} href={narratorHref(key)} prefetch={false} className="font-semibold text-foreground hover:text-primary hover:underline">
+          {s.text}
+        </Link>
+      ) : (
+        <span key={i} className="font-semibold text-foreground">
+          {s.text}
+        </span>
+      )
     ) : (
       <WithVerseLinks key={i} text={s.text} title={verseTitle} />
-    ),
-  );
+    );
+  });
 }
 
 /** The Arabic text: the sanad smaller and quiet, the matn in paragraphs at the source's full stops (lib/hadith/layout.ts). */
