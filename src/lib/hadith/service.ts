@@ -40,12 +40,17 @@ interface BookIndex {
 
 const numberKey = (n: number | string): string => String(n);
 
+export interface ReadOptions {
+  /** A second translation to show beside the first (lib/second-translation.ts). */
+  second?: TranslationLanguage | null;
+}
+
 export interface HadithService {
   getChapters(book: BookId): Promise<Chapter[]>;
   /** All hadiths of a chapter, in the source's order, or null for a chapter that does not exist. */
-  getChapter(book: BookId, chapter: number, locale: string): Promise<{ chapter: Chapter; hadiths: Hadith[] } | null>;
+  getChapter(book: BookId, chapter: number, locale: string, options?: ReadOptions): Promise<{ chapter: Chapter; hadiths: Hadith[] } | null>;
   /** One hadith, or null when the book has no such number. */
-  getHadith(book: BookId, number: string, locale: string): Promise<Hadith | null>;
+  getHadith(book: BookId, number: string, locale: string, options?: ReadOptions): Promise<Hadith | null>;
   /** Every hadith number the source lists for a book (some have no text in any edition, and no page). */
   getNumbers(book: BookId): Promise<string[]>;
   /** Whether the index knows this chapter or hadith number (cheap: no chapter file is read). */
@@ -98,8 +103,15 @@ export function createHadithService(baseUrl: string, extra?: ExtraTranslation, s
     return sections.get(key, () => loadFile(`editions/${edition}/sections/${chapter}`, from) as Promise<RawSection>);
   }
 
-  async function chapterHadiths(book: BookId, chapter: number, locale: string): Promise<Hadith[]> {
+  async function chapterHadiths(book: BookId, chapter: number, locale: string, options: ReadOptions = {}): Promise<Hadith[]> {
     const order = translationOrder(bookById(book), locale);
+    const second = options.second && bookById(book).translations.includes(options.second) ? options.second : null;
+    // The second translation may fail like any edition read from the source: the hadiths then show the first only.
+    const secondTexts = second
+      ? loadSection(`${EDITION_PREFIX[second]}-${book}`, chapter)
+          .then((s) => new Map(s.hadiths.map((h) => [numberKey(h.hadithnumber), (h.text ?? "").trim()])))
+          .catch(() => new Map<string, string>())
+      : Promise.resolve(new Map<string, string>());
     const [arabic, ...translations] = await Promise.all([
       loadSection(`${EDITION_PREFIX.ar}-${book}`, chapter),
       // A translation read from the source may fail (the source is down): the hadiths then fall back to the next language.
@@ -129,6 +141,13 @@ export function createHadithService(baseUrl: string, extra?: ExtraTranslation, s
         };
       })
       .filter((h) => h.arabic || h.translation);
+    if (second) {
+      const texts = await secondTexts;
+      for (const h of hadiths) {
+        const text = texts.get(h.number);
+        h.second = text && h.translation?.language !== second ? { language: second, text } : null;
+      }
+    }
     if (!extra) return hadiths;
 
     // A translation from another source wins over a fallback in another language, not over one in the reader's own.
@@ -137,7 +156,9 @@ export function createHadithService(baseUrl: string, extra?: ExtraTranslation, s
       hadiths.map(async (h) => {
         if (h.translation?.language === locale) return h;
         const found = await extra(book, h.number, locale).catch(() => null);
-        return found ? { ...h, translation: found } : h;
+        if (!found) return h;
+        // The second translation is dropped when it is now in the same language as the first.
+        return { ...h, translation: found, second: h.second?.language === found.language ? null : h.second };
       }),
     );
   }
@@ -147,16 +168,16 @@ export function createHadithService(baseUrl: string, extra?: ExtraTranslation, s
       return (await loadIndex()).get(book)?.chapters ?? [];
     },
 
-    async getChapter(book, number, locale) {
+    async getChapter(book, number, locale, options) {
       const chapter = (await loadIndex()).get(book)?.chapters.find((c) => c.number === number);
       if (!chapter) return null;
-      return { chapter, hadiths: await chapterHadiths(book, number, locale) };
+      return { chapter, hadiths: await chapterHadiths(book, number, locale, options) };
     },
 
-    async getHadith(book, number, locale) {
+    async getHadith(book, number, locale, options) {
       const chapter = (await loadIndex()).get(book)?.chapterOf.get(number);
       if (chapter === undefined) return null;
-      const hadiths = await chapterHadiths(book, chapter, locale);
+      const hadiths = await chapterHadiths(book, chapter, locale, options);
       return hadiths.find((h) => h.number === number) ?? null;
     },
 

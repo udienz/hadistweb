@@ -97,6 +97,8 @@ export const ur: Messages = {
     textSize: "متن کا سائز",
     arabicSize: "عربی متن",
     latinSize: "ترجمہ",
+    secondTranslation: "دوسرا ترجمہ",
+    secondNone: "کوئی نہیں",
     smaller: "چھوٹا: {name}",
     larger: "بڑا: {name}",
   },

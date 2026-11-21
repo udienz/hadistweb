@@ -97,6 +97,8 @@ export const sw: Messages = {
     textSize: "Ukubwa wa maandishi",
     arabicSize: "Maandishi ya Kiarabu",
     latinSize: "Tafsiri",
+    secondTranslation: "Tafsiri ya pili",
+    secondNone: "Hakuna",
     smaller: "Ndogo zaidi: {name}",
     larger: "Kubwa zaidi: {name}",
   },

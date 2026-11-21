@@ -15,6 +15,7 @@ import { getI18n } from "@/lib/i18n/server";
 import { localized } from "@/lib/i18n/translate";
 import { bookHref, chapterFromSegment, chapterHref } from "@/lib/links";
 import { PAGE_SIZE_COOKIE, parsePageSize } from "@/lib/page-size";
+import { parseSecond, SECOND_COOKIE } from "@/lib/second-translation";
 import { clampPage, pageCount, pageRange } from "@/lib/pagination";
 
 export const instant = false;
@@ -36,7 +37,8 @@ export default async function ChapterPage({ params, searchParams }: PageProps<"/
   const i18n = await getI18n();
   const { t, locale } = i18n;
   const service = getHadithService();
-  const [result, chapters] = await Promise.all([service.getChapter(id, number, locale), service.getChapters(id)]);
+  const second = parseSecond((await cookies()).get(SECOND_COOKIE)?.value);
+  const [result, chapters] = await Promise.all([service.getChapter(id, number, locale, { second }), service.getChapters(id)]);
   if (!result) notFound();
 
   const { chapter, hadiths } = result;

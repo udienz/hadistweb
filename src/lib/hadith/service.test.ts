@@ -72,6 +72,18 @@ describe("hadith service", () => {
     ]);
   });
 
+  it("adds a second translation beside the first, but not one in the same language", async () => {
+    const result = await createHadithService(dir).getChapter("bukhari", 1, "id", { second: "en" });
+    expect(result?.hadiths.map((h) => [h.translation?.language, h.second])).toEqual([
+      ["id", { language: "en", text: "Text one" }],
+      // Hadith 2 has no Indonesian text: English is already the first translation.
+      ["en", null],
+    ]);
+    // A language the source has no file for (French is read from the source, here the same folder): the first alone.
+    const none = await createHadithService(dir, undefined, dir).getChapter("bukhari", 1, "id", { second: "fr" });
+    expect(none?.hadiths.every((h) => !h.second)).toBe(true);
+  });
+
   it("drops a number with neither Arabic text nor any translation, and keeps grades", async () => {
     const result = await createHadithService(dir).getChapter("bukhari", 2, "en");
     expect(result?.hadiths.map((h) => h.number)).toEqual(["3"]);

@@ -83,6 +83,9 @@ Until you pick one, the site follows the language of your browser.
 
 Your choice is kept in this browser.
 
+In the same menu, **Second translation** puts another translation beside the first, for example English next to
+Indonesian: side by side on a wide screen, one under the other on a phone.
+
 ![The text size menu open on a phone](docs/screenshots/en/text-size.png)
 
 ### Bookmarks and continue reading

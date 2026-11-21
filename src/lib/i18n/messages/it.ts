@@ -97,6 +97,8 @@ export const it: Messages = {
     textSize: "Dimensione del testo",
     arabicSize: "Testo arabo",
     latinSize: "Traduzione",
+    secondTranslation: "Seconda traduzione",
+    secondNone: "Nessuna",
     smaller: "Più piccolo: {name}",
     larger: "Più grande: {name}",
   },

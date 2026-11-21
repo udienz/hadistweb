@@ -97,6 +97,8 @@ export const bs: Messages = {
     textSize: "Veličina teksta",
     arabicSize: "Arapski tekst",
     latinSize: "Prijevod",
+    secondTranslation: "Drugi prijevod",
+    secondNone: "Nijedan",
     smaller: "Manje: {name}",
     larger: "Veće: {name}",
   },

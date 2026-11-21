@@ -97,6 +97,8 @@ export const vi: Messages = {
     textSize: "Cỡ chữ",
     arabicSize: "Văn bản Ả Rập",
     latinSize: "Bản dịch",
+    secondTranslation: "Bản dịch thứ hai",
+    secondNone: "Không",
     smaller: "Nhỏ hơn: {name}",
     larger: "Lớn hơn: {name}",
   },

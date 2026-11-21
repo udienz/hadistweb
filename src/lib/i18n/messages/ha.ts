@@ -97,6 +97,8 @@ export const ha: Messages = {
     textSize: "Girman rubutu",
     arabicSize: "Rubutun Larabci",
     latinSize: "Fassara",
+    secondTranslation: "Fassara ta biyu",
+    secondNone: "Babu",
     smaller: "Ƙarami: {name}",
     larger: "Babba: {name}",
   },

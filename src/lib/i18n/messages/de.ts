@@ -97,6 +97,8 @@ export const de: Messages = {
     textSize: "Textgröße",
     arabicSize: "Arabischer Text",
     latinSize: "Übersetzung",
+    secondTranslation: "Zweite Übersetzung",
+    secondNone: "Keine",
     smaller: "Kleiner: {name}",
     larger: "Größer: {name}",
   },

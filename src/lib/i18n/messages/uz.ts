@@ -97,6 +97,8 @@ export const uz: Messages = {
     textSize: "Матн ўлчами",
     arabicSize: "Арабча матн",
     latinSize: "Таржима",
+    secondTranslation: "Иккинчи таржима",
+    secondNone: "Йўқ",
     smaller: "Кичикроқ: {name}",
     larger: "Каттароқ: {name}",
   },

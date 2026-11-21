@@ -95,6 +95,8 @@ export const en = {
     textSize: "Text size",
     arabicSize: "Arabic text",
     latinSize: "Translation",
+    secondTranslation: "Second translation",
+    secondNone: "None",
     smaller: "Smaller: {name}",
     larger: "Larger: {name}",
   },

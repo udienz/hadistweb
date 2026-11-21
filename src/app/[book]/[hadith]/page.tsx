@@ -14,6 +14,7 @@ import { getI18n } from "@/lib/i18n/server";
 import { localized } from "@/lib/i18n/translate";
 import { bookHref, hadithHref, hadithInChapterHref, isHadithNumber } from "@/lib/links";
 import { PAGE_SIZE_COOKIE, parsePageSize } from "@/lib/page-size";
+import { parseSecond, SECOND_COOKIE } from "@/lib/second-translation";
 
 export const instant = false;
 
@@ -35,7 +36,8 @@ export default async function HadithPage({ params }: PageProps<"/[book]/[hadith]
   const i18n = await getI18n();
   const { t, locale } = i18n;
   const service = getHadithService();
-  const hadith = await service.getHadith(id, number, locale);
+  const second = parseSecond((await cookies()).get(SECOND_COOKIE)?.value);
+  const hadith = await service.getHadith(id, number, locale, { second });
   if (!hadith) notFound();
 
   // The chapter page that has this hadith, at the right page and scrolled to it.

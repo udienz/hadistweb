@@ -97,6 +97,8 @@ export const hi: Messages = {
     textSize: "अक्षरों का आकार",
     arabicSize: "अरबी पाठ",
     latinSize: "अनुवाद",
+    secondTranslation: "दूसरा अनुवाद",
+    secondNone: "कोई नहीं",
     smaller: "छोटा: {name}",
     larger: "बड़ा: {name}",
   },

@@ -97,6 +97,8 @@ export const ar: Messages = {
     textSize: "حجم الخط",
     arabicSize: "النص العربي",
     latinSize: "الترجمة",
+    secondTranslation: "ترجمة ثانية",
+    secondNone: "لا شيء",
     smaller: "أصغر: {name}",
     larger: "أكبر: {name}",
   },

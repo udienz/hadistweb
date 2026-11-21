@@ -97,6 +97,8 @@ export const ja: Messages = {
     textSize: "文字の大きさ",
     arabicSize: "アラビア語本文",
     latinSize: "翻訳",
+    secondTranslation: "2つ目の翻訳",
+    secondNone: "なし",
     smaller: "小さく：{name}",
     larger: "大きく：{name}",
   },

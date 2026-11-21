@@ -97,6 +97,8 @@ export const ru: Messages = {
     textSize: "Размер текста",
     arabicSize: "Арабский текст",
     latinSize: "Перевод",
+    secondTranslation: "Второй перевод",
+    secondNone: "Нет",
     smaller: "Меньше: {name}",
     larger: "Больше: {name}",
   },
