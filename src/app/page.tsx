@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { shareMetadata } from "@/lib/site";
 import Link from "next/link";
+import { Suspense } from "react";
 import ContinueReading from "@/components/ContinueReading";
+import DailyHadith from "@/components/DailyHadith";
 import SearchForm from "@/components/SearchForm";
 import { BOOKS, translationOrder } from "@/lib/hadith/books";
 import type { Book } from "@/lib/hadith/types";
@@ -55,6 +57,10 @@ export default async function Home() {
         <SearchForm i18n={i18n} />
       </div>
       <ContinueReading />
+      {/* Streamed: the rest of the page does not wait for the hadith's data. */}
+      <Suspense fallback={null}>
+        <DailyHadith i18n={i18n} />
+      </Suspense>
 
       <h2 className="mb-5 font-display text-xl font-semibold">{t("home.listTitle")}</h2>
       <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">

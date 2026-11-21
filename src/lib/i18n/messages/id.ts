@@ -34,6 +34,8 @@ export const id: Messages = {
     subtitle: "Teks Arab dengan terjemahan, per kitab dan per bab.",
     start: "Mulai dari Shahih al-Bukhari",
     listTitle: "Kitab",
+    dailyTitle: "Hadis hari ini",
+    dailyMore: "Baca selengkapnya",
     translationIn: "Terjemahan {language}",
     translationFrom: "Terjemahan {language} dari {source}",
     translationPartly: "Sebagian hadis berterjemahan {language}, dari {source}",

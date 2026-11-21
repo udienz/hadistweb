@@ -36,6 +36,8 @@ export const fa: Messages = {
     subtitle: "متن عربی همراه با ترجمه، کتاب به کتاب و باب به باب.",
     start: "با صحیح بخاری شروع کنید",
     listTitle: "کتاب‌ها",
+    dailyTitle: "حدیث روز",
+    dailyMore: "خواندن کامل حدیث",
     translationIn: "ترجمهٔ {language}",
     translationFrom: "ترجمهٔ {language} از {source}",
     translationPartly: "ترجمهٔ {language} برخی احادیث، از {source}",

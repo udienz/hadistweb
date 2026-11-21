@@ -36,6 +36,8 @@ export const tr: Messages = {
     subtitle: "Arapça metin ve çevirisi, kitap kitap ve bölüm bölüm.",
     start: "Sahîh-i Buhârî'den başlayın",
     listTitle: "Kitaplar",
+    dailyTitle: "Günün hadisi",
+    dailyMore: "Hadisin tamamını oku",
     translationIn: "{language} çeviri",
     translationFrom: "{source} kaynağından {language} çeviri",
     translationPartly: "Bazı hadisler {language} diline çevrili, {source} kaynağından",

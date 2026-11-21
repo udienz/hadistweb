@@ -36,6 +36,8 @@ export const es: Messages = {
     subtitle: "Texto árabe con una traducción, libro por libro y capítulo por capítulo.",
     start: "Empieza con Sahih al-Bujari",
     listTitle: "Libros",
+    dailyTitle: "El hadiz del día",
+    dailyMore: "Leer el hadiz completo",
     translationIn: "Traducción en {language}",
     translationFrom: "Traducción en {language} de {source}",
     translationPartly: "Algunos hadices traducidos al {language}, de {source}",

@@ -36,6 +36,8 @@ export const fr: Messages = {
     subtitle: "Le texte arabe avec une traduction, recueil par recueil et chapitre par chapitre.",
     start: "Commencer par Sahih al-Bukhari",
     listTitle: "Recueils",
+    dailyTitle: "Le hadith du jour",
+    dailyMore: "Lire le hadith en entier",
     translationIn: "Traduction en {language}",
     translationFrom: "Traduction en {language} de {source}",
     translationPartly: "Certains hadiths traduits en {language}, de {source}",

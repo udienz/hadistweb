@@ -36,6 +36,8 @@ export const ar: Messages = {
     subtitle: "نصوص الحديث بالعربية، كتابًا كتابًا وبابًا بابًا.",
     start: "ابدأ بصحيح البخاري",
     listTitle: "الكتب",
+    dailyTitle: "حديث اليوم",
+    dailyMore: "اقرأ الحديث كاملًا",
     translationIn: "ترجمة {language}",
     translationFrom: "ترجمة {language} من {source}",
     translationPartly: "بعض الأحاديث مترجمة إلى {language}، من {source}",

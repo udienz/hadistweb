@@ -36,6 +36,8 @@ export const vi: Messages = {
     subtitle: "Văn bản tiếng Ả Rập kèm bản dịch, từng sách và từng chương.",
     start: "Bắt đầu với Sahih al-Bukhari",
     listTitle: "Sách",
+    dailyTitle: "Hadith hôm nay",
+    dailyMore: "Đọc toàn bộ hadith",
     translationIn: "Bản dịch: {language}",
     translationFrom: "Bản dịch: {language}, từ {source}",
     translationPartly: "Một số hadith có bản dịch ({language}), từ {source}",

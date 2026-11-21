@@ -36,6 +36,8 @@ export const de: Messages = {
     subtitle: "Arabischer Text mit Übersetzung, Buch für Buch und Kapitel für Kapitel.",
     start: "Mit Sahih al-Buchari beginnen",
     listTitle: "Bücher",
+    dailyTitle: "Hadith des Tages",
+    dailyMore: "Den ganzen Hadith lesen",
     translationIn: "Übersetzung: {language}",
     translationFrom: "Übersetzung: {language}, von {source}",
     translationPartly: "Einige Hadithe übersetzt ({language}), von {source}",

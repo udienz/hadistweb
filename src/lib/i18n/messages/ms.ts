@@ -36,6 +36,8 @@ export const ms: Messages = {
     subtitle: "Teks Arab dengan terjemahan, kitab demi kitab dan bab demi bab.",
     start: "Mula dengan Sahih al-Bukhari",
     listTitle: "Kitab",
+    dailyTitle: "Hadis hari ini",
+    dailyMore: "Baca sepenuhnya",
     translationIn: "Terjemahan {language}",
     translationFrom: "Terjemahan {language} daripada {source}",
     translationPartly: "Sebahagian hadis diterjemahkan ke {language}, daripada {source}",
