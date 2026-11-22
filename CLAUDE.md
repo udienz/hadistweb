@@ -108,7 +108,8 @@ before starting.
 - `src/lib/site.ts`, `src/app/robots.ts`, `src/app/sitemap.ts`, `public/og.png`
   (drawn by `scripts/og-image.mjs`): the origin comes from the Host nginx passes
   (or `SITE_URL`); only https://hadist.udienz.web.id is indexed, QA and local
-  copies get `noindex` and a robots.txt that disallows everything. Sitemap 0
+  copies get `noindex` and a robots.txt that disallows everything, and are not
+  installable (the manifest's display is "browser" there). Sitemap 0
   lists the books, chapters and topics, 1 to 10 the hadiths of each book (from
   the search index). Every page sets its canonical address and Open Graph data
   with `shareMetadata`; a hadith's description is its matn (`excerpt.ts`).

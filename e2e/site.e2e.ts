@@ -154,9 +154,9 @@ test("link previews, the sitemap and robots.txt", async ({ page, request }) => {
   expect(sitemap).toContain("/bukhari/1</loc>");
   expect((await request.get("/og.png")).headers()["content-type"]).toBe("image/png");
 
-  // Installable as an app: the manifest, in the reader's language, and its icons.
+  // The manifest and its icons. A test server is not the production site, so it is not installable ("browser").
   const manifest = await (await request.get("/manifest.webmanifest")).json();
-  expect(manifest).toMatchObject({ name: "HadistWeb", display: "standalone", start_url: "/" });
+  expect(manifest).toMatchObject({ name: "HadistWeb (QA)", display: "browser", start_url: "/" });
   for (const icon of manifest.icons) expect((await request.get(icon.src)).status()).toBe(200);
   await expect(page.locator('link[rel="manifest"]')).toHaveAttribute("href", "/manifest.webmanifest");
 });
