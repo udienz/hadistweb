@@ -8,10 +8,38 @@ on:
 # Least privilege for the GITHUB_TOKEN: the jobs only read the code.
 permissions:
   contents: read
+  pull-requests: read
 
 jobs:
+  # A change that touches only documentation (Markdown, docs/, the licence) skips the jobs below, as in quranweb (PR #120).
+  # A skipped job counts as passed for the required checks of the "Master" ruleset, so such a PR can still be merged.
+  changes:
+    name: Detect code changes
+    runs-on: ubuntu-latest
+    outputs:
+      code: ${{ steps.filter.outputs.code }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # paths-filter needs the previous commit when this workflow runs on push.
+          fetch-depth: 0
+
+      - name: Detect code changes
+        uses: dorny/paths-filter@v4
+        id: filter
+        with:
+          filters: |
+            code:
+              - '**'
+              - '!**/*.md'
+              - '!docs/**'
+              - '!LICENSE*'
+
   build:
     name: Lint & build (includes typecheck)
+    needs: changes
+    if: needs.changes.outputs.code == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -53,6 +81,8 @@ jobs:
     # The image the servers build: it must start and serve its files as the runtime user (uid 1001), with the checkout's
     # permissions as strict as on the server (quranweb PR #71).
     name: Docker image starts
+    needs: changes
+    if: needs.changes.outputs.code == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -67,6 +97,8 @@ jobs:
     # Browser tests (e2e/*.e2e.ts) against the production build, as in quranweb. The books come from the small data copy
     # in e2e/fixtures, HadeethEnc from a fake server over its fixtures, so no network is needed.
     name: Browser tests
+    needs: changes
+    if: needs.changes.outputs.code == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
