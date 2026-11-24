@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageHead from "@/components/PageHead";
 import { shareMetadata } from "@/lib/site";
 import Link from "next/link";
 import { cookies } from "next/headers";
@@ -66,20 +67,14 @@ export default async function ChapterPage({ params, searchParams }: PageProps<"/
       <Link href={bookHref(id)} className="text-sm font-medium text-primary hover:underline">
         <span className="inline-block rtl:-scale-x-100">&larr;</span> {localized(bookById(id).name, locale)} · {t("chapter.backToBook")}
       </Link>
-      <header
-        className="on-dark mb-4 mt-3 rounded-2xl px-6 py-5 text-white sm:px-8"
-        style={{ background: "linear-gradient(135deg, hsl(var(--hero-from)), hsl(var(--hero-to)))" }}
-      >
-        <p className="text-sm text-gold">{chapter.number === 0 ? localized(bookById(id).name, locale) : t("book.chapterLabel", { number: chapter.number })}</p>
-        <h1 className="mt-1 font-display text-2xl font-bold" lang={title.lang}>
-          {title.title}
-        </h1>
-        {title.original && (
-          <p className="mt-0.5 text-sm text-white/75" lang="en">
-            {title.original}
-          </p>
-        )}
-      </header>
+      <PageHead
+        eyebrow={chapter.number === 0 ? localized(bookById(id).name, locale) : t("book.chapterLabel", { number: chapter.number })}
+        title={title.title}
+        titleLang={title.lang}
+        sub={title.original}
+        subLang="en"
+      />
+      <div className="mb-4" />
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <PageSizeSelect book={id} chapter={chapter.number} size={size} from={from} grade={grade} />

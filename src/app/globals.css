@@ -15,31 +15,36 @@
   unicode-range: U+FDF2, U+FDFA-FDFD;
 }
 
-/* Palette: deep teal, gold accent, cream background (light) / dark teal (dark). */
+/* Palette (quranweb's editorial one): deep forest, muted gold, ink brown on a warm paper (light); the same family on a
+   night green (dark). --paper and --rule are the parchment panels and their thin lines. */
 :root {
   --background: 42 33% 94%;
-  --foreground: 190 28% 21%;
-  --card: 0 0% 100%;
-  --muted: 44 29% 90%;
-  --muted-foreground: 191 13% 40%;
-  --border: 146 14% 89.5%;
-  --primary: 190 69% 29%;
-  --primary-soft: 190 40% 92%;
-  --gold: 39 65% 55%;
-  --hero-from: 190 70% 21%;
-  --hero-to: 192 64% 9%;
+  --foreground: 34 21% 20%;
+  --card: 39 55% 94%;
+  --muted: 40 43% 88%;
+  --muted-foreground: 36 12% 40%;
+  --border: 37 32% 78%;
+  --primary: 143 19% 25%;
+  --primary-soft: 42 31% 87%;
+  --gold: 39 34% 56%;
+  --hero-from: 143 19% 25%;
+  --hero-to: 146 21% 20%;
+  --paper: #ede4d2;
+  --rule: #d9cbb5;
 }
 
 .dark {
-  --background: 192 64% 7.6%;
-  --foreground: 186 25% 92%;
-  --card: 192 54% 11%;
-  --muted: 193 46% 15%;
-  --muted-foreground: 191 13% 67%;
-  --border: 190 28% 17%;
-  --primary: 174 50% 48%;
-  --primary-soft: 193 46% 15%;
-  --gold: 42 67% 62%;
+  --background: 143 17% 9.5%;
+  --foreground: 38 41% 89%;
+  --card: 141 16% 18%;
+  --muted: 142 15% 22%;
+  --muted-foreground: 38 14% 67%;
+  --border: 136 10% 29%;
+  --primary: 122 17% 71%;
+  --primary-soft: 137 15% 24%;
+  --gold: 40 42% 63%;
+  --paper: #1d2d23;
+  --rule: #435247;
 }
 
 @theme inline {
@@ -80,8 +85,7 @@ body {
   scrollbar-color: hsl(var(--primary) / 0.35) transparent;
 }
 
-/* Keyboard focus, for every control: a 2px teal ring outside the element (gold on the dark book head and hero, where
-   teal would not show). Unlayered on purpose, so a utility such as `outline-none` cannot remove it; inputs keep their
+/* Keyboard focus, for every control: a 2px forest ring outside the element (gold on the dark hero, where forest would not show). Unlayered on purpose, so a utility such as `outline-none` cannot remove it; inputs keep their
    teal border as well. Before this, buttons and links had only the browser's default ring. */
 :focus-visible {
   outline: 2px solid hsl(var(--primary));
@@ -89,4 +93,232 @@ body {
 }
 .on-dark :focus-visible {
   outline-color: hsl(var(--gold));
+}
+
+/* ---- Editorial design (the look of quranweb): header, home page, page heads and the hadith card ---- */
+
+/* The header tile: the logo in cream and gold on forest. */
+.hw-tile {
+  display: flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: #344c3d;
+  box-shadow: 0 0 0 1px hsl(var(--gold) / 0.4);
+}
+.dark .hw-tile { background: #26342b; }
+
+.hw-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: hsl(var(--primary));
+}
+
+/* Home hero: parchment, the text on the start side, the basmalah in a gold arch on the other. */
+.hw-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  min-height: 26rem;
+  overflow: hidden;
+  border: 1px solid hsl(var(--gold) / 0.35);
+  border-radius: 1.5rem;
+  background: var(--paper);
+  box-shadow: 0 20px 48px rgb(61 52 40 / 10%);
+}
+.hw-hero__text { display: flex; flex-direction: column; padding: 3.5rem 3.5rem 3rem; }
+.hw-hero__sub { margin-top: 1rem; max-width: 30rem; font-size: 1.0625rem; line-height: 1.75; color: hsl(var(--foreground) / 0.82); }
+.hw-hero__tagline { margin-top: 0.75rem; font-style: italic; color: hsl(var(--muted-foreground)); }
+.hw-hero__row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: auto; padding-top: 2.25rem; }
+.hw-hero__search { display: flex; flex: 1 1 100%; gap: 0.5rem; max-width: 30rem; }
+.hw-hero__input {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: rgb(248 242 231 / 92%);
+  padding: 0.85rem 1.35rem;
+  font-size: 0.9375rem;
+  color: hsl(var(--foreground));
+}
+.dark .hw-hero__input { background: rgb(29 45 35 / 85%); }
+.hw-hero__input::placeholder { color: hsl(var(--muted-foreground)); }
+.hw-hero__input:focus { outline: none; border-color: hsl(var(--primary)); }
+.hw-btn-outline {
+  border: 1px solid hsl(var(--primary));
+  border-radius: 999px;
+  padding: 0.85rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: hsl(var(--primary));
+}
+.hw-btn-outline:hover { background: hsl(var(--primary-soft)); }
+.hw-btn-solid {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: #344c3d;
+  padding: 0.85rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #f8f2e7;
+}
+.hw-btn-solid:hover { background: #405b48; }
+.dark .hw-btn-solid { background: #d0ad62; color: #1d2d23; }
+.dark .hw-btn-solid:hover { background: #dfc17e; }
+.hw-hero__art {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.75rem;
+  background:
+    radial-gradient(ellipse at 70% 40%, rgb(215 191 138 / 45%), transparent 62%),
+    linear-gradient(90deg, var(--paper), rgb(180 154 104 / 18%));
+}
+.dark .hw-hero__art {
+  background:
+    radial-gradient(ellipse at 70% 40%, rgb(208 173 98 / 18%), transparent 62%),
+    linear-gradient(90deg, var(--paper), rgb(0 0 0 / 18%));
+}
+.hw-hero__art::before {
+  content: "";
+  position: absolute;
+  inset: 1.6rem;
+  border: 1px solid hsl(var(--gold) / 0.4);
+  border-radius: 7.5rem 7.5rem 1.1rem 1.1rem;
+}
+.hw-hero__bismillah {
+  position: relative;
+  font-size: clamp(2.1rem, 3.7vw, 3.1rem);
+  line-height: 1.6;
+  white-space: nowrap;
+  color: #344c3d;
+}
+.dark .hw-hero__bismillah { color: #d7bf8a; }
+/* The art sits on the end side in right to left too: the grid follows the direction, so nothing to mirror. */
+@media (max-width: 760px) {
+  .hw-hero { grid-template-columns: 1fr; min-height: 0; }
+  .hw-hero__text { padding: 2rem 1.5rem 1.75rem; }
+  .hw-hero__art { order: -1; padding: 1.25rem 1rem 0.25rem; }
+  .hw-hero__art::before { display: none; }
+  .hw-hero__bismillah { font-size: clamp(1.5rem, 7.4vw, 2.1rem); line-height: 1.8; }
+  .hw-hero__row { padding-top: 1.5rem; }
+}
+
+/* A card on the paper: continue reading, the links to narrators and topics. */
+.hw-panel {
+  border: 1px solid var(--rule);
+  border-radius: 1.125rem;
+  background: hsl(var(--card));
+}
+a.hw-panel:hover { border-color: hsl(var(--gold)); }
+.hw-diamond {
+  display: flex;
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0.4rem;
+  rotate: 45deg;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.55rem;
+  background: var(--paper);
+  color: hsl(var(--primary));
+}
+.hw-diamond > span { rotate: -45deg; font-size: 0.875rem; font-weight: 700; }
+
+/* The hadith of the day. */
+.hw-daily { border: 1px solid var(--rule); border-radius: 1.375rem; background: hsl(var(--card)); padding: 1.5rem 2.5rem 2.1rem; }
+.hw-daily__top { display: flex; align-items: center; gap: 1.25rem; }
+.hw-daily__top > i { height: 1px; flex: 1; background: var(--rule); }
+.hw-daily__ref { font-size: 0.875rem; font-weight: 600; color: hsl(var(--primary)); }
+.hw-daily__ref:hover { text-decoration: underline; }
+.hw-daily__translation { max-width: 75ch; border-top: 1px solid var(--rule); padding-top: 1.25rem; line-height: 1.85; }
+@media (max-width: 760px) {
+  .hw-daily { padding: 1.25rem 1.25rem 1.6rem; }
+  .hw-daily__top { gap: 0.75rem; }
+  .hw-daily__top > i { display: none; }
+  .hw-daily__top { justify-content: space-between; }
+}
+
+/* The list of books: a card per book, the number in a gold ring. */
+.hw-book {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 1rem;
+  background: hsl(var(--card));
+  padding: 1rem 1.25rem;
+  transition: border-color 0.15s;
+}
+.hw-book:hover { border-color: hsl(var(--gold)); }
+.hw-num {
+  display: flex;
+  flex: none;
+  min-width: 2.125rem;
+  height: 2.125rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid hsl(var(--gold));
+  border-radius: 999px;
+  background: var(--paper);
+  padding-inline: 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: hsl(var(--primary));
+}
+.hw-filter {
+  width: min(26rem, 100%);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: hsl(var(--card));
+  padding: 0.85rem 1.35rem;
+  font-size: 0.9375rem;
+  color: hsl(var(--foreground));
+}
+.hw-filter::placeholder { color: hsl(var(--muted-foreground)); }
+.hw-filter:focus { outline: none; border-color: hsl(var(--primary)); }
+
+/* The head of a page (book, chapter, topics): centred on the paper, a gold rule with a diamond under it. */
+.hw-head { padding: 1.75rem 0.5rem 0.25rem; text-align: center; }
+.hw-head__title { margin-top: 0.5rem; font-size: clamp(1.75rem, 4.5vw, 2.6rem); font-weight: 600; line-height: 1.2; color: hsl(var(--primary)); }
+.hw-head__arabic { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.5; color: hsl(var(--primary)); }
+.hw-head__sub { margin-top: 0.35rem; color: hsl(var(--muted-foreground)); }
+.hw-ornament { position: relative; display: block; height: 1rem; max-width: 26rem; margin: 0.9rem auto 0; }
+.hw-ornament::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  inset-inline: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, hsl(var(--gold)), transparent);
+}
+.hw-ornament::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: hsl(var(--gold));
+  transform: translate(-50%, -50%) rotate(45deg);
+  box-shadow: 0 0 0 5px hsl(var(--background));
+}
+
+/* A hadith: a card on the paper with a thin gold frame inside. */
+.hw-card { position: relative; background: hsl(var(--card)); border-color: var(--rule); }
+.hw-card::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid hsl(var(--gold) / 0.28);
+  border-radius: 0.875rem;
+  pointer-events: none;
 }

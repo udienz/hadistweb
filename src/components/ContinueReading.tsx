@@ -14,19 +14,26 @@ export default function ContinueReading() {
   const { last, bookmarks } = useSyncExternalStore(subscribeReading, readReading, () => EMPTY_READING);
   if (!last && bookmarks.length === 0) return null;
 
-  const card = "flex flex-1 flex-col rounded-2xl border border-border bg-card px-5 py-4 transition hover:border-primary/50 hover:shadow-sm";
+  const card = "hw-panel flex flex-1 items-center gap-4 px-5 py-3.5 transition";
   return (
-    <div className="mb-8 flex flex-col gap-3 sm:flex-row">
+    <div className="mb-6 flex flex-col gap-3 sm:flex-row">
       {last && (
         <Link href={hadithHref(last.book, last.number)} className={card}>
-          <span className="text-sm text-muted-foreground">{t("reading.continue")}</span>
-          <span className="font-semibold text-primary">{t("hadith.inBook", { book: localized(bookById(last.book).name, locale), number: last.number })}</span>
+          <span className="hw-diamond font-display" aria-hidden>
+            <span>{last.number}</span>
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-sm text-muted-foreground">{t("reading.continue")}</span>
+            <span className="block truncate text-lg font-semibold">{t("hadith.inBook", { book: localized(bookById(last.book).name, locale), number: last.number })}</span>
+          </span>
         </Link>
       )}
       {bookmarks.length > 0 && (
         <Link href={bookmarksHref} className={card}>
-          <span className="text-sm text-muted-foreground">{t("reading.title")}</span>
-          <span className="font-semibold text-primary">{tn("reading.count", bookmarks.length)}</span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-sm text-muted-foreground">{t("reading.title")}</span>
+            <span className="block truncate text-lg font-semibold">{tn("reading.count", bookmarks.length)}</span>
+          </span>
         </Link>
       )}
     </div>
