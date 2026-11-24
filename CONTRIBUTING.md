@@ -16,7 +16,8 @@ npm run test:e2e   # browser tests against the build; needs Chromium (`npx playw
 ```
 
 CI runs the same commands on every pull request, and also builds and starts the Docker image. All three checks must pass
-before a pull request can be merged.
+before a pull request can be merged. A pull request that changes only documentation (Markdown files, `docs/`, the licence)
+skips them.
 
 The issue forms ("Bug report", "Translation mistake", "Feature idea") and the pull request template ask for what we need;
 please follow them. Everyone taking part follows the [code of conduct](CODE_OF_CONDUCT.md), and security problems are

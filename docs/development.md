@@ -91,6 +91,10 @@ request; run it yourself before merging a change to the `Dockerfile` or to `publ
 `.github/workflows/ci.yml` runs on every pull request. The `master` branch requires three checks: "Lint & build
 (includes typecheck)", "Docker image starts" and "Browser tests".
 
+A change that touches only documentation (`*.md`, `docs/`, `LICENSE`) skips those three jobs: the first job, "Detect code
+changes" (`dorny/paths-filter`), decides. GitHub counts a skipped job as passed, so such a pull request can still be merged.
+Anything else, including a workflow file, runs all of them. Keep the filter in step with quranweb's.
+
 ## Deploying
 
 QA (hadist-qa.udienz.web.id) is deployed with the manual "Deploy QA" workflow, production (hadist.udienz.web.id) by
