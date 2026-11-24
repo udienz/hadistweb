@@ -37,7 +37,6 @@ quiet place to read.
 
 ## Not done yet
 
-- The app icons (`icon.svg`, `apple-icon.png`, `public/icons/`) and `public/og.png` still use the old teal; quranweb
-  redrew its own after the redesign.
-- The README screenshots (`docs/screenshots/`) show the old look. Retake them after the redesign is approved on QA.
 - The bookmarks, search, narrators, about and privacy pages follow the new tokens but have no editorial head yet.
+- The app icons, `public/og.png` and the README screenshots were redrawn for the forest palette on 2026-11-24
+  (`scripts/app-icons.mjs`, `scripts/og-image.mjs`, `scripts/readme-screenshots.mjs`). quranweb's own icons are still teal.
