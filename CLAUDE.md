@@ -151,6 +151,10 @@ patterns rather than inventing new ones, and read quranweb's `CLAUDE.md` first:
 its decisions on modular providers, stable edition IDs, the source registry and
 file-or-HTTP transport apply here too. Audio and tafsir do not exist here.
 
+Since 2026-11-24 the look is quranweb's editorial design (parchment, forest, gold): see `docs/DESIGN.md`. Keep
+the tokens in `globals.css` in step with quranweb's, and never pass a function from a server component to a client
+component (the build passes, the page then fails to render).
+
 ## Data sources
 
 - **fawazahmed0/hadith-api** (Unlicense): the books (Bukhari, Muslim, Abu Dawud,

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageHead from "@/components/PageHead";
 import { shareMetadata } from "@/lib/site";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -71,13 +72,9 @@ export default async function TopicPage({ params, searchParams }: PageProps<"/to
           </span>
         ))}
       </nav>
-      <header
-        className="on-dark mb-6 mt-3 rounded-2xl px-6 py-5 text-white sm:px-8"
-        style={{ background: "linear-gradient(135deg, hsl(var(--hero-from)), hsl(var(--hero-to)))" }}
-      >
-        <h1 className="font-display text-2xl font-bold">{category.title}</h1>
-        <p className="mt-1 text-sm text-white/75">{tn("common.hadiths", category.count)}</p>
-      </header>
+      <div className="mb-6">
+        <PageHead title={category.title} sub={tn("common.hadiths", category.count)} />
+      </div>
 
       {subs.length > 0 && (
         <section className="mb-6">

@@ -22,20 +22,33 @@ export default async function DailyHadith({ i18n }: { i18n: Translator }) {
     .getHadith(DAILY_BOOK, number, locale)
     .catch(() => null);
   if (!hadith) return null;
-  const language = locale === "ar" || !hadith.translation ? "ar" : hadith.translation.language;
-  const text = locale === "ar" ? hadithExcerpt({ ...hadith, translation: null }, 220) : hadithExcerpt(hadith, 220);
+  const arabic = hadithExcerpt({ ...hadith, translation: null }, 220);
+  // Arabic readers get no translation; otherwise the translation sits under the Arabic.
+  const translation = locale === "ar" || !hadith.translation ? null : hadithExcerpt(hadith, 220);
+  const language = hadith.translation?.language ?? "en";
+  const reference = t("hadith.inBook", { book: localized(bookById(DAILY_BOOK).name, locale), number });
 
   return (
-    <section className="mb-8 rounded-2xl border border-border bg-card px-5 py-5 sm:px-7">
-      <h2 className="text-sm font-semibold text-muted-foreground">{t("home.dailyTitle")}</h2>
-      <p className="mt-0.5 font-display font-semibold text-primary">
-        {t("hadith.inBook", { book: localized(bookById(DAILY_BOOK).name, locale), number })}
+    <section aria-labelledby="daily-hadith" className="hw-daily mb-10">
+      <div className="hw-daily__top">
+        <h2 id="daily-hadith" className="hw-eyebrow">
+          {t("home.dailyTitle")}
+        </h2>
+        <i aria-hidden />
+        <Link href={hadithHref(DAILY_BOOK, number)} className="hw-daily__ref">
+          {reference}
+        </Link>
+      </div>
+      <p dir="rtl" lang="ar" translate="no" className="font-arabic my-5 text-right text-[length:calc(1.7rem*var(--arabic-scale,1))] leading-[2.1] sm:text-[length:calc(2.15rem*var(--arabic-scale,1))]">
+        {arabic}
       </p>
-      <p lang={language} dir={directionOf(language)} className={`mt-2 max-w-[65ch] ${language === "ar" ? "font-arabic text-xl leading-loose" : "leading-relaxed"}`}>
-        {text}
-      </p>
-      <Link href={hadithHref(DAILY_BOOK, number)} className="mt-3 inline-block text-sm font-semibold text-primary hover:underline">
-        {t("home.dailyMore")} <span className="inline-block rtl:-scale-x-100">&rarr;</span>
+      {translation && (
+        <p lang={language} dir={directionOf(language)} className="hw-daily__translation text-[length:calc(1.0625rem*var(--latin-scale,1))]">
+          {translation}
+        </p>
+      )}
+      <Link href={hadithHref(DAILY_BOOK, number)} className="hw-btn-solid mt-6">
+        {t("home.dailyMore")} <span aria-hidden className="ms-2 rtl:-scale-x-100">&#8599;</span>
       </Link>
     </section>
   );

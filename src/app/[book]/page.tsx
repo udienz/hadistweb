@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageHead from "@/components/PageHead";
 import { shareMetadata } from "@/lib/site";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -30,20 +31,17 @@ export default async function BookPage({ params }: PageProps<"/[book]">) {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <section
-        className="on-dark mb-8 rounded-2xl px-6 py-6 text-white sm:px-10"
-        style={{ background: "linear-gradient(135deg, hsl(var(--hero-from)), hsl(var(--hero-to)))" }}
-      >
-        {book.arabicName && (
-          <p className="font-arabic text-3xl text-gold" dir="rtl" lang="ar" translate="no">
-            {book.arabicName}
-          </p>
-        )}
-        <h1 className="mt-1 font-display text-2xl font-bold sm:text-3xl">{localized(book.name, locale)}</h1>
-        <p className="mt-1 text-white/75">
-          {tn("common.chapters", chapters.length)} · {tn("common.hadiths", total)}
-        </p>
-      </section>
+      <div className="mb-8">
+        <PageHead
+          arabic={book.arabicName}
+          title={localized(book.name, locale)}
+          sub={
+            <>
+              {tn("common.chapters", chapters.length)} · {tn("common.hadiths", total)}
+            </>
+          }
+        />
+      </div>
 
       <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
         <h2 className="font-display text-xl font-semibold">{t("book.chapters")}</h2>

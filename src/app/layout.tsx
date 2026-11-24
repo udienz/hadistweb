@@ -9,6 +9,7 @@ import "@fontsource-variable/space-grotesk";
 import "./globals.css";
 import LanguageMenu from "@/components/LanguageMenu";
 import Logo from "@/components/Logo";
+import NavLink from "@/components/NavLink";
 import TextSizeMenu from "@/components/TextSizeMenu";
 import ThemeToggle from "@/components/ThemeToggle";
 import { I18nProvider } from "@/lib/i18n/client";
@@ -33,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f5f2eb" },
-    { media: "(prefers-color-scheme: dark)", color: "#071b20" },
+    { media: "(prefers-color-scheme: dark)", color: "#141c17" },
   ],
 };
 
@@ -49,26 +50,26 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col">
         <I18nProvider locale={locale} messages={MESSAGES[locale]}>
           <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
-            <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between gap-2 px-4">
+            {/* On phones the navigation takes a second row, so the controls never push the header wider than the screen. */}
+            <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-x-2 gap-y-1 px-4 py-2 sm:h-16 sm:flex-nowrap sm:py-0">
               <Link href="/" className="flex items-center gap-2.5" aria-label="HadistWeb">
-                <Logo />
-                {/* Below 400px the five header buttons need the room: the name is hidden there, the logo stays (and names the link). */}
-                <span className="hidden font-display text-xl font-bold tracking-tight text-primary min-[400px]:inline">HadistWeb</span>
+                <span className="hw-tile">
+                  <span className="flex [--primary:43_45%_82%] [--gold:42_55%_66%]">
+                    <Logo size={26} />
+                  </span>
+                </span>
+                {/* Below 480px the header buttons need the room: the name is hidden there, the logo stays (and names the link). */}
+                <span className="hidden font-display text-xl font-bold tracking-tight text-primary min-[480px]:inline">HadistWeb</span>
               </Link>
-              {/* From 1024px: below it the five header buttons and the name need the whole row (the home page links the rest). */}
-              <nav className="hidden rounded-full border border-border bg-card p-1 text-sm lg:flex">
-                <Link href="/" className="whitespace-nowrap rounded-full px-4 py-1.5 font-medium hover:bg-background">
+              <nav className="order-last flex w-full flex-wrap justify-center text-sm sm:order-none sm:w-auto">
+                <NavLink href="/" section="books">
                   {t("nav.books")}
-                </Link>
-                <Link href="/topics" className="whitespace-nowrap rounded-full px-4 py-1.5 font-medium hover:bg-background">
+                </NavLink>
+                <NavLink href="/topics" section="topics">
                   {t("nav.topics")}
-                </Link>
-                <Link href={bookmarksHref} className="whitespace-nowrap rounded-full px-4 py-1.5 font-medium hover:bg-background">
-                  {t("nav.bookmarks")}
-                </Link>
-                <Link href="/about" className="whitespace-nowrap rounded-full px-4 py-1.5 font-medium hover:bg-background">
-                  {t("nav.about")}
-                </Link>
+                </NavLink>
+                <NavLink href={bookmarksHref}>{t("nav.bookmarks")}</NavLink>
+                <NavLink href="/about">{t("nav.about")}</NavLink>
               </nav>
               <div className="flex items-center gap-2">
                 <Link

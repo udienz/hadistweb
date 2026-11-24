@@ -117,10 +117,10 @@ export default function HadithCard({
   const explanation = explanationId(book, hadith.number);
 
   return (
-    <article id={hadithAnchor(hadith.number)} data-book={book} data-hadith={hadith.number} className="scroll-mt-24 rounded-2xl border border-border bg-card px-5 py-5 sm:px-7">
+    <article id={hadithAnchor(hadith.number)} data-book={book} data-hadith={hadith.number} className="hw-card scroll-mt-24 rounded-2xl border px-5 py-5 sm:px-7">
       <header className="mb-4 flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-3">
-          <span className="flex h-9 min-w-9 items-center justify-center rounded-full bg-primary-soft px-2.5 font-display text-xs font-bold tabular-nums text-primary">
+          <span className="hw-num font-display">
             {hadith.number}
           </span>
           <div className="leading-tight">

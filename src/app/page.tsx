@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import ContinueReading from "@/components/ContinueReading";
 import DailyHadith from "@/components/DailyHadith";
-import SearchForm from "@/components/SearchForm";
+import BookList, { type BookRow } from "@/components/BookList";
 import { BOOKS, translationOrder } from "@/lib/hadith/books";
 import type { Book } from "@/lib/hadith/types";
 import { languageName } from "@/lib/i18n/languages";
@@ -12,7 +12,7 @@ import type { Translator } from "@/lib/i18n/translate";
 import { getI18n } from "@/lib/i18n/server";
 import { localized } from "@/lib/i18n/translate";
 import { narratorsHref } from "@/lib/hadith/narrators";
-import { bookHref, topicsHref } from "@/lib/links";
+import { bookHref, searchHref, topicsHref } from "@/lib/links";
 
 // Rendered per request: the layout reads the language from the request.
 export const instant = false;
@@ -35,84 +35,71 @@ function translationNote(book: Book, { t, locale }: Translator): string | null {
 export default async function Home() {
   const i18n = await getI18n();
   const { t, locale } = i18n;
+  const rows: BookRow[] = BOOKS.map((book, i) => ({
+    id: book.id,
+    number: i + 1,
+    name: localized(book.name, locale),
+    note: translationNote(book, i18n),
+    arabicName: book.arabicName ?? null,
+    href: bookHref(book.id),
+  }));
+  const linkCard = "hw-panel flex items-center justify-between gap-3 px-5 py-4 transition";
 
   return (
-    <div className="mx-auto max-w-[1200px] px-4 py-8">
-      <section
-        className="on-dark mb-8 rounded-2xl px-6 py-6 text-white sm:px-10 sm:py-8"
-        style={{ background: "linear-gradient(135deg, hsl(var(--hero-from)), hsl(var(--hero-to)))" }}
-      >
-        <p className="font-arabic text-center text-3xl text-gold sm:text-4xl" dir="rtl" lang="ar" translate="no">
-          بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
-        </p>
-        <h1 className="mt-3 text-center font-display text-2xl font-bold sm:text-3xl">{t("home.title")}</h1>
-        <p className="mx-auto mt-1 max-w-xl text-center text-white/75">{t("home.subtitle")}</p>
-        <div className="mt-4 flex justify-center">
-          <Link href={bookHref("bukhari")} className="rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-[hsl(190_70%_12%)] hover:opacity-90">
-            {t("home.start")}
-          </Link>
+    <div className="mx-auto max-w-[1200px] px-4 pb-16 pt-7 sm:px-6 lg:pt-10">
+      <section className="hw-hero mb-8">
+        <div className="hw-hero__text">
+          <p className="hw-eyebrow">{t("meta.title")}</p>
+          <h1 className="mt-5 font-display text-4xl font-semibold leading-tight text-primary sm:text-5xl">{t("home.title")}</h1>
+          <p className="hw-hero__sub">{t("home.subtitle")}</p>
+          <p className="hw-hero__tagline">{t("home.tagline")}</p>
+          <div className="hw-hero__row">
+            <form action={searchHref()} method="get" role="search" className="hw-hero__search">
+              <input type="search" name="q" maxLength={200} autoComplete="off" enterKeyHint="search" placeholder={t("search.placeholder")} aria-label={t("search.label")} className="hw-hero__input" />
+              <button type="submit" className="hw-btn-outline">
+                {t("search.submit")}
+              </button>
+            </form>
+            <Link href={bookHref("bukhari")} className="hw-btn-solid">
+              {t("home.start")} <span aria-hidden className="ms-2 rtl:-scale-x-100">&#8599;</span>
+            </Link>
+          </div>
+        </div>
+        <div className="hw-hero__art" aria-hidden>
+          <p className="hw-hero__bismillah font-arabic" dir="rtl" lang="ar" translate="no">
+            بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+          </p>
         </div>
       </section>
 
-      <div className="mb-8">
-        <SearchForm i18n={i18n} />
-      </div>
       <ContinueReading />
       {/* Streamed: the rest of the page does not wait for the hadith's data. */}
       <Suspense fallback={null}>
         <DailyHadith i18n={i18n} />
       </Suspense>
 
-      <h2 className="mb-5 font-display text-xl font-semibold">{t("home.listTitle")}</h2>
-      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {BOOKS.map((book, i) => (
-          <li key={book.id}>
-            <Link
-              href={bookHref(book.id)}
-              className="flex h-full items-center gap-4 rounded-2xl border border-border bg-card px-4 py-3.5 transition hover:border-primary/50 hover:shadow-sm"
-            >
-              <span className="flex h-9 w-9 shrink-0 rotate-45 items-center justify-center rounded-md bg-primary-soft text-primary">
-                <span className="-rotate-45 font-display text-xs font-bold">{i + 1}</span>
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block font-semibold">{localized(book.name, locale)}</span>
-                {translationNote(book, i18n) && <span className="block text-xs text-muted-foreground">{translationNote(book, i18n)}</span>}
-              </span>
-              {book.arabicName && (
-                <span className="font-arabic text-xl text-primary" dir="rtl" lang="ar" translate="no">
-                  {book.arabicName}
-                </span>
-              )}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <BookList books={rows} />
 
-      <Link
-        href={narratorsHref()}
-        className="mt-8 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-card px-5 py-4 transition hover:border-primary/50 hover:shadow-sm"
-      >
-        <span>
-          <span className="block font-display text-lg font-semibold text-primary">{t("narrators.homeLink")}</span>
-          <span className="block text-sm text-muted-foreground">{t("narrators.homeText")}</span>
-        </span>
-        <span aria-hidden className="text-primary">
-          <span className="inline-block rtl:-scale-x-100">&rarr;</span>
-        </span>
-      </Link>
-
-      <Link
-        href={topicsHref}
-        className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-card px-5 py-4 transition hover:border-primary/50 hover:shadow-sm"
-      >
-        <span>
-          <span className="block font-display text-lg font-semibold text-primary">{t("topics.homeLink")}</span>
-          <span className="block text-sm text-muted-foreground">{t("topics.homeText")}</span>
-        </span>
-        <span aria-hidden className="text-primary">
-          <span className="inline-block rtl:-scale-x-100">&rarr;</span>
-        </span>
-      </Link>
+      <div className="mt-10 grid gap-3 sm:grid-cols-2">
+        <Link href={narratorsHref()} className={linkCard}>
+          <span>
+            <span className="block font-display text-lg font-semibold text-primary">{t("narrators.homeLink")}</span>
+            <span className="block text-sm text-muted-foreground">{t("narrators.homeText")}</span>
+          </span>
+          <span aria-hidden className="text-primary">
+            <span className="inline-block rtl:-scale-x-100">&rarr;</span>
+          </span>
+        </Link>
+        <Link href={topicsHref} className={linkCard}>
+          <span>
+            <span className="block font-display text-lg font-semibold text-primary">{t("topics.homeLink")}</span>
+            <span className="block text-sm text-muted-foreground">{t("topics.homeText")}</span>
+          </span>
+          <span aria-hidden className="text-primary">
+            <span className="inline-block rtl:-scale-x-100">&rarr;</span>
+          </span>
+        </Link>
+      </div>
     </div>
   );
 }

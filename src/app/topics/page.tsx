@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageHead from "@/components/PageHead";
 import { shareMetadata } from "@/lib/site";
 import Link from "next/link";
 import { encLanguage, getCategories, HADEETHENC_SITE } from "@/lib/hadeethenc/client";
@@ -21,13 +22,9 @@ export default async function TopicsPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <section
-        className="on-dark mb-8 rounded-2xl px-6 py-6 text-white sm:px-10"
-        style={{ background: "linear-gradient(135deg, hsl(var(--hero-from)), hsl(var(--hero-to)))" }}
-      >
-        <h1 className="font-display text-2xl font-bold sm:text-3xl">{t("topics.title")}</h1>
-        <p className="mt-1 max-w-2xl text-white/75">{t("topics.intro")}</p>
-      </section>
+      <div className="mb-8">
+        <PageHead title={t("topics.title")} sub={t("topics.intro")} />
+      </div>
 
       <ul className="flex flex-col gap-3">
         {roots.map((root) => {

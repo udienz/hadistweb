@@ -186,6 +186,26 @@ test("the home page shows a hadith of the day from an-Nawawi", async ({ page }) 
   await expect(daily.getByRole("link", { name: /Baca selengkapnya/ })).toHaveAttribute("href", /^\/nawawi\/\d+$/);
 });
 
+test("the list of books on the home page narrows as you type, by name, Arabic name or number", async ({ page }) => {
+  await page.goto("/");
+  const list = page.locator("#books");
+  const filter = list.getByRole("searchbox");
+  await expect(list.getByRole("listitem")).toHaveCount(10);
+
+  await filter.fill("jami at tirmidzi"); // no apostrophe, no hyphen
+  await expect(list.getByRole("listitem")).toHaveCount(1);
+  await expect(list.getByRole("link", { name: /Tirmidzi/ })).toBeVisible();
+
+  await filter.fill("صحيح مسلم");
+  await expect(list.getByRole("link", { name: /Shahih Muslim/ })).toBeVisible();
+
+  await filter.fill("10");
+  await expect(list.getByRole("listitem")).toHaveCount(1);
+
+  await filter.fill("zzzz");
+  await expect(list.getByRole("status")).toHaveText("Kitab tidak ditemukan.");
+});
+
 test("a book hadith links to HadeethEnc's explanation, and the explanation back to the books", async ({ page }) => {
   await page.goto("/bukhari/1");
   await page.getByRole("link", { name: /Penjelasan hadis ini, dari HadeethEnc\.com/ }).click();
